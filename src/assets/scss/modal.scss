@@ -1,0 +1,90 @@
+.modal .modal-dialog {
+    max-width: 600px;
+    width: 100%;
+    .modal-content {
+        width: 100%;
+        .close, .btnClose {
+            &:focus:focus-visible {
+                outline: none;
+            }
+        }
+        .btnClose {
+            background: transparent;
+            border: 0;
+            width: fit-content;
+            height: fit-content;
+            &:focus {
+                box-shadow: none;
+            }
+            i {
+                font-size: 20px !important;
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+
+.modal .modal-dialog.modal-large {
+    max-width: 1000px;
+}
+
+.modal .modal-dialog.modal-normal {
+    max-width: 700px;
+}
+
+.modal .modal-dialog.modal-md {
+    max-width: 450px;
+}
+
+.modal .modal-dialog.modal-sm {
+    max-width: 300px;
+}
+
+.modal-custom-changeHistory .modal-lg {
+    max-width: 800px;
+}
+
+.modal-custom-addDiscount .modal-lg {
+    max-width: 800px;
+    .modal-content {
+        select.form-control, input.form-control {
+            height: 42px !important;
+        }
+        .btn-primary {
+            border: 0;
+            background-color: #4285f4 !important;
+            border-radius: 4px;
+        }
+        .btn-secondary {
+            border: 0;
+            background-color: gray !important;
+            color: white;
+            border-radius: 4px;
+        }
+    }
+}
+
+.modal-custom-reportChangeHistory .modal-lg {
+    max-width: 800px;
+}
+
+.modal-custom-groupPermissions .modal-lg {
+    max-width: 1140px;
+}
+
+.modal-custom-importQuestions .modal-lg {
+    max-width: 800px;
+}
+
+.modal-custom-createRegtype .modal-dialog .modal-content {
+    border: 0;
+}
+
+.modal-custom-createSession .modal-dialog .modal-content {
+    border: 0;
+}
+
+.modal-dialog .modal-content {
+    border: 0;
+}

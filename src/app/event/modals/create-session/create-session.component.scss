@@ -1,0 +1,121 @@
+.modal-header {
+    border: 0;
+    background-color: #007497;
+    .modal-title {
+        color: white;
+    }
+}
+
+.modal-body {
+    padding: 24px 32px 4px;
+    max-width: fit-content;
+    form {
+        label {
+            color: #007497;
+            font-weight: 500;
+            margin: 0;
+            height: 38px;
+            display: flex;
+            align-items: center;
+        }
+        input {
+            box-shadow: none;
+            color: #007497;
+        }
+        select {
+            color: #007497;
+        }
+        .createSpeakerBtn {
+            font-size: 14px;
+            padding: 2px 0;
+            cursor: pointer;
+        }
+    }
+    .customCheckbox {
+        position: relative;
+        input[type="checkbox"] {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) scale(1.4);
+            left: -26px;
+            height:15px;
+            width:15px;
+            vertical-align:middle;
+            box-shadow: none;
+            margin:0 0.4em 0.4em 0;
+            border:1px solid #007497;
+            -webkit-appearance:none;
+            -webkit-transition:box-shadow 200ms;
+        }
+        
+        input[type="checkbox"] {
+           -webkit-border-radius:3px;
+           border-radius:3px;
+        }
+        
+        input[type="checkbox"]:not(:disabled):hover {
+           border-color:#007497;
+        }
+        
+        input[type="checkbox"]:active:not(:disabled) {
+           border-color:#007497;
+        }
+        
+        input[type="checkbox"]:focus {
+           outline:none;
+        }
+        
+        input[type="checkbox"]:checked {
+           border-color:#007497;
+           background-color:#007497;
+        }
+        
+        input[type="radio"]:checked:before {
+           display:block;
+           height:0.4em;
+           width:0.4em;
+           position:relative;
+           left:0.4em;
+           top:0.4em;
+           background:#fff;
+           border-radius:100%;
+           content:'';
+        }
+        
+        input[type="checkbox"]:checked:before {
+           content:'';
+           display:block;
+           width:4px;
+           height:8px;
+           border:solid #fff;
+           border-width:0 2px 2px 0;
+           -webkit-transform:rotate(45deg);
+           transform:rotate(45deg);
+           margin-left:4px;
+           margin-top:1px;
+        }
+        
+        input:disabled {
+           opacity:.6;
+           box-shadow:none;
+           background:rgba(0, 0, 0, 0.1);
+           box-shadow:none;
+        }
+    }
+    table {
+        th, td {
+            width: 20%;
+            vertical-align: text-bottom;
+        }
+        .cost {
+            min-width: 80px;
+        }
+    }
+}
+
+.modal-footer {
+    .addBtn {
+        font-size: 24px;
+        color: #6ebf49;
+    }
+}

@@ -1,0 +1,28 @@
+<div class="modal-header border-0 pb-0">
+  <h2 class="modal-title w-100 text-center m-0">
+    You are leaving this event page
+  </h2>
+</div>
+<div class="modal-footer border-0">
+  <div class="container-fluid w-100">
+    <div class="row m-0 px-3">
+      <div
+        class="col-12 d-flex flex-column align-items-center justify-content-center"
+      >
+        <button
+          class="btn py-1"
+          (click)="leave('save')"
+          *ngIf="pageType === 'edit'"
+        >
+          Save Changes
+        </button>
+        <button class="btn py-1 my-2" (click)="leave('ignore')">
+          Ignore Changes
+        </button>
+        <button class="btn py-1" (click)="leave('continue')">
+          Continue Editing
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

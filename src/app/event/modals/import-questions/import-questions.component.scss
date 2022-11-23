@@ -1,0 +1,30 @@
+.modal-header {
+    border: 0;
+    background-color: #007497;
+    .modal-title {
+        color: white;
+    }
+}
+
+.modal-body {
+    padding: 24px 12px 12px;
+    .uploadBtn {
+        padding: 8px 8px;
+        border-radius: 30px;
+        color: #a9a9a9;
+        &.active {
+            color: #007497;
+        }
+    }
+    label {
+        color: #007497;
+        font-weight: 500;
+    }
+}
+
+.modal-footer {
+    .addBtn {
+        font-size: 24px;
+        color: #6ebf49;
+    }
+}

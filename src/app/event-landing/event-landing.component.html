@@ -1,0 +1,176 @@
+<div
+  class="row"
+  style="margin:0px !important; padding:0px !important; min-height:100px;"
+>
+  <div class="col-6"></div>
+  <div class="col-6">
+    <ul class="nav-menu nav-menu-social align-to-right">
+      <li
+        class="login_click light"
+        style="width:250px; border:1px solid rgba(100, 123, 156, 0.3) !important;"
+      >
+        <a
+          style="padding:5px !important;font-size:20px !important;color: #da0b4e !important;"
+          href="/eventmetrics/2940AS9"
+          target="__new"
+          id="eventMetrics"
+          >Event Management</a
+        >
+      </li>
+
+      <li
+        class="login_click light"
+        style="width:250px; border:1px solid rgba(100, 123, 156, 0.3) !important;"
+      >
+        <a
+          style="padding:5px !important;font-size:20px !important;color: #da0b4e !important;"
+          href="/eventgenerator"
+          id="eventGenerator"
+          >Create Event</a
+        >
+      </li>
+    </ul>
+    <br /><br />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>Client</th>
+          <th>Event Name</th>
+          <th>Event Year</th>
+          <th>Report</th>
+          <!-- <th>Dashboard</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of evtListings">
+          <td>{{ event.cliendId }}</td>
+          <td>{{ event.evtName }}</td>
+          <td>{{ event.year }}</td>
+          <!-- <td>{{ event.reportLink }}</td> -->
+          <td>{{ event.dashboardLink }}</td>
+        </tr>
+        <tr>
+          <td>FNCE</td>
+          <td>FNCE21</td>
+          <td>2021</td>
+          <!-- <td>Report Link</td> -->
+          <td>
+            <a
+              href="/eventmetrics/1"
+              target="_blank"
+              >FNCE dashboard</a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>FNCE</td>
+          <td>FNCE21</td>
+          <td>2021</td>
+          <!-- <td>Report Link</td> -->
+          <td>
+            <a
+              href="/eventmetrics/1"
+              target="_blank"
+              >Specialized Medical Events Market Report</a
+            >
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <table
+         id="dataTable"
+         class="table table-striped"
+         style="width:100%; background-color:#fff;"
+         >
+         <tbody>
+         <tr>
+         <th></th>
+         <th>Event Name</th>
+         <th>Reports</th>
+         </tr>
+
+         <tr
+         *ngFor="let event of evtListings"
+         [ngClass]="[i % 2 === 0 ? 'greyRow' : 'whiteRow']"
+         >
+         <td width="10%">
+         <div
+         class="toggleButton"
+         data-toggle="collapse"
+         data-target="#demo"
+         >
+         <!-- <a href="#" class="expandCollapse"><i class="fas fa-arrow-down"></i></a>-->
+    <!-- </div>
+         </td>
+         <td width="40%">
+         <a target="_parent" href="/pages/{{ event.eventSlug }}">
+         <h4>{{ event.evtName }}</h4>
+         </a>
+         </td>
+         <td>
+         <a target="_new" href="{{ event.eventDashboardUrl }}"
+         ><i class="fab fa-elementor"></i
+         ></a>
+         &nbsp;
+         <a
+         target="_new"
+         *ngIf="event.attendeeMetricsDashboard"
+         href="{{ event.attendeeMetricsDashboard }}"
+         ><i class="fas fa-user-clock"></i
+         ></a>
+         &nbsp;
+         <a
+         target="_new"
+         *ngIf="event.attendeeSessionDashboard"
+         href="{{ event.attendeeSessionDashboard }}"
+         ><i class="fas fa-user-tie"></i
+         ></a>
+         </td>
+         </tr>
+         </tbody>
+         </table> -->
+    <!-- <table id="dataTable" class="table table-striped" style="width:100%; background-color:#fff;">
+    <tbody>
+       <tr>
+          <th> </th>
+          <th>Event Name</th>
+          <th>Status</th>
+          <th>Event Start</th>
+          <th>Event End Date</th>
+          <th>Reports</th>
+
+       </tr>
+
+
+
+         <tr *ngFor="let event of evtListings" [ngClass]="[i % 2 === 0 ? 'greyRow' : 'whiteRow']">
+               <td width="40%">
+                  <a target="_parent" href="/pages/{{event.eventSlug}}">
+                     <h4>{{event.evtName}}</h4>
+                  </a>
+               </td>
+               <td>
+                  <span *ngIf="event.addUserid == addUserid">Registered</span>
+                  <span *ngIf="event.addUserid != addUserid">Created</span>
+               </td>
+               <td>{{event.showEndDate}}</td>
+               <td>{{event.showStartDate}}</td>
+               <td>
+                  <a target="_new" href='{{event.eventDashboardUrl}}' ><i class="fab fa-elementor"></i></a> &nbsp;
+                  <a target="_new" *ngIf="event.attendeeMetricsDashboard" href='{{event.attendeeMetricsDashboard}}' ><i class="fas fa-user-clock"></i></a> &nbsp;
+                  <a target="_new" *ngIf="event.attendeeSessionDashboard" href='{{event.attendeeSessionDashboard}}' ><i class="fas fa-user-tie"></i></a>
+               </td>
+
+         </tr>
+
+
+    </tbody>
+ </table> -->
+  </div>
+</div>

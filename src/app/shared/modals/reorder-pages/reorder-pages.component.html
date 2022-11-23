@@ -1,0 +1,76 @@
+<div class="modal-header">
+    <h3 class="modal-title m-0">Workflow Page Order</h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <!-- <div class="row">
+            <div class="col-md-4">
+                <strong>Attendee Name</strong>
+            </div>
+            <div class="col-md-8">
+                <input class="form-control" type="text" name="attendeeName" [(ngModel)]="_pagesOrderData.attendeeName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <strong>Company Name</strong>
+            </div>
+            <div class="col-md-8">
+                <input class="form-control" type="text" name="companyName" [(ngModel)]="_pagesOrderData.companyName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <strong>RegType</strong>
+            </div>
+            <div class="col-md-8">
+                <select  class="form-control" name="regType" [(ngModel)]="_pagesOrderData.regType">
+                    <option value="attendee">Attendee</option>
+                </select>
+            </div>
+        </div> -->
+        <div class="table-responsive user-list">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Page Name</th>
+                    </tr>
+                </thead>
+                <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
+                    <tr *ngFor="let page of _pagesOrderData.pages" cdkDrag cdkDragLockAxis="y">
+                        <th class="col-xs">
+                            <div class="drag-handle">
+                                <ng-container [ngTemplateOutlet]="dragHandleTmpl">
+                                </ng-container>
+                            </div>
+                        </th>
+                        <td class="col-md">
+                            {{ page }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #dragHandleTmpl>
+            <svg class="bi bi-list handle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M2.5 11.5A.5.5 0 013 11h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 3h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"
+                    clip-rule="evenodd" />
+            </svg>
+        </ng-template>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-between">
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="save()"> Save </button>
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="closeModal()"> Cancel </button>
+            </div>
+        </div>
+    </div>
+</div>

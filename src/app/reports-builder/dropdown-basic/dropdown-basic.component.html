@@ -1,0 +1,24 @@
+<div ngbDropdown class="d-inline-block" autoClose="outside">
+  <button
+    class="btn btn-primary"
+    id="dropdownBasic1"
+    #toggle
+    ngbDropdownToggle
+  >
+    <!-- {{ data.length ? data.length + " checked" : "Select" }} -->
+    Select
+  </button>
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    <button
+      class="dropdown-item"
+      [ngClass]="{ selected: option.checked }"
+      *ngFor="let option of options"
+      (click)="check(option)"
+      id="{{ option.id }}"
+    >
+      {{ option.label }}
+    </button>
+  </div>
+</div>
+<!-- (mouseover)="over($event)"
+             (mouseout)="out()" -->

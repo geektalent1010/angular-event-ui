@@ -1,0 +1,249 @@
+.eventHeader {
+    .thumbnail {
+        width: 140px;
+        box-shadow: 0 0 25px 0 #0000001c;
+    }
+    .evtName {
+        color: #007497;
+    }
+    .links {
+        i {
+            font-size: 28px;
+            color: var(--main-color-1);
+            cursor: pointer;
+        }
+        a {
+            position: relative;
+            display: inline-block;
+        
+            .tooltip-text {
+              visibility: hidden;
+              width: fit-content;
+              background-color: #555;
+              color: #fff;
+              text-align: center;
+              padding: 5px 0;
+              border-radius: 6px;
+        
+              /* Position the tooltip text - see examples below! */
+              position: absolute;
+              z-index: 1;
+              font-size: 16px;
+        
+              bottom: 125%;
+              left: 50%;
+              margin-left: -60px;
+            }
+            .tooltip-text::after {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: #555 transparent transparent transparent;
+            }
+        }
+        a.edit-button {
+            color: white;
+            .tooltip-text {
+                font-size: 18px;
+                padding: 4px 8px;
+                visibility: hidden;
+            }
+            &:hover .tooltip-text {
+                visibility: visible;
+            }
+        }
+        .edit-button:hover .tooltip-text {
+            visibility: visible;
+        }
+        .siteDropdown {
+            height: 32px;
+            .dropdown-toggle {
+                background-color: var(--bkg-color);
+                color: #004369 !important;
+                border: none !important;
+                box-shadow: none;
+                height: 36px;
+                &:focus {
+                    box-shadow: none;
+                }
+                &:after {
+                    display:none;
+                }
+            }
+            .dropdown-menu {
+                background-color: #007497;
+                box-shadow: 3px 3px 4px -1px #00000042;
+                margin: 0;
+                .label {
+                    color: white;
+                    padding: 0 28px 6px;
+                    margin-bottom: 6px;
+                    border-bottom: 1px solid white;
+                }
+                .dropdownItem {
+                    color: white;
+                    border: 1px solid transparent;
+                    &:hover {
+                        background-color: transparent;
+                        border: 1px solid #696161;
+                        box-shadow: inset 0px 0 6px 1px #06000052;
+                    }
+                    &:disabled {
+                        color: lightgray;
+                        i {
+                            color: lightgray;
+                        }
+                    }
+                    i {
+                        font-size: 24px;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+    .uploadPSM {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        padding: 0 18px;
+        background-color: var(--btn-bg-color) !important;
+        color: var(--main-color-1);
+        border: 0;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .uploadPSM.disabled {
+        pointer-events: none;
+        visibility: hidden;
+    }
+    .completeEventBtn {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        padding: 0 18px;
+        background-color: var(--btn-bg-color) !important;
+        color: #6ebf49;
+        border: 0;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .completeEventBtn.disabled, .duplicateEventBtn.disabled {
+        opacity: 0.5;
+    }
+
+    .duplicateEventBtn {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        padding: 0 18px;
+        background-color: var(--btn-bg-color) !important;
+        color: var(--main-color-1);
+        border: 0;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .deleteEvent {
+        i {
+            font-size: 24px;
+            color: var(--main-color-1);
+            cursor: pointer;
+        }
+    }
+    .tabBar {
+        background-color: #007497;
+        .tabCol {
+            padding: 8px 2px;
+            text-align: center;
+        }
+        a.tabLink {
+            color: white;
+            text-decoration: none;
+            margin: 4px;
+            &:hover {
+                color: #6ebf49;
+                opacity: .5;
+            }
+        }
+        a.tabLink.active {
+            color: #6ebf49;
+        }
+    }
+    .subBar {
+        .XLSfile {
+            height: 32px;
+            border-radius: 16px;
+            padding: 0 18px;
+            background-color: var(--btn-bg-color) !important;
+            color: #6ebf49;
+            font-size: 16px;
+            margin-left: 68px;
+            min-width: 120px;
+        }
+        i {
+            font-size: 18px;
+            color: var(--main-color-1);
+            cursor: pointer;
+        }
+        .control i {
+            color: #6ebf49;
+            font-size: 28px;
+            cursor: pointer;
+            &.disable {
+                color: #c7d0d8;
+                cursor: default;
+            }
+        }
+    }
+}
+
+.spinner.transparent {
+    position  : fixed;
+    width     : 100%;
+    height    : 100%;
+    left      : 0;
+    top       : 0;
+    background: rgba(51, 51, 51, 0.7);
+    z-index   : 10;
+    display   : flex;
+}
+
+.smt-spinner-circle {
+    width        : 50px;
+    height       : 50px;
+    position     : relative;
+    margin       : auto auto;
+    border-radius: 50%;
+}
+
+.smt-spinner {
+    height       : 100%;
+    width        : 100%;
+    border-radius: 50%;
+    border-right : 2px solid rgba(255, 255, 255, 0.6);
+    border-top   : 2px solid blue;
+    border-left  : 2px solid blue;
+    border-bottom: 2px solid blue;
+    animation    : rotate--spinner 1.6s infinite;
+}
+
+@keyframes rotate--spinner {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,387 @@
+<div class="row mb-0 px-3 px-lg-5">
+  <div class="col-12 px-0 px-md-4">
+    <h1 class="title font-weight-bold" *ngIf="pageType !== 'view'">
+      Reg codes added <i class="fas fa-plus ml-2" (click)="createRegcode()"></i>
+    </h1>
+    <div class="d-flex justify-content-between align-items-center my-3">
+      <div class="d-flex align-items-center">
+        <div class="onlyOneRegtype">
+          <label class="customCheckBox">
+            <input
+              type="checkbox"
+              [(ngModel)]="onlyOneRegtype"
+              (change)="ChangeAllowOneRegtype()"
+            />
+            <span class="checkmark"></span>
+            Allow Only One Reg Type Per Package
+          </label>
+        </div>
+        <button
+          class="btn btn-primary mx-3"
+          (click)="addRate()"
+          [disabled]="addedRateIndex >= 3"
+        >
+          Add Rate
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="deleteRate()"
+          [disabled]="addedRateIndex <= 0"
+        >
+          Delete Rate
+        </button>
+
+        <!-- <div class="onlyOneRegtype ml-3">
+          <label class="customCheckBox">
+            <input
+              type="checkbox"
+              [(ngModel)]="pkgNameDuplicate"
+              (change)="ChangePkgNameDuplicate()"
+            />
+            <span class="checkmark"></span>
+            Allow Package Name Duplicates
+          </label>
+        </div> -->
+      </div>
+      <div class="d-flex align-items-center">
+        <button class="btn btn-primary mr-2" (click)="selectAllItems()">
+          Select/Deselect All
+        </button>
+        <button
+          class="btn btn-primary"
+          [disabled]="disableDeleteBtn()"
+          (click)="deleteSelectedItems()"
+        >
+          Delete Items
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-0">
+  <div class="col-12 p-0">
+    <div class="packagesTable row mt-0">
+      <div class="col-12 p-0">
+        <table class="table table-striped table-responsive text-center">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="">Name</th>
+              <th class="refCodes">Reg Code</th>
+              <th class="">Zero Cost</th>
+              <th class="nonMemberHeader">Member Status</th>
+              <th class="" *ngIf="addedRateIndex > 0">Rate 1 Period</th>
+              <th class="" *ngIf="addedRateIndex > 0">Rate 1</th>
+              <th class="" *ngIf="addedRateIndex > 1">Rate 2 Period</th>
+              <th class="" *ngIf="addedRateIndex > 1">Rate 2</th>
+              <th class="" *ngIf="addedRateIndex > 2">Rate 3 Period</th>
+              <th class="" *ngIf="addedRateIndex > 2">Rate 3</th>
+              <th class="">Description</th>
+              <th class="">Cost</th>
+              <th class="border-0" *ngIf="pageType !== 'view'">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let eventCost of eventCosts; let i = index"
+              [ngStyle]="
+                duplicatedIndex.includes(i) && { background: 'yellow' }
+              "
+            >
+              <td>
+                <label>
+                  <input
+                    type="checkbox"
+                    class=""
+                    [checked]="eventCost?.isChecked"
+                    (change)="checkedItem($event.target.checked, i)"
+                  />
+                </label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  *ngIf="i === regcodeEditIndex"
+                  [(ngModel)]="eventCost.customPackage.name"
+                  class="w-100 text-center"
+                />
+                <div *ngIf="i !== regcodeEditIndex">
+                  {{ eventCost.customPackage?.name }}
+                </div>
+              </td>
+              <td class="refCodes">
+                <div *ngIf="i === regcodeEditIndex">
+                  <ng-multiselect-dropdown
+                    [placeholder]="'- Select -'"
+                    [settings]="dropdownSettings"
+                    [data]="regtypesList"
+                    [(ngModel)]="eventCost.refCodes"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+                <div *ngIf="i !== regcodeEditIndex">
+                  {{ eventCost.refCodes.join(", ") }}
+                </div>
+              </td>
+              <td>
+                <label class="zeroCheckbox">
+                  <input
+                    type="checkbox"
+                    class=""
+                    [checked]="eventCost?.zeroCost"
+                    (change)="checkedZerocost($event.target.checked)"
+                    [disabled]="i !== regcodeEditIndex"
+                  />
+                </label>
+              </td>
+              <td>
+                <label class="nonMember">
+                  <!-- <input type="checkbox" class="" [checked]="!!eventCost.nonMember" [(ngModel)]="!!eventCost.nonMember" [disabled]="i !== regcodeEditIndex"> -->
+                  <select
+                    name="nonMember"
+                    id="nonMember"
+                    class="form-control"
+                    [(ngModel)]="eventCost.nonMember"
+                    [disabled]="i !== regcodeEditIndex"
+                  >
+                    <option
+                      *ngFor="let category of membersCategory"
+                      [value]="category"
+                    >
+                      {{ category }}
+                    </option>
+                  </select>
+                </label>
+              </td>
+              <td *ngIf="addedRateIndex > 0">
+                <div>
+                  {{
+                    eventCost.rates.duringEventBirdStartDate
+                      | date: "dd/MM/yyyy"
+                  }}
+                </div>
+                <div>
+                  {{
+                    eventCost.rates.duringEventBirdEndDate | date: "dd/MM/yyyy"
+                  }}
+                </div>
+                <input
+                  type="text"
+                  name="daterange"
+                  autocomplete="off"
+                  bsDaterangepicker
+                  [bsConfig]="{
+                    rangeInputFormat: 'MMMM Do YYYY',
+                    dateInputFormat: 'MMMM Do YYYY',
+                    showWeekNumbers: false
+                  }"
+                  id="DateOfBirth"
+                  placeholder="Date Range"
+                  (bsValueChange)="dateRangeCreated($event, '1', i)"
+                  class="form-control dateRangePicker"
+                  [maxDate]="
+                    getDateFormat(eventCost.rates.duringEventBirdStartDate2)
+                  "
+                  #earlyBirdDateRangePicker
+                />
+                <i
+                  class="fas fa-calendar pointer"
+                  (click)="
+                    i === regcodeEditIndex && earlyBirdDateRangePicker.click()
+                  "
+                ></i>
+              </td>
+              <td *ngIf="addedRateIndex > 0">
+                <input
+                  type="number"
+                  *ngIf="i === regcodeEditIndex"
+                  [disabled]="eventCost.zeroCost"
+                  [(ngModel)]="eventCost.rates.duringEventBirdRate"
+                  class="w-100 text-center"
+                  appNumbersOnly
+                  min="0"
+                />
+                <div *ngIf="i !== regcodeEditIndex">
+                  {{
+                    eventCost.rates.duringEventBirdRate !== (null || "")
+                      ? "$"
+                      : ""
+                  }}{{ eventCost.rates.duringEventBirdRate }}
+                </div>
+              </td>
+              <td *ngIf="addedRateIndex > 1">
+                <div>
+                  {{
+                    eventCost.rates.duringEventBirdStartDate2
+                      | date: "dd/MM/yyyy"
+                  }}
+                </div>
+                <div>
+                  {{
+                    eventCost.rates.duringEventBirdEndDate2 | date: "dd/MM/yyyy"
+                  }}
+                </div>
+                <input
+                  type="text"
+                  name="daterange"
+                  autocomplete="off"
+                  bsDaterangepicker
+                  [bsConfig]="{
+                    rangeInputFormat: 'MMMM Do YYYY',
+                    dateInputFormat: 'MMMM Do YYYY',
+                    showWeekNumbers: false
+                  }"
+                  id="DateOfBirth"
+                  placeholder="Date Range"
+                  (bsValueChange)="dateRangeCreated($event, '2', i)"
+                  class="form-control dateRangePicker"
+                  [minDate]="
+                    getDateFormat(eventCost.rates.duringEventBirdEndDate)
+                  "
+                  [maxDate]="
+                    getDateFormat(eventCost.rates.duringEventBirdStartDate3)
+                  "
+                  #preEventDateRangePicker
+                />
+                <i
+                  class="fas fa-calendar pointer"
+                  (click)="
+                    i === regcodeEditIndex && preEventDateRangePicker.click()
+                  "
+                ></i>
+              </td>
+              <td *ngIf="addedRateIndex > 1">
+                <input
+                  type="number"
+                  *ngIf="i === regcodeEditIndex"
+                  [disabled]="eventCost.zeroCost"
+                  [(ngModel)]="eventCost.rates.duringEventBirdRate2"
+                  class="w-100 text-center"
+                  appNumbersOnly
+                  min="0"
+                />
+                <div *ngIf="i !== regcodeEditIndex">
+                  {{
+                    eventCost.rates.duringEventBirdRate2 !== (null || "")
+                      ? "$"
+                      : ""
+                  }}{{ eventCost.rates.duringEventBirdRate2 }}
+                </div>
+              </td>
+              <td *ngIf="addedRateIndex > 2">
+                <div>
+                  {{
+                    eventCost.rates.duringEventBirdStartDate3
+                      | date: "dd/MM/yyyy"
+                  }}
+                </div>
+                <div>
+                  {{
+                    eventCost.rates.duringEventBirdEndDate3 | date: "dd/MM/yyyy"
+                  }}
+                </div>
+                <input
+                  type="text"
+                  name="daterange"
+                  autocomplete="off"
+                  bsDaterangepicker
+                  [bsConfig]="{
+                    rangeInputFormat: 'MMMM Do YYYY',
+                    dateInputFormat: 'MMMM Do YYYY',
+                    showWeekNumbers: false
+                  }"
+                  id="DateOfBirth"
+                  placeholder="Date Range"
+                  (bsValueChange)="dateRangeCreated($event, '3', i)"
+                  class="form-control dateRangePicker"
+                  [minDate]="
+                    getDateFormat(eventCost.rates.duringEventBirdEndDate2)
+                  "
+                  #duringEventDateRangePicker
+                />
+                <i
+                  class="fas fa-calendar pointer"
+                  (click)="
+                    i === regcodeEditIndex && duringEventDateRangePicker.click()
+                  "
+                ></i>
+              </td>
+              <td *ngIf="addedRateIndex > 2">
+                <input
+                  type="number"
+                  *ngIf="i === regcodeEditIndex"
+                  [disabled]="eventCost.zeroCost"
+                  [(ngModel)]="eventCost.rates.duringEventBirdRate3"
+                  class="w-100 text-center"
+                  appNumbersOnly
+                  min="0"
+                />
+                <div *ngIf="i !== regcodeEditIndex">
+                  {{
+                    eventCost.rates.duringEventBirdRate3 !== (null || "")
+                      ? "$"
+                      : ""
+                  }}{{ eventCost.rates.duringEventBirdRate3 }}
+                </div>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  *ngIf="i === regcodeEditIndex"
+                  [(ngModel)]="eventCost.customPackage.description"
+                  class="w-100 text-center"
+                />
+                <div *ngIf="i !== regcodeEditIndex">
+                  {{ eventCost.customPackage?.description }}
+                </div>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  *ngIf="i === regcodeEditIndex"
+                  [disabled]="eventCost.zeroCost"
+                  [(ngModel)]="eventCost.customPackage.cost"
+                  class="w-100 text-center"
+                  appNumbersOnly
+                  min="0"
+                />
+                <div *ngIf="i !== regcodeEditIndex">
+                  {{ eventCost.customPackage?.cost !== (null || "") ? "$" : ""
+                  }}{{ eventCost.customPackage?.cost }}
+                </div>
+              </td>
+              <td *ngIf="pageType !== 'view'" class="actions border-0">
+                <div class="d-flex align-items-center justify-content-center">
+                  <a
+                    class="px-1"
+                    style="cursor: pointer"
+                    *ngIf="i != regcodeEditIndex"
+                  >
+                    <span>
+                      <i class="far fa-edit" (click)="editRegcode(i)"></i>
+                    </span>
+                  </a>
+                  <a
+                    class="px-2"
+                    style="cursor: pointer"
+                    *ngIf="i == regcodeEditIndex"
+                  >
+                    <span>
+                      <i
+                        class="fas fa-plus editIcon"
+                        (click)="save(eventCost)"
+                      ></i>
+                    </span>
+                  </a>
+                  <div (click)="removeRegcode(i)" class="pointer ml-2">
+                    <i class="far fa-trash-alt"></i>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

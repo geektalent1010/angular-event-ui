@@ -1,0 +1,15 @@
+<div class="row w-100 ">
+    <div class="col-6 text-center">Question</div>
+    <div class="col-6 text-center">Answer</div>
+</div>
+<div *ngFor="let question of valid.questions; let i = index">
+    <div class="row w-100">
+        <div class="col-6">{{i+1}}. {{question.text}}</div>
+        <div class="col-6">
+            <ngx-edit-inline class="ngx-edit-inline" [value]="question?.answer" [type]="'text'"
+                [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                [placeholder]="'enter answer to questions'" (onValueChanged)="changedValue($event, i)">
+            </ngx-edit-inline>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,400 @@
+<div class="row w-100 no-gutters">
+    <div class="col-2 text-centers">
+        <img class="w-75" [src]="valid.photoImage" />
+    </div>
+    <div class="col-10">
+        <div class="row no-gutters" *ngIf="valid?.recordType === 'registrationData'">
+            <div class="col-6">
+                <div class="row m-0">
+                    <div class="col-3">
+                        Exhibitor Number:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <select class="form-control d-inline ngx-edit-inline"
+                            (change)="changedSelect($event, 'exhibitorNumber')">
+                            <option *ngFor="let option of exhibitorNumber;" [value]="option.value"
+                                [selected]="option.value == valid?.exhibitorNumber">
+                                {{ option.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6">
+                <div class="row m-0">
+                    <div class="col-3">
+                        Registration Code:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <select class="form-control d-inline ngx-edit-inline"
+                            (change)="changedSelect($event, 'regType')">
+                            <option *ngFor="let option of regType;" [value]="option.value"
+                                [selected]="option.value == valid?.regType">
+                                {{ option.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters" *ngIf="valid?.recordType === 'registrationData'">
+            <div class="col-6">
+                <div class="row m-0">
+                    <div class="col-3">
+                        Exhibitor Type:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <select class="form-control d-inline ngx-edit-inline"
+                            (change)="changedSelect($event, 'exhibitorType')">
+                            <option *ngFor="let option of exhibitorType;" [value]="option.value"
+                                [selected]="option.value == valid?.exhibitorType">
+                                {{ option.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters" *ngIf="valid?.recordType === 'registrationData'">
+            <div class="col-6">
+                <div class="row m-0">
+                    <div class="col-3">
+                        Speaker:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <select class="form-control d-inline ngx-edit-inline"
+                            (change)="changedSelect($event, 'speaker')">
+                            <option *ngFor="let option of speaker;" [value]="option.value"
+                                [selected]="option.value == valid?.speaker">
+                                {{ option.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters" *ngIf="valid?.recordType === 'registrationData'">
+            <div class="col-6">
+                <div class="row m-0">
+                    <div class="col-3">
+                        Exhibitor Add Ons:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <select class="form-control d-inline ngx-edit-inline"
+                            (change)="changedSelect($event, 'exhibitorAddOns')">
+                            <option *ngFor="let option of exhibitorAddOns;" [value]="option.value"
+                                [selected]="option.value == valid?.exhibitorAddOns">
+                                {{ option.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters" *ngIf="valid?.recordType === 'registrationData'">
+            <div class="col-6">
+                <div class="row m-0">
+                    <div class="col-3">
+                        Promo Code:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <select class="form-control d-inline ngx-edit-inline"
+                            (change)="changedSelect($event, 'promoCode')">
+                            <option *ngFor="let option of promoCode;" [value]="option.value"
+                                [selected]="option.value == valid?.promoCode">
+                                {{ option.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters" *ngIf="valid?.recordType === 'registrationData'">
+            <div class="col-6">
+                <div class="row m-0">
+                    <div class="col-3">
+                        Group Leader Flag:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <select class="form-control d-inline ngx-edit-inline"
+                            (change)="changedSelect($event, 'groupLeaderFlag')">
+                            <option *ngFor="let option of valid?.groupLeaderFlag;" [value]="option.value"
+                                [selected]="option.value == valid?.groupLeaderFlag">
+                                {{ option.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-6">
+                <div class="row m-0">
+                    <div class="col-3">
+                        Standard Rate:
+                    </div>
+                    <div class="col-1 text-right">$</div>
+                    <div class="col">
+                        <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.standardRate" [type]="'text'"
+                            [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                            [placeholder]="'enter standard rate'"
+                            (onValueChanged)="changedValue($event, 'standardRate')">
+                        </ngx-edit-inline>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-3">
+                        Reg Type:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <select class="form-control d-inline ngx-edit-inline"
+                            (change)="changedSelect($event, 'regType')">
+                            <option *ngFor="let option of regType;" [value]="option.value"
+                                [selected]="option.value == valid?.regType">
+                                {{ option.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-3">
+                        Registration Number:
+                    </div>
+                    <div class="col-1 text-right"></div>
+                    <div class="col">
+                        <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.regUId" [type]="'text'"
+                            [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                            [placeholder]="'enter registration number'"
+                            (onValueChanged)="changedValue($event, 'regUId')">
+                        </ngx-edit-inline>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col">
+                <div class="row no-gutters">
+                    <div class="col-5">Discount Amount:</div>
+                    <div class="col-1 text-right">$</div>
+                    <div class="col-6">
+                        <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.discountAmount"
+                            [type]="'text'" [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                            [placeholder]="'enter discount amount'"
+                            (onValueChanged)="changedValue($event, 'discountAmount')"></ngx-edit-inline>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="row no-gutters">
+                    <div class="col-5">Discount Rate:</div>
+                    <div class="col-1 text-right">$</div>
+                    <div class="col-6">
+                        <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.discountRate" [type]="'text'"
+                            [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                            [placeholder]="'enter discount rate'"
+                            (onValueChanged)="changedValue($event, 'discountRate')"></ngx-edit-inline>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="badgeHeader">Badging</div>
+        <div class="row no-gutters">
+            <div class="col row m-0">
+                <div class="col-6"> Badge First Name:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.badgeFirstName" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter badge first name'"
+                        (onValueChanged)="changedValue($event, 'badgeFirstName')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Legal First Name:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.legalLastName" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter legal last name'"
+                        (onValueChanged)="changedValue($event, 'legalLastName')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Badge First Name:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.badgeFirstName" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter badge first name'"
+                        (onValueChanged)="changedValue($event, 'badgeFirstName')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Title:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.title" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true" [placeholder]="'enter title'"
+                        (onValueChanged)="changedValue($event, 'title')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Company:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.company" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter company'" (onValueChanged)="changedValue($event, 'company')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Address:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.address1" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter address'" (onValueChanged)="changedValue($event, 'address1')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Address 2:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.address2" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter address 2'" (onValueChanged)="changedValue($event, 'address2')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> City:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.city" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true" [placeholder]="'enter city'"
+                        (onValueChanged)="changedValue($event, 'city')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Country:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.country" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter country'" (onValueChanged)="changedValue($event, 'country')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Phone Area Code:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.phoneAreaCode" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter phone area code'"
+                        (onValueChanged)="changedValue($event, 'phoneAreaCode')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Email Address:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.email" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter email address'" (onValueChanged)="changedValue($event, 'email')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Photo Flag:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.photoFlag" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter photo flag'" (onValueChanged)="changedValue($event, 'photoFlag')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Membership Flag:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.membershipFlag" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter membership flag'"
+                        (onValueChanged)="changedValue($event, 'membershipFlag')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6"> Qualification Flag:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.qualificationFlag" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter qualification flag'"
+                        (onValueChanged)="changedValue($event, 'qualificationFlag')">
+                    </ngx-edit-inline>
+                </div>
+            </div>
+            <div class="col row m-0">
+                <div class="col-6">Badge Last Name:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.badgeLastName" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter badge last name'"
+                        (onValueChanged)="changedValue($event, 'badgeLastName')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6">Legal Last Name:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.legalLastName" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter legal last name'"
+                        (onValueChanged)="changedValue($event, 'legalLastName')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6">Used for CC Name:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.ccName" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter cc name'" (onValueChanged)="changedValue($event, 'ccName')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6">Organization on Badge:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.orgId" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter org on badge'" (onValueChanged)="changedValue($event, 'orgId')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6">Geo Code:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.geoCode" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter geo code'" (onValueChanged)="changedValue($event, 'geoCode')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6">Zip Code:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.zipCode" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter zip code'" (onValueChanged)="changedValue($event, 'zipCode')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6">State:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.State" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true" [placeholder]="'enter state'"
+                        (onValueChanged)="changedValue($event, 'State')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6">Phone Country Code:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.phoneCountryCode" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter phone country code'"
+                        (onValueChanged)="changedValue($event, 'phoneCountryCode')">
+                    </ngx-edit-inline>
+                </div>
+                <div class="col-6">CC Email Address:</div>
+                <div class="col-5">
+                    <ngx-edit-inline class="d-inline ngx-edit-inline" [value]="valid?.ccemail" [type]="'text'"
+                        [saveOption]="'focusout'" [debounceTime]="500" [selectText]="true"
+                        [placeholder]="'enter email address'" (onValueChanged)="changedValue($event, 'ccemail')">
+                    </ngx-edit-inline>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

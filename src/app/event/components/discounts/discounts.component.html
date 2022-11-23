@@ -1,0 +1,365 @@
+<div class="row mb-0 px-3 px-lg-5">
+  <div class="col-12 px-0 px-md-4">
+    <h1 class="title font-weight-bold mb-0">Active Discounts</h1>
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="noDiscounts my-3">
+        <label class="customCheckBox">
+          <input
+            type="checkbox"
+            [(ngModel)]="noDiscounts"
+            (change)="checkNoDiscounts()"
+          />
+          <span class="checkmark"></span>
+          No Discounts Required
+        </label>
+      </div>
+      <div class="d-flex align-items-center">
+        <div
+          class="addSection d-flex align-items-center"
+          *ngIf="pageType !== 'view'"
+        >
+          <h3 class="m-0">Add New Discount</h3>
+          <select
+            class="form-control border-0 mx-2"
+            [(ngModel)]="selectedDiscountType"
+          >
+            <option
+              *ngFor="let option of discountCodes; let i = index"
+              [value]="option.discountType"
+            >
+              {{ option.discountDescription }}
+            </option>
+          </select>
+          <i
+            class="fas fa-plus ml-2"
+            *ngIf="pageType !== 'view'"
+            (click)="createNewDiscount()"
+          ></i>
+        </div>
+        <button class="btn btn-primary mx-2" (click)="selectAllItems()">
+          Select/Deselect All
+        </button>
+        <button
+          class="btn btn-primary"
+          [disabled]="disableDeleteBtn()"
+          (click)="deleteSelectedItems()"
+        >
+          Delete Items
+        </button>
+      </div>
+    </div>
+    <div class="discountTable row mt-0">
+      <div class="col-12 p-0">
+        <table class="table table-striped table-responsive text-center">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="">Status</th>
+              <th class="">Created</th>
+              <th class="">Name</th>
+              <th class="">GL Code</th>
+              <th class="">Type</th>
+              <th class="">Value</th>
+              <th class="">Code</th>
+              <th class="">Priority</th>
+              <th class="">Allotment</th>
+              <th class="">Group</th>
+              <th class="">Reg Types</th>
+              <th class="">Dates Active</th>
+              <th class="">Applies To Countries</th>
+              <th class="">Description</th>
+              <th class="">Use BRE</th>
+              <th class="border-0" *ngIf="pageType !== 'view'">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let discount of discountList; let i = index">
+              <td>
+                <label>
+                  <input
+                    type="checkbox"
+                    class=""
+                    [checked]="selectedItems[i]"
+                    (change)="checkedItem($event.target.checked, i)"
+                  />
+                </label>
+              </td>
+              <td class="">
+                <select
+                  class="form-control border-0"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.discountStatus"
+                >
+                  <option value="" checked>- Select -</option>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+                <div *ngIf="i !== discountEditIndex">
+                  {{
+                    discount?.discountStatus === "active"
+                      ? "Active"
+                      : "Inactive"
+                  }}
+                </div>
+              </td>
+              <td>
+                <div>
+                  {{ discount.createdDate | date: "dd/MM/yyyy" }}
+                </div>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.discountName"
+                  class="w-100 text-center"
+                />
+                <div *ngIf="i !== discountEditIndex">
+                  {{ discount.discountName }}
+                </div>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.glCode"
+                  class="w-100 text-center"
+                />
+                <div *ngIf="i !== discountEditIndex">
+                  {{ discount.glCode }}
+                </div>
+              </td>
+              <td>
+                <select
+                  class="form-control border-0"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.discountType"
+                >
+                  <option
+                    *ngFor="let option of discountCodes; let i = index"
+                    [value]="option.discountType"
+                  >
+                    {{ option.discountDescription }}
+                  </option>
+                </select>
+                <div *ngIf="i !== discountEditIndex">
+                  {{ getDiscountType(discount.discountType) }}
+                </div>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.amount"
+                  class="w-100 text-center"
+                  appNumbersOnly
+                  min="0"
+                />
+                <div *ngIf="i !== discountEditIndex">
+                  {{ discount.amount }}
+                </div>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.promoCode"
+                  class="w-100 text-center"
+                />
+                <div *ngIf="i !== discountEditIndex">
+                  {{ discount.promoCode }}
+                </div>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.priority"
+                  class="w-100 text-center"
+                  appNumbersOnly
+                  min="0"
+                  max="100"
+                />
+                <div *ngIf="i !== discountEditIndex">
+                  {{ discount.priority }}
+                </div>
+              </td>
+              <td>
+                <div *ngIf="i !== discountEditIndex">
+                  {{ discount.allotment }}
+                </div>
+                <input
+                  type="text"
+                  class="allotmentInput text-center"
+                  [(ngModel)]="discount.allotment"
+                  min="1"
+                  max="1000"
+                  *ngIf="i === discountEditIndex"
+                />
+              </td>
+              <td>
+                <select
+                  class="form-control border-0"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.discountGroup"
+                >
+                  <option value="" checked>- Select -</option>
+                  <option
+                    *ngFor="let option of discountGroupList; let i = index"
+                    [value]="option.value"
+                  >
+                    {{ option.label }}
+                  </option>
+                </select>
+                <div *ngIf="i !== discountEditIndex">
+                  {{ discount.discountGroup ? discount.discountGroup : "N/A" }}
+                </div>
+              </td>
+              <td>
+                <div *ngIf="i === discountEditIndex">
+                  <div
+                    class="promoAppliedRegtypes"
+                    *ngIf="
+                      discount.discountType === '10' ||
+                        discount.discountType === '11';
+                      else NotPromoSection
+                    "
+                  >
+                    <ng-multiselect-dropdown
+                      [placeholder]="'- Select -'"
+                      [settings]="dropdownSettings"
+                      [data]="regtypesList"
+                      [(ngModel)]="discount.appliedRegtypes"
+                    >
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <ng-template #NotPromoSection>
+                    <select
+                      [(ngModel)]="discount.appliedRegtypes[0]"
+                      class="form-control"
+                    >
+                      <option value="">- Select -</option>
+                      <option
+                        *ngFor="let regType of regtypesList"
+                        [value]="regType"
+                      >
+                        {{ regType }}
+                      </option>
+                    </select>
+                  </ng-template>
+                </div>
+                <div *ngIf="i !== discountEditIndex">
+                  {{
+                    discount.appliedRegtypes.length > 3
+                      ? discount.appliedRegtypes[0] +
+                        "," +
+                        discount.appliedRegtypes[1] +
+                        "..."
+                      : discount.appliedRegtypes.join(", ")
+                  }}
+                </div>
+              </td>
+              <td>
+                <div>
+                  {{ discount.startDate | date: "dd/MM/yyyy" }}
+                </div>
+                <div>
+                  {{ discount.endDate | date: "dd/MM/yyyy" }}
+                </div>
+                <input
+                  type="text"
+                  name="daterange"
+                  autocomplete="off"
+                  bsDaterangepicker
+                  [bsConfig]="{
+                    rangeInputFormat: 'MMMM Do YYYY',
+                    dateInputFormat: 'MMMM Do YYYY',
+                    showWeekNumbers: false
+                  }"
+                  id="DateOfBirth"
+                  placeholder="Date Range"
+                  (bsValueChange)="dateRangeCreated($event, i)"
+                  class="form-control dateRangePicker"
+                  #dateRangePicker
+                />
+                <i
+                  class="fas fa-calendar pointer"
+                  (click)="i === discountEditIndex && dateRangePicker.click()"
+                ></i>
+              </td>
+              <td>
+                <div *ngIf="i === discountEditIndex">
+                  <div class="promoAppliedRegtypes">
+                    <ng-multiselect-dropdown
+                      [placeholder]="'- Select -'"
+                      [settings]="dropdownSettingsForCountries"
+                      [data]="countryCodes"
+                      [(ngModel)]="discount.appliedCountries"
+                    >
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <div *ngIf="i !== discountEditIndex">
+                  {{ countries(discount) }}
+                </div>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  *ngIf="i === discountEditIndex"
+                  [(ngModel)]="discount.discountDescription"
+                  class="w-100 text-center"
+                />
+                <div *ngIf="i !== discountEditIndex">
+                  {{
+                    discount.discountDescription
+                      ? discount.discountDescription
+                      : "N/A"
+                  }}
+                </div>
+              </td>
+              <td>
+                <label>
+                  <input
+                    type="checkbox"
+                    class=""
+                    [checked]="discount?.useBre"
+                    (change)="checkedBre($event.target.checked, i)"
+                  />
+                </label>
+              </td>
+              <td *ngIf="pageType !== 'view'" class="actions border-0">
+                <div class="d-flex align-items-center justify-content-center">
+                  <a
+                    class="px-1"
+                    style="cursor: pointer"
+                    *ngIf="i != discountEditIndex"
+                  >
+                    <span>
+                      <i class="far fa-edit" (click)="editDiscount(i)"></i>
+                    </span>
+                  </a>
+                  <a
+                    class="px-2"
+                    style="cursor: pointer"
+                    *ngIf="i == discountEditIndex"
+                  >
+                    <span>
+                      <i
+                        class="fas fa-plus editIcon"
+                        (click)="saveEdition()"
+                      ></i>
+                    </span>
+                  </a>
+                  <div (click)="removeDiscount(i)" class="pointer ml-2">
+                    <i class="far fa-trash-alt"></i>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

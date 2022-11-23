@@ -1,0 +1,118 @@
+<div class="modal-header">
+  <h2 class="modal-title w-100 text-center m-0">Reg Type Editor</h2>
+</div>
+<div class="modal-body">
+  <form [formGroup]="regtypeForm">
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label> New Reg Code </label>
+      </div>
+      <div class="col-6">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="code"
+          [class.border-danger]="
+            lf.code.invalid && (lf.code.dirty || lf.code.touched)
+          "
+          [class.border-success]="
+            lf.code.valid && (lf.code.dirty || lf.code.touched)
+          "
+        />
+        <div
+          *ngIf="lf.code.invalid && (lf.code.dirty || lf.code.touched)"
+          class="help-block mt-1 text-danger"
+        >
+          <div *ngIf="lf.code.errors.required">* Required.</div>
+          <div *ngIf="lf.code.errors.minlength">* Minlength is 2</div>
+          <div *ngIf="lf.code.errors.maxlength">* Maxlength is 3</div>
+          <div *ngIf="lf.code.errors.pattern">
+            * Should be 2~3 alpha characters
+          </div>
+          <div *ngIf="lf.code.errors.alreadyExisting">* Already existing</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label> New Reg Description </label>
+      </div>
+      <div class="col-6">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="description"
+          [class.border-danger]="
+            lf.description.invalid &&
+            (lf.description.dirty || lf.description.touched)
+          "
+          [class.border-success]="
+            lf.description.valid &&
+            (lf.description.dirty || lf.description.touched)
+          "
+        />
+        <div
+          *ngIf="
+            lf.description.invalid &&
+            (lf.description.dirty || lf.description.touched)
+          "
+          class="help-block mt-1 text-danger"
+        >
+          <div *ngIf="lf.description.errors.required">* Required.</div>
+          <div *ngIf="lf.description.errors.maxlength">* Maxlength is 30</div>
+          <div *ngIf="lf.description.errors.minlength">* Minlength is 3</div>
+          <div *ngIf="lf.description.errors.alreadyExisting">
+            * Already existing
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label> New Barcode Color </label>
+      </div>
+      <div class="col-6">
+        <input
+          type="color"
+          class="form-control"
+          formControlName="barcodecolor"
+        />
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label> New Badge Explosion </label>
+      </div>
+      <div class="col-6">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="backgroundcolor"
+        />
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label> New Badge Text Color </label>
+      </div>
+      <div class="col-6">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="backgroundtextcolor"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer border-0">
+  <div class="container-fluid">
+    <div class="row m-0">
+      <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+        <a href="javascript:void(0);" (click)="add()" class="addBtn">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

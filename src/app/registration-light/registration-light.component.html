@@ -1,0 +1,145 @@
+<div class="modal-body">
+    <tabset #registerTabs>
+        <tab heading="Login" (selectTab)="changeTab(0)">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>Login</h1>
+                    <small>Provide your information to access.</small>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input placeholder="Username" type="text" class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input placeholder="Password" type="text" class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Register" (selectTab)="changeTab(1)">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>Register</h1>
+                    <small>Provide your information to register.</small>
+                </div>
+                <div class="col-md-9">
+                    <aw-wizard>
+                        <aw-wizard-step stepTitle="Basic Info">
+                            <div class="col-md-9">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input id="text" placeholder="Name" type="text" required="required" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <input placeholder="E-Mail Address" type="text" class="form-control" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <input placeholder="Username" type="text" class="form-control" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <input placeholder="Password" type="text" class="form-control" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" awNextStep>Next</button>
+                        </div>
+                        </aw-wizard-step>
+                        <aw-wizard-step stepTitle="Event Interests" awOptionalStep>
+                            <div class="col-md-9">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        What category of events are you interested in seeing?
+                            <ul>
+                            <li><input type="checkbox" id="cb1" />
+                                <label for="cb1"><img src="../../assets/img/event_type_commercial.png" /></label>
+                            </li>
+                            <li><input type="checkbox" id="cb2" />
+                                <label for="cb2"><img src="../../assets/img/event_type_communications.png" /></label>
+                            </li>
+                            <li><input type="checkbox" id="cb3" />
+                                <label for="cb3"><img src="../../assets/img/event_type_education.png" /></label>
+                            </li>
+                            <li><input type="checkbox" id="cb4" />
+                                <label for="cb4"><img src="../../assets/img/event_type_financial.png" /></label>
+                            </li>
+                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                          <br>
+                          <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" awPreviousStep>Previous</button>
+                          <button type="button" class="btn btn-primary" awNextStep>Next</button>
+                        </div>
+                        </aw-wizard-step>
+                        <aw-wizard-step stepTitle="Product Interests" awOptionalStep>
+                            <div class="col-md-9">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        What products are you interested in?
+                            <ul>
+                            <li><input type="checkbox" id="cb1" />
+                                <label for="cb5"><img src="../../assets/img/event_type_commercial.png" /></label>
+                            </li>
+                            <li><input type="checkbox" id="cb2" />
+                                <label for="cb6"><img src="../../assets/img/event_type_communications.png" /></label>
+                            </li>
+                            <li><input type="checkbox" id="cb3" />
+                                <label for="cb7"><img src="../../assets/img/event_type_education.png" /></label>
+                            </li>
+                            <li><input type="checkbox" id="cb4" />
+                                <label for="cb8"><img src="../../assets/img/event_type_financial.png" /></label>
+                            </li>
+                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                          <br>
+                          <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" awPreviousStep>Previous</button>
+                          <button type="button" class="btn btn-primary" awNextStep>Next</button>
+                        </div>
+                        </aw-wizard-step>
+                        <aw-wizard-step stepTitle="Complete">
+                            <br>
+                          We look forward to serving you. Please click "Register" to enter the system.
+                          <br>
+                          <br>
+                          <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" awPreviousStep>Previous</button>
+                          <button type="button" class="btn btn-success" (click)="registrationComplete()" awNextStep>Register</button>
+                          </div>
+                        </aw-wizard-step>
+                      </aw-wizard>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+<div class="modal-footer" *ngIf="modalFooterHide">
+    <!--<button type="button" class="btn btn-success" (click)="loginFunction()">Login</button>-->
+
+    <button type="button" class="btn btn-success" (click)="startEvent()">Start Event</button>
+    <button type="button" class="btn btn-success" (click)="stopEvent()">Stop Event</button>
+</div>

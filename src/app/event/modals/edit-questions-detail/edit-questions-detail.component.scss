@@ -1,0 +1,44 @@
+.modal-header {
+    border: 0;
+    background-color: #007497;
+    padding-bottom: 6px;
+    .modal-title {
+        color: white;
+    }
+}
+
+.modal-body {
+    padding: 24px 42px 12px;
+    form {
+        label {
+            color: #007497;
+        }
+        input {
+            box-shadow: none;
+            color: #007497;
+        }
+        select {
+            color: #007497;
+        }
+        table {
+            width: 100%;
+            vertical-align: top;
+            th, td {
+                color: #007497;
+            }
+            th {
+                font-weight: 500;
+            }
+            tbody {
+                vertical-align: top;
+            }
+        }
+    }
+}
+
+.modal-footer {
+    .addBtn {
+        font-size: 24px;
+        color: #6ebf49;
+    }
+}

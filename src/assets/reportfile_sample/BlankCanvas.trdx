@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report Width="10.41in" UnitOfMeasure="Mm" Name="DashBoard" SnapGridSize="0.1in" xmlns="http://schemas.telerik.com/reporting/2012/3.2">
+  <DataSources>
+  </DataSources>
+  <Items>
+    <DetailSection Height="7.54in" Name="detail">
+      <Style LineWidth="5pt" />
+      <Items>
+      </Items>
+    </DetailSection>
+    <ReportHeaderSection Height="0.7in" Name="reportHeaderSection1">
+      <Style Visible="True" />
+      <Items>
+      </Items>
+    </ReportHeaderSection>
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style>
+        <Font Name="Segoe UI Light" Size="25pt" Bold="True" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="ReportItemBase" StyleName="Header" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style LineWidth="21pt">
+        <Font Name="Segoe UI Light" Size="10pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextBox" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style Color="152, 152, 152">
+        <Font Name="Segoe UI Light" Size="9pt" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="ReportItemBase" StyleName="legend" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="Letter" Landscape="True">
+      <Margins>
+        <MarginsU Left="0.2in" Right="0.2in" Top="0.1in" Bottom="0in" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+  <ReportParameters>
+  </ReportParameters>
+</Report>

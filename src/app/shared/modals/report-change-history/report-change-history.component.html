@@ -1,0 +1,30 @@
+<div class="modal-header border-0">
+    <h3 class="modal-title text-uppercase font-weight-bold m-0"> Change History </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body pt-0">
+    <table class="table table-striped text-left reportTable" style="border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th scope="col"> Comment </th>
+                <th scope="col"> Date Created </th>
+                <th scope="col"> Version </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let history of revisionList; let i = index">
+                <td>
+                    {{ history.Comment || 'N/A' }}
+                </td>
+                <td>
+                    {{ history.Date | date:'MM/dd/yyyy hh:mm a' }}
+                </td>
+                <td>
+                    {{ history.Version }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

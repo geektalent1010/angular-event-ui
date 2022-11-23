@@ -1,0 +1,331 @@
+<!-- ============================ Page Title Start================================== -->
+<!-- ============================ Page Title End ================================== -->
+
+<!-- ============================ Full Width Events  ================================== -->
+<section class="pt-0">
+  <div class="container">
+    <!-- Onclick Sidebar -->
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div id="filter-sidebar" class="filter-sidebar">
+          <div class="filt-head">
+            <h4 class="filt-first">Advance Options</h4>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Close <i class="ti-close"></i></a>
+          </div>
+          <div class="show-hide-sidebar">
+            <!-- Find New Property -->
+            <div class="sidebar-widgets">
+              <!-- Search Form -->
+              <form class="form-inline addons mb-3">
+                <input class="form-control" type="search" placeholder="Search Events" aria-label="Search" />
+                <button class="btn my-2 my-sm-0" type="submit">
+                  <i class="ti-search"></i>
+                </button>
+              </form>
+
+              <h4 class="side_title">Event categories</h4>
+              <ul class="no-ul-list mb-3">
+                <li>
+                  <input id="a-4" class="checkbox-custom" name="a-4" type="checkbox" />
+                  <label for="a-4" class="checkbox-custom-label">Backend (3)</label>
+                </li>
+                <li>
+                  <input id="a-5" class="checkbox-custom" name="a-5" type="checkbox" />
+                  <label for="a-5" class="checkbox-custom-label">Frontend (2)</label>
+                </li>
+                <li>
+                  <input id="a-6" class="checkbox-custom" name="a-6" type="checkbox" />
+                  <label for="a-6" class="checkbox-custom-label">General (2)</label>
+                </li>
+                <li>
+                  <input id="a-7" class="checkbox-custom" name="a-7" type="checkbox" />
+                  <label for="a-7" class="checkbox-custom-label">IT & Software (2)</label>
+                </li>
+                <li>
+                  <input id="a-8" class="checkbox-custom" name="a-8" type="checkbox" />
+                  <label for="a-8" class="checkbox-custom-label">Photography (2)</label>
+                </li>
+                <li>
+                  <input id="a-9" class="checkbox-custom" name="a-9" type="checkbox" />
+                  <label for="a-9" class="checkbox-custom-label">Technology (2)</label>
+                </li>
+              </ul>
+
+              <h4 class="side_title">Instructors</h4>
+              <ul class="no-ul-list mb-3">
+                <li>
+                  <input id="a-1" class="checkbox-custom" name="a-1" type="checkbox" />
+                  <label for="a-1" class="checkbox-custom-label">Keny White (4)</label>
+                </li>
+                <li>
+                  <input id="a-2" class="checkbox-custom" name="a-2" type="checkbox" />
+                  <label for="a-2" class="checkbox-custom-label">Hinata Hyuga (11)</label>
+                </li>
+                <li>
+                  <input id="a-6" class="checkbox-custom" name="a-6" type="checkbox" />
+                  <label for="a-6" class="checkbox-custom-label">Mike hussy (4)</label>
+                </li>
+                <li>
+                  <input id="a-7" class="checkbox-custom" name="a-7" type="checkbox" />
+                  <label for="a-7" class="checkbox-custom-label">Adam Riky (7)</label>
+                </li>
+                <li>
+                  <input id="a-8" class="checkbox-custom" name="a-8" type="checkbox" />
+                  <label for="a-8" class="checkbox-custom-label">Balcony</label>
+                </li>
+                <li>
+                  <input id="a-9" class="checkbox-custom" name="a-9" type="checkbox" />
+                  <label for="a-9" class="checkbox-custom-label">Icon</label>
+                </li>
+              </ul>
+
+              <h4 class="side_title">Price</h4>
+              <ul class="no-ul-list mb-3">
+                <li>
+                  <input id="a-10" class="checkbox-custom" name="a-10" type="checkbox" />
+                  <label for="a-10" class="checkbox-custom-label">All (75)</label>
+                </li>
+                <li>
+                  <input id="a-11" class="checkbox-custom" name="a-11" type="checkbox" />
+                  <label for="a-11" class="checkbox-custom-label">Free (15)</label>
+                </li>
+                <li>
+                  <input id="a-12" class="checkbox-custom" name="a-12" type="checkbox" />
+                  <label for="a-12" class="checkbox-custom-label">Paid (60)</label>
+                </li>
+              </ul>
+
+              <button class="btn btn-theme full-width mb-2">
+                Filter Result
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loggedIn" class="row createEvent mb-0">
+      <div class="col-12">
+        <h2 class="text-center m-0"> Events </h2>
+        <div class="text-center">
+          <i class="fas fa-plus" (click)="gotoCreateEvent()"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-0">
+      <div class="col-12">
+        <div class="d-flex align-items-center mb-3">
+          <div class="searchBox input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <span class="fa fa-search form-control-feedback"></span>
+              </div>
+            </div>
+            <input type="text" class="form-control" [formControl]="searchControl" placeholder="Search">
+          </div>
+          <i class="fas fa-filter filterBtn ml-3" [class.disable]="!viewSort" (click)="viewSort = !viewSort"></i>
+        </div>
+        <div class="ordering search-bar">
+          <div class="layout-view">
+            <label>Table</label>
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]="layoutView" />
+              <span class="slider"></span>
+            </label>
+            <label>Grid</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- Grid View -->
+        <div *ngIf="layoutView" class="gridView">
+          <!-- Sort header -->
+          <div class="row m-0 sort-header" *ngIf="viewSort">
+            <div class="col-lg-2 col-md-2 sort-col {{ sortColClass('eventShowYear') }}" (click)="sortOn('eventShowYear')">
+              <a (click)="sortOn('eventShowYear')">Year</a>
+            </div>
+            <div class="col-lg-2 col-md-2 sort-col {{ sortColClass('evtName') }}" (click)="sortOn('evtName')">
+              <a (click)="sortOn('evtName')">Name</a>
+            </div>
+            <div class="col-lg-2 col-md-2 sort-col {{ sortColClass('addDate') }}" (click)="sortOn('addDate')">
+              <a (click)="sortOn('addDate')">Created Date</a>
+            </div>
+            <div class="col-lg-2 col-md-2 sort-col {{ sortColClass('startDate') }}" (click)="sortOn('startDate')">
+              <a (click)="sortOn('startDate')">Start Date</a>
+            </div>
+            <div class="col-lg-2 col-md-2 sort-col {{ sortColClass('endDate') }}" (click)="sortOn('endDate')">
+              <a (click)="sortOn('endDate')">End Date</a>
+            </div>
+            <div class="col-lg-2 col-md-2 sort-col {{ sortColClass('venueAddress') }}" (click)="sortOn('venueAddress')">
+              <a (click)="sortOn('venueAddress')">Location</a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div *ngFor="let event of events" class="col-12 col-sm-6 col-md-4 col-lg-3 py-3">
+              <div class="gridBlock" [class.passEvent]="event.endDate < today">
+                <div class="d-flex align-items-center justify-content-center">
+                  <h3 class="title text-center mb-2">
+                    <a *ngIf="event.isPublished" href="javascript:void(0);" (click)="goEditEvent(event)" [title]="event.evtName">{{ event.evtName }}</a>
+                    <a *ngIf="!event.isPublished" [title]="event.evtName">{{ event.evtName }}</a>
+                  </h3>
+                </div>
+
+                <div *ngIf="event.isPublished">
+                  <div class="thumbnail">
+                    <img [src]="event.thumbnailUrl" class="img-fluid" alt="" />
+
+                    <div class="hoverSection align-items-center justify-content-center">
+                      <!-- <div *ngIf="event.isPublished" class="editBtn actions">
+                        <span>
+                          <a style="padding-right:0.2em" *ngIf="event.builderSelection && loggedIn" href="javascript:void(0);" (click)="openSite(event, 'attendee')" class="view-button">
+                            <i class="fas fa-users"></i>
+                            <span class="tooltip-text">Show Attendee</span>
+                          </a>
+                          <a style="padding-right:0.2em" *ngIf="event.exhibitorSelection && loggedIn" href="javascript:void(0);" (click)="openSite(event, 'exhibitor')" class="view-button">
+                            <i class="fas fa-user-tie"></i>
+                            <span class="tooltip-text">Show Exhibitor</span>
+                          </a>
+                          <a style="padding-right:0.2em" *ngIf="event.exhibitorSelection && loggedIn" href="javascript:void(0);" (click)="openSite(event, 'organizer')" class="view-button">
+                            <i class="fas fa-sitemap"></i>
+                            <span class="tooltip-text">Show Organizer</span>
+                          </a>
+                          <a *ngIf="event.addUserid === loggedUser" (click)="businessRule(event.id)"
+                            class="edit-button">
+                            <i class="fas fa-fw fa-briefcase"></i>
+                            <span class="tooltip-text">Business Rules</span>
+                          </a>
+                        </span>
+                        <span>
+                          <a *ngIf="event.addUserid === loggedUser" (click)="editEvent(event.id)" class="edit-button">
+                            <i class="fas fa-pen"></i>
+                            <span class="tooltip-text"> Edit Event </span>
+                          </a>
+                        </span>
+                      </div> -->
+                      <ul class="eventInfo">
+                        <li>
+                          <p class="m-0">Location: {{ event.location }}</p>
+                          <p class="m-0">Start Date: {{ event.startDate | date: "mediumDate" }}</p>
+                          <p class="m-0">End Date: {{ event.endDate | date: "mediumDate" }}</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="!event.isPublished">
+                  <div class="thumbnail">
+                    <img [src]="event.thumbnailUrl" class="img-fluid" alt="" />
+                    <div class="progressSection d-flex align-items-center">
+                      <div class="w-100">
+                        <div class="d-flex align-items-center justify-content-center">
+                          <div *ngIf="event.buildStatus !== 'Error'" class="spinner">
+                            <div *ngIf="!event.isPublished && event.buildPercentage < 100" class="loading-spinner"></div>
+                            <div *ngIf="!event.isPublished && event.buildPercentage == 100" class="loading-spinner-complete"></div>
+                            <div class="loading-percentage text-center">
+                              {{ event.buildPercentage }}%
+                            </div>
+                          </div>
+                        </div>
+                        <div class="loading-text text-center mt-2">
+                          {{ event.buildStatus }} ...
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!layoutView" class="tableView">
+          <!-- Sort header -->
+          <table class="table table-striped table-hover event-table">
+            <thead>
+              <tr class="sort-header" *ngIf="viewSort">
+                <th></th>
+                <th class="sort-col {{ sortColClass('evtName') }}" (click)="sortOn('evtName')">
+                  <a>Name</a>
+                </th>
+                <th class="sort-col {{ sortColClass('addDate') }}" (click)="sortOn('addDate')">
+                  <a>Created Date</a>
+                </th>
+                <th class="sort-col {{ sortColClass('evtStartDate') }}" (click)="sortOn('evtStartDate')">
+                  <a>Start Date</a>
+                </th>
+                <th class="sort-col {{ sortColClass('evtEndDate') }}" (click)="sortOn('evtEndDate')">
+                  <a>End Date</a>
+                </th>
+                <th class="sort-col {{ sortColClass('eventYear') }}" (click)="sortOn('eventYear')">
+                  <a>Year</a>
+                </th>
+                <th class="sort-col {{ sortColClass('location') }}" (click)="sortOn('location')">
+                  <a>Location</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of events">
+                <th class="text-center d-flex align-items-center justify-content-center">
+                  <div class="thumbnail">
+                    <img [src]="event.thumbnailUrl" class="img-fluid" alt="" />
+                    <!-- <div *ngIf="event.isPublished === true" class="hoverSection editBtn actions align-items-center justify-content-center">
+                      <div>
+                        <a *ngIf="event.addUserid === loggedUser" (click)="editEvent(event.id)" class="edit-button">
+                          <i class="fas fa-fw fa-pencil-alt"></i>
+                          <span class="tooltip-text">Edit Event</span>
+                        </a>
+                        <a *ngIf="event.addUserid === loggedUser" (click)="deleteEvent(event.id)" class="edit-button">
+                          <i class="fas fa-fw fa-trash-alt"></i>
+                          <span class="tooltip-text">Delete Event</span>
+                        </a>
+                      </div>
+                    </div> -->
+                    <div *ngIf="event.isPublished !== true">
+                      <div class="progressSection d-flex align-items-center">
+                        <div class="w-100">
+                          <div class="loading-percentage text-center">
+                            {{ event.buildPercentage }}%
+                          </div>
+                          <div class="loading-text text-center">
+                            {{ event.buildStatus }} ...
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </th>
+                <th>
+                  <a *ngIf="event.isPublished" href="javascript:void(0);" routerLink="/eventExplorer/edit/{{ event.id }}" [title]="event.evtName">{{ event.evtName }}</a>
+                  <a *ngIf="!event.isPublished" href="javascript:void(0);" [title]="event.evtName">{{ event.evtName }}</a>
+                </th>
+                <th>{{ event.addDate | date: "MM/dd/yyyy" }}</th>
+                <th>{{ event.startDate | date: "MM/dd/yyyy" }}</th>
+                <th>{{ event.endDate | date: "MM/dd/yyyy" }}</th>
+                <th>{{ event.eventYear }}</th>
+                <th>{{ event.location }}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Row -->
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 pagination">
+            <!-- Pagination -->
+            <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" maxSize="5" rotate="true"
+            (pageChange)="changePage($event)" ellipses="false" boundaryLinks="true"></ngb-pagination>
+          </div>
+        </div>
+        <!-- /Row -->
+      </div>
+    </div>
+    <!-- Row -->
+  </div>
+</section>
+<!-- ============================ Full Width Events End ================================== -->

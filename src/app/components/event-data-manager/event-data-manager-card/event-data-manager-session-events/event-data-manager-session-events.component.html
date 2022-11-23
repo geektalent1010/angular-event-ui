@@ -1,0 +1,26 @@
+<table  #table id="table" class="table table-striped text-center table-md" style="border-collapse:collapse;font-size: .7rem;">
+    <thead>
+        <tr>
+        
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'session')" >Session</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'quantity')" >Quantity</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'description')" >Description</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'dates')" >Dates</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'rate')" >Rate</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'discount')" >Discount</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'total')" >Total</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let session of valid.sessions; let i = index">
+        <td class="align-middle text-nowrap" scope="col">{{session.session}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{session.quantity}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{session.description}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{session.dates}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{session.rate}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{session.discount}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{session.total}}</td>
+      </tr>
+    </tbody>
+  </table>

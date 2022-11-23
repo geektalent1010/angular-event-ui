@@ -1,0 +1,491 @@
+<form [formGroup]="businessRuleForm">
+  <ul class="ul-h-accordian">
+    <li class="li-h-accordian active border" (click)="toggleAccordion('section1')"
+      [class.active]="activeSection === 'section1'">
+      <div class="section-content">
+        <div>
+          <div class="input-group pb-1">
+            <input type="text" class="form-control shadow-none border-0" aria-label="Search Rules"
+              placeholder="Search Rules">
+          </div>
+        </div>
+        <div class="row text-center p-2" *ngIf="rules.length == 0">
+          No rules to display
+        </div>
+        <div class="row text-center p-2" *ngIf="errors.ruleName">
+          <small class="text-danger" >Please select a Rule</small>
+        </div>
+        <label *ngFor="let rule of rules" class="w-100"
+          (click)="onRuleSelect(rule);$event.stopPropagation()">
+          <div class="row align-center height-row bg-white my-1 list-display" style="align-items: center;">
+            <div class="col-md-1">
+              <input type="radio" (click)="$event.stopPropagation()" class="position-relative" formControlName="ruleName" value="{{rule.name}}">
+            </div>
+            <div class="col-md-10">
+              <p class="m-0 text-secondary font-weight-bold">{{rule.name}}</p>
+              <small class="text-secondary">{{rule.description}}</small>
+            </div>
+            <div class="col-md-1 button-auto-hide" *ngIf="canShowDelete(rule.name)">
+              <i class="fas fa-trash" (click)="removeRule(rule.name); $event.stopPropagation();"></i>
+            </div>
+          </div>
+        </label>
+        <button
+         type="button" 
+        class="btn btn-light btn-sm float-left"
+          (click)="openDialog(createNewRuleModel)">Create New Rule</button>
+          <button type="button" class="btn btn-light btn-sm float-right button-auto-hide" [disabled]= "!canGoTo('section2')"
+          (click)="toggleAccordion('section2', true);$event.stopPropagation()">Continue</button>
+      </div>
+    </li>
+    <li (click)="toggleAccordion('section2')" [class.disable-events]="!canGoTo('section2')" class="li-h-accordian border"
+      [class.active]="activeSection === 'section2'">
+      <div class="section-content">
+        <h6 class="text-secondary font-weight-bold m-2">TRIGGER</h6>
+        <div class="row text-center p-2" *ngIf="errors.trigger">
+          <small class="text-danger" >Please use a trigger</small>
+        </div>
+        <div class="w-100" *ngFor="let trigger of activeRule.triggers; let i = index" (click)="onTriggerSelect(i, false);">
+          <div class="row align-center height-row bg-white my-1 list-display" [class.list-display-active]="selectedTriggerIndex == i" style="align-items: center;">
+            <div class="col-md-9">
+              <p class="m-0 text-secondary font-weight-bold">{{trigger.name}}</p>
+              <small class="text-secondary">{{trigger.description}}</small>
+            </div>
+            <div class="col-md-2">
+              <a>Use<input type="checkbox" class="m-1" [(ngModel)]="trigger.isSelected" [ngModelOptions]="{standalone: true}" name="trigger" (click)="$event.stopPropagation()" value="{{trigger.name}}"></a>     
+            </div>
+          </div>
+        </div>
+        <button
+         type="button" 
+        class="btn btn-light btn-sm float-left button-auto-hide"
+          (click)="openDialog(addTriggerModel)">Add Trigger</button>
+
+        <button type="button" class="btn btn-light btn-sm float-right button-auto-hide" [disabled]= "!canGoTo('section3')"
+          (click)="toggleAccordion('section3',true);$event.stopPropagation()">Continue</button>
+      </div>
+    </li>
+    <li (click)="toggleAccordion('section3')" [class.disable-events]="!canGoTo('section3')" class="li-h-accordian border"
+      [class.active]="activeSection === 'section3'">
+      <div class="section-content">
+        <h6 class="text-secondary font-weight-bold m-2">CONDITIONS</h6>
+        <ul class="nav nav-tabs">
+          <li class="nav-item" *ngIf="showCondtionTab('appliesTo')">
+            <a class="nav-link" [class.active]="activeConditionTab === 'appliesTo'"
+              (click)="selectConditionsTab('appliesTo')">Search Filter</a>
+          </li>
+          <li class="nav-item" *ngIf="showCondtionTab('question')" [disabled]="!activeRule.triggers[this.selectedTriggerIndex]?.appliesTo" >
+            <a class="nav-link" [class.active]="activeConditionTab === 'question'"
+              (click)="selectConditionsTab('question')">Select Question</a>
+          </li>
+          <li class="nav-item" *ngIf="showCondtionTab('fieldSelection')">
+            <a class="nav-link" [class.active]="activeConditionTab === 'fieldSelection'"
+              (click)="selectConditionsTab('fieldSelection')">Field Selection</a>
+          </li>
+          <li class="nav-item" *ngIf="showCondtionTab('fileloads')">
+            <a class="nav-link" [class.active]="activeConditionTab === 'fileloads'"
+              (click)="selectConditionsTab('fileloads')">Field Load</a>
+          </li>
+        </ul>
+
+        <!-- appliesTo -->
+        <div class="p-3" *ngIf="activeConditionTab == 'appliesTo'">        
+            <div class="row align-items-center" *ngIf="activeRule.triggers[selectedTriggerIndex]">
+              <div class="col-md-4 p-0" *ngIf="activeRule.triggers[selectedTriggerIndex] &&  activeRule.triggers[selectedTriggerIndex].name  === DEMOGRAPHIC_QUESTION_RESPONSE">
+                RegType Filter:
+              </div>
+              <div class="col-md-4 p-0" *ngIf="activeRule.triggers[selectedTriggerIndex] &&  activeRule.triggers[selectedTriggerIndex].name  === REGTYPESELECTOR">
+                RegType:
+              </div>
+              <div class="col-md-8">
+                <select class="form-control p-0" style="font-size: inherit;" name="appliesTo" [(ngModel)]="activeRule.triggers[selectedTriggerIndex].appliesTo" [ngModelOptions]="{standalone: true}" (change)="searchItems(false)">
+                  <option value="" hidden>Select</option>
+                  <option *ngFor="let job of jobsCategory" [value]="job">{{job}}</option>
+                </select>
+                <small class="text-danger" *ngIf="errors.conditions && !activeRule.triggers[selectedTriggerIndex].appliesTo">Please select applies to</small>
+              </div>
+            </div>
+            <div class="row align-items-center mt-1" *ngIf="activeRule.triggers[selectedTriggerIndex] &&  activeRule.triggers[selectedTriggerIndex].name  == DEMOGRAPHIC_QUESTION_RESPONSE">
+              <div class="col-md-4 p-0">
+                Search by keyword:
+              </div>
+              <div class="col-md-8">
+                <input type="text" class="form-control p-0" [(ngModel)]="searchQuestionsBy" name="searchQuestionsBy" (change)="searchItems(true)" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+        </div>
+
+        <!-- question -->
+        <div [hidden]="!(activeConditionTab == 'question' && activeRule.triggers && activeRule.triggers[selectedTriggerIndex])">
+            <table class="table table-borderless table-responsive" mdbTable #tableEl="mdbTable" style="height: 45vh;">
+              <tbody #row>
+                <tr mdbTableCol *ngFor="let el of displayQuestionElements; let i = index">
+                  <th scope="row">
+                    <input type="checkbox" [(ngModel)]="el.checked" [ngModelOptions]="{standalone: true}" (change)="onQuestionSelectionChange(el, $event.target.checked)" />
+                  </th>
+                  <td>
+                    {{ el.question }}
+                  </td>
+                  <td>
+                    <select class="form-control" *ngIf="el.demDetails?.length > 0" [ngModel]="el.selectedDedDescription"  [ngModelOptions]="{standalone: true}" (change)="onSelectDedDesc(el, $event.target.value)" style="width: 14em;">
+                      <option value="" hidden selected>Select</option>
+                      <option *ngFor="let option of el.demDetails;" [value]="option.dedDescription">
+                        {{ option.dedDescription }}
+                      </option>
+                    </select>
+                  
+                    <select class="form-control" *ngIf="el.demDetails?.length == 0 " [ngModel]="el.selectedDedDescription"  [ngModelOptions]="{standalone: true}"  (change)="onSelectDedDesc(el,  $event.target.value)" style="width: 14em;">
+                      <option value="" hidden selected>Select</option>
+                      <option value="Do not accept response"> Do not use response </option>
+                      <option value="Accept response"> Use response </option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+        <!-- fieldSelection -->
+        <div class="p-3" *ngIf="activeConditionTab == 'fieldSelection' && activeRule.triggers[selectedTriggerIndex]">        
+
+            <form>
+              <div class="text-secondary font-weight-bold py-1">Select Page Name</div>
+              <select class="form-control p-0" [(ngModel)]="activeRule.triggers[selectedTriggerIndex].fieldSelection.pageName" [ngModelOptions]="{standalone: true}" (change)="selectConditionsPageNameById($event.target.value)">
+                <option value="" hidden>Select</option>
+                <option  *ngFor="let pageName of pageNames" [value]="pageName.id">{{pageName.name}}</option>
+              </select>
+              <div class="text-secondary font-weight-bold py-1">Select Field Name</div>
+              <select class="form-control p-0" [(ngModel)]="activeRule.triggers[selectedTriggerIndex].fieldSelection.FieldName" [ngModelOptions]="{standalone: true}">
+                <option value="" hidden>Select</option>
+                <option *ngFor="let pageField of conditionsPageFieldsSource" [value]="pageField.id">
+                  {{ pageField.name }}
+                </option>
+              </select>
+              <div class="text-secondary font-weight-bold py-1">Select condition</div>
+              <select class="form-control p-0" [(ngModel)]="activeRule.triggers[selectedTriggerIndex].fieldSelection.condition" [ngModelOptions]="{standalone: true}">
+                <option value="" hidden>Select</option>
+                <option value="equal">Equal</option>
+                <option value="notEqual">Not Equal</option>
+              </select>
+
+              <div class="text-secondary font-weight-bold py-1">Set Field Value</div>
+              <div class="py-1">
+                <input type="text" class="form-control p-0" [(ngModel)]="activeRule.triggers[selectedTriggerIndex].fieldSelection.fieldValue" [ngModelOptions]="{standalone: true}">
+              </div> 
+            </form>
+      </div>
+
+      <!-- fileloads -->
+      <div class="p-3" *ngIf="activeConditionTab == 'fileloads' && activeRule.triggers[selectedTriggerIndex]">
+        <div class="text-secondary font-weight-bold py-1">File Name:</div>
+        <input type="text" class="form-control p-0" name="file_name" [(ngModel)]="activeRule.triggers[selectedTriggerIndex].fieldLoad.fileName" [ngModelOptions]="{standalone: true}">
+
+        <div class="text-secondary font-weight-bold py-1">Type of Transfer</div>
+        <select class="form-control p-0" [(ngModel)]="activeRule.triggers[selectedTriggerIndex].fieldLoad.typeOfTransfer" [ngModelOptions]="{standalone: true}">
+          <option value="" hidden>Select</option>
+          <option value="ftp">FTP</option>
+          <option value="sso">SSO</option>
+          <option value="prioryear">PriorYear</option>
+        </select>
+      </div>
+
+        <button type="button" class="btn btn-light btn-sm float-right button-auto-hide" [disabled]= "!canGoTo('section4')"
+          (click)="toggleAccordion('section4', true);$event.stopPropagation()">Continue</button>
+      </div>
+    </li>
+    <li (click)="toggleAccordion('section4')" [class.disable-events]="!canGoTo('section4')" class="li-h-accordian border"
+      [class.active]="activeSection === 'section4'">
+      <div class="section-content">
+        <h6 class="text-secondary font-weight-bold m-2">ACTIONS</h6>
+        <hr class="m-0">
+        <div class="row m-0">
+          <div class="col-md-3 py-3 px-0 border-right border-bottom text-center">
+            <div class="mb-2 cursor-pointer text-info">
+              <i class="fas fa-3x fa-palette"></i>
+              <div>WebHook</div>
+            </div>
+          </div>
+          <div class="col-md-9 py-3 border-bottom">
+            <div class="text-secondary font-weight-bold">Select Action</div>
+              <div class="py-1" *ngFor="let action of activeRule.actions">
+                <label class="cursor-pointer">
+                  <input type="radio" class="mr-3 position-relative" formControlName="action" [value]="action.id"
+                    (change)="onChangeActionValue(action.id)">
+                  <span>{{action.name}}</span>
+                </label>
+              </div>
+            <small class="text-danger" *ngIf="businessRuleForm.get('action').hasError('required') && businessRuleForm.get('action').touched">Please select action</small>
+            
+            <button class="btn btn-primary btn-sm"
+            *ngIf="businessRuleForm.controls.action.value ==='newQulification'"
+            (click)="openDialog(configModel);$event.stopPropagation()">Configure</button>
+
+            <button class="btn btn-primary btn-sm"
+            *ngIf="businessRuleForm.controls.action.value ==='newPckg'"
+            (click)="openDialog(ratePackageModel);$event.stopPropagation()">Rate Package</button>
+
+            <ng-container *ngIf="businessRuleForm.controls.action.value ==='setFieldValue'">
+              <form [formGroup]="actionsForm">
+                <div class="text-secondary font-weight-bold py-1">Select Page Name</div>
+                <select class="form-control p-0" formControlName="pageName">
+                  <option value="personalInfo">Personal Information</option>
+                </select>
+                <small class="text-danger" *ngIf="actionsForm.get('pageName').hasError('required') && actionsForm.get('pageName').touched">Please select page name</small>
+                <div class="text-secondary font-weight-bold py-1">Select Field Name</div>
+                <select class="form-control p-0" formControlName="pageField">
+                  <option value="" hidden>Select</option>
+                  <option *ngFor="let pageField of pageFieldsSource" [ngValue]="pageField.id">
+                    {{ pageField.name }}
+                  </option>
+                </select>
+                <small class="text-danger" *ngIf="actionsForm.get('pageField').hasError('required') && actionsForm.get('pageField').touched">Please select Field Name</small>
+                <div class="text-secondary font-weight-bold py-1">Set Field Value</div>
+                <div class="py-1">
+                  <input type="text" class="form-control p-0" formControlName="fieldValue">
+                  <small class="text-danger" *ngIf="actionsForm.get('fieldValue').hasError('required') && actionsForm.get('fieldValue').touched">Please select Field Value</small>
+                </div>
+              </form>
+            </ng-container>
+
+            <ng-container *ngIf="businessRuleForm.controls.action.value ==='setRegType'">
+              <form>
+                <div class="text-secondary font-weight-bold py-1">Set RegType</div>
+                <select class="form-control p-0" [(ngModel)]="setRegType" name="setRegType" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let job of jobsCategory" [value]="job">{{job}}</option>
+                </select>
+              </form>
+            </ng-container>
+
+            <ng-container *ngIf="businessRuleForm.controls.action.value ==='filterSession'">
+              <form>
+                <div class="text-secondary font-weight-bold py-1">Filter Session</div>
+                <select class="form-control p-0" [(ngModel)]="filterSession" name="filterSession" [ngModelOptions]="{standalone: true}" multiple="multiple">
+                  <option *ngFor="let session of sessions" [value]="session.name">{{session.name}}</option>
+                </select>
+              </form>
+            </ng-container>
+
+            <ng-container *ngIf="businessRuleForm.controls.action.value ==='setDiscount'">
+              <form>
+                <div class="text-secondary font-weight-bold py-1">Set Discount</div>
+                <select class="form-control p-0" [(ngModel)]="setDiscount" name="setDiscount" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let discount of discountList" [value]="discount.discountName">{{discount.discountName}}</option>
+                </select>
+              </form>
+            </ng-container>
+
+            <small class="text-danger" *ngIf="errors.packageDetails">please enter details in Rate package</small>
+            <small class="text-danger" *ngIf="errors.configDetails">please enter details in config</small>
+            
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm float-right"
+          (click)="saveBusinessRules();$event.stopPropagation()">Execute</button>
+      </div>
+    </li>
+  </ul>
+</form>
+
+
+
+
+<!-- popup -->
+<ng-template #createNewRuleModel let-modal>
+  <div class="container p-0">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="margin: 0;">
+        Create New Rule
+      </h4>
+      <input type="button" value="X" (click)="modal.close('Save click')"
+        style="width: 25px; background: white; border: none; color: black; box-shadow: none; padding: 5px;" />
+    </div>
+    <div class="modal-body" style="background:#eee">
+      <form [formGroup]="createNewRulesForm">
+        <div class="row">
+          <div class="col-md-6">
+            <span>
+              Rule name:
+              <input formControlName="name" class="form-control" />
+            </span>
+          </div>
+          <div class="col-md-6">
+            Description:
+            <input class="form-control" formControlName="description" />
+          </div>
+        </div>
+        <div class="row"></div>
+        <div class="row float-right">
+          <button type="button" class="btn btn-primary" (click)="modal.close('Save click'); saveNewRule()">
+            Save rule
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #configModel let-modal>
+  <div class="container p-0" style="height: 35vh;">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="margin: 0;">
+        Visa Letter Configuration
+      </h4>
+      <input type="button" value="X" (click)="modelOnClose('configDetailsForm')"
+        style="width: 25px; background: white; border: none; color: black; box-shadow: none; padding: 5px;" />
+    </div>
+    <div class="modal-body" style="background:#eee; height: 100%;">
+      <!-- <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeConfigTab === 'tab1'" (click)="selectConfigTab('tab1')">Qualification Response
+            Type</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeConfigTab === 'tab2'" (click)="selectConfigTab('tab2')">Define Custom Qualification</a>
+        </li>
+      </ul> -->
+      
+      <div class="container">
+            <h5>Search for Qualifications</h5>
+            <div class="md-form">
+              <ng-multiselect-dropdown id="qualification-regType" [placeholder]="'Reg Types'"
+                [settings]="dropdownSettings" [data]="jobsCategory"
+                class="subcategory-selector"
+                [ngStyle]="{'position': 'absolute'}"
+                [ngStyle]="{'width' : '100%'}"
+                [ngStyle]="{'background': jobsCategory.length < 1 ? 'unset' : 'white'}"
+                >
+              </ng-multiselect-dropdown>
+            </div>
+            <div class="row"></div>
+            <div class="md-form">
+              <label>Qualifications*</label>
+              <div class="d-flex align-items-center my-2">
+                <input type="checkbox" name="noQualification"  class="mr-3 mb-1">
+                <label for="noQualification" class="m-0">No Qualification Required</label>
+              </div>
+              <ng-multiselect-dropdown [placeholder]="'Qualifications'" [settings]="dropdownSettings"
+                [data]="qualifications" 
+                enableCheckAll=true [ngStyle]="{'pointer-events': noQualificationsChecked ? 'none' : 'unset'}">
+                >
+              </ng-multiselect-dropdown>
+            </div>
+            <div class="action-button-container">
+              <button type="button" class="btn btn-primary">
+                Add
+              </button>
+            </div>
+        <!-- <form [formGroup]="configDetailsForm">  
+
+        <div class="p-3 inline" *ngIf="activeConfigTab == 'tab1'">
+          <label style="font-size: x-large;" for="responseType">Qualification Type:</label>
+          <div *ngFor="let qualification of configDetailsForm.controls.qualifications.controls; let i = index">
+            <label formArrayName="qualifications" >
+            <input type="checkbox" [formControlName]="i">
+            {{qualifications[i].name}}
+          </label>
+        </div>
+        <small class="text-danger" *ngIf="configDetailsForm.controls.qualifications.hasError('required') && configDetailsForm.controls.qualifications.touched">
+          This field is required.</small>
+        </div>
+  
+        <div class="p-3" *ngIf="activeConfigTab == 'tab2'" >
+          Implementation in progress
+        </div>
+        <button type="submit" (click)="onSaveConfig()" class="btn btn-primary">Save</button>
+        </form> -->
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #ratePackageModel let-modal>
+  <div class="container p-0">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="margin: 0;">
+        Option Package
+      </h4>
+      <input type="button" value="X" (click)="modelOnClose('packageDetailsForm')"
+        style="width: 25px; background: white; border: none; color: black; box-shadow: none; padding: 5px;" />
+    </div>
+    <div class="modal-body" style="background:#eee">
+      <form [formGroup]="packageDetailsForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="text-secondary font-weight-bold">Select Package:</div>
+          </div>
+          <div class="col-md-6">
+            <select class="form-control p-0" style="font-size: inherit;" (change)="onPackageSelect($event.target.value)" name="packageName">
+              <option value="" hidden>Select</option>
+              <option *ngFor="let eventCost of eventCosts; let i=index" [value]="i">{{eventCost.customPackage.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="text-secondary font-weight-bold">Rate Package Name:</div>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" formControlName="pckgName">
+            <small class="text-danger" *ngIf="packageDetailsForm.get('pckgName').hasError('required') && packageDetailsForm.get('pckgName').touched">
+              This field is required.</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="text-secondary font-weight-bold">Rate package Description</div>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" formControlName="pckgDesc">
+            <small class="text-danger" *ngIf="packageDetailsForm.get('pckgDesc').hasError('required') && packageDetailsForm.get('pckgDesc').touched">
+              This field is required.</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="text-secondary font-weight-bold">Rate Package Cost:</div>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" formControlName="pckgCost">
+            <small class="text-danger" *ngIf="packageDetailsForm.get('pckgCost').hasError('required') && packageDetailsForm.get('pckgCost').touched">
+              This field is required.</small>
+          </div>
+        </div>
+        <button type="submit" (click)="onSaveRatePackage()" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<!-- popup -->
+<ng-template #addTriggerModel let-modal>
+  <div class="container p-0">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="margin: 0;">
+        Add New Trigger
+      </h4>
+      <input type="button" value="X" (click)="modal.close('Save click')"
+        style="width: 25px; background: white; border: none; color: black; box-shadow: none; padding: 5px;" />
+    </div>
+    <div class="modal-body" style="background:#eee">
+      <form>
+        <div class="row" style="width: 25vw;">
+          <div class="col-md-3">
+            <span>Trigger:</span>
+          </div>
+          <div class="col-md-9">
+            <select class="form-control p-0" style="font-size: inherit;" [(ngModel)]="newTrigger" name="newTrigger" [ngModelOptions]="{standalone: true}">
+              <option value="" hidden>Select</option>
+              <option *ngFor="let trigger of triggers" [value]="trigger.name">{{trigger.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row float-right">
+          <button type="button" class="btn btn-primary" (click)="addTrigger()">
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

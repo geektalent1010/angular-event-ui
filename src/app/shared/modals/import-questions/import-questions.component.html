@@ -1,0 +1,116 @@
+<div class="modal-header">
+    <h2 class="modal-title m-0"> Import Demographics Question Set </h2>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <form [formGroup]="questionsForm">
+            <div class="row mt-0 mb-0">
+                <label for="sampleQuestionsInput">
+                    <span class="text-danger font-weight-bold align-middle">*</span>
+                    Sample File Upload:
+                </label>
+                <div class="form-group w-100 mb-2">
+                    <input type="file" #sampleFileInput (change)="uploadSampleFile($event.target)" name="sampleQuestionsInput"
+                        id="sampleQuestionsInput" class="w-100" formControlName="sampleQuestionsFileDataB64"
+                        [class.border-danger]="lf.sampleQuestionsFileDataB64.invalid && (lf.sampleQuestionsFileDataB64.dirty || lf.sampleQuestionsFileDataB64.touched)"
+                        [class.border-success]="lf.sampleQuestionsFileDataB64.valid && (lf.sampleQuestionsFileDataB64.dirty || lf.sampleQuestionsFileDataB64.touched)" />
+                </div>
+                <div *ngIf="lf.sampleQuestionsFileDataB64.invalid && (lf.sampleQuestionsFileDataB64.dirty || lf.sampleQuestionsFileDataB64.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.sampleQuestionsFileDataB64.errors.required">
+                        * Sample file is required.
+                    </div>
+                    <div *ngIf="lf.sampleQuestionsFileDataB64.errors?.diffDescriptionLayout">
+                        Some questions has something wrong so removed the questions.  <br>
+                        The wrong question names: {{ invalidQuestionsNameString }}
+                        <!-- * The uploaded file has some wrong records. Some questions has the same name but it's description and response layout are not same. <br>
+                        The wrong question names: {{ invalidQuestionsNameString }} <br>
+                        So removed the questions. If you want to add the questions, please fix the questions in the csv file and then upload again. -->
+                    </div>
+                </div>
+                <div class="w-100">
+                    <div *ngIf="!uploadedQuestions.length">
+                        <div class="w-100 text-danger" *ngIf="questionsForm.touched">
+                            * No questions
+                        </div>
+                    </div>
+                    <p class="text-right">
+                        <a class="iconsBG" title="Excel" href='/assets/psm_samples/demographics_sample.csv' download="demographics_sample.csv">
+                            <i class="far fa-2x fa-file-excel"></i>
+                            Download Required Format Sample File
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row mt-0 mb-3">
+                <div class="questionsTable w-100" *ngIf="uploadedQuestions.length">
+                    <table mdbTable #tableEl="mdbTable">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let head of headQuestionElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="uploadedQuestions"
+                                    [sortBy]="headQuestionElements[i].field" [class]="headQuestionElements[i].field"
+                                >
+                                    {{ head.label | titlecase }}
+                                    <mdb-icon fas icon="sort"></mdb-icon>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody #row>
+                            <tr mdbTableCol *ngFor="let el of uploadedQuestions; let i = index">
+                                <th scope="row">
+                                    {{ el.questionName }}
+                                </th>
+                                <td>
+                                    {{ el.question }}
+                                </td>
+                                <td>
+                                    {{ el.PollingType }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <ng-template #empty>
+                    <div class="w-100 text-danger" *ngIf="questionsForm.touched">
+                        * No questions
+                    </div>
+                </ng-template> -->
+            </div>
+
+            <div class="row mt-0">
+                <label for="regType">
+                    <span class="text-danger font-weight-bold align-middle">*</span>
+                    Regtype Mapping:
+                </label>
+                <select formControlName="regType" class="form-control"
+                    [class.border-danger]="lf.regType.invalid && (lf.regType.dirty || lf.regType.touched)"
+                    [class.border-success]="lf.regType.valid && (lf.regType.dirty || lf.regType.touched)">
+                    <option value="" checked> - Select - </option>
+                    <option *ngFor="let type of regTypes" [value]="type"> {{ type }} </option>
+                </select>
+                <div *ngIf="lf.regType.invalid && (lf.regType.dirty || lf.regType.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.regType.errors.required">
+                        * RegType is required.
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-end">
+                <button class="btn btn-success btn-md text-uppercase rounded mr-3 saveBtn" color="primary" (click)="save()">
+                    Save </button>
+                <button class="btn btn-danger btn-md text-uppercase rounded" color="primary" (click)="closeModal()">
+                    Cancel </button>
+            </div>
+        </div>
+    </div>
+</div>

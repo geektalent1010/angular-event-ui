@@ -1,0 +1,195 @@
+<div class="modal-header">
+  <h2 class="modal-title w-100 text-center m-0">
+    {{ isCreate ? "Add New" : "Edit" }} Field
+  </h2>
+</div>
+<div class="modal-body">
+  <form [formGroup]="fieldForm">
+    <div class="form-row my-2">
+      <div class="col-5">
+        <label> Label </label>
+      </div>
+      <div class="col-7">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="label"
+          name="label"
+          [class.border-danger]="
+            lf.label.invalid && (lf.label.dirty || lf.label.touched)
+          "
+          [class.border-success]="
+            lf.label.valid && (lf.label.dirty || lf.label.touched)
+          "
+        />
+        <div
+          *ngIf="lf.label.invalid && (lf.label.dirty || lf.label.touched)"
+          class="help-block text-danger"
+        >
+          <small *ngIf="lf.label.errors.required">
+            * This field is required.
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row my-2">
+      <div class="col-5">
+        <label> Name </label>
+      </div>
+      <div class="col-7">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          name="name"
+          [class.border-danger]="
+            lf.name.invalid && (lf.name.dirty || lf.name.touched)
+          "
+          [class.border-success]="
+            lf.name.valid && (lf.name.dirty || lf.name.touched)
+          "
+        />
+        <div
+          *ngIf="lf.name.invalid && (lf.name.dirty || lf.name.touched)"
+          class="help-block text-danger"
+        >
+          <small *ngIf="lf.name.errors.required">
+            * This field is required.
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row my-2">
+      <div class="col-5">
+        <label> Type </label>
+      </div>
+      <div class="col-7">
+        <select
+          name="type"
+          formControlName="type"
+          class="form-control"
+          [class.border-danger]="
+            lf.type.invalid && (lf.type.dirty || lf.type.touched)
+          "
+          [class.border-success]="
+            lf.type.valid && (lf.type.dirty || lf.type.touched)
+          "
+          (change)="handleChange($event.target.value)"
+        >
+          <option *ngFor="let type of typeList" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+        <div
+          *ngIf="lf.type.invalid && (lf.type.dirty || lf.type.touched)"
+          class="help-block text-danger"
+        >
+          <small *ngIf="lf.type.errors.required">
+            * This field is required.
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row my-2">
+      <div class="col-5">
+        <label> Default Value </label>
+      </div>
+      <div class="col-7">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="value"
+          value="value"
+          [class.border-danger]="
+            lf.value.invalid && (lf.value.dirty || lf.value.touched)
+          "
+          [class.border-success]="
+            lf.value.valid && (lf.value.dirty || lf.value.touched)
+          "
+        />
+        <div
+          *ngIf="lf.value.invalid && (lf.value.dirty || lf.value.touched)"
+          class="help-block text-danger"
+        >
+          <small *ngIf="lf.value.errors.required">
+            * This field is required.
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showColumn" class="form-row my-2">
+      <div class="col-5">
+        <label> Column </label>
+      </div>
+      <div class="col-7">
+        <select
+          type="text"
+          class="form-control"
+          formControlName="column"
+          value="column"
+        >
+          <option *ngFor="let col of [1,2,3];" [value]="col">{{ col }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="requiredIsArray" class="form-row my-2">
+      <div class="col-5">
+        <label> Required </label>
+      </div>
+      <div class="col-7">
+        <ng-multiselect-dropdown
+          [placeholder]="'- Select -'" [settings]="dropdownSettings"
+          [data]="regtypesList" [formControl]="lf.required" 
+        >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+
+    <div class="form-row my-2">
+      <div class="col-6">
+        <label class="customCheckbox">
+          <input type="checkbox" class="" formControlName="static" />
+          <span> Static </span>
+        </label>
+      </div>
+      <div class="col-6">
+        <label class="customCheckbox">
+          <input type="checkbox" class="" formControlName="disable" />
+          <span> Disable </span>
+        </label>
+      </div>
+      <div *ngIf="!requiredIsArray" class="col-6">
+        <label class="customCheckbox">
+          <input type="checkbox" class="" formControlName="required" />
+          <span> Required </span>
+        </label>
+      </div>
+      <div class="col-6">
+        <label class="customCheckbox">
+          <input type="checkbox" class="" formControlName="visible" />
+          <span> Visible </span>
+        </label>
+      </div>
+      <div *ngIf="showLookup" class="col-6">
+        <label class="customCheckbox">
+          <input type="checkbox" class="" formControlName="lookup" />
+          <span> Lookup </span>
+        </label>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer border-0">
+  <div class="container-fluid">
+    <div class="row m-0">
+      <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+        <button class="btn btn-primary" (click)="saveField()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+body {
+    font-family: sans-serif;
+  }
+  
+  .glide {
+    display: flex;
+    align-items: center;
+  }
+  
+  .glide__track {
+    flex: 1;
+  }
+  
+  .glide__slide {
+    text-align: center;
+    height: 200px;
+    line-height: 200px;
+    color: #fff;
+    background: rgb(136, 133, 133);
+    font-size: 1em;
+    font-weight: 900;
+  }
+  
+  .glide__slide[class*="active"] {
+    background: linear-gradient(-45deg, #ed145b, #7b31f4);
+  }
+  
+  .glide__arrows {
+    padding: 5px;
+  }
+  
+  .glide__arrow {
+    position: relative;
+    top: 0;
+    margin: 0;
+    transform: none;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    background-color: #818999;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .glide__arrow:hover {
+    background-color: #ed145b;
+  }

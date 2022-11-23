@@ -1,0 +1,533 @@
+<div class="row">
+  <div class="col-1">
+
+  </div>
+  <div class="col-10">
+    <!-- <h3>Welcome, {{ firstName }} {{ lastName}}! </h3> -->
+    <div class='row'>
+      <div class='col-2'>
+        <div class="tabs-nav-wrap">
+          <ul class="tabs-nav">
+            <li (click)="setTab(1)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 1}"><i
+                class="fas fa-user-alt"></i><br /><span>Personal Info</span></li>
+            <!-- <li (click)="setTab(7)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 7}"><i
+                class="fas fa-star-half-alt"></i><br /><span>Events & Sessions</span></li> -->
+            <!--<li (click)="setTab(2)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 2}"><i
+               class="fas fa-money-bill-wave"></i><br/><span>Digital Wallet</span></li>-->
+            <!-- <li (click)="setTab(5)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 5}"><i
+                class="fas fa-network-wired"></i><br /><span>Interests</span></li> -->
+            <!-- <li (click)="setTab(6)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 6}"><i
+                class="fas fa-star-half-alt"></i><br /><span>Promotions</span></li> -->
+            <!--<li (click)="setTab(4)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 4}"><i class="fas fa-cubes"></i><span><br/>Analytics</span>
+             </li>-->
+            <!-- <li (click)="setTab(8)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 8}"><i
+                class="fas fa-bullseye"></i><span><br />Achievements</span>
+            </li> -->
+          </ul>
+          <div style="clear:both;"></div>
+        </div><!-- ends tabs-nav-wrap -->
+      </div>
+
+
+      <div class='col'>
+        <div class="tabs-main-content">
+
+          <div id="tab-one" [hidden]="currentTab != 1" class="tab-content">
+            <div class="tab-inner">
+              <h3>Personal Information</h3>
+              <form #personalForm=ngForm>
+                <div class='row'>
+                  <div class='col-3 d-flex align-items-center'>
+                    <label>Username: </label>
+                  </div>
+                  <div class='col-9'>
+                    <input disabled placeholder="Username" type="text" [(ngModel)]="username" 
+                      class="form-control" name="username">
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-3 d-flex align-items-center'>
+                    <label>First Name: </label>
+                  </div>
+                  <div class='col-9'>
+                    <input disabled placeholder="First Name" type="text" [(ngModel)]="firstName" required="required"
+                      class="form-control" name="firstName">
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-3 d-flex align-items-center'>
+                    <label>Last Name: </label>
+                  </div>
+                  <div class='col-9'>
+                    <input disabled placeholder="Last Name" type="text" [(ngModel)]="lastName" required="required"
+                      class="form-control" name="nameLast">
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-3 d-flex align-items-center'>
+                    <label>Email Address:</label>
+                  </div>
+                  <div class='col-9'>
+                    <input disabled placeholder="Email" type="text" [(ngModel)]="empEmail" required="required"
+                      class="form-control" name="empEmail">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div id="tab-two" [hidden]="currentTab != 2" class="tab-content">
+            <div class="tab-inner">
+              <h5>Google Pay Setup</h5>
+              <div id="buttons">
+                <p>Please add your Payment Method into Google Pay to be applied to your Digital Wallet</p>
+                <google-pay-button environment="TEST" buttonType="buy" buttonColor="black"
+                  [paymentRequest]="paymentRequest" (loadpaymentdata)="onLoadPaymentData($event)"
+                  (error)="onError($event)" [paymentAuthorizedCallback]="onPaymentDataAuthorized"> </google-pay-button>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-three" [hidden]="currentTab != 3" class="tab-content">
+            <!-- Begins tab-three -->
+            <div class="tab-inner">
+              <h3>Product Interests</h3>
+
+            </div>
+          </div>
+          <div id="tab-eight" [hidden]="currentTab != 8" class="tab-content">
+            <!-- Begins tab-three -->
+            <div class='row'>
+              <div class='col-12'>
+                <h1>Achievements</h1>
+                <div class='text-right'>
+                  <!-- <a  (click)="addGoal()"><i style='color:green' class="fas fa-plus-circle"></i></a>-->
+                </div>
+                <div class='client-goals-container'>
+                  <div class='row client-goals'>
+
+                    <ng-template #noEvents>
+                      <div class='row'>
+                        <div class='col-12'>
+                          <b>No Events Registered For</b>
+                        </div>
+                      </div>
+                    </ng-template>
+
+                    <div class='col-11' *ngIf="eventsList; else noEvents">
+                      <p><b>Select Event:</b>
+                        <select (change)="changeEvent($event)" [(ngModel)]="eventsListResults" name='interests'
+                          class="form-control">
+                          <option *ngFor="let event of eventsList; let i = index">{{event.evtName}}</option>
+                        </select>
+
+
+                      </p>
+                      <hr />
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+                    <div class='col-11 '>
+                      <p><input type='checkbox' checked='checked' /> &nbsp; <b>Create new opportunities by meeting as
+                          many new people as possible</b> &nbsp; <span class=''>Completed: 1/17/2021</span><br />
+                        Interact with <select style='width:50px;'>
+                          <option value='1'>1</option>
+                          <option value='5'>5</option>
+                          <option value='10'>10</option>
+                          <option value='25'>25</option>
+                          <option value='50'>50</option>
+                        </select> number of attendees.
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+                    <div class='col-11 '>
+                      <p><input type='checkbox' /> &nbsp; <b>Learn about my profession and industry trends through
+                          education sessions</b><br />
+                        Attend <select style='width:50px;'>
+                          <option value='1'>1</option>
+                          <option value='5'>5</option>
+                          <option value='10'>10</option>
+                          <option value='25'>25</option>
+                          <option value='50'>50</option>
+                        </select> number of sessions.
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+                    <div class='col-11 '>
+                      <p><input type='checkbox' /> &nbsp; <b>Learn about the state of the industry through product
+                          demonstrations</b><br />
+                        View <select style='width:50px;'>
+                          <option value='1'>1</option>
+                          <option value='5'>5</option>
+                          <option value='10'>10</option>
+                          <option value='25'>25</option>
+                          <option value='50'>50</option>
+                        </select> number of product shows.
+
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+                    <div class='col-11 '>
+                      <p><input type='checkbox' /> &nbsp; <b>Target exhibitors through scheduled meetings</b><br />
+                        <Textarea rows='3' cols='40'>List Targetted Exhibitors</textarea>.
+
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+                    <div class='col-11 '>
+                      <p><input type='checkbox' /> &nbsp; <b>Gather information for a purchasing decision</b><br />
+                        Attend session / product shows in a particular category <select style='width:50px;'>
+                          <option value='1'>1</option>
+                          <option value='5'>5</option>
+                          <option value='10'>10</option>
+                          <option value='25'>25</option>
+                          <option value='50'>50</option>
+                        </select>.
+
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+                    <div class='col-11 '>
+                      <p><input type='checkbox' /> &nbsp; <b>Have fun!</b><br />
+                        Achieve an overall satisfaction score higher than <select style='width:50px;'>
+                          <option value='1'>1</option>
+                          <option value='5'>5</option>
+                          <option value='10'>10</option>
+                          <option value='25'>25</option>
+                          <option value='50'>50</option>
+                        </select>.
+
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+                    <div class='col-11 '>
+                      <p><input type='checkbox' /> &nbsp; <b>Ideas & Inspiration</b><br />
+                        Achieve an overall interest score higher than <select style='width:50px;'>
+                          <option value='1'>1</option>
+                          <option value='5'>5</option>
+                          <option value='10'>10</option>
+                          <option value='25'>25</option>
+                          <option value='50'>50</option>
+                        </select>.
+
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+
+                    <div class='col-11 '>
+                      <p><input type='checkbox' /> &nbsp; <b>Explore the event, look for new and interesting
+                          trends/ideas (i.e. walk every aisle)</b>
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+                    <div class='col-11 '>
+                      <p><input type='checkbox' /> &nbsp; <b>Employment Opportunities</b>
+                      </p>
+                    </div>
+                    <div class='col-1'>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div class='row'>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          <div id="tab-template" [hidden]="true" class="tab-content">
+            <!-- Begins tab-three -->
+            <div class="tab-inner">
+              <h3>Title </h3>
+            </div>
+          </div>
+          <div id="tab-five" [hidden]="currentTab != 5" class="tab-content">
+            <!-- Begins tab-three -->
+            <div class="tab-inner">
+              <h3>Interests</h3>
+              <div class='row'>
+                <div class='11'>
+                  <label>Please select areas that you are interested in</label>
+                  <!-- <div *ngFor="let interests of interestsList">
+                        <div class='col-6'>
+                            <p><b>{{interests}}</b></p>
+                        </div>
+                        
+                       
+                        
+                    </div>-->
+
+
+                </div>
+              </div>
+
+              <div class='row'>
+                <div class='col-11'>
+                  <label>You may select more than one</label>
+                </div>
+                <div class='col-11'>
+                  <select style='height:250px;' [(ngModel)]="selectedInterests" name='interests' class="form-control"
+                    multiple="multiple">
+                    <option *ngFor="let interests of interestsList">{{interests}}</option>
+                    <!--<option>Computer Hardware</option>
+                        <option>Software and Apps</option>
+                        <option>Vehicle Technology</option>
+                        <option>Wearables</option>
+                        <option>Telecommunications</option>
+                        <option>Audio/High-End/High Performance</option>
+                        <option>Virtual Reality and Augmented Reality</option>
+                        <option>Robotics</option>
+                        <option>Cloud Services</option>
+                        <option>Sensors and Biometrics</option>
+                        <option>Video</option>
+                        <option>Gaming</option>
+                        <option>Drones</option>
+                        <option>3D Printing</option>
+                        <option>Digital Health</option>
+                        <option>Smart Cities</option>
+                        <option>Cyber Security and Privacy</option>
+                        <option>Digital Imaging/Photography</option>
+                        <option>Mobile Payments/Digital Finance/E-Commerce</option>
+                        <option>Lifestyle (Family, Beauty, Pet)</option>
+                        <option>Wireless Services</option>
+                        <option>Content and Streaming Services</option>
+                        <option>Fitness</option>
+                        <option>Education</option>
+                        <option>Sports Technology and eSports</option>
+                        <option>Travel and Leisure</option>
+                        <option>Other Consumer Technology</option>
+                        <option>Sustainability</option>
+                        <option>Public Policy/Government</option>
+                        <option>Accessibility<option>-->
+                  </select>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-3'>
+                  <button type="submit" (click)='setInterests()' class="btn btn-success">Save</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div id="tab-six" [hidden]="currentTab != 6" class="tab-content">
+            <!-- Begins tab-three -->
+            <div class="tab-inner">
+              <h5>Recommendations</h5>
+
+              <div class='row'>
+                <div class='col-4 text-center'>
+                  <h5><a (click)='activeMatch("event-matches")' class='event-matches hover-state active-state'>Event
+                      Matches</a></h5>
+                </div>
+                <div class='col-4 text-center'>
+                  <h5><a (click)='activeMatch("session-matches")' class='session-matches hover-state'>Session
+                      Matches</a></h5>
+                </div>
+                <div class='col-4 text-center'>
+                  <h5><a (click)='activeMatch("attendee-matches")' class='attendee-matches hover-state'>Attendee
+                      Matches</a></h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <div class="education_block_grid style_2">
+                    <div class="education_block_thumb">
+                      <a href="Event-detail.html"><img src="assets/img/event_gdc2021.png" alt="" class="img-fluid"></a>
+                      <div class="education_ratting"><i class="fa fa-star"></i>4.8 (70)</div>
+                    </div>
+                    <div class="education_block_body">
+                      <h4 class="bl-title"><a href="Event-detail.html">Another Demo Event</a></h4>
+                    </div>
+
+                    <div class="cources_info_style3">
+                      <ul>
+                        <li><i class="ti-eye mr-2"></i>7482 Views</li>
+                        <li><i class="ti-control-skip-forward mr-2"></i>63 Exhibitors</li>
+                        <li><i class="ti-time mr-2"></i>51 Watchers</li>
+                      </ul>
+                    </div>
+                    <div class="education_block_footer">
+                      <div class="education_block_author">
+                        <h5><a href="instructor-detail.html">Los Angeles, CA</a></h5>
+                      </div>
+                      <div class="cources_price_foot"><span class="price_off"></span>$79.99</div>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100">Register</button><br /><br />
+                    <div>
+                      <p><b>Because of your interest in:</b><br /><a href='#'>Technology</a>, <a href='#'>Mobile</a>, <a
+                          href='#'>Smart</a></p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+
+          <div id="tab-seven" [hidden]="currentTab != 7" class="tab-content">
+            <!-- Begins tab-seven -->
+            <div class="tab-inner">
+              <h3>Registered Events</h3>
+
+              <div class="row">
+                <div class="col">
+                  <table class="table table-striped text-center" style="border-collapse:collapse;">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col" colspan="2">Date/Time</th>
+                        <th scope="col">Cost</th>
+                        <th scope="col">Countdown</th>
+                        <th scope="col">Register</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let event of eventsList; let i = index">
+                        <td style="border-right:2px solid black;">
+                          {{event.evtName}}
+                        </td>
+                        <td>
+                          {{event.startDate | date: 'dd/MM/yyyy' }}
+                        </td>
+                        <td style="border-right:2px solid black;">
+                          {{event.startTime}}
+                        </td>
+                        <td style="border-right:2px solid black;">
+                          {{event.cost | currency:'USD'}}
+                        </td>
+                        <td style="border-right:2px solid black;">
+                          {{event.countdown}}
+                        </td>
+                        <td>
+                          <button [disabled]="event.countdown === 'Registration Closed'" type="submit" (click)="openEventRegisterModal('front-end-test-event-2021', '2572346')" class="btn btn-primary">{{
+                            event.countdown === 'Registration Closed'
+                            ? 'Registration Complete' 
+                            : 'Register' }}</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <div class="education_block_grid style_2">
+                    <div class="education_block_thumb">
+                      <a href="Event-detail.html"><img src="assets/img/event_gdc2021.png" alt="" class="img-fluid"></a>
+                      <div class="education_ratting"><i class="fa fa-star"></i>4.8 (70)</div>
+                    </div>
+                    <div class="education_block_body">
+                      <h4 class="bl-title"><a href="Event-detail.html">My Demo Event</a></h4>
+                    </div>
+                    <div class="cources_info_style3">
+                      <ul>
+                        <li><i class="ti-eye mr-2"></i>7482 Views</li>
+                        <li><i class="ti-control-skip-forward mr-2"></i>63 Exhibitors</li>
+                        <li><i class="ti-time mr-2"></i>51 Watchers</li>
+                      </ul>
+                    </div>
+                    <div class="education_block_footer">
+                      <div class="education_block_author">
+                        <div class="path-img">
+                          // <a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" alt="" class="img-fluid"></a>
+                        </div>
+                        <h5><a href="instructor-detail.html">San Francisco, CA</a></h5>
+                      </div>
+                      <div class="cources_price_foot"><span class="price_off"></span>$49.99</div>
+                    </div>
+                    // <button type="button" class="btn btn-primary w-100">Register</button>
+                  </div>
+                </div>
+
+              </div> -->
+
+
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-1">
+
+  </div>
+</div>
+
+<style>
+  .hover-state {
+    cursor: pointer;
+  }
+
+  .active-state {
+    color: #2D3954 !important;
+    font-weight: bold;
+  }
+
+  #imagePreview {
+    height: 100px;
+    width: 100%;
+    background-position: center;
+  }
+
+  .imagePreviewInput{
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+  .imageUpload{
+    visibility: hidden;
+  }
+  .qualificationSlider {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: visible;
+    flex-wrap: unset;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;  
+  }
+  .qualificationSlide {
+    width: 200px;
+    flex-shrink: 0;
+    height: 100%;
+    text-align: center;
+    scroll-snap-align: start;
+    scroll-behavior: smooth;
+
+  }
+  h3{
+    text-align: center;
+    height: 50px;
+  }
+</style>

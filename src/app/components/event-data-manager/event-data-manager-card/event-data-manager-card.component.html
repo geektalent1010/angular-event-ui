@@ -1,0 +1,40 @@
+<!-- <div class="card col" [ngClass]=" valid.approved ? 'text-white bg-success' : 'text-dark bg-default'"> -->
+<div class="card">
+  <div class="card-header">
+    <div class=" d-flex justify-content-between align-items-center">
+      <h1>{{valid.event}} - {{valid.eventYear}}</h1>
+      <h5>Current User: {{firstName}} {{lastName}}</h5>     
+    </div>
+
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a class="nav-link active" (click)="enableTabs('registration')">Registration Fees & Badging</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" (click)="enableTabs('demographics')">Demographics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" (click)="enableTabs('sessions')">Sessions/Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" (click)="enableTabs('linkedRecords')">Linked Records</a>
+      </li>
+    </ul>
+
+  </div>
+  <div class="card-body">
+    <app-registration-fees-badging (valueUpdated)="changedValue($event)" [valid]='valid'
+      [hidden]="!displayTabs['registration']">
+    </app-registration-fees-badging>
+    <app-event-data-manager-demographics (valueUpdated)="changedValue($event)" [valid]='valid' [hidden]="!displayTabs['demographics']">
+    </app-event-data-manager-demographics>
+    <app-event-data-manager-session-events [valid]='valid' [hidden]="!displayTabs['sessions']">
+    </app-event-data-manager-session-events>
+    <app-event-data-manager-linked-records [valid]='valid' [hidden]="!displayTabs['linkedRecords']">
+    </app-event-data-manager-linked-records>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+    <button (click)="reset($event)" class="btn btn-outline-danger mr-4">Reset</button>
+    <button (click)="save($event)" class="btn btn-primary">Save</button>
+  </div>
+</div>

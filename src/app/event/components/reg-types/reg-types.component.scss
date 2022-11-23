@@ -1,0 +1,63 @@
+.title {
+  color: var(--label-color);
+  i {
+    color: #6ebf49;
+    cursor: pointer;
+  }
+}
+.regtypesTable {
+  .table {
+    background-color: var(--table-bkg-color);
+    color: var(--main-color-1);
+    td,
+    th {
+      border: 0;
+      border-right: 2px solid #a6a6a6 !important;
+      div {
+        color: var(--main-color-1);
+      }
+      &.code {
+        width: 12%;
+      }
+      &.description {
+        width: 38%;
+      }
+      &.code,
+      &.description {
+        &:focus-within {
+          border: 3px solid rgb(183 214 247) !important;
+          background-color: #e4f4e8 !important;
+        }
+      }
+      i {
+        color: var(--table-icon-color);
+        font-size: 18px;
+        &.editIcon {
+          color: #6ebf49;
+        }
+      }
+      input {
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        outline: none;
+        color: var(--main-color-1);
+      }
+      .editRegCodeInput {
+        width: 100%;
+        text-align: center;
+      }
+      .editDescriptionInput {
+        width: fit-content;
+        margin: 0;
+        padding: 0;
+      }
+      .pointer {
+        cursor: pointer;
+      }
+    }
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--table-bkg-stripe-color);
+  }
+}

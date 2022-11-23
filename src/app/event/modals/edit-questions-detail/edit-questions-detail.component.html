@@ -1,0 +1,352 @@
+<div class="modal-header">
+  <h2 class="modal-title w-100 text-center m-0">
+    {{ question ? "Demo Question Editor" : "Demo Question Creator" }}
+  </h2>
+</div>
+<div class="modal-body">
+  <form [formGroup]="customQuestionsForm">
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label class="m-0"> Unique Id </label>
+      </div>
+      <div class="col-6">
+        <input formControlName="demQuestion" class="form-control" />
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label class="m-0"> Description </label>
+      </div>
+      <div class="col-6">
+        <input formControlName="description" class="form-control" />
+      </div>
+      <div class="col-6"></div>
+      <div class="col-6">
+        <div
+          *ngIf="
+            lf.description.invalid &&
+            (lf.description.dirty || lf.description.touched)
+          "
+          class="help-block mt-1 text-danger"
+        >
+          <small *ngIf="lf.description.errors.required">
+            * This field is required.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="lf.description.hasError('maxlength')"
+          >
+            The maximum length for this field is
+            {{ lf.description.errors.maxlength.requiredLength }} characters.
+            <br />
+          </small>
+        </div>
+        <div *ngIf="lf.description.dirty || lf.description.touched">
+          <small
+            class="text-danger"
+            *ngIf="lf.description.hasError('descFound')"
+          >
+            This description is already in use.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label class="m-0"> Category </label>
+      </div>
+      <div class="col-6">
+        <ng-multiselect-dropdown
+          [placeholder]="'- Select -'"
+          [settings]="dropdownSettings"
+          [data]="regtypesList"
+          formControlName="category"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+      <div class="col-6"></div>
+      <div class="col-6">
+        <div
+          *ngIf="
+            lf.category.invalid && (lf.category.dirty || lf.category.touched)
+          "
+          class="help-block mt-1 text-danger"
+        >
+          <small *ngIf="lf.category.errors.required">
+            * This field is required.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label class="m-0"> Addıtıonal Info Name </label>
+      </div>
+      <div class="col-6">
+        <input formControlName="additionalInfoName" class="form-control" />
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label class="m-0"> Addıtıonal Info Value </label>
+      </div>
+      <div class="col-6">
+        <input formControlName="additionalInfoValue" class="form-control" />
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label class="m-0"> Polling Type </label>
+      </div>
+      <div class="col-6">
+        <select class="form-control" formControlName="pollingTypeCode">
+          <option *ngFor="let code of pollingTypeCodes" [value]="code">
+            {{ code }}
+          </option>
+        </select>
+      </div>
+      <div class="col-6"></div>
+      <div class="col-6">
+        <div
+          *ngIf="
+            lf.pollingTypeCode.invalid &&
+            (lf.pollingTypeCode.dirty || lf.pollingTypeCode.touched)
+          "
+          class="help-block mt-1 text-danger"
+        >
+          <small *ngIf="lf.pollingTypeCode.errors.required">
+            * This field is required.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label class="m-0"> Response Type </label>
+      </div>
+      <div class="col-6">
+        <select class="form-control" formControlName="responseLayout">
+          <option value="Freetext">Free Text</option>
+          <option value="Dropdown">Dropdown</option>
+          <option value="Checkbox">Checkbox</option>
+          <option value="CheckboxList">Checkbox List</option>
+          <option value="RadioButtonList">Radio Button List</option>
+          <option value="DateInput">Date Input</option>
+          <option value="CheckboxListSelectAll">
+            Checkbox List Select All
+          </option>
+        </select>
+      </div>
+      <div class="col-6"></div>
+      <div class="col-6">
+        <div
+          *ngIf="
+            lf.responseLayout.invalid &&
+            (lf.responseLayout.dirty || lf.responseLayout.touched)
+          "
+          class="help-block mt-1 text-danger"
+        >
+          <small *ngIf="lf.responseLayout.errors.required">
+            * This field is required.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-6">
+        <label class="m-0"> Choose your Response </label>
+      </div>
+      <div class="col-6">
+        <input
+          type="checkbox"
+          id="chooseResponse"
+          formControlName="chooseResponse"
+          class="mt-3 mr-2"
+        />
+        <label role="button" for="chooseResponse">Optional Response</label>
+      </div>
+    </div>
+    <div
+      class="form-row d-flex align-items-center my-2"
+      *ngIf="formArr?.length"
+    >
+      <div class="col-6">
+        <label> Columns </label>
+      </div>
+      <div class="col-6">
+        <input
+          formControlName="columns"
+          type="number"
+          class="form-control custom-form-input"
+          min="0"
+          appNumbersOnly
+        />
+      </div>
+    </div>
+    <div
+      class="form-row d-flex align-items-center my-2"
+      *ngIf="formArr?.length"
+    >
+      <div class="col-12">
+        <table class="style">
+          <thead>
+            <th>Response Value</th>
+            <th>Response Name</th>
+            <th>Response Order</th>
+            <th>Action</th>
+          </thead>
+          <tbody formArrayName="demDetails">
+            <tr
+              *ngFor="
+                let itemrow of formArr.controls;
+                let i = index;
+                let l = last
+              "
+              [formGroupName]="i"
+            >
+              <td>
+                <input
+                  [readonly]="
+                    itemrow?.value?.dedValue === 'None' &&
+                    itemrow?.value?.dedDescription === 'None'
+                  "
+                  maxlength="50"
+                  formControlName="dedValue"
+                  type="text"
+                  class="form-control custom-form-input"
+                />
+                <div
+                  *ngIf="
+                    itemrow.get('dedValue').invalid &&
+                    itemrow.get('dedValue').errors &&
+                    (itemrow.get('dedValue').dirty ||
+                      itemrow.get('dedValue').touched)
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="itemrow.get('dedValue').hasError('required')"
+                  >
+                    This field is required.
+                  </small>
+                  <small
+                    class="text-danger"
+                    *ngIf="itemrow.get('dedValue').hasError('maxlength')"
+                  >
+                    The maximum length for this field is
+                    {{
+                      itemrow.get("dedValue").errors.maxlength.requiredLength
+                    }}
+                    characters. <br />
+                  </small>
+                </div>
+              </td>
+              <td>
+                <input
+                  [readonly]="
+                    itemrow?.value?.dedDescription === 'None' &&
+                    itemrow?.value?.dedValue === 'None'
+                  "
+                  formControlName="dedDescription"
+                  class="form-control custom-form-input"
+                />
+                <div
+                  *ngIf="
+                    itemrow.get('dedDescription').invalid &&
+                    itemrow.get('dedDescription').errors &&
+                    (itemrow.get('dedDescription').dirty ||
+                      itemrow.get('dedDescription').touched)
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="itemrow.get('dedDescription').hasError('required')"
+                  >
+                    This field is required.
+                  </small>
+
+                  <span
+                    *ngFor="let dem of customQuestionsForm.value.demDetails"
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        dem.dedDescription.length > dedDescriptionMaxLength
+                      "
+                    >
+                      The maximum length for this field is
+                      {{ dedDescriptionMaxLength }} characters. <br />
+                    </small>
+                  </span>
+                </div>
+              </td>
+              <td>
+                <input
+                  [readonly]="
+                    itemrow?.value?.dedDisplaySeq === 'None' &&
+                    itemrow?.value?.dedDescription === 'None'
+                  "
+                  maxlength="50"
+                  formControlName="dedDisplaySeq"
+                  type="number"
+                  class="form-control custom-form-input"
+                />
+                <div
+                  *ngIf="
+                    itemrow.get('dedDisplaySeq').invalid &&
+                    itemrow.get('dedDisplaySeq').errors &&
+                    (itemrow.get('dedDisplaySeq').dirty ||
+                      itemrow.get('dedDisplaySeq').touched)
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="itemrow.get('dedDisplaySeq').hasError('maxlength')"
+                  >
+                    The maximum length for this field is
+                    {{
+                      itemrow.get("dedDisplaySeq").errors.maxlength
+                        .requiredLength
+                    }}
+                    characters. <br />
+                  </small>
+                </div>
+              </td>
+              <td>
+                <button
+                  [disabled]="
+                    pageType === 'view' ||
+                    (itemrow?.value?.dedValue === 'None' &&
+                      itemrow?.value?.dedDescription === 'None')
+                  "
+                  (click)="deleteRow(i, itemrow)"
+                  class="btn btn-danger"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer border-0">
+  <div class="container-fluid">
+    <div class="row float-right">
+      <button
+        [disabled]="pageType === 'view'"
+        type="button"
+        *ngIf="addNewRowResp"
+        class="btn btn-primary mr-3"
+        (click)="addNewRow()"
+      >
+        Add New Row
+      </button>
+      <button type="button" class="btn btn-primary" (click)="saveQuestion()">
+        Save Question
+      </button>
+    </div>
+  </div>
+</div>

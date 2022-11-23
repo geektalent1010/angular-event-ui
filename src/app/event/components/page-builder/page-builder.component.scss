@@ -1,0 +1,83 @@
+.title {
+    color: var(--label-color);
+    i {
+        color : #6ebf49;
+        cursor: pointer;
+    }
+}
+
+.categories {
+    button {
+        background: #004369;
+        color: white;
+        padding: 8px 16px;
+        &.active {
+            background: #007497;
+        }
+    }
+    .selection {
+        color: #6ebf49;
+        font-size: 18px;
+    }
+    .selectedTemplate {
+        color: #007497;
+        font-size: 18px;
+        min-width: 80px;
+    }
+    i {
+        color: #a6a6a6;
+        font-size: 20px;
+        &.active {
+            cursor: pointer;
+            color: #6ebf49;
+        }
+    }
+}
+
+.builderSection {
+    .templateCard {
+        background-color: var(--sub-bkg-color);
+        .header {
+            input {
+                position: relative;
+            }
+            input[type=radio]:after {
+                border-radius: 4px;
+                border: 2px solid #7bb3c6;
+            }
+            input[type=radio]:checked:after {
+                border-radius: 4px;
+                border: 2px solid #7bb3c6;
+                background-color: white;
+            }
+            input[type=radio]:checked::before {
+                height: 28px;
+                width: 28px;
+                position: absolute;
+                content: "";
+                display: inline-block;
+                visibility: visible;
+                background-image: url(../../../../assets/img/check.png);
+                background-repeat: no-repeat;
+                background-size: 18px;
+                z-index: 9;
+                top: -3px;
+                left: -2px;
+            }
+            h4 {
+                color: var(--label-color);
+                padding-top: 5px;
+            }
+        }
+    }
+
+    i {
+        padding-top: 5px;
+        color: #a6a6a6;
+        font-size: 20px;
+        &.active {
+            cursor: pointer;
+            color: #6ebf49;
+        }
+    }
+}

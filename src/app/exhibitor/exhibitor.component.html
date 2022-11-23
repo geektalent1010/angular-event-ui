@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-between">
+    <button class="btn btn-primary" [disabled]="isReadMode" (click)="addNewRow()">Add</button>
+    <button class="btn btn-danger" [disabled]="isReadMode" (click)="removeAll()">Remove All</button>
+</div>
+<div class="table-responsive">
+    <div class="row m-0" style="width:max-content;overflow: auto; max-height: 300px;">
+      <table
+        class="table table-striped text-center"
+        style="border-collapse:collapse;"
+      >
+        <thead>
+          <tr>
+            <th *ngFor="let col of columns; let i = index">
+              {{ setHeader(col, i) }}
+            </th>
+            <th>
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data; let i = index; trackBy: trackByItemId ">
+            <td *ngFor="let column of columns">
+              <ng-container *ngIf="i != editIndex || readonlyColumns.includes(column)">
+                {{ item[column] }}
+              </ng-container>
+              <ng-container *ngIf="i == editIndex &&  !readonlyColumns.includes(column)">
+                <input type="text" [(ngModel)]="item[column]">
+              </ng-container>
+            </td>
+            <td>
+              <a class="px-1" style="cursor: pointer;" *ngIf="i != editIndex"><span><i class="fas fa-pencil-alt" (click)="editIndex = i"></i></span></a>
+              <a class="px-1" style="cursor: pointer;" *ngIf="i == editIndex"><span><i class="fas fa-save" (click)="editIndex = null"></i></span></a>
+              <a class="px-1" style="cursor: pointer;"><span><i class="fas fa-trash-alt" (click)="delteRowAtIndex(i)"></i></span></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+      <button type="button" class="btn btn-primary" [disabled]="isReadMode" (click)=submit()>Submit</button>
+  </div>
+  

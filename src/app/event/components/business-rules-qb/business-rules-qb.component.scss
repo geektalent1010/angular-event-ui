@@ -1,0 +1,20 @@
+input[type=radio]:after {
+  all: initial !important;
+}
+
+input[type=radio]:checked:after {
+  all: initial !important;
+}
+
+[type=radio]:not(:checked) + label:before {
+  all: initial !important;
+}
+
+
+input[type=radio] {
+  box-shadow: none !important;
+}
+
+hr {
+  border: 1px solid #e9e3e3;
+}

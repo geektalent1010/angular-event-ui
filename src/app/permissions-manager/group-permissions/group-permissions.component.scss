@@ -1,0 +1,83 @@
+.modal-header {
+    background-color: #b1c6ec;
+}
+.modal-body {
+    max-height: 70vh;
+
+    table.groupTable {
+        th{
+            vertical-align: middle;
+            padding: 1.1rem 12px 1rem;
+        }
+        td {
+            vertical-align: middle;
+            padding: 6px 12px;
+            height: 38px;
+            border-top: 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        thead {
+            background-color: #f2f2f2;
+            th {
+                font-weight: bold;
+            }
+        }
+        tbody {
+            tr.highlight {
+                background  : #cbefc2;
+                border      : 3px solid #b2eda3;
+                border-width: 3px 0;
+            }
+            td {
+                font-weight: 400;
+            }
+        }
+    }
+    .name {
+        width: 15%;
+        min-height: 300px;
+        height: 100%;
+        border: 2px solid #b1c6ec;
+        border-width: 0 2px 0 3px;
+        i {
+            font-size: 20px;
+            color: #cf0c0c;
+            cursor: pointer;
+        }
+    }
+    .permissions {
+        width: 85%;
+        td {
+            padding: 0;
+        }
+        select {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+.modal-footer {
+    padding: 10px 24px;
+    background-color: #b1c6ec;
+    .form {
+        position: relative;
+        width   : 260px;
+        height  : 42px;
+
+        .fa-search {
+            position: absolute;
+            top     : 14px;
+            left    : 14px;
+            color   : #9ca3af
+        }
+
+        input {
+            padding-left: 32px;
+        }
+    }
+    button {
+        padding: 6px 20px;
+        height: 36px;
+    }
+}

@@ -1,0 +1,293 @@
+<div class="row">
+  <div class="col-12 px-2">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="title font-weight-bold" *ngIf="pageType !== 'view'">
+        Reg types <i class="fas fa-plus ml-2" (click)="createRegtype()"></i>
+      </h1>
+      <div class="d-flex align-items-center">
+        <button class="btn btn-primary mr-2" (click)="selectAllItems()">
+          Select/Deselect All
+        </button>
+        <button
+          class="btn btn-primary"
+          [disabled]="disableDeleteBtn()"
+          (click)="deleteSelectedItems()"
+        >
+          Delete Items
+        </button>
+      </div>
+    </div>
+
+    <div class="regtypesTable row">
+      <div class="col-12 p-0">
+        <table class="table table-striped text-center">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="code">Reg Code</th>
+              <th class="description">Reg Description</th>
+              <th>Barcode Color</th>
+              <th>Badge Explosion</th>
+              <th>Badge Text Color</th>
+              <th></th>
+              <th></th>
+              <th class="code">Reg Code</th>
+              <th class="description border-0">Reg Description</th>
+              <th>Barcode Color</th>
+              <th>Badge Explosion</th>
+              <th>Badge Text Color</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let regType of regtypesList.slice(
+                  0,
+                  regtypesList.length / 2 + 0.5
+                );
+                let i = index
+              "
+            >
+              <td>
+                <label>
+                  <input
+                    type="checkbox"
+                    class=""
+                    [checked]="selectedItems[2 * i]"
+                    (change)="checkedItem($event.target.checked, 2 * i)"
+                  />
+                </label>
+              </td>
+              <td class="code">
+                <div *ngIf="2 * i === regtypeEditIndex">
+                  <input
+                    type="text"
+                    [(ngModel)]="regtypesList[2 * i].code"
+                    mask="AAA"
+                    class="editRegCodeInput"
+                  />
+                </div>
+                <div *ngIf="2 * i !== regtypeEditIndex">
+                  {{ regtypesList[2 * i].code }}
+                </div>
+              </td>
+              <td class="description">
+                <div class="d-flex align-items-center justify-content-center">
+                  <div *ngIf="2 * i === regtypeEditIndex" class="w-100">
+                    <input
+                      type="text"
+                      [(ngModel)]="regtypesList[2 * i].description"
+                      class="editDescriptionInput w-100"
+                    />
+                  </div>
+                  <div *ngIf="2 * i !== regtypeEditIndex">
+                    {{ regtypesList[2 * i].description }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center justify-content-center">
+                  <div *ngIf="2 * i === regtypeEditIndex" class="w-100">
+                    <input
+                      type="color"
+                      [(ngModel)]="regtypesList[2 * i].barcodecolor"
+                    />
+                  </div>
+                  <div *ngIf="2 * i !== regtypeEditIndex">
+                    {{ regtypesList[2 * i].barcodecolor }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center justify-content-center">
+                  <div *ngIf="2 * i === regtypeEditIndex" class="w-100">
+                    <input
+                      type="text"
+                      [(ngModel)]="regtypesList[2 * i].backgroundcolor"
+                      class="editDescriptionInput w-100"
+                    />
+                  </div>
+                  <div *ngIf="2 * i !== regtypeEditIndex">
+                    {{ regtypesList[2 * i].backgroundcolor }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center justify-content-center">
+                  <div *ngIf="2 * i === regtypeEditIndex" class="w-100">
+                    <input
+                      type="text"
+                      [(ngModel)]="regtypesList[2 * i].backgroundtextcolor"
+                      class="editDescriptionInput w-100"
+                    />
+                  </div>
+                  <div *ngIf="2 * i !== regtypeEditIndex">
+                    {{ regtypesList[2 * i].backgroundtextcolor }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="actions d-flex align-items-center"
+                  *ngIf="pageType !== 'view'"
+                >
+                  <a
+                    class="px-1"
+                    style="cursor: pointer"
+                    *ngIf="2 * i != regtypeEditIndex"
+                  >
+                    <span>
+                      <i class="far fa-edit" (click)="editRegtype(2 * i)"></i>
+                    </span>
+                  </a>
+                  <a
+                    class="px-2"
+                    style="cursor: pointer"
+                    *ngIf="2 * i == regtypeEditIndex"
+                  >
+                    <span>
+                      <i
+                        class="fas fa-plus editIcon"
+                        (click)="saveRegtype(2 * i)"
+                      ></i>
+                    </span>
+                  </a>
+                  <div (click)="removeRegtype(2 * i)" class="pointer ml-2">
+                    <i class="far fa-trash-alt"></i>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <label *ngIf="2 * i + 1 <= regtypesList.length - 1">
+                  <input
+                    type="checkbox"
+                    class=""
+                    [checked]="selectedItems[2 * i + 1]"
+                    (change)="checkedItem($event.target.checked, 2 * i + 1)"
+                  />
+                </label>
+              </td>
+              <td class="code">
+                <div *ngIf="2 * i + 1 <= regtypesList.length - 1">
+                  <div *ngIf="2 * i + 1 === regtypeEditIndex">
+                    <input
+                      type="text"
+                      [(ngModel)]="regtypesList[2 * i + 1].code"
+                      mask="AAA"
+                      class="editRegCodeInput"
+                    />
+                  </div>
+                  <div *ngIf="2 * i + 1 !== regtypeEditIndex">
+                    {{ regtypesList[2 * i + 1].code }}
+                  </div>
+                </div>
+              </td>
+              <td class="description border-0">
+                <div
+                  class="d-flex align-items-center justify-content-center"
+                  *ngIf="2 * i + 1 <= regtypesList.length - 1"
+                >
+                  <div *ngIf="2 * i + 1 === regtypeEditIndex" class="w-100">
+                    <input
+                      type="text"
+                      [(ngModel)]="regtypesList[2 * i + 1].description"
+                      class="editDescriptionInput w-100"
+                    />
+                  </div>
+                  <div *ngIf="2 * i + 1 !== regtypeEditIndex">
+                    {{ regtypesList[2 * i + 1].description }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="d-flex align-items-center justify-content-center"
+                  *ngIf="2 * i + 1 <= regtypesList.length - 1"
+                >
+                  <div *ngIf="2 * i + 1 === regtypeEditIndex" class="w-100">
+                    <input
+                      type="color"
+                      [(ngModel)]="regtypesList[2 * i + 1].barcodecolor"
+                    />
+                  </div>
+                  <div *ngIf="2 * i + 1 !== regtypeEditIndex">
+                    {{ regtypesList[2 * i + 1].barcodecolor }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="d-flex align-items-center justify-content-center"
+                  *ngIf="2 * i + 1 <= regtypesList.length - 1"
+                >
+                  <div *ngIf="2 * i + 1 === regtypeEditIndex" class="w-100">
+                    <input
+                      type="text"
+                      [(ngModel)]="regtypesList[2 * i + 1].backgroundcolor"
+                      class="editDescriptionInput w-100"
+                    />
+                  </div>
+                  <div *ngIf="2 * i + 1 !== regtypeEditIndex">
+                    {{ regtypesList[2 * i + 1].backgroundcolor }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="d-flex align-items-center justify-content-center"
+                  *ngIf="2 * i + 1 <= regtypesList.length - 1"
+                >
+                  <div *ngIf="2 * i + 1 === regtypeEditIndex" class="w-100">
+                    <input
+                      type="text"
+                      [(ngModel)]="regtypesList[2 * i + 1].backgroundtextcolor"
+                      class="editDescriptionInput w-100"
+                    />
+                  </div>
+                  <div *ngIf="2 * i + 1 !== regtypeEditIndex">
+                    {{ regtypesList[2 * i + 1].backgroundtextcolor }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="actions d-flex align-items-center"
+                  *ngIf="pageType !== 'view'"
+                >
+                  <a
+                    class="px-1"
+                    style="cursor: pointer"
+                    *ngIf="2 * i + 1 != regtypeEditIndex"
+                  >
+                    <span>
+                      <i
+                        class="far fa-edit"
+                        (click)="editRegtype(2 * i + 1)"
+                      ></i>
+                    </span>
+                  </a>
+                  <a
+                    class="px-2"
+                    style="cursor: pointer"
+                    *ngIf="2 * i + 1 == regtypeEditIndex"
+                  >
+                    <span>
+                      <i
+                        class="fas fa-plus editIcon"
+                        (click)="saveRegtype(2 * i + 1)"
+                      ></i>
+                    </span>
+                  </a>
+                  <div (click)="removeRegtype(2 * i + 1)" class="pointer ml-2">
+                    <i class="far fa-trash-alt"></i>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

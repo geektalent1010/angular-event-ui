@@ -1,0 +1,29 @@
+.modal-header {
+    .modal-title {
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+.modal-body {
+    max-height: 80vh;
+    input, .input-group {
+        box-shadow: none;
+    }
+    .input-group {
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        input {
+            border: 0;
+            border-right: 1px solid #ced4da;
+        }
+        .input-group-append .input-group-text {
+            border: 0;
+        }
+    }
+    ng-multiselect-dropdown.border-danger ::ng-deep .dropdown-btn {
+        border: 1px solid #dc3545 !important;
+    }
+    ng-multiselect-dropdown.border-success ::ng-deep .dropdown-btn {
+        border: 1px solid #28a745 !important;
+    }
+}

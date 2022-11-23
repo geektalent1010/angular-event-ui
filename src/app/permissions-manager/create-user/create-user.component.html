@@ -1,0 +1,114 @@
+<div class="modal-header">
+    <h3 class="modal-title text-uppercase font-weight-bold m-0"> {{ user ? 'Edit' : 'Create' }} User </h3>
+    <div class="d-flex align-items-center">
+        <!-- <a href="javascript: void(0)">
+            <h4 class="m-0"> View User Activity </h4>
+        </a> -->
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <form [formGroup]="userForm">
+            <div class="row mt-0 mb-2">
+                <label for="firstName"> First Name </label>
+                <input type="text" class="form-control" formControlName="firstName"
+                    [class.border-danger]="lf.firstName.invalid && (lf.firstName.dirty || lf.firstName.touched)"
+                    [class.border-success]="lf.firstName.valid && (lf.firstName.dirty || lf.firstName.touched)">
+                <div *ngIf="lf.firstName.invalid && (lf.firstName.dirty || lf.firstName.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.firstName.errors.required">
+                        * First name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0 mb-2">
+                <label for="lastName"> Last Name </label>
+                <input type="text" class="form-control" formControlName="lastName"
+                    [class.border-danger]="lf.lastName.invalid && (lf.lastName.dirty || lf.lastName.touched)"
+                    [class.border-success]="lf.lastName.valid && (lf.lastName.dirty || lf.lastName.touched)">
+                <div *ngIf="lf.lastName.invalid && (lf.lastName.dirty || lf.lastName.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.lastName.errors.required">
+                        * Last name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0 mb-2">
+                <label for="username"> Username </label>
+                <input type="text" class="form-control" formControlName="username"
+                    [class.border-danger]="lf.username.invalid && (lf.username.dirty || lf.username.touched)"
+                    [class.border-success]="lf.username.valid && (lf.username.dirty || lf.username.touched)">
+                <div *ngIf="lf.username.invalid && (lf.username.dirty || lf.username.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.username.errors.required">
+                        * Username is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0 mb-2">
+                <label for="email"> Email </label>
+                <input type="text" class="form-control" formControlName="email"
+                    [class.border-danger]="lf.email.invalid && (lf.email.dirty || lf.email.touched)"
+                    [class.border-success]="lf.email.valid && (lf.email.dirty || lf.email.touched)">
+                <div *ngIf="lf.email.invalid && (lf.email.dirty || lf.email.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.email.errors.required">
+                        * Email is required.
+                    </div>
+                    <div *ngIf="lf.email.errors.email">
+                        * Email is not valid.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0 mb-2" *ngIf="lf.password">
+                <label for="password"> Password </label>
+                <input type="password" class="form-control" formControlName="password"
+                    [class.border-danger]="lf.password.invalid && (lf.password.dirty || lf.password.touched)"
+                    [class.border-success]="lf.password.valid && (lf.password.dirty || lf.password.touched)">
+                <div *ngIf="lf.password.invalid && (lf.password.dirty || lf.password.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.password.errors.required">
+                        * Password is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0 mb-2">
+                <label for="group"> Assigned User to Group </label>
+                <select formControlName="group" class="form-control"
+                    [class.border-danger]="lf.group.invalid && (lf.group.dirty || lf.group.touched)"
+                    [class.border-success]="lf.group.valid && (lf.group.dirty || lf.group.touched)">
+                    <option value="" checked> - Select - </option>
+                    <option *ngFor="let group of groupList; let i = index" [value]="group.id">
+                        {{group.name}}
+                    </option>
+                </select>
+                <div *ngIf="lf.group.invalid && (lf.group.dirty || lf.group.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.group.errors.required">
+                        * Group is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0 mb-2 d-flex align-items-center">
+                <input type="checkbox" formControlName="disable">
+                <label for="disable" class="m-0 ml-2 mr-2"> Disable User </label>
+            </div>
+            <div class="row mt-0 mb-2" *ngIf="lf.logout">
+                <input type="checkbox" formControlName="logout">
+                <label for="logout" class="m-0 ml-2 mr-2"> Logout User </label>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+                <button class="btn btn-primary btn-sm text-uppercase" color="primary" (click)="save()"> Save </button>
+            </div>
+        </div>
+    </div>
+</div>

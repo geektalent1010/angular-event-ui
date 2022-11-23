@@ -1,0 +1,99 @@
+<div class="modal-header">
+    <h3 class="modal-title text-uppercase m-0"> Create Report </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <form [formGroup]="reportForm">
+            <div class="row mt-0">
+                <label for="event"> Select Event </label>
+                <select formControlName="event" class="form-control"
+                    [class.border-danger]="lf.event.invalid && (lf.event.dirty || lf.event.touched)"
+                    [class.border-success]="lf.event.valid && (lf.event.dirty || lf.event.touched)">
+                    <option value="" checked> - Select - </option>
+                    <option *ngFor="let event of eventList; let i = index" [value]="event.evtUid">
+                        {{event.evtName}}
+                    </option>
+                </select>
+                <div *ngIf="lf.event.invalid && (lf.event.dirty || lf.event.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.event.errors.required">
+                        * Event is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0">
+                <label for="Name"> Report Name </label>
+                <input type="text" class="form-control" formControlName="Name"
+                    [class.border-danger]="lf.Name.invalid && (lf.Name.dirty || lf.Name.touched)"
+                    [class.border-success]="lf.Name.valid && (lf.Name.dirty || lf.Name.touched)">
+                <div *ngIf="lf.Name.invalid && (lf.Name.dirty || lf.Name.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.Name.errors.required">
+                        * Report name is required.
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row mt-0">
+                <label for="reportKeywords"> Report Keywords </label>
+                <input type="text" class="form-control" formControlName="reportKeywords"
+                    [class.border-danger]="lf.reportKeywords.invalid && (lf.reportKeywords.dirty || lf.reportKeywords.touched)"
+                    [class.border-success]="lf.reportKeywords.valid && (lf.reportKeywords.dirty || lf.reportKeywords.touched)"
+                >
+                <div *ngIf="lf.reportKeywords.invalid && (lf.reportKeywords.dirty || lf.reportKeywords.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.reportKeywords.errors.required">
+                        * Report keywords is required.
+                    </div>
+                </div>
+            </div> -->
+            <div class="row mt-0">
+                <label for="CategoryId"> Report Category </label>
+                <select formControlName="CategoryId" class="form-control"
+                    [class.border-danger]="lf.CategoryId.invalid && (lf.CategoryId.dirty || lf.CategoryId.touched)"
+                    [class.border-success]="lf.CategoryId.valid && (lf.CategoryId.dirty || lf.CategoryId.touched)">
+                    <option value="" checked> - Select - </option>
+                    <option *ngFor="let category of categoryList; let i = index" [value]="category.Id">
+                        {{category.Name}}
+                    </option>
+                </select>
+                <div *ngIf="lf.CategoryId.invalid && (lf.CategoryId.dirty || lf.CategoryId.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.CategoryId.errors.required">
+                        * Report Category is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0">
+                <label for="Description"> Report Description </label>
+                <textarea class="form-control" formControlName="Description" rows="3"></textarea>
+            </div>
+            <!-- <div class="row mt-0">
+                <label for="displayIn"> Display In </label>
+                <select formControlName="displayIn" class="form-control"
+                    [class.border-danger]="lf.displayIn.invalid && (lf.displayIn.dirty || lf.displayIn.touched)"
+                    [class.border-success]="lf.displayIn.valid && (lf.displayIn.dirty || lf.displayIn.touched)">
+                    <option *ngFor="let displayIn of displayInList; let i = index" value="displayIn" [checked]="i===1"> {{ displayIn }} </option>
+                </select>
+                <div *ngIf="lf.displayIn.invalid && (lf.displayIn.dirty || lf.displayIn.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.displayIn.errors.required">
+                        * Report Category is required.
+                    </div>
+                </div>
+            </div> -->
+        </form>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="createReport()"> Create New
+                    Report </button>
+            </div>
+        </div>
+    </div>
+</div>

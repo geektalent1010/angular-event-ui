@@ -1,0 +1,32 @@
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  margin: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card{
+  min-width: 75vw;
+  overflow-y: auto;
+  .card-header{
+    @media only screen and (min-width: 544px) {
+      .nav-item {
+        font-size: 10px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      .nav-item {
+        font-size: 11px;
+      }
+    }
+    @media only screen and (min-width: 1024px) {
+      .nav-item {
+        font-size: 14px;
+      }
+    }
+  }
+  .card-body{
+    overflow-y: auto;
+  }
+}
+  
+

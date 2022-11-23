@@ -1,0 +1,11 @@
+{
+    "/api/*": {
+        "target": "http://csi-event.com:8088/csi/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/api": ""
+          }
+    }
+}

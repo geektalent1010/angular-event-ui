@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <div class='row'>
+        <div class='col-2'>
+            <div class="tabs-nav-wrap">
+                <ul class="tabs-nav p-0">
+                    <li (click)="setTab(1)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 1}">
+                        <img src="assets/icons/permissionsManager.png">
+                        <br />
+                        <span> Permissions Manager </span>
+                    </li>
+                </ul>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+
+        <div class='col-10'>
+            <div class="tabs-main-content">
+                <div id="tab-one" [hidden]="currentTab != 1" class="tab-content">
+                    <!-- Begins tab-one -->
+                    <div class="tab-inner">
+                        <h2 class="title"> Permissions Manager </h2>
+                        <form [formGroup]="searchForm">
+                            <div class="row toolbars d-flex align-items-center">
+                                <button color="primary" class="btn btn-primary text-uppercase mr-3 my-1" (click)="createUser()"> Create User </button>
+                                <button color="primary" class="btn btn-primary text-uppercase mr-3 my-1" (click)="createGroup()"> Create Group </button>
+                                <button color="primary" class="btn btn-primary text-uppercase mr-3 my-1" (click)="groupPermissions()"> Group Permissions </button>
+                                <div class="customSelect period mr-3 my-1">
+                                    <select formControlName="period">
+                                        <option *ngFor="let period of periodOptions" [value]="period.value"> {{ period.label }} </option>
+                                    </select>
+                                </div>
+                                <div class="form my-1">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" class="form-control form-input" formControlName="search" placeholder="Search User">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-12 p-0 py-2 bg-light">
+                                <table mdbTable  #userTable="mdbTable" class="userTable table table-striped z-depth-1">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="createdAt"> Date User Created </th>
+                                            <th scope="col" class="fullName"> Full name </th>
+                                            <th scope="col" class="username"> Username </th>
+                                            <th scope="col" class="emailVerified"> Email Verified </th>
+                                            <th scope="col" class="username"> Email </th>
+                                            <th scope="col" class="optionsExports"> Options / Exports </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of filteredUserList; let i = index" [class.highlight]="user.highlight">
+                                            <td *ngIf="i+1 >= userTablePagination.firstItemIndex && i < userTablePagination.lastItemIndex" scope="row">
+                                                {{user.createdTimestamp | date:'MM/dd/yyyy hh:mm a' }}
+                                            </td>
+                                            <td *ngIf="i+1 >= userTablePagination.firstItemIndex && i < userTablePagination.lastItemIndex">
+                                                <div class="d-flex align-items-center">
+                                                    <img [src]="user.enabled ?  'assets/icons/enable.png' : 'assets/icons/disable.png'" class="statusIcon mr-1">
+                                                    <a href="javascript:void(0);" (click)="editUser(user, i)">
+                                                        {{user.firstName}} {{user.lastName}}
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td *ngIf="i+1 >= userTablePagination.firstItemIndex && i < userTablePagination.lastItemIndex">
+                                                {{user.username }}
+                                            </td>
+                                            <td *ngIf="i+1 >= userTablePagination.firstItemIndex && i < userTablePagination.lastItemIndex">
+                                                {{user.emailVerified }}
+                                            </td>
+                                            <td *ngIf="i+1 >= userTablePagination.firstItemIndex && i < userTablePagination.lastItemIndex">
+                                                {{user.email}}
+                                            </td>
+                                            <td *ngIf="i+1 >= userTablePagination.firstItemIndex && i < userTablePagination.lastItemIndex">
+                                                <div class="actions">
+                                                    <img [src]="user.enabled ? 'assets/icons/disableUser.png' : 'assets/icons/enableUser.png'"
+                                                        class="imgBtn mr-2 my-1" (click)="disableUser(user, i, !user.enabled)"
+                                                    >
+                                                    <img src="assets/icons/editUser.png" class="imgBtn mr-2 my-1" (click)="editUser(user, i)">
+                                                    <!-- <img src="assets/icons/userActivity.png" class="imgBtn mr-2 my-1"> -->
+                                                    <img src="assets/icons/changePassword.png" class="imgBtn mr-2 my-1" (click)="changePassword(user.id, i)">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="grey lighten-5 w-100">
+                                        <tr>
+                                            <td colspan="12">
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <div class="paginator">
+                                                        <mdb-table-pagination [tableEl]="userTable" [searchDataSource]="userList"></mdb-table-pagination>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

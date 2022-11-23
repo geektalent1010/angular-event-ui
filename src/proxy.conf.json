@@ -1,0 +1,26 @@
+{
+    "/auth/*": {
+        "target": "https://reports.csi-event.com:8443",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/apiv2/csi/*": {
+        "target": "https://test-event.compusystems.com",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/api/csi/*": {
+        "target": "https://test-event.compusystems.com",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/email/*": {
+        "target": "https://api.postmarkapp.com",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

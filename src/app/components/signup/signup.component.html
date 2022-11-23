@@ -1,0 +1,484 @@
+<div class="row mt-4">
+  <ngx-spinner name="pageLoading" type="line-scale-party"></ngx-spinner>
+  <ngx-spinner
+    name="registrationLoading"
+    [fullScreen]="true"
+    type="timer"
+    size="medium"
+  ></ngx-spinner>
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div>
+      <h2 class="text-center title mb-2">
+        {{ pageType === "signup" ? "Create" : "" }} Your Account
+      </h2>
+    </div>
+
+    <div *ngIf="pageType === 'account' && !isEdit" class="accountInfo">
+      <div class="text-center">
+        <i class="fas fa-edit editIcon" (click)="goEditMode()"></i>
+      </div>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <div class="row">
+            <div class="col-6 d-flex align-items-center">
+              <label class="m-0"> Name </label>
+            </div>
+            <div class="col-6 d-flex align-items-center">
+              <div class="fieldValue">
+                {{ accountInfo?.firstName }} {{ accountInfo?.lastName }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 d-flex align-items-center">
+              <label class="m-0"> Username </label>
+            </div>
+            <div class="col-6 d-flex align-items-center">
+              <div class="fieldValue">
+                {{ accountInfo?.username }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 d-flex align-items-center">
+              <label class="m-0"> Email </label>
+            </div>
+            <div class="col-6 d-flex align-items-center">
+              <div class="fieldValue">
+                {{ accountInfo?.email }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 d-flex align-items-center">
+              <label class="m-0"> Password </label>
+            </div>
+            <div class="col-6 d-flex align-items-center">
+              <div class="fieldValue">********</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 d-flex align-items-center">
+              <label class="m-0"> Confirm </label>
+            </div>
+            <div class="col-6 d-flex align-items-center">
+              <div class="fieldValue">********</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 d-flex align-items-center">
+              <label class="m-0"> Phone </label>
+            </div>
+            <div class="col-6 d-flex align-items-center">
+              <div class="fieldValue">
+                {{ accountInfo?.phone }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 d-flex align-items-center">
+              <label class="m-0"> Company </label>
+            </div>
+            <div class="col-6 d-flex align-items-center">
+              <div class="fieldValue">
+                {{ accountInfo?.company }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-12">
+          <h2 class="text-center title mb-2">Your Settings</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 d-flex align-items-center">
+          <label> Mode </label>
+        </div>
+        <div class="col-9">
+          <div class="toggle d-flex align-items-center">
+            <label class="prefix">Light</label>
+            <label class="switch">
+              <input
+                type="checkbox"
+                [formControl]="modeControl"
+                (change)="switchTheme($event.target.checked)"
+              />
+              <span class="slider"></span>
+            </label>
+            <label>Dark</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 d-flex align-items-center">
+          <label> Session </label>
+        </div>
+        <div class="col-9">
+          <div class="toggle d-flex align-items-center">
+            <label class="prefix">Stay signed in</label>
+            <label class="switch mx-2">
+              <input type="checkbox" [formControl]="sessionControl" />
+              <span class="slider"></span>
+            </label>
+            <label>Log out when page is closed</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="pageType === 'signup' || isEdit">
+      <form [formGroup]="registerForm">
+        <div class="row d-flex align-items-center">
+          <div class="col-5">
+            <label class="m-0">First Name: </label>
+          </div>
+          <div class="col-7">
+            <input
+              class="form-control"
+              placeholder="First Name"
+              type="text"
+              class="form-control"
+              formControlName="firstName"
+              [class.border-danger]="
+                lf.firstName.invalid &&
+                (lf.firstName.dirty || lf.firstName.touched)
+              "
+              [class.border-success]="
+                lf.firstName.valid &&
+                (lf.firstName.dirty || lf.firstName.touched)
+              "
+            />
+            <div
+              *ngIf="
+                lf.firstName.invalid &&
+                (lf.firstName.dirty || lf.firstName.touched)
+              "
+              class="help-block mt-1 text-danger"
+            >
+              <div *ngIf="lf.firstName.errors.required">
+                * First Name is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-center">
+          <div class="col-5">
+            <label class="m-0">Last Name: </label>
+          </div>
+          <div class="col-7">
+            <input
+              class="form-control"
+              placeholder="Last Name"
+              type="text"
+              class="form-control"
+              formControlName="nameLast"
+              [class.border-danger]="
+                lf.nameLast.invalid &&
+                (lf.nameLast.dirty || lf.nameLast.touched)
+              "
+              [class.border-success]="
+                lf.nameLast.valid && (lf.nameLast.dirty || lf.nameLast.touched)
+              "
+            />
+            <div
+              *ngIf="
+                lf.nameLast.invalid &&
+                (lf.nameLast.dirty || lf.nameLast.touched)
+              "
+              class="help-block mt-1 text-danger"
+            >
+              <div *ngIf="lf.nameLast.errors.required">
+                * Last Name is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-center">
+          <div class="col-5">
+            <label class="m-0">Email Address:</label>
+          </div>
+          <div class="col-7">
+            <input
+              class="form-control"
+              placeholder="Email"
+              type="email"
+              class="form-control"
+              formControlName="empEmail"
+              [class.border-danger]="
+                lf.empEmail.invalid &&
+                (lf.empEmail.dirty || lf.empEmail.touched)
+              "
+              [class.border-success]="
+                lf.empEmail.valid && (lf.empEmail.dirty || lf.empEmail.touched)
+              "
+            />
+            <div
+              *ngIf="
+                lf.empEmail.invalid &&
+                (lf.empEmail.dirty || lf.empEmail.touched)
+              "
+              class="help-block mt-1 text-danger"
+            >
+              <div *ngIf="lf.empEmail.errors.required">
+                * Email Address is required.
+              </div>
+              <div *ngIf="lf.empEmail.errors.email">* Email is not valid.</div>
+              <div *ngIf="lf.empEmail.errors.exist">
+                * Email is already existing.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-center">
+          <div class="col-5">
+            <label class="m-0">Username: </label>
+          </div>
+          <div class="col-7">
+            <input
+              class="form-control"
+              placeholder="Username"
+              type="text"
+              class="form-control"
+              formControlName="username"
+              [class.border-danger]="
+                lf.username.invalid &&
+                (lf.username.dirty || lf.username.touched)
+              "
+              [class.border-success]="
+                lf.username.valid && (lf.username.dirty || lf.username.touched)
+              "
+              (focus)="onFocusUsername()"
+            />
+            <div
+              *ngIf="
+                lf.username.invalid &&
+                (lf.username.dirty || lf.username.touched)
+              "
+              class="help-block mt-1 text-danger"
+            >
+              <div *ngIf="lf.username.errors.required">
+                * Username is required.
+              </div>
+              <div *ngIf="lf.username.errors.pattern">
+                * Username must not contain special characters and be between 8
+                and 15 characters long.
+              </div>
+              <div *ngIf="lf.username.errors.exist">
+                * Username is already existing.
+              </div>
+            </div>
+            <div *ngIf="focusUsername && recommendedAddUserId">
+              <p>
+                Recommended username: <b> {{ recommendedAddUserId }} </b>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-center">
+          <div class="col-5">
+            <label class="m-0">New Password:</label>
+          </div>
+          <div class="col-7">
+            <div
+              class="input-group"
+              [class.border-danger]="
+                lf.password.invalid &&
+                (lf.password.dirty || lf.password.touched)
+              "
+              [class.border-success]="
+                lf.password.valid && (lf.password.dirty || lf.password.touched)
+              "
+            >
+              <input
+                name="password"
+                type="password"
+                class="input form-control border-0"
+                formControlName="password"
+                id="password"
+                placeholder="Password"
+              />
+              <div class="input-group-append">
+                <span
+                  class="input-group-text border-0 bg-white"
+                  (click)="password_show_hide('password')"
+                >
+                  <i class="fas fa-eye" id="password_show_eye"></i>
+                  <i class="fas fa-eye-slash d-none" id="password_hide_eye"></i>
+                </span>
+              </div>
+            </div>
+            <div
+              *ngIf="
+                lf.password.invalid &&
+                (lf.password.dirty || lf.password.touched)
+              "
+              class="help-block mt-1 text-danger"
+            >
+              <div *ngIf="lf.password.errors.required">
+                * Password is required.
+              </div>
+              <div *ngIf="lf.password.errors.minlength">
+                * Password must be at least 6 charaters.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-center">
+          <div class="col-5">
+            <label class="m-0">Confirm New Password:</label>
+          </div>
+          <div class="col-7">
+            <div
+              class="input-group"
+              [class.border-danger]="
+                lf.confirm.invalid && (lf.confirm.dirty || lf.confirm.touched)
+              "
+              [class.border-success]="
+                lf.confirm.valid && (lf.confirm.dirty || lf.confirm.touched)
+              "
+            >
+              <input
+                name="confirm"
+                type="password"
+                class="input form-control border-0"
+                formControlName="confirm"
+                id="confirm"
+                placeholder="Confirm Password"
+              />
+              <div class="input-group-append">
+                <span
+                  class="input-group-text border-0 bg-white"
+                  (click)="password_show_hide('confirm')"
+                >
+                  <i class="fas fa-eye" id="confirm_show_eye"></i>
+                  <i class="fas fa-eye-slash d-none" id="confirm_hide_eye"></i>
+                </span>
+              </div>
+            </div>
+            <div
+              *ngIf="
+                lf.confirm.invalid && (lf.confirm.dirty || lf.confirm.touched)
+              "
+              class="help-block mt-1 text-danger"
+            >
+              <div *ngIf="lf.confirm.errors.newMatchesConfirm">
+                * The confirmation does not match.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-center">
+          <div class="col-5">
+            <label class="m-0">Phone Number: </label>
+          </div>
+          <div class="col-7">
+            <input
+              class="form-control"
+              placeholder="Phone Number"
+              type="text"
+              class="form-control"
+              mask="(000) 000-0000"
+              formControlName="userPhoneNbr"
+              [class.border-danger]="
+                lf.userPhoneNbr.invalid &&
+                (lf.userPhoneNbr.dirty || lf.userPhoneNbr.touched)
+              "
+              [class.border-success]="
+                lf.userPhoneNbr.valid &&
+                (lf.userPhoneNbr.dirty || lf.userPhoneNbr.touched)
+              "
+            />
+            <div
+              *ngIf="
+                lf.userPhoneNbr.invalid &&
+                (lf.userPhoneNbr.dirty || lf.userPhoneNbr.touched)
+              "
+              class="help-block mt-1 text-danger"
+            >
+              <div *ngIf="lf.userPhoneNbr.errors.required">
+                * Phone Number is required.
+              </div>
+              <div *ngIf="lf.userPhoneNbr.errors.mask">
+                * Phone Number should be the format:
+                {{ lf.userPhoneNbr.errors.mask?.requiredMask }}.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-center">
+          <div class="col-5">
+            <label class="m-0">Company Name: </label>
+          </div>
+          <div class="col-7">
+            <input
+              class="form-control"
+              placeholder="Company Name"
+              type="text"
+              class="form-control"
+              formControlName="orgId"
+              [class.border-danger]="
+                lf.orgId.invalid && (lf.orgId.dirty || lf.orgId.touched)
+              "
+              [class.border-success]="
+                lf.orgId.valid && (lf.orgId.dirty || lf.orgId.touched)
+              "
+            />
+            <div
+              *ngIf="lf.orgId.invalid && (lf.orgId.dirty || lf.orgId.touched)"
+              class="help-block mt-1 text-danger"
+            >
+              <div *ngIf="lf.orgId.errors.required">
+                * Company Name is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="errorCode">
+              <div class="errorMessageText" id="errorMessageText">
+                {{ errorCode }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <a
+              href="javascript:void(0);"
+              class="btn registerBtn px-4 py-2"
+              (click)="submit()"
+            >
+              {{ pageType === "signup" ? "Register" : "Update" }}
+            </a>
+
+            <a
+              *ngIf="pageType === 'account'"
+              href="javascript:void(0);"
+              class="btn btn-danger bg-danger registerBtn mx-5 px-4 py-2"
+              (click)="cancel()"
+            >
+              Cancel
+            </a>
+          </div>
+          <div class="col-12 text-center" *ngIf="alreadyExists">
+            <p class="alreadyRegistered m-0 mt-4 pt-2">
+              These credentials are already registered <br />
+              Please try
+              <a href="javascript:void(0);" routerLink="/login"> logging in </a>
+              or update info to create a new account
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-3"></div>
+</div>

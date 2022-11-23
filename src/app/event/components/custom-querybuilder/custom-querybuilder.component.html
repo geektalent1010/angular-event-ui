@@ -1,0 +1,136 @@
+<query-builder [(ngModel)]='data' [config]='config' *ngIf="canShowBuilder(config); else no_rule_required">
+
+  <ng-container *queryButtonGroup="let ruleset; let addRule=addRule; let addRuleSet=addRuleSet; let removeRuleSet=removeRuleSet">
+    <div [ngClass]="getClassNames('buttonGroup', 'rightAlign')">
+      <button type="button" [ngClass]="getClassNames('button')"  (click)="onAddRule(addRule)"><i [ngClass]="getClassNames('addIcon')"></i> Rule</button>
+      <!-- <button type="button" [ngClass]="getClassNames('button')" *ngIf="selectedAction != ACTIONS.CHAIN_DEMO_QUESTIONS && selectedAction != ACTIONS.THREADING_DEMO_QUESTIONS" (click)="addRuleSet()"><i [ngClass]="getClassNames('addIcon')"></i> Ruleset</button> -->
+      <!-- <button type="button" *ngIf="removeRuleSet" [ngClass]="getClassNames('button')"  (click)="removeRuleSet()"><i [ngClass]="getClassNames('removeIcon')"></i> Ruleset</button> -->
+    </div>
+  </ng-container>
+  
+  <ng-container *queryField="let rule; let fields=fields; let onChange=onChange;">
+    <select [ngClass]="getClassNames('fieldControl')" style="width: 12%" [(ngModel)]="rule.field"
+      (ngModelChange)="changeField($event, rule)">
+      <option *ngFor="let field of fields" [ngValue]="field.value">
+        {{field.name}}
+      </option>
+    </select>
+
+    <span *ngIf="rule.field == 'questionList'">
+      <select style="max-width: 80px;" [ngClass]="getClassNames('fieldControl')"
+        [(ngModel)]="rule.pollingType" (ngModelChange)="pollingTypeChanged($event, rule)" required>
+        <option *ngFor="let pollingType of pollingTypes" [ngValue]="pollingType">
+          {{pollingType}}
+        </option>
+      </select>
+
+      <!-- <select [ngClass]="getClassNames('inputControl')" *ngIf="selectedAction == ACTIONS.THREADING_DEMO_QUESTIONS" [(ngModel)]="rule.question" style="width: 4em">
+        <option *ngFor="let question of getQuestions(rule)" [value]="question?.question">
+          {{question?.questionName}}
+        </option> 
+      </select> -->
+      <input [ngClass]="getClassNames('inputControl')" disabled  *ngIf="selectedAction == ACTIONS.THREADING_DEMO_QUESTIONS"  type="text" [value]="getQuestionName(rule)" style="width: 4em">
+
+      <input list="browsers"  id="browser"  autocomplete="off" [ngClass]="getClassNames('fieldControl')"
+        [(ngModel)]="rule.question" (ngModelChange)="questionChanged($event, rule)" required placeholder="Question">
+      <datalist id="browsers">
+        <option *ngFor="let question of questions" [ngValue]="question?.question">
+          {{question?.question}}
+        </option>
+      </datalist>
+    </span>
+    <span *ngIf="rule.field == 'attendee' || rule.field == 'member'">
+      <select style="max-width: 80px;" [ngClass]="getClassNames('fieldControl')"
+        [(ngModel)]="rule.attendeeField" (ngModelChange)="attendeFieldChanged($event, rule)" required>
+        <option *ngFor="let attendeeField of attendeeFields" [ngValue]="attendeeField">
+          {{attendeeField}}
+        </option>
+      </select>
+    </span>
+  </ng-container>
+
+  <ng-container *queryOperator="let rule; let operators=operators">
+    <select [ngClass]="getClassNames('operatorControl')" style="width: 2em" [(ngModel)]="rule.operator">
+      <option *ngFor="let operator of getOperators(rule.field)" [ngValue]="operator">
+        {{operator}}
+      </option>
+    </select>
+  </ng-container>
+
+  <ng-container *queryInput="let rule; let field=field; let options=options;  type: 'category'">
+    <!-- attendee or member -->
+    <select [ngClass]="getClassNames('inputControl')" [(ngModel)]="rule.value" *ngIf="(rule.field === 'attendee' || rule.field === 'member') && getOptionsforAttendee(rule).type==='select'">
+      <option hidden value="null">Select</option>
+      <option *ngFor="let opt of getOptionsforAttendee(rule).value; trackBy:identify" [value]="opt.value">
+        {{opt.name}}
+      </option>
+    </select>
+    <input [ngClass]="getClassNames('inputControl')" [(ngModel)]="rule.value"
+      *ngIf="(rule.field === 'attendee' || rule.field === 'member') && getOptionsforAttendee(rule).type == 'text'" type="text" />
+    <!-- option -->
+    <input *ngIf="rule.field === 'option'" [(ngModel)]="rule.value" list="optionBrowsers" autocomplete="off" [ngClass]="getClassNames('fieldControl')" />
+    <datalist id="optionBrowsers">
+      <option *ngFor="let session of sessions" [ngValue]="session?.name">
+        {{session?.name}}
+      </option>
+    </datalist>
+
+    <div *ngIf="rule.field !== 'questionList' && getOptionsforAttendee(rule).type == 'daterange'" class="d-inline-block">
+      <div class="d-flex align-items-center">
+        <div class="pl-2" *ngIf="rule.value">{{rule.value}}</div>
+        <input  type="text"autocomplete="off" bsDaterangepicker style="width: 0; height: 0; visibility: hidden;"   
+          [bsConfig]="{ rangeInputFormat : 'MMMM Do YYYY', dateInputFormat: 'MMMM Do YYYY', showWeekNumbers: false }"    
+          placeholder="Date Range" (bsValueChange)="dateRangeCreated($event, rule)"    
+          #dateRangePicker1
+        />
+        <i class="fas fa-calendar cursor-pointer"  (click)="dateRangePicker1.click()"></i>
+      </div>
+    </div>
+
+    <select [ngClass]="getClassNames('inputControl')" style="max-width: 170px;" [(ngModel)]="rule.value" [disabled]="rule.checkAny"
+      *ngIf="rule.field == 'questionList' && showInputType(rule) == 'select'">
+      <option *ngFor="let opt of getDetails(rule.question).demDetails" [value]="opt.value">
+        {{opt.name}}
+      </option>
+    </select>
+    <input [ngClass]="getClassNames('inputControl')" [(ngModel)]="rule.value" [disabled]="rule.checkAny"
+      *ngIf="rule.field == 'questionList' && showInputType(rule) == 'date'" type="date">
+
+    <input [ngClass]="getClassNames('inputControl')" [(ngModel)]="rule.value" [disabled]="rule.checkAny"
+      *ngIf="rule.field == 'questionList' && showInputType(rule) == 'text'" type="text">
+
+    <span *ngIf = "(selectedAction == ACTIONS.CHAIN_DEMO_QUESTIONS || selectedAction == ACTIONS.THREADING_DEMO_QUESTIONS ) && rule.field == 'questionList'">
+      <input title="Accept Any Answer" style="margin-left: 10px; cursor: pointer;" [ngClass]="getClassNames('inputControl')"
+       type='checkbox' [checked]="rule.checkAny == true"
+      (change)="onCheckAny(rule)" />
+      <span  style="margin-left: 4px;">Any</span>
+      <span *ngIf="selectedAction == ACTIONS.CHAIN_DEMO_QUESTIONS; else NextThreading">
+        <span  style="margin-left: 4px;margin-right: 4px;">Group</span>
+        <select [ngClass]="getClassNames('inputControl')" style="width: 4em" [(ngModel)]="rule.group" (change)="onGroupChange(rule)" [disabled]="!isLastIndex(rule)">
+          <option value="">No Group</option>
+          <option *ngFor="let group of groupsArr" [value]="group">
+            {{group}}
+          </option> 
+        </select>
+      </span>
+      
+      <ng-template #NextThreading>
+        <span  style="margin-left: 4px;margin-right: 4px;">Next</span>
+        <!-- <select [ngClass]="getClassNames('inputControl')"  style="width: 4em" [(ngModel)]="rule.next">
+          <option value="">None</option>
+          <option *ngFor="let question of getQuestions(rule)" [ngValue]="question?.questionName">
+            {{question?.questionName}}
+          </option> 
+        </select> -->
+        <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="questions" [(ngModel)]="rule.next">
+        </ng-multiselect-dropdown>
+
+      </ng-template>
+
+    </span>
+  </ng-container>
+
+
+</query-builder>
+
+<ng-template #no_rule_required>No Rule Required</ng-template>

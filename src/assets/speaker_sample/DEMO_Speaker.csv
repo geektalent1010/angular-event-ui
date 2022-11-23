@@ -1,0 +1,24 @@
+table_name,column_name,data_type
+speaker,speakerName,Alex
+speaker,company,A4SAFE
+speaker,address,VA
+speaker,cityid,Summerlake 
+speaker,stateid,5
+speaker,country,USA
+speaker,postalcode,22554
+speaker,email,a@a.com
+speaker,website,a.com
+speaker,description,This is sample bio text
+speaker,phone,5465456545
+speaker,bioname,Speaker Name
+speaker,speakerid,Speaker ID
+speaker,evtuid,Event ID
+speaker,highLevelCat,Agriculture
+speaker,subcategory,Agriculture & Farming
+,,
+speakerphoto,speakernamefirst,
+speakerphoto,speakernamelast,
+speakerphoto,speakerphotoid,
+speakerphoto,speakerphoto,
+speakerphoto,speakerid,
+speakerphoto,evtuid,

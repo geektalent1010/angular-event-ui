@@ -1,0 +1,60 @@
+<div class="row px-3 px-lg-5">
+  <div class="col-12 px-0 px-md-4">
+    <div class="row">
+      <div class="col-12 p-0">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <label for="loadTemplate">Design</label>
+            <select
+              name="loadTemplate"
+              id="loadTemplate"
+              class="form-control"
+              [(ngModel)]="tempLabel"
+              (ngModelChange)="LoadEmailTemp()"
+            >
+              <option
+                *ngFor="let tempVal of tempEmailList"
+                [value]="tempVal.label"
+              >
+                {{ tempVal.label }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <label class="btn btn-primary my-2">
+              <input
+                type="file"
+                style="display: none"
+                (change)="upload($event)"
+                accept=".html, .htm"
+              />
+              Upload
+            </label>
+            <button class="btn saveBtn m-2" (click)="Duplicate()">
+              Duplicate
+            </button>
+            <button
+              class="btn saveBtn"
+              (click)="Save()"
+              [disabled]="!updatedDesign"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 p-0">
+        <div class="container">
+          <email-editor
+            (loaded)="editorLoaded()"
+            (ready)="editorReady()"
+            #editor
+          >
+          </email-editor>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

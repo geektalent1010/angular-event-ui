@@ -1,0 +1,11 @@
+<ngx-spinner name="pageLoading" type="line-scale-party"></ngx-spinner>
+
+<div [hidden]="!isPageLoading" class="loadingSection"></div>
+<div [hidden]="isPageLoading">
+    <app-header *ngIf="isNotEventPage()"></app-header>
+    <div class="router-style">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<app-toasts></app-toasts>

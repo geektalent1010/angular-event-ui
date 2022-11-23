@@ -1,0 +1,66 @@
+version: 0.2
+
+env:
+  variables:
+    JAVA_HOME: "/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64"
+  #parameter-store:
+    #LOGIN_PASSWORD: /CodeBuild/dockerLoginPassword
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      #- yum update -y
+      #- yum install -y maven
+    runtime-versions:
+        java: corretto8
+    finally:
+      - echo Finished insall phase...
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...
+      - cd event-ui
+      - cd ng-event-ui
+    finally:
+      - echo Finished pre_build phase...
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - npm update --legacy-peer-deps
+    finally:
+      - echo Build completed on `date`
+      - echo Finished build stage...
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      #- cp /root/.m2/repository/com/csi/event/spring-boot-jaxrs/0.0.1-SNAPSHOT/spring-boot-jaxrs-0.0.1-SNAPSHOT.jar ./target/spring-boot-jaxrs-0.0.1-SNAPSHOT.jar
+    finally:
+      - echo Finished post_build stage...
+#reports:
+  #arn:aws:codebuild:your-region:your-aws-account-id:report-group/report-group-name-1:
+    #files:
+      #- "**/*"
+    #base-directory: 'target/tests/reports'
+    #discard-paths: no
+  #reportGroupCucumberJson:
+    #files:
+      #- 'cucumber/target/cucumber-tests.xml'
+    #discard-paths: yes
+    #file-format: CUCUMBERJSON # default is JUNITXML
+#artifacts:
+  #files:
+    #- /root/.m2/repository/com/csi/event/spring-boot-jaxrs/0.0.1-SNAPSHOT/spring-boot-jaxrs-0.0.1-SNAPSHOT.jar
+  #discard-paths: yes
+  #secondary-artifacts:
+    #artifact1:
+      #files:
+        #- /root/.m2/repository/com/csi/event/spring-boot-jaxrs/0.0.1-SNAPSHOT/spring-boot-jaxrs-0.0.1-SNAPSHOT.jar
+      #discard-paths: yes
+    #artifact2:
+      #files:
+        #- target/artifact-2.0.jar
+      #discard-paths: yes
+#cache:
+  #paths:
+    #- '/root/.m2/**/*'

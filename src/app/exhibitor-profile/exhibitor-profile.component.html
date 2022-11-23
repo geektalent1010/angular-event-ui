@@ -1,0 +1,1066 @@
+<!-- body content -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>.</p>
+
+      <div class='row'>
+          <table width='100%' border='0'>
+              <tr>
+                  <td width='20%'>
+                      <label><b>Booth Name:</b></label>
+                  </td>
+                  <td width='65%'>
+                    <input type="text" id='boothname' class="form-control">
+                  </td>
+              </tr>
+              <tr>
+                  <td width='20%'>
+                      <label><b>Booth Description:</b></label>
+                  </td>
+                  <td width='65%'>
+                    <textarea rows='4' cols='32' class='format-control'> </textarea>
+                  </td>
+              </tr>
+              <tr>
+                  <td width='20%'>
+                      <label><b>Exhibitor:</b></label>
+                  </td>
+                  <td width='65%'>
+                      <select>
+                          <option value='1'>ABC Company</option>
+                          <option value='2'>Apple </option>
+                          <option value='3'>Dell </option>
+                          <option value='4'>Microsoft </option>
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                  <td width='20%'>
+                      <label><b>Session Name:</b></label>
+                  </td>
+                  <td width='65%'>
+                      <input type="text" id='ses-name' class="form-control">
+                  </td>
+              </tr>
+              <tr>
+                  <td width='20%'>
+                      <label><b>Session Start Date:</b></label>
+                  </td>
+                  <td width='65%'>
+                      <input type="text" id='ses-start-date' class="form-control">
+                  </td>
+              </tr>
+              <tr>
+                  <td width='20%'>
+                      <label><b>Session End Date:</b></label>
+                  </td>
+                  <td width='65%'>
+                      <input type="text" id='ses-end-date' class="form-control">
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan='2'>
+                      <input type='button' style='color:#fff !important;' id='addExhibitor' onclick='updateBlock()' value='Add Exhibitor/Session' />
+                  </td>
+              </tr>
+          </table>
+
+      </div>
+    </div>
+
+  </div>
+
+          <div class="row">
+
+              <div class="col-10">
+
+                  <div class='row'>
+                  <div class='col-12'>
+                          <div class="tabs-nav-wrap">
+                              <ul class="tabs-nav">
+                                  <li class="tab-nav-link" data-target="#eventInfoTab"><i class="fas fa-calendar-week"></i><br/><span>Exhibitor<br/>Info</span></li>
+                                  <li class="tab-nav-link" data-target="#regTypesTabs"><i class="fas fa-users"></i><span><br/>Session<br/>Attendees</span></li>
+                                  <li class="tab-nav-link" data-target="#sessionCalendarTab"><i class="fas fa-user-check"></i><span><br/>Attendee<br/>Leads</span></li>
+                                  <li class="tab-nav-link" data-target="#eventFloorplanTab"><i class="fas fa-chart-bar"></i><br/><span>Session <br/>Metrics</span></li>
+                                 <!-- <li class="tab-nav-link" data-target="#regCodeTab"><i class="fas fa-question"></i><span><br/>Session <br/>Q&A</span></li>-->
+
+                               </ul>
+                          <div style="clear:both;"></div>
+                       </div><!-- ends tabs-nav-wrap -->
+                  </div>
+
+
+                  <div class='col-1'>
+
+                  </div>
+                  <div class='col-11'>
+                       <div class="tabs-main-content">
+
+                            <div id="eventInfoTab" class="tab-content"><!-- Begins eventInfoTab -->
+                               <div class="tab-inner">
+                                  <h3>Exhibitor Information</h3>
+                                  <div class='row'>
+                                      <div class='col-9'>
+
+                                      </div>
+                                      <div class='col-3'>
+                                        <button class="btn btn-primary float-right"  (click)="open(addSession)">
+                                            Add New Session
+                                        </button>
+                                      </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-3'>
+                                      <label>First Name: </label>
+                                    </div>
+                                    <div class='col-9'>
+                                      <input placeholder="First Name" type="text" required="required" class="form-control" name="firstName" >
+
+
+
+                                    </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-3'>
+                                      <label>Last Name: </label>
+                                    </div>
+                                    <div class='col-9'>
+                                      <input placeholder="Last Name" type="text" required="required" class="form-control" name="nameLast" >
+                                    </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-3'>
+                                      <label>Email Address:</label>
+                                    </div>
+                                    <div class='col-9'>
+                                      <input placeholder="Email" type="text" required="required" class="form-control" name="empEmail" >
+                                    </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-3'>
+                                      <label>Address: </label>
+                                    </div>
+                                    <div class='col-9'>
+                                      <input placeholder="Address" type="text" required="required" class="form-control" name="address" >
+                                    </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-3'>
+                                      <label>Address 2: </label>
+                                    </div>
+                                    <div class='col-9'>
+                                      <input placeholder="Address 2" type="text" class="form-control" name="address2">
+                                    </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-3'>
+                                      <label>Zip: </label>
+                                    </div>
+                                    <div class='col-9'>
+                                      <input placeholder="Zip" type="text" required="required" class="form-control" name="zip">
+                                    </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-3'>
+                                      <label>Phone Number: </label>
+                                    </div>
+                                    <div class='col-9'>
+                                      <input placeholder="Phone Number" type="text" required="required" class="form-control" name="userPhoneNbr">
+                                    </div>
+                                  </div>
+
+                               </div>
+                            </div>
+
+                            <div id="regTypesTabs" class="tab-content">
+                                <div class="tab-inner">
+                                   <h3>Session Attendees</h3>
+                                   <p><a href='#'>Download Attendee List</a></p>
+                                   <div class='row'>
+
+                                           <h5>Event - Session:</h5>
+                                               <div class='col-9'>
+
+                                                <select  name='eventSession' id='eventSession' class='form-control'>
+                                                        <option>Event A - Session 2</option>
+                                                        <option>Event B - Session 3</option>
+                                                        <option>Event B - Session 4</option>
+                                                        <option>Event C - Session 1</option>
+                                                        <option>Event C - Session 2</option>
+                                                    </select>
+                                                </div>
+
+
+
+                                    </div>
+                                    <h3>Attendees</h3>
+                                    <div class='row'>
+                                        <table width='100%'>
+                                            <tr>
+                                                <td ><h1>Name</h1></td>
+                                                <td ><h1>Location</h1></td>
+                                                <td><h1>Company</h1></td>
+                                                <td><h1>Email</h1></td>
+                                                <td><h1>Interests/Topics</h1></td>
+                                            </tr>
+                                            <tr style='background-color:#fff;'>
+                                                <td >Bob Jones</td>
+                                                <td >Alexandria, VA 22304</td>
+                                                <td>Apple</td>
+                                                <td>bobjones@testingsite.com</td>
+                                                <td>Technology, Laptop, Infrastructure, bash</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td >Bob Jones</td>
+                                                <td >Alexandria, VA 22304</td>
+                                                <td>Apple</td>
+                                                <td>bobjones@testingsite.com</td>
+                                                <td>Technology, Laptop, Infrastructure, bash</td>
+
+                                            </tr>
+                                            <tr style='background-color:#fff;'>
+                                                <td >Bob Jones</td>
+                                                <td >Alexandria, VA 22304</td>
+                                                <td>Apple</td>
+                                                <td>bobjones@testingsite.com</td>
+                                                <td>Technology, Laptop, Infrastructure, bash</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td >Bob Jones</td>
+                                                <td >Alexandria, VA 22304</td>
+                                                <td>Apple</td>
+                                                <td>bobjones@testingsite.com</td>
+                                                <td>Technology, Laptop, Infrastructure, bash</td>
+
+                                            </tr>
+                                            <tr style='background-color:#fff;'>
+                                                <td >Bob Jones</td>
+                                                <td >Alexandria, VA 22304</td>
+                                                <td>Apple</td>
+                                                <td>bobjones@testingsite.com</td>
+                                                <td>Technology, Laptop, Infrastructure, bash</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td >Bob Jones</td>
+                                                <td >Alexandria, VA 22304</td>
+                                                <td>Apple</td>
+                                                <td>bobjones@testingsite.com</td>
+                                                <td>Technology, Laptop, Infrastructure, bash</td>
+
+                                            </tr>
+                                            <tr style='background-color:#fff;'>
+                                                <td >Bob Jones</td>
+                                                <td >Alexandria, VA 22304</td>
+                                                <td>Apple</td>
+                                                <td>bobjones@testingsite.com</td>
+                                                <td>Technology, Laptop, Infrastructure, bash</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td >Bob Jones</td>
+                                                <td >Alexandria, VA 22304</td>
+                                                <td>Apple</td>
+                                                <td>bobjones@testingsite.com</td>
+                                                <td>Technology, Laptop, Infrastructure, bash</td>
+
+                                            </tr>
+
+
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="sessionCalendarTab" class="tab-content">
+                                <div class="tab-inner">
+                                   <h3>Attendee Targeting</h3>
+                                   <div class='row'>
+                                        <div class='col-9'>
+                                           <input class='form-control' name='attendeeLeadSearch' />
+
+                                        </div>
+                                        <div class='col-3'>
+                                            <input type='button' value='Search' />
+                                           <!-- <button class="btn btn-primary float-right"  (click)="open(addSession)">
+                                                Add New Session
+                                            </button>-->
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class='col-12'>
+                                            <table width='100%'>
+                                                <tr>
+                                                    <td ><h1>Name</h1></td>
+                                                    <td ><h1>Location</h1></td>
+                                                    <td><h1>Company</h1></td>
+                                                    <td><h1>Email</h1></td>
+                                                    <td><h1>Info</h1></td>
+                                                    <td> </td>
+                                                </tr>
+                                                <tr style='background-color:#fff;'>
+                                                    <td >Bob Jones</td>
+                                                    <td >Alexandria, VA 22304</td>
+                                                    <td>Apple</td>
+                                                    <td>bobjones@testingsite.com</td>
+                                                    <td>Technology, Laptop, Infrastructure, bash
+                                                        <hr/>
+                                                        Satisfaction: 65
+                                                        <hr/>
+                                                        Interest Level: .49
+                                                    </td>
+                                                    <td><a href='#'><i class="fas fa-comments"></i></a></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td >Bob Jones</td>
+                                                    <td >Alexandria, VA 22304</td>
+                                                    <td>Apple</td>
+                                                    <td>bobjones@testingsite.com</td>
+                                                    <td>Technology, Laptop, Infrastructure, bash
+                                                        <hr/>
+                                                        Satisfaction: 62
+                                                        <hr/>
+                                                        Interest Level: .49</td>
+                                                    <td><a href='#'><i class="fas fa-comments"></i></a></td>
+
+                                                </tr>
+                                                <tr style='background-color:#fff;'>
+                                                    <td >Bob Jones</td>
+                                                    <td >Alexandria, VA 22304</td>
+                                                    <td>Apple</td>
+                                                    <td>bobjones@testingsite.com</td>
+                                                    <td>Technology, Laptop, Infrastructure, bash
+                                                        <hr/>
+                                                        Satisfaction: 62
+                                                        <hr/>
+                                                        Interest Level: .32
+                                                    </td>
+                                                    <td><a href='#'><i class="fas fa-comments"></i></a></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td >Bob Jones</td>
+                                                    <td >Alexandria, VA 22304</td>
+                                                    <td>Apple</td>
+                                                    <td>bobjones@testingsite.com</td>
+                                                    <td>Technology, Laptop, Infrastructure, bash
+                                                        <hr/>
+                                                        Satisfaction: 72
+                                                        <hr/>
+                                                        Interest Level: .39
+                                                    </td>
+                                                    <td><a href='#'><i class="fas fa-comments"></i></a></td>
+
+                                                </tr>
+                                                <tr style='background-color:#fff;'>
+                                                    <td >Bob Jones</td>
+                                                    <td >Alexandria, VA 22304</td>
+                                                    <td>Apple</td>
+                                                    <td>bobjones@testingsite.com</td>
+                                                    <td>Technology, Laptop, Infrastructure, bash
+                                                        <hr/>
+                                                        Satisfaction: 65
+                                                        <hr/>
+                                                        Interest Level: .49
+                                                    </td>
+                                                    <td><a href='#'><i class="fas fa-comments"></i></a></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td >Bob Jones</td>
+                                                    <td >Alexandria, VA 22304</td>
+                                                    <td>Apple</td>
+                                                    <td>bobjones@testingsite.com</td>
+                                                    <td>Technology, Laptop, Infrastructure, bash
+                                                        <hr/>
+                                                        Satisfaction: 65
+                                                        <hr/>
+                                                        Interest Level: .49
+                                                    </td>
+                                                    <td><a href='#'><i class="fas fa-comments"></i></a></td>
+
+                                                </tr>
+                                                <tr style='background-color:#fff;'>
+                                                    <td >Bob Jones</td>
+                                                    <td >Alexandria, VA 22304</td>
+                                                    <td>Apple</td>
+                                                    <td>bobjones@testingsite.com</td>
+                                                    <td>Technology, Laptop, Infrastructure, bash
+                                                        <hr/>
+                                                        Satisfaction: 65
+                                                        <hr/>
+                                                        Interest Level: .49
+                                                    </td>
+                                                    <td><a href='#'><i class="fas fa-comments"></i></a></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td >Bob Jones</td>
+                                                    <td >Alexandria, VA 22304</td>
+                                                    <td>Apple</td>
+                                                    <td>bobjones@testingsite.com</td>
+                                                    <td>Technology, Laptop, Infrastructure, bash
+                                                        <hr/>
+                                                        Satisfaction: 65
+                                                        <hr/>
+                                                        Interest Level: .49
+                                                    </td>
+                                                    <td><a href='#'><i class="fas fa-comments"></i></a></td>
+
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="regCodeTab" class="tab-content">
+                                <div class="tab-inner">
+                                <h3>Questions</h3>
+                                   <div class='row'>
+                                       <div class='col-12'>
+                                           <h5>Client Goals</h5>
+                                           <div class='text-right'>
+                                           <!-- <a  (click)="addGoal()"><i style='color:green' class="fas fa-plus-circle"></i></a>-->
+                                           </div>
+                                           <div class='client-goals-container'>
+                                            <h1>Q & A Reponses</h1>
+                                            <iframe src='http://www.csi-event.com:9088/superset/dashboard/CES21_1100249/' height='500' width="95%"></iframe>
+
+
+                                            </div>
+
+
+
+
+
+                                       </div>
+
+                                   </div>
+                                </div>
+                             </div>
+
+
+
+                            <div id="eventFloorplanTab" class="tab-content">
+                            <div class="row">
+                              <div class='col-12'>
+                                <h1>Attendee Metrics</h1>
+<iframe src='http://3.130.219.53:9088/superset/dashboard/CES21_1100381/' height='500' width="95%"></iframe>
+
+<h1>Attendee Session Metrics</h1>
+<iframe src='http://3.130.219.53:9088/superset/dashboard/CES21_1100381_CON06/' height='500' width='95%'></iframe>
+
+
+                                  </div>
+                              </div>
+
+                          </div>
+
+                          <div style="clear:both;"></div>
+                        </div><!-- # tabs-main-content -->
+                  </div>
+
+
+                  </div>
+
+
+              </div>
+              <div class="col-1">
+
+              </div>
+
+
+  <ng-template #addSession let-modal>
+    <div class="modal-header" style='width:450px'>
+      <h4 class="modal-title" id="modal-basic-title">Add New Session</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+        <label>Event Name:</label>
+
+        <select  name='eventSession' id='eventSession' class='form-control'>
+            <option>Event A - Session 2</option>
+            <option>Event B - Session 3</option>
+            <option>Event B - Session 4</option>
+            <option>Event C - Session 1</option>
+            <option>Event C - Session 2</option>
+        </select>
+
+        <br/><br/>
+        <label>Session Type:</label>
+
+		<select name='sessionType' class="form-control" multiple="multiple">
+            <option value="X">Lightning Talk </option>
+            <option value="X">Show and Tell</option>
+            <option value="X">Product Demo </option>
+            <option value="X">Expert Clinic</option>
+
+            <option value="X">Solution Room </option>
+            <option value="X">Think & Feedback</option>
+            <option value="X">Scenario Solving Exercise </option>
+            <option value="X">Roleplay</option>
+
+            <option value="X">Campfire Stories</option>
+            <option value="X">Founder Stories</option>
+            <option value="X">Interactive Quiz </option>
+            <option value="X">Business Pitch</option>
+
+            <option value="X">Hackathon</option>
+            <option value="X">Debate</option>
+            <option value="X">Brainstorm</option>
+            <option value="X">Network Roundtable</option>
+
+            <option value="X">Meetup </option>
+            <option value="X">Streaming</option>
+
+		</select>
+		<br/><br/>
+		<label>Session Name:</label><br/>
+		<input type='text' class='form-control' value=''>
+		<br/><br/>
+
+        <label>Public or Private:</label><br/>
+		<select name='exhibiting' class='form-control'>
+			<option value='yes'>Public</option>
+			<option value='no'>Private</option>
+		</select>
+           <br/><br/>
+           <label>Number of Attendees:</label><br/>
+           <select class='form-control' name='numAttendees'>
+               <option value='5'>5</option>
+               <option value='5'>10</option>
+               <option value='5'>25</option>
+               <option value='5'>50</option>
+               <option value='5'>100</option>
+               <option value='5'>200</option>
+           </select>
+       <br/><br/>
+       <label>Session Topics</label><br/>
+
+       <select class='form-control' id='eventType' name='eventType'>
+        <option>AGRICULTURE & FARMING</option>
+        <option>AMUSEMENT, ENTERTAINMENT & GAMING</option>
+        <option>SPORTING GOODS & RECREATION</option>
+        <option>CONSUMER GOODS & RETAIL TRADE</option>
+        <option>TOYS, HOBBIES & GIFTS</option>
+        <option>EDUCATION, TRAINING, SCIENCE & RESEARCH</option>
+        <option>ELECTRICAL & ELECTRONICS</option>
+        <option>AUTOMOTIVE, TRUCKING & TRANSPORTATION</option>
+        <option>TRAVEL, HOTELS & RESTAURANTS</option>
+        <option>INDUSTRIAL</option>
+        <option>MEDICAL & HEALTHCARE PRODUCTS</option>
+        <option>BUILDING & CONSTRUCTION</option>
+        <option>EXHIBITION & MEETING INDUSTRY</option>
+        <option>FOOD & BEVERAGE</option>
+        <option>MANUFACTURING & PACKAGING</option>
+        <option>APPAREL, BEAUTY, SHOES & TEXTILES</option>
+        <option>COMMUNICATIONS & BROADCASTING</option>
+        <option>COMPUTERS & SOFTWARE APPLICATIONS</option>
+        <option>AEROSPACE & AVIATION</option>
+        <option>WASTE MANAGEMENT</option>
+        <option>WATER, ENERGY & POWER</option>
+        <option>POLICE, FIRE, SECURITY & EMERGENCY SERVICES</option>
+        <option>MANAGEMENT, HUMAN RESOURCES & NETWORKING</option>
+        <option>BUSINESS</option>
+        <option>GOVERNMENT & MILITARY</option>
+        <option>PRINTING, GRAPHICS, PHOTOGRAPHY & PUBLISHING</option>
+        <option>MINING</option>
+        <option>DENT</option>
+       </select>
+       <br/><br/>
+       <h3>Polling</h3>
+       <label>Which category describes your occupation?</label>
+
+		<select name='occupation' id='occupation'>
+          <option value='X'>Legal Professional</option>
+          <option value='X'>Medical Practitioner</option>
+          <option value='X'>Trainer/Educator</option>
+          <option value='X'>Landscape/Gardening/Turf</option>
+          <option value='X'>Farming/Agriculture</option>
+          <option value='X'>Analyst/Associate/Consultant</option>
+          <option value='X'>EMT/Emergency Preparedness</option>
+          <option value='X'>Researcher</option>
+          <option value='X'>Recruiter</option>
+          <option value='X'>Press / Media</option>
+          <option value='X'>Owner/Founder/CEO/President/Executive</option>
+          <option value='X'>Professor / Academic</option>
+          <option value='X'>Human Resources</option>
+          <option value='X'>Sales/Marketing & Office Personnel</option>
+          <option value='X'>Production/Manufacturing</option>
+          <option value='X'>Architect/Designer</option>
+          <option value='X'>Actor/Entertainer</option>
+          <option value='X'>Blogger/Editor/Author</option>
+          <option value='X'>Pastor</option>
+          <option value='X'>Student</option>
+          <option value='X'>Scientist/Engineer/Programmer</option>
+          <option value='X'>Government</option>
+          <option value='X'>Buyer/Distributor</option>
+		</select>
+		<br/><br/>
+		<label>Please enter your exact job title:</label><br/>
+		<input type='text' value=''>
+		<br/><br/>
+
+        <label>Is your company/organization exhibiting at this event?</label><br/>
+		<select name='exhibiting'>
+			<option value='yes'>Yes</option>
+			<option value='no'>No</option>
+		</select>
+        <label>Speaker:</label><br/>
+		<input type='text' class='form-control' value=''>
+        <br/><br/>
+        <label>Synopsis:</label><br/>
+		<input type='text' class='form-control' value=''>
+        <br/><br/>
+        <label>Cost:</label><br/>
+		<input type='text' class='form-control' value='$100.00'>
+        <br/><br/>
+        <label>Discount:</label><br/>
+		<input type='text' class='form-control' value='$10.00'>
+        <br/><br/>
+        <label>Date:</label><br/>
+		<input type='date' class='form-control' value=''>
+        <br/><br/>
+        <label>Session Goals:</label><br/>
+        <select class='form-control' multiple="multiple" name='sessionGoals'>
+            <option>Reconnect with my current suppliers/vendors about business opportunities</option>
+            <option>Learn more about whats happening in my industry and my role in it (including Education sessions and Networking opportunities)</option>
+            <option>Explore the event, look for new and interesting trends/ideas (i.e. walk every aisle)</option>
+            <option>Socialize and meet up with friends and colleagues</option>
+            <option>Create new opportunities by meeting as many new people as possible (Attendees or Exhibitors)</option>
+            <option>Build a network of new people to create new business opportunities</option>
+            <option>Explore the event for new and interesting products and ideas</option>
+            <option>Target select people or exhibitors through pre-set meetings</option>
+            <option>Learn about my profession and industry trends through education sessions or product demonstrations</option>
+            <option>Address specific needs by meeting a few targeted people or Exhibitors.</option>
+            <option>Achieve a defined business goal</option>
+            <option>Target exhibitors through scheduled meetings</option>
+            <option>Find Buyers</option>
+            <option>Employment Opportunities</option>
+            <option>Discover new vendors & solutions</option>
+            <option>Requested to attend by my company</option>
+            <option>Evaluate exhibiting in the future</option>
+            <option>Gather information for a purchasing decision</option>
+            <option>Career Advancement</option>
+            <option>To meet with customers</option>
+            <option>To present my work</option>
+            <option>Discovering Products</option>
+            <option>Learning</option>
+            <option>Placing Orders</option>
+            <option>Building Relationships</option>
+            <option>Complete a story in progress</option>
+            <option>Collect background info for future story</option>
+            <option>Establish Relationships with Industry Leaders</option>
+            <option>Other, please specify</option>
+            <option>Meeting with Customers</option>
+            <option>Finding new Suppliers<option>
+        </select>
+        <br/><br/>
+           <input type='button' value='Save Information' (click)="addEventCall();modal.dismiss('Cross click')" />
+    </div>
+  </ng-template>
+  <style>
+    li.login_click {
+        border-radius: 4px;
+    top: 20px;
+    position: relative;
+    height: 42px;
+    padding: 0 5px;
+    margin-left: 10px;
+    width:65px;
+    list-style-type: none !important;
+    float:right;
+    padding-top:8px;
+
+    }
+  .add, .addAll, .remove, .removeAll {
+      border:solid 1px #000 !important;
+      padding:5px !important;
+      background-color:#aaa !important;
+      width:100% !important;
+  }
+  .logged-in i, .logged-in span {
+      font-size:18px;
+  }
+
+  .logged-in i:hover, .logged-in span:hover {
+      cursor:pointer;
+  }
+
+  .subContainer {
+      -webkit-border-radius: 36px 12px;
+      -moz-border-radius: 36px / 12px;
+      border-radius: 36px / 12px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      min-height:150px;
+      padding:10px;
+      padding-bottom:15px;
+  }
+  .subContainer  h3 {
+      padding-bottom: 15px;
+  }
+  .feedRow  {
+    line-height: 24pt;
+    border: solid 1px black;
+    padding-left:5px;
+  }
+
+  .liveFeed {
+      overflow:scroll;
+  }
+  div.liveFeedArea>div:nth-of-type(odd) {
+    background: #e0e0e0;
+  }
+  .eventInfo {
+      width:60%;
+      border: 1px solid #aaa;
+      height:150px;
+      padding:10px;
+  }
+  .eventInfo input {
+      width:100%;
+      border: 1px solid #aaa !important;
+  }
+  .liveFeed {
+      width:40%;
+      border: solid 1px #aaa;
+      height:150px;
+      padding:10px;
+  }
+
+  .myNewPin {
+      font-size:26px !important;
+  }
+  .myNewAttendee {
+      font-size:32px !important;
+      z-index:200;
+      color:#333;
+  }
+  .myARPin {
+
+  }
+  .myAPPin {
+      color:green;
+  }
+  .mySPPin {
+      color:blue;
+  }
+  .myEPPin {
+      color:purple;
+  }
+  .myTAPin {
+      color:yellow;
+  }
+  [type="button"] {
+      border:solid 1px #000;
+      padding:5px;
+      background-color:#007bff;
+  }
+  td {
+      padding-bottom:10px;
+  }
+  textarea {
+      border: 1px solid #ccc;
+  }
+  select {
+      border: 1px solid #ccc;
+
+
+
+  }
+
+  .mailing-list select {
+      height:200px;
+  }
+
+  .mailing-list button {
+      background-color: #999; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width:100px;
+  }
+  .no-spacing-row {
+      margin:0px !important;
+  }
+  .left-boxes {
+      float:left;
+      border: solid 1px #000;
+      width:100px;
+      height:60px;
+      padding:5px;
+      margin:5px;
+      padding-top:0px;
+      z-index: 10;
+      background-color:#fff;
+  }
+
+  .right-boxes {
+      text-align:center;
+  }
+
+  .left-boxes h5, .right-boxes h5 {
+      margin-top:10px;
+      font-size: 16px;
+      font-weight:700;
+      text-align:center;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+
+  .drop {
+    background-color: #cdcdcd;
+    border: solid 1px #000;
+    height:100px;
+    width:110px;
+    display:inline;
+    float:left;
+  }
+
+  .droppedon {
+      background-color:#fff !important;
+  }
+  .over {
+    border: solid 5px yellow;
+  }
+  .draggable {
+    border: solid 2px gray;
+  }
+
+
+  .label-row {
+      margin-bottom:0px !important;
+  }
+  .selection-icons .col-3, .selection-icons .col-2 {
+      text-align:center;
+      background-color:'#efefef';
+      border: solid 1px #000;
+      border-radius: 10px;
+      padding:5px;
+      margin:5px;
+      padding-top:15px;
+  }
+  .selection-icons .col-2:hover, .selection-icons .col-3:hover {
+      background-color: #ccc;
+  }
+  .selection-icon span {
+      font-size: 14px !important;
+  }
+
+  .col-3-clicked {
+      background-color:#ccc;
+  }
+
+  .fa, .fas{
+      font-size:28px !important;
+  }
+  .right-button {
+      float:right;
+  }
+  .main-container {
+      background-color:#fff;
+      border-radius:10px;
+      border: solid 1px #000;
+      width:100%;
+      padding:15px;
+  }
+  .icon-bar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+  }
+
+  .icon-bar a {
+    float: left;
+    text-align: center;
+    width: 16.6%;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px;
+  }
+
+  .icon-bar a:hover {
+    background-color: #000;
+  }
+  .icon-bar a span{
+    color:#fff;
+    font-size:10px;
+    padding:5px 0 10px 0;
+    display:block;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+
+  .selection-bar {
+    width: 100%; /* Full-width */
+    overflow: auto; /* Overflow due to float */
+  }
+
+  .selection-icons {
+      margin-top:0px !important;
+  }
+
+  .selection-icons a {
+
+    text-align: center; /* Center-align text */
+    width: 24%;
+    padding: 12px 0; /* Some top and bottom padding */
+    transition: all 0.3s ease; /* Add transition for hover effects */
+    color: #3367D6;
+    font-size: 68px; /* Increased font size */
+  }
+  .selection-icons a span{
+    color:#3367D6;
+    font-size:16px;
+    padding:5px 0 20px 0;
+    display:block;
+    font-weight:bold;
+    letter-spacing:1px;
+    width:100%;
+  }
+
+  .active {
+    background-color: #3367D6; /* Add an active/current color */
+  }
+
+  .adminTab {
+   background-color: #aaa;
+  }
+
+  .styled-table {
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.9em;
+      font-family: sans-serif;
+      min-width: 400px;
+      width:100%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  .styled-table thead tr {
+      background-color: #009879;
+      color: #ffffff;
+      text-align: left;
+  }
+  .styled-table th,
+  .styled-table td {
+      padding: 12px 15px;
+  }
+  .styled-table tbody tr {
+      border-bottom: 1px solid #dddddd;
+  }
+
+  .styled-table tbody tr:nth-of-type(even) {
+      background-color: #f3f3f3;
+  }
+
+  .styled-table tbody tr:last-of-type {
+      border-bottom: 2px solid #009879;
+  }
+  .styled-table tbody tr.active-row {
+      font-weight: bold;
+      color: #009879;
+  }
+
+
+
+  .tabs-nav-wrap {padding:10px 0; text-align: center;}
+  .tabs-nav-wrap ul {display: inline-block; list-style: none;}
+
+  .tabs-nav-wrap ul li {
+    list-style: none;
+    display: inline-block;
+      width: 110px !important;
+      height: 95px;
+      text-align: center;
+    margin:0px;
+  }
+  .tabs-nav li {
+    list-style: none;
+    display: block;
+    padding:10px 20px;
+    background: #736565;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    float:left;
+    width:110px !important;
+    border:1px solid #615656;
+  }
+
+  .tabs-nav .tab-nav-link.current,
+  .tabs-nav .tab-nav-link:hover {
+    border:1px solid #5eaace;
+    background: #74c1e4;
+  }
+
+  .tab-content {
+      padding:0;
+      text-align: left;
+      display:none;
+      margin-left:5px;
+  }
+
+  label {
+      font-size:14px;
+      font-weight:bold;
+  }
+
+  .modal {
+    display: none; /* Hidden by default */
+    position:absolute;
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top:0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    height:600px;
+    width: 60%;
+    top:-200px;
+  }
+
+
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  </style>

@@ -1,0 +1,24 @@
+.modal-header {
+    border: 0;
+    background-color: #007497;
+    padding-bottom: 6px;
+    .modal-title {
+        color: white;
+    }
+}
+
+.modal-body {
+    padding: 24px 42px 12px;
+    form {
+        input {
+            box-shadow: none;
+        }
+    }
+}
+
+.modal-footer {
+    .addBtn {
+        font-size: 24px;
+        color: #6ebf49;
+    }
+}

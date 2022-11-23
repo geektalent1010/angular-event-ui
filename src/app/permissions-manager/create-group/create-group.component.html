@@ -1,0 +1,66 @@
+<div class="modal-header">
+    <h3 class="modal-title text-uppercase font-weight-bold m-0"> Create Group </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <form [formGroup]="groupForm">
+            <div class="row mt-0 mb-2">
+                <label for="name"> Group Name </label>
+                <input type="text" class="form-control" formControlName="name"
+                    [class.border-danger]="lf.name.invalid && (lf.name.dirty || lf.name.touched)"
+                    [class.border-success]="lf.name.valid && (lf.name.dirty || lf.name.touched)">
+                <div *ngIf="lf.name.invalid && (lf.name.dirty || lf.name.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.name.errors.required">
+                        * Group name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0 mb-2 d-flex align-items-center">
+                <input type="checkbox" formControlName="createEvent">
+                <label for="createEvent" class="m-0 ml-2 mr-2"> Create Event </label>
+            </div>
+            <div class="row mt-0 mb-2 d-flex align-items-center">
+                <input type="checkbox" formControlName="editEvent">
+                <label for="editEvent" class="m-0 ml-2 mr-2"> Edit Event </label>
+            </div>
+            <div class="row mt-0 mb-2 d-flex align-items-center">
+                <input type="checkbox" formControlName="viewEvent">
+                <label for="viewEvent" class="m-0 ml-2 mr-2"> View Event </label>
+            </div>
+            <div class="row mt-0 mb-2 d-flex align-items-center">
+                <input type="checkbox" formControlName="reportsExplorer">
+                <label for="reportsExplorer" class="m-0 ml-2 mr-2"> Reports Explorer </label>
+            </div>
+            <div class="row mt-0 mb-2 d-flex align-items-center">
+                <input type="checkbox" formControlName="permissionsManager">
+                <label for="permissionsManager" class="m-0 ml-2 mr-2"> Permissions Manager </label>
+            </div>
+            <div class="row mt-0 mb-2 d-flex align-items-center">
+                <input type="checkbox" formControlName="dataManager">
+                <label for="dataManager" class="m-0 ml-2 mr-2"> Data Manager </label>
+            </div>
+            <div class="row mt-0 mb-2 d-flex align-items-center">
+                <input type="checkbox" formControlName="qualificationManager">
+                <label for="qualificationManager" class="m-0 ml-2 mr-2"> Qualification Manager </label>
+            </div>
+        </form>
+        <div class="row" *ngIf="createError">
+            <div class="col text-danger">
+                {{ createError }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+                <button class="btn btn-primary btn-sm text-uppercase" color="primary" (click)="createGroup()"> Create Group </button>
+            </div>
+        </div>
+    </div>
+</div>

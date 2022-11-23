@@ -1,0 +1,38 @@
+<div class="mainHeader">
+  <div class="container">
+    <div class="header d-flex align-items-center justify-content-between">
+      <div class="logoSection">
+        <a href="javascript:void(0);" class="d-flex align-items-center" routerLink="/">
+          <img src="assets/logo.png" class="mr-3">
+          <div class="compuSystem"> CompuSystems </div>
+        </a>
+        <div class="nav-toggle"></div>
+      </div>
+      <div class="rightSection" style="transition-property: none;">
+        <div class="d-flex align-items-center" *ngIf="loggedIn" style="font-size: 20px;">
+          <!-- <a class="welcome mr-2" (click)="onProfileClick()">
+            <span>
+              Welcome, <span id="firstName">{{ username }}</span>!
+            </span>
+          </a> -->
+          <a *ngIf="showHomeIcon" href="javascript:void(0);" class="mx-2" routerLink="/">
+            <i class="fas fa-home"></i>
+          </a>
+          <div ngbDropdown class="userDropdown d-flex align-items-center justify-content-center" placement="bottom-right">
+            <button class="btn btn-outline-primary p-0 border-0 d-flex align-items-center justify-content-center" id="dropdownMenuButton" ngbDropdownToggle>
+              <i class="fas fa-user"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+              <button ngbDropdownItem class="dropdownItem w-100 border-bottom" routerLink="/account">
+                Account
+              </button>
+              <button ngbDropdownItem class="dropdownItem w-100" (click)="userLogOut()">
+                Log out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

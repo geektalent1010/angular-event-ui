@@ -1,0 +1,42 @@
+.modal-header {
+    .modal-title {
+        font-weight: 500;
+    }
+}
+.modal-body {
+    max-height: 70vh;
+    select.form-control, input.form-control {
+        height: 38px;
+    }
+    input[type=file] {
+        border: 1px solid transparent;
+    }
+    .questionsTable {
+        overflow-y: auto;
+        max-height: 420px;
+        table.table {
+            th, td {
+                padding: 0.3rem;
+            }
+            th.category {
+                width: 20%;
+            }
+            th.PollingType {
+                width: 15%;
+            }
+        }
+    }
+}
+.modal-footer {
+    padding: 0 16px 24px;
+    button {
+        font-size: .84rem;
+        padding: 8px 24px;
+    }
+    button.btn-success {
+        // background-color: #00a844 !important;
+    }
+    button.saveBtn {
+        margin-right: 1rem;
+    }
+}

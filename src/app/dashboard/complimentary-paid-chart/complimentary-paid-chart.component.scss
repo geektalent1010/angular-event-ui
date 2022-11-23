@@ -1,0 +1,31 @@
+p {
+  font-family: Lato;
+}
+.header-bar {
+  height: 0.5em;
+  width: 100%;
+  background-color: orange;
+}
+.card-title {
+  padding-top: 1.5em;
+  line-height: 1.5em;
+  height: 3em;
+  text-align: center;
+}
+.card {
+  // width: 100%;
+  height: 30em;
+  position: relative;
+}
+/* .canvas { */
+/*   height: 80%; */
+/* } */
+.inner {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  bottom: 0;
+}
+.panel-body {
+  width: 50%;
+}

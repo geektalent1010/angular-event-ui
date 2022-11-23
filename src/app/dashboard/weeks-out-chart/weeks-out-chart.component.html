@@ -1,0 +1,27 @@
+    <div class="card rounded-bottom border border-light shadow-lg">
+      <div class="header-bar">
+        <h2 class="card-title">{{ title }}</h2>
+        <hr />
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div style="display: inline-block" class="inner">
+              <div *ngIf="waiting" style="margin:16% 50%;">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <canvas
+                *ngIf="!waiting"
+                baseChart
+                [datasets]="chartData"
+                [labels]="chartLabels"
+                [options]="chartOptions"
+                [legend]="chartLegend"
+                [chartType]="chartType"
+                [plugins]="chartPlugins"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

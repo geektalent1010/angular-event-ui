@@ -1,0 +1,54 @@
+<div class="modal-header border-0 pb-0">
+  <h2 class="modal-title w-100 text-center m-0">PSM Export</h2>
+</div>
+<div
+  class="modal-footer border-0 align-items-center justify-content-center pt-0"
+>
+  <div class="container-fluid w-auto">
+    <div
+      class="row d-flex flex-column align-content-center align-items-left px-4 py-3 m-0"
+    >
+      <div class="my-1">
+        <input
+          type="radio"
+          [checked]="exportType === 'selected'"
+          (click)="setExportType('selected')"
+        />
+        Selected tab
+      </div>
+      <div class="my-1">
+        <input
+          type="radio"
+          [checked]="exportType === 'event'"
+          (click)="setExportType('event')"
+        />
+        Event
+      </div>
+    </div>
+    <div
+      class="row d-flex aligh-items-center justify-content-around border-top border-white py-3 m-0"
+    >
+      <div class="mx-1">
+        <input
+          type="radio"
+          [checked]="fileType === 'excel'"
+          (click)="setFileType('excel')"
+        />
+        Excel
+      </div>
+      <div class="mx-1">
+        <input
+          type="radio"
+          [checked]="fileType === 'csv'"
+          (click)="setFileType('csv')"
+        />
+        CSV
+      </div>
+    </div>
+    <div class="row m-0">
+      <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+        <button class="btn mx-2" (click)="export()">Export</button>
+      </div>
+    </div>
+  </div>
+</div>

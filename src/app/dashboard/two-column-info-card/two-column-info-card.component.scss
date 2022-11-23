@@ -1,0 +1,26 @@
+.gray-bgc {
+  background-color: rgba(211, 211, 211, 0.3);
+  border-top-width: 20px;
+  border-bottom-width: 20px;
+}
+.row {
+  margin-bottom: 5px;
+}
+.container {
+  padding: 20px;
+  padding-bottom: 50px;
+  height: 18em;
+}
+.header-bar {
+  height: 0.5em;
+  width: 100%;
+  background-color: navy;
+}
+.row h4,
+h5 {
+  text-align: center;
+}
+.card-title {
+  line-height: 1.5em;
+  height: 3em;
+}

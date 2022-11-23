@@ -1,0 +1,175 @@
+<div class="TitleSection row">
+    <div class="col-12 d-flex align-items-center justify-content-between">
+        <h1 class="title font-weight-bold m-0">
+            Exhibitor Allotment <i class="fas fa-plus ml-2" *ngIf="pageType !== 'view'" (click)="createAllotment()"></i>
+        </h1>
+        <div class="d-flex align-items-center">
+            <button class="btn btn-primary mr-2" (click)="selectAllItems()">Select/Deselect All</button>
+            <button class="btn btn-primary" [disabled]="disableDeleteBtn()" (click)="deleteSelectedItems()">Delete Items</button>
+        </div>   
+    </div>
+</div>
+<div class="allotmentTable row">
+    <div class="col-12 p-0">
+        <table class="table table-striped table-responsive text-center">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class=""> Org ID </th>
+                    <th class=""> Exhibitor ID </th>
+                    <th class=""> Company Name </th>
+                    <th class=""> Contract # </th>
+                    <th class=""> Email </th>
+                    <th class=""> Address </th>
+                    <th class=""> Address2 </th>
+                    <th class=""> City </th>
+                    <th class=""> State </th>
+                    <th class=""> Zip </th>
+                    <th class=""> Country </th>
+                    <th class="phone"> Phone </th>
+                    <th class="fax"> Fax </th>
+                    <th class=""> Allotment </th>
+                    <th class="actions border-0" *ngIf="pageType !== 'view'"> Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let allotment of exhibitorAllotmentList; let i = index">
+                    <td>
+                        <label>
+                            <input type="checkbox" class="" [checked]="selectedItems[i]" (change)="checkedItem($event.target.checked, i)">
+                        </label>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['Org_Id'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Org_Id">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Org_Id }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['Exhibitor_ID'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Exhibitor_ID">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Exhibitor_ID }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['Company_Name'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Company_Name">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Company_Name }}
+                        </div>
+                    </td>
+                    <td class="">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Contract_num">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Contract_num }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['Primary_Contact_Email_Address'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Primary_Contact_Email_Address">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Primary_Contact_Email_Address }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['Address1'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Address1">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Address1 }}
+                        </div>
+                    </td>
+                    <td class="">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Address2">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Address2 }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['City'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.City">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.City }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['State'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.State">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.State }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['Postal_Code'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Postal_Code">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Postal_Code }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['Country'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Country">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Country }}
+                        </div>
+                    </td>
+                    <td class="phone" [ngClass]="{'invalid-input': formError['Phone_Number'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Phone_Number" mask="(000) 000-0000">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Phone_Number | mask: '(000) 000-0000' }}
+                        </div>
+                    </td>
+                    <td class="fax">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Fax">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Fax }}
+                        </div>
+                    </td>
+                    <td class="" [ngClass]="{'invalid-input': formError['Allotment'] && i === editIndex}">
+                        <div *ngIf="i === editIndex">
+                            <input type="text" [(ngModel)]="allotment.Allotment">
+                        </div>
+                        <div *ngIf="i !== editIndex">
+                            {{ allotment.Allotment }}
+                        </div>
+                    </td>
+                    <td class="actions border-0" *ngIf="pageType !== 'view'">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a class="px-1" style="cursor: pointer;" *ngIf="i != editIndex">
+                                <span>
+                                    <i class="far fa-edit" (click)="editAllotment(i)"></i>
+                                </span>
+                            </a>
+                            <a class="px-2" style="cursor: pointer;" *ngIf="i == editIndex">
+                                <span>
+                                    <i class="fas fa-plus editIcon" (click)="saveAllotment(i)"></i>
+                                </span>
+                            </a>
+                            <div (click)="removeAllotment(i)" class="pointer ml-2">
+                                <i class="far fa-trash-alt"></i>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<!-- <h3>Select date range:</h3>
+     <mat-form-field class="example-form-field" appearance="fill">
+     <mat-date-range-input
+     [formGroup]="campaignOne"
+     [rangePicker]="campaignOnePicker"
+     >
+     <input matStartDate placeholder="Start date" formControlName="start" />
+     <input matEndDate placeholder="End date" formControlName="end" />
+     </mat-date-range-input>
+     <mat-datepicker-toggle
+     matSuffix
+     [for]="campaignOnePicker"
+     ></mat-datepicker-toggle>
+     <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+     </mat-form-field>
+-->
+
+<ngb-datepicker
+  #dp
+  [(ngModel)]="model"
+    [startDate]="dateTime.date"
+  (navigate)="date = $event.next"
+></ngb-datepicker>
+<ngb-timepicker [(ngModel)]="time" [meridian]="true"></ngb-timepicker>

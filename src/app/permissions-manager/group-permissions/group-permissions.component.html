@@ -1,0 +1,113 @@
+<div class="modal-header border-0">
+    <h3 class="modal-title font-weight-bold m-0"> Group Permissions Manager </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body p-0">
+    <div class="container p-0">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex justify-content-between">
+                <div class="name">
+                    <table class="groupTable table">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Group
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let group of searchedGroupList; let i = index" [class.highlight]="group.highlight">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="mr-2"> {{group.name }} </span>
+                                        <i class="fas fa-times-circle" (click)="deleteGroup(group, i)"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="permissions">
+                    <table class="groupTable table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="createEvent"> Create Event </th>
+                                <th scope="col" class="editEvent"> Edit Event </th>
+                                <th scope="col" class="viewEvent"> View Event </th>
+                                <th scope="col" class="permissionsManager"> Permissions Manager </th>
+                                <th scope="col" class="dataManager"> Data Manager </th>
+                                <th scope="col" class="reportsExplorer"> Reports Explorer </th>
+                                <th scope="col" class="qualificationManager"> Qualification Manager </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let group of searchedGroupList; let i = index" [class.highlight]="group.highlight">
+                                <td>
+                                    <select [(ngModel)]="group.createEvent">
+                                        <option value="Allow"> Allow </option>
+                                        <option value="Deny"> Deny </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select [(ngModel)]="group.editEvent">
+                                        <option value="Allow"> Allow </option>
+                                        <option value="Deny"> Deny </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select [(ngModel)]="group.viewEvent">
+                                        <option value="Allow"> Allow </option>
+                                        <option value="Deny"> Deny </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select [(ngModel)]="group.permissionsManager">
+                                        <option value="Allow"> Allow </option>
+                                        <option value="Deny"> Deny </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select [(ngModel)]="group.dataManager">
+                                        <option value="Allow"> Allow </option>
+                                        <option value="Deny"> Deny </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select [(ngModel)]="group.reportsExplorer">
+                                        <option value="Allow"> Allow </option>
+                                        <option value="Deny"> Deny </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select [(ngModel)]="group.qualificationManager">
+                                        <option value="Allow"> Allow </option>
+                                        <option value="Deny"> Deny </option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-between">
+                <div class="form my-1 text-left">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control form-input" [formControl]="searchControl" placeholder="Search User">
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm text-uppercase text-right mr-2" color="primary" (click)="createGroup()"> Create Group </button>
+                    <button class="btn btn-primary btn-sm text-uppercase text-right mr-2" color="primary" (click)="save()"> Save </button>
+                    <button class="btn btn-primary btn-sm text-uppercase text-right" color="primary" (click)="closeModal()"> Cancel </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

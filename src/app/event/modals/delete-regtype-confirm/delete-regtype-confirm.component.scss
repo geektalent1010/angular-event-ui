@@ -1,0 +1,18 @@
+.modal-header {
+    .modal-title {
+        color: #004369;
+    }
+}
+.modal-footer {
+    button {
+        color: #004369;
+        border: 0;
+        background-color: #f4f4f4;
+        height: 28px;
+        border-radius: 26px;
+        width: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

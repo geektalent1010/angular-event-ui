@@ -1,0 +1,58 @@
+<div class="row px-3 px-lg-5">
+    <div class="col-12 px-0 px-md-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="title font-weight-bold m-0">
+                    Page Builder Templates
+                </h1>
+            </div>
+        </div>
+        <div class="row categories">
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <div>
+                    <button
+                        *ngFor="let category of categoriesList"
+                        class="btn border-0 mr-3"
+                        [class.active]="category === selectedCategory"
+                        (click)="changeCategory(category)"
+                    >
+                        {{ category }}
+                    </button>
+                </div>
+                <div>
+                    <span class="selection mr-3"> Current Selection </span>
+                    <span class="selectedTemplate"> {{ selectedTemplate?.templateName }} </span>
+                    <i class="fas fa-plus ml-2"
+                        *ngIf="pageType !== 'view'"
+                        [class.active]="
+                            selectedCategory === 'Attendee' && (selectedTemplate.json === builderJson || selectedTemplate.json === originalBuilderJson) ||
+                            selectedCategory === 'Exhibitor' && (selectedTemplate.json === exhibitorJson || selectedTemplate.json === originalExhibitorJson) ||
+                            selectedCategory === 'Organizer' && (selectedTemplate.json === organizerJson || selectedTemplate.json === originalOrganizerJson) ||
+                            selectedCategory === 'Commander' && (selectedTemplate.json === commanderJson || selectedTemplate.json === originalCommanderJson) ||
+                            selectedCategory === 'Event Portal' && (selectedTemplate.json === eventPortalJson || selectedTemplate.json === originalEventPortalJson)
+                        "
+                        (click)="pageType !== 'view' && openPaperbits()"
+                    ></i>
+                </div>
+            </div>
+        </div>
+        <div class="row builderSection">
+            <ng-container *ngFor="let template of builderTemplate; let i = index">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 pb-3" *ngIf="template.templateType === selectedCategory">
+                    <div class="templateCard h-100">
+                        <div class="header d-flex align-items-center p-2">
+                            <input type="radio" [name]="template.templateType" [checked]="template.checked" (input)="changeSelectedTemplate(i)">
+                            <h4 class="m-0 w-100 text-center">
+                                {{ template.templateName }}
+                            </h4>
+                            <i *ngIf="template.templateType === 'Attendee'" class="fas fa-cog active" (click)="configureWorkflow(i)"></i>
+                        </div>
+                        <div class="p-1">
+                            <img [src]="template.img" class="w-100">
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

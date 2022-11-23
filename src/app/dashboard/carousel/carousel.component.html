@@ -1,0 +1,91 @@
+<div *ngIf="cardDecks">
+  <div class="container">
+    <div class="row">
+      <div
+        *ngFor="let cardDeck of cardDecks; let i = index"
+        class="col-lg col-md-12"
+      >
+        <ngb-carousel
+          [showNavigationArrows]="cardDeck.cards.length > 1"
+          [showNavigationIndicators]="cardDeck.cards.length > 1"
+        >
+          <ng-template ngbSlide *ngFor="let card of cardDeck.cards">
+            <app-two-column-info-card
+              [card]="card"
+              [waiting]="waiting.card"
+              [idx]="i"
+            ></app-two-column-info-card>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="snapshotDecks">
+  <div class="container">
+    <div class="row">
+      <div
+        *ngFor="let snapshotDeck of snapshotDecks; let i = index"
+        class="col-lg col-md-12"
+      >
+        <ngb-carousel
+          [showNavigationArrows]="snapshotDeck.snapshots.length > 1"
+          [showNavigationIndicators]="snapshotDeck.snapshots.length > 1"
+        >
+          <ng-template ngbSlide *ngFor="let snapshot of snapshotDeck.snapshots">
+            <app-snapshot
+              [snapshot]="snapshot"
+              [waiting]="waiting.snapshot"
+              [timeRange]="timeRange"
+              [idx]="i"
+            ></app-snapshot>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="top10Decks">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let top10Deck of top10Decks" class="col-lg col-md-12">
+        <ngb-carousel
+          [showNavigationArrows]="top10Deck.top10s.length > 1"
+          [showNavigationIndicators]="top10Deck.top10s.length > 1"
+        >
+          <ng-template ngbSlide *ngFor="let top10 of top10Deck.top10s">
+            <app-top-n-table
+              [top10]="top10"
+              [sessions]="top10.sessions"
+              [companies]="top10.companies"
+              [headerTitles]="top10.headers"
+              [waiting]="waiting.top10"
+            ></app-top-n-table>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mapDataDecks">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let mapDataDeck of mapDataDecks" class="col-lg col-md-12">
+        <ngb-carousel
+          [showNavigationArrows]="mapDataDeck.mapDatas.length > 1"
+          [showNavigationIndicators]="mapDataDeck.mapDatas.length > 1"
+        >
+          <ng-template ngbSlide *ngFor="let mapData of mapDataDeck.mapDatas">
+            <app-choropleth
+              [mapData]="mapData"
+              [waiting]="waiting.map"
+            ></app-choropleth>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+    </div>
+  </div>
+</div>

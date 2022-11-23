@@ -1,0 +1,200 @@
+<div class="container" style="margin: 3em auto;">
+  <!-- <div class="mt-1" style="font-weight: bolder; font-size: x-large;">
+    Business Rule Engine
+  </div>
+  <br />
+  <div>
+    Use the condition builder below to setup dynamic and real-world conditions and executable actions for Attendees
+    registering for your event. Start by setting up a new condition (eg. If Reg Type = Attendee AND Are you a student?
+    (Demo. Question) = Yes THEN Add Student Transcript Qualification
+  </div> -->
+  <button type="button"  class="btn btn-sm btn-primary" (click)="createNewRule()">Create Rule</button>
+  <div>
+    <div class="row">
+      <div class="col-md-9 border">
+        <div class="container">
+          <p><strong>{{(editIndex > -1)?'Modify': 'Create'}} Trigger Builder</strong></p>
+          <div id="bre_stepper" class="bs-stepper">
+            <div class="bs-stepper-header">
+              <div class="step" data-target="#test-l-1">
+                <button disabled class="step-trigger">
+                  <span class="bs-stepper-circle" [ngClass]="{'step-icon': true }">1</span>
+                  <span class="bs-stepper-label">Rule</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-2">
+                <button disabled class="step-trigger">
+                  <span class="bs-stepper-circle" [ngClass]="{'step-icon': true }">2</span>
+                  <span class="bs-stepper-label">Select Action</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-3">
+                <button disabled class="step-trigger">
+                  <span class="bs-stepper-circle" [ngClass]="{'step-icon': true }">3</span>
+                  <span class="bs-stepper-label">{{ACTIONS.CHAIN_DEMO_QUESTIONS == currentRule.selectedAction ? 'Workflow':'Condition'}} Builder</span>
+                </button>
+              </div>
+            </div>
+            <br>
+            <div class="bs-stepper-content">
+              <div id="test-l-1" class="content">
+                <div class="row">
+                  <div class="col-md-2 m-auto">
+                    <strong>Workflow</strong>
+                  </div>
+                  <div class="col-md-4">
+                    <select name="workflow" id="workflow" class="form-control" disabled>
+                      <option [value]="'attendee'">{{'attendee'}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2 m-auto">
+                    <strong>RegType</strong>
+                  </div>
+                  <div class="col-md-4">
+                    <select name="regType" id="regType" class="form-control" [ngModel]="currentRule.regType"
+                      (ngModelChange)="onRegTypeChange($event)">
+                      <option *ngFor="let category of jobsCategory" [value]="category">{{category}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2 m-auto">
+                    <strong>RuleName</strong>
+                  </div>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name="ruleName" [(ngModel)]="currentRule.ruleName">
+                  </div>
+                  <div class="col-md-3">
+                    <select name="selectedWorkflow" id="selectedWorkflow" class="form-control" [ngModel]="currentRule.selectedWorkflow"
+                      (ngModelChange)="onWorkflowChange($event)">
+                      <option *ngFor="let wf of displayPages" [value]="wf.name">{{wf.label}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <select name="selectedPage" id="selectedPage" class="form-control" [ngModel]="currentRule.selectedPage"
+                      (ngModelChange)="onPageChange($event)">
+                      <option *ngFor="let pg of pageList" [value]="pg.name">{{pg.label}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-sm btn-primary float-right" (click)="next(pageNames.rule)">Next</button>
+                  </div>
+                </div>
+              </div>
+              <div id="test-l-2" class="content">
+                <div class="row" style="text-align: left;">
+                  <ul class="p-0 m-0" style="list-style-type: none;">
+                    <li class="font-weight-bold">Select Action</li>
+                    <li class="py-1 cursor-pointer" *ngFor="let action of actions">
+                      <label class="cursor-pointer">
+                        <input type="radio" name="action" class="mr-3 position-relative"
+                          [checked]="currentRule.selectedAction == action.name"
+                          (click)="onChangeActionValue(action.name, pageNames.action_details)">
+                        <span>{{action.name}}</span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-sm btn-primary float-left" (click)="previous()">Previous</button>
+                    <button type="button" class="btn btn-sm btn-primary float-right" (click)="next(pageNames.action_details)">Next</button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="test-l-3" class="content">
+                <div *ngIf="loadBuilder">
+                  <app-custom-querybuilder id="query-builder" style="overflow: auto;"
+                    class="margin30" [data]="currentRule.query" [(config)]="config" [questionData]="question_data" [selectedAction] ="currentRule.selectedAction"
+                    [defaultRegType]="currentRule.regType" [regTypeInp]="_regTypeInp" [sessions]="sessions">
+                  </app-custom-querybuilder>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2">
+                    <button type="button" class="btn btn-sm btn-primary" (click)="previous()">Previous</button>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-primary float-right" (click)="saveRule()">{{(editIndex >
+                      -1)?'Save':'Create'}} Business Rule</button>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-3">
+        <div class="list-group">
+          <div class="list-group-item" style="width: 100%;" *ngFor="let rule of ruleList; let i = index">
+            <div class="row m-0">
+              <div class="col-md-11 p-0">
+                <span style="max-width: 200px;">
+                  <span style="color: red;" *ngIf = "rule.businessRule.isPublished == false">Outdated</span>
+                  {{ getDisplayMessage(rule.businessRule) }}
+                </span>
+              </div>
+              <div class="col-md-1 p-0">
+                <nav class="navbar navbar-default p-0">
+                  <ul class="nav">
+                    <li class="dropdown" style="width: 20px;">
+                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false"></a>
+                      <ul class="dropdown-menu">
+                        <!-- <ng-container *ngIf="!rule.businessRule.isPublished"> -->
+                          <li (click)="selectRule(rule.businessRule.ruleName)" role="button"><i
+                              class="fas fa-edit mx-2"></i><span class="pl-1">Edit</span>
+                          </li>
+                          <hr>
+                        <!-- </ng-container> -->
+
+                        <li (click)="duplicateRule(rule.businessRule.ruleName)" role="button"><i
+                            class="fas fa-clone mx-2"></i><span class="pl-1">Duplicate</span></li>
+                        <hr>
+
+                        <li (click)="deleteRule(rule)" role="button"><i
+                          class="fas fa-trash mx-2"></i><span class="pl-1">Delete</span></li>
+
+                        <!-- <ng-container *ngIf="!rule.businessRule.isPublished">
+                          <hr>
+                          <li (click)="changePublish(i,'Published')" role="button"><i
+                              class="fas fa-upload mx-2"></i><span class="pl-1">Publish</span></li>
+                        </ng-container> -->
+
+                        <!-- <ng-container *ngIf="rule.businessRule.isPublished">
+                          <hr>
+                          <li (click)="changePublish(i,'UnPublished')" role="button"
+                            *ngIf="rule.businessRule.isPublished"><i class="fas fa-download mx-2"></i><span
+                              class="pl-1">UnPublish</span>
+                          </li>
+                        </ng-container> -->
+
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div>
+    <button class="btn btn-primary float-right" (click)="excecuteRules()"
+      *ngIf="ruleList.length > 0 && loadBuilder">Excecute</button>
+  </div> -->
+</div>

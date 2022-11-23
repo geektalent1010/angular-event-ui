@@ -1,0 +1,27 @@
+<div *ngIf="mapData">
+  <div class="card rounded-bottom border border-light shadow">
+    <div class="header-bar"></div>
+    <div class="card-body">
+      <h2 class="card-title">{{ mapData.title }}</h2>
+      <hr />
+
+      <div *ngIf="waiting" style="margin:18% 50%;">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div *ngIf="!waiting" id="wrapper">
+        <div class="element">
+          <highcharts-chart
+            id="chart"
+            [Highcharts]="Highcharts"
+            [constructorType]="chartConstructor"
+            [options]="chartOptions!"
+            style="width: 100%; height: 80%; display: block;"
+          >
+          </highcharts-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

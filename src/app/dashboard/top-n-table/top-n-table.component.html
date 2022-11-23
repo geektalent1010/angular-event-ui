@@ -1,0 +1,89 @@
+<div *ngIf="top10">
+  <div class="card rounded-bottom border border-light shadow">
+    <div class="header-bar"></div>
+    <div class="card-body">
+      <div class="d-flex justify-content-between p-2">
+        <h2 class="card-title">{{ top10.title }}</h2>
+        <hr />
+        <div *ngIf="!waiting">
+          <ngb-pagination
+            *ngIf="top10.sessions.length > pageSize"
+            [collectionSize]="top10.sessions.length"
+            [(page)]="page"
+            [pageSize]="pageSize"
+            (pageChange)="refreshSessions()"
+          >
+          </ngb-pagination>
+        </div>
+      </div>
+      <div *ngIf="waiting" style="height:51em; padding:50% 50%;">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <div *ngIf="!waiting">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <!-- <th scope="col" class="w-2">#</th> -->
+              <ng-container *ngFor="let header of headerTitles; let i = index">
+                <th
+                  scope="col"
+                  [ngClass]="{
+                    'w-35': i == 0,
+                    'w-21': i != 0,
+                    'text-center': i > 0
+                  }"
+                  sortable="{{ i }}"
+                  (sort)="onSort($event)"
+                >
+                  {{ headerTitles[i] }}
+                  <i
+                    class="fas"
+                    [ngClass]="{
+                      'fa-sort-down': directions[i] == 'desc',
+                      'fa-sort-up': directions[i] == 'asc',
+                      'fa-sort': directions[i] == ''
+                    }"
+                  ></i>
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody *ngIf="top10.companies">
+            <tr *ngFor="let company of sortedCompanies">
+              <!-- <th scope="row">{{ company.id }}</th> -->
+              <ng-container *ngFor="let field of keys.companies; let i = index">
+                <td
+                  [ngClass]="{
+                    'text-center': i > 0
+                  }"
+                >
+                  {{ company_column_prefixes[i]
+                  }}{{ i > 0 ? (company[field] | number) : company[field] }}
+                </td></ng-container
+              >
+            </tr>
+          </tbody>
+
+          <tbody *ngIf="sessions">
+            <tr *ngFor="let session of sortedSessions">
+              <!-- <th scope="row">{{ session.id }}</th> -->
+              <ng-container *ngFor="let field of keys.sessions; let i = index">
+                <td
+                  [ngClass]="{
+                    'text-center': i > 0
+                  }"
+                >
+                  {{ i > 0 ? (session[field] | number) : session[field] }}
+                  {{ i == 3 ? "%" : "" }}
+                </td></ng-container
+              >
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

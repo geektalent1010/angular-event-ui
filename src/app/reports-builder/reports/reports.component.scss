@@ -1,0 +1,68 @@
+#ul-nav {
+  list-style-type: "";
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+ul > li {
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+ul > a {
+  cursor: pointer;
+} 
+ 
+.filter-li {
+  padding: 0px;
+}
+:host ::ng-deep .mat-tab-body-wrapper {
+  height: 100vh;
+}
+
+:host ::ng-deep .mat-tab-body.mat-tab-body-active {
+  height: 100vh;
+}
+.or-button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.or-button-hr {
+  flex: 1;
+  border: none;
+  height: 1px;
+  background: black;
+}
+
+.remove-button {
+  float: right;
+}
+
+.report-container {
+  position: relative;
+  top: -200px;
+}
+
+#tab-container{
+  margin: 0px;
+}
+
+.w100{
+  width:100%;
+}
+
+.last-child {
+  margin-bottom: 0rem !important;
+}
+
+.savedReports {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.savedReportForm {
+  display: flex;
+  justify-content: space-between;
+}

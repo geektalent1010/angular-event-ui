@@ -1,0 +1,277 @@
+<div class="modal-header">
+    <h3 class="modal-title text-uppercase font-weight-bold m-0">
+        {{ isEdit ? "Edit" : "Create New" }} Sessions
+    </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <form [formGroup]="sessionForm">
+            <div>
+                <label>Session Name:*</label><br />
+                <input type="text" formControlName="sesName" class="form-control" value="" />
+                <div *ngIf="
+            sessionForm.get('sesName').dirty ||
+            sessionForm.get('sesName').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesName').hasError('required')">
+                        This field is required.
+                    </small>
+
+                    <small class="text-danger" *ngIf="sessionForm.get('sesName').hasError('maxlength')">
+                        The maximum length for this field is
+                        {{ sessionForm.get("sesName").errors.maxlength.requiredLength }}
+                        characters. <br />
+                    </small>
+                </div>
+                <br /><br />
+
+                <label>Session Type:*</label>
+
+                <select name="sessionType" formControlName="sesType" class="form-control">
+                    <option *ngFor="let option of sessionTypesOptions; let i = index" [value]="option">
+                        {{ option }}
+                    </option>
+                </select>
+                <div *ngIf="
+            sessionForm.get('sesType').dirty ||
+            sessionForm.get('sesType').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesType').hasError('required')">
+                        This field is required.
+                    </small>
+                </div>
+                <br /><br />
+
+                <label>Public or Private:*</label><br />
+                <select name="exhibiting" formControlName="sesPrivateSession" class="form-control">
+                    <option value="N">Public</option>
+                    <option value="Y">Private</option>
+                </select>
+                <div *ngIf="
+            sessionForm.get('sesPrivateSession').dirty ||
+            sessionForm.get('sesPrivateSession').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesPrivateSession').hasError('required')">
+                        This field is required.
+                    </small>
+                </div>
+                <br /><br />
+                <label>Number of Attendees:*</label><br />
+                <input type="number" maxlength="4" class="form-control" formControlName="sesCapacity"
+                    name="numAttendees" />
+                <div *ngIf="
+            sessionForm.get('sesCapacity').dirty ||
+            sessionForm.get('sesCapacity').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesCapacity').hasError('required')">
+                        This field is required.
+                    </small>
+
+                    <small class="text-danger" *ngIf="sessionForm.get('sesCapacity').hasError('max')">
+                        The maximum value for this field is 9999
+                        <br />
+                    </small>
+
+                    <small class="text-danger" *ngIf="sessionForm.get('sesCapacity').hasError('min')">
+                        The minimum value for this field is 1
+                        <br />
+                    </small>
+                </div>
+                <br /><br />
+                <label>Session Topics</label><br />
+
+                <select class="form-control" id="eventType" formControlName="sesTopics" name="eventType">
+                    <option *ngFor="let option of sessionTopicsOptions; let i = index" [value]="option">
+                        {{ option }}
+                    </option>
+                </select>
+                <div *ngIf="
+            sessionForm.get('sesTopics').dirty ||
+            sessionForm.get('sesTopics').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesTopics').hasError('required')">
+                        This field is required.
+                    </small>
+                </div>
+                <br /><br />
+                <label>Speaker:</label><br />
+                <select class="form-control" id="sesSpeaker" formControlName="sesSpeaker" name="sesSpeaker">
+                    <option *ngFor="let option of speakerList; let i = index" [value]="option.speakerName">
+                        {{ option.speakerName }}
+                    </option>
+                </select>
+
+                <div *ngIf="
+            sessionForm.get('sesSpeaker').dirty ||
+            sessionForm.get('sesSpeaker').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesSpeaker').hasError('required')">
+                        This field is required.
+                    </small>
+
+                    <small class="text-danger" *ngIf="sessionForm.get('sesSpeaker').hasError('maxlength')">
+                        The maximum length for this field is
+                        {{ sessionForm.get("sesSpeaker").errors.maxlength.requiredLength }}
+                        characters. <br />
+                    </small>
+                </div>
+                <br /><br />
+                <label>Synopsis:*</label><br />
+                <input type="text" formControlName="sesSynopsis" class="form-control" value="" />
+                <div *ngIf="
+            sessionForm.get('sesSynopsis').dirty ||
+            sessionForm.get('sesSynopsis').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesSynopsis').hasError('required')">
+                        This field is required.
+                    </small>
+
+                    <small class="text-danger" *ngIf="sessionForm.get('sesSynopsis').hasError('maxlength')">
+                        The maximum length for this field is
+                        {{ sessionForm.get("sesSynopsis").errors.maxlength.requiredLength }}
+                        characters. <br />
+                    </small>
+                </div>
+                <br /><br />
+
+                <label>Cost:*</label><br />
+                <div class="input-group-prepend" style="width: auto; float: left; height: 54px">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input type="number" class="form-control" formControlName="sesCost" value="50.00" style="width: 80%"
+                    name="costSession" id="costSession" aria-label="Amount (to the nearest dollar)" />
+                <div *ngIf="
+            sessionForm.get('sesCost').dirty ||
+            sessionForm.get('sesCost').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesCost').hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="+sessionForm.controls.sesCost.value > 9999">
+                        Session Cost can't be greater than 9999
+                    </small>
+                </div>
+                <br /><br />
+
+                <label>Discount:*</label><br />
+                <select class="form-control" id="sesDiscount" formControlName="sesDiscount" name="sesDiscount">
+                    <option value="" checked>No Discount</option>
+                    <option *ngFor="let discount of discountList; let i = index" [value]="discount.discountName">
+                        {{ discount.discountName }}
+                    </option>
+                </select>
+                <div *ngIf="
+            sessionForm.get('sesDiscount').dirty ||
+            sessionForm.get('sesDiscount').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesDiscount').hasError('required')">
+                        This field is required.
+                    </small>
+                </div>
+                <br /><br />
+
+                <label>Start Date:*</label><br />
+                <input type="date" formControlName="sesStartDate" class="form-control" value="" [min]="date" />
+                <div *ngIf="
+            sessionForm.get('sesStartDate').dirty ||
+            sessionForm.get('sesStartDate').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesStartDate').hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="
+              isDateOutOfOrder(
+                sessionForm.get('sesStartDate'),
+                sessionForm.get('sesEndDate')
+              )
+            ">
+                        Dates are out of order
+                    </small>
+                </div>
+                <br /><br />
+                <label>Start Time:*</label><br />
+                <input type="time" formControlName="sesStartTime" class="form-control" value="" />
+                <div *ngIf="
+            sessionForm.get('sesStartTime').dirty ||
+            sessionForm.get('sesStartTime').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesStartTime').hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="
+              isTimeOutOfOrder(
+                sessionForm.get('sesStartDate'),
+                sessionForm.get('sesEndDate'),
+                sessionForm.get('sesStartTime'),
+                sessionForm.get('sesEndTime')
+              )
+            ">
+                        Start time is before end time
+                    </small>
+                </div>
+                <br /><br />
+                <label>End Date:*</label><br />
+                <input type="date" formControlName="sesEndDate" class="form-control" value="" [min]="
+            sessionForm.get('sesStartDate') &&
+            sessionForm.get('sesStartDate').value
+              ? sessionForm.get('sesStartDate').value
+              : date
+          " />
+                <div *ngIf="
+            sessionForm.get('sesEndDate').dirty ||
+            sessionForm.get('sesEndDate').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesEndDate').hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="
+              isDateOutOfOrder(
+                sessionForm.get('sesStartDate'),
+                sessionForm.get('sesEndDate')
+              )
+            ">
+                        Dates are out of order
+                    </small>
+                </div>
+                <br /><br />
+                <label>End Time:*</label><br />
+                <input type="time" formControlName="sesEndTime" class="form-control" value="" />
+                <div *ngIf="
+            sessionForm.get('sesEndTime').dirty ||
+            sessionForm.get('sesEndTime').touched
+          ">
+                    <small class="text-danger" *ngIf="sessionForm.get('sesEndTime').hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="
+              isTimeOutOfOrder(
+                sessionForm.get('sesStartDate'),
+                sessionForm.get('sesEndDate'),
+                sessionForm.get('sesStartTime'),
+                sessionForm.get('sesEndTime')
+              )
+            ">
+                        Start time is before end time
+                    </small>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-between">
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="addSession()">
+                    {{ isEdit ? "Save" : "Add" }}
+                </button>
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="closeModal()">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

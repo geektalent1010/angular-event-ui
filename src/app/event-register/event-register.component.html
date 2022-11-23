@@ -1,0 +1,168 @@
+<div class="modal-header">
+    <h2 class="modal-title pull-left">Register for Event</h2>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <tabset #eventRegisterTabs>
+        <tab heading="Registration" (selectTab)="changeTab(0)">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>Registration Options</h1>
+                    <small>Select attendee registration options.</small>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <input id="text" placeholder="Name" type="text" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input placeholder="E-Mail Address" type="text" class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input placeholder="Title" type="text" class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <small>Attendee Type</small><br />
+                            <select>
+                                <option>Buyer</option>
+                                <option>Corporate</option>
+                                <option>Media</option>
+                                <option>Student</option>
+                                <option>Exhibitor</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Demographics" (selectTab)="changeTab(1)">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>Demographics</h1>
+                    <small>Select attendee registration options.</small>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <input id="text" placeholder="Which company are you representing?" type="text" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <small>How many attendees does your company employ?</small><br />
+                            <select>
+                                <option>0-10</option>
+                                <option>10-100</option>
+                                <option>100-500</option>
+                                <option>500+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input placeholder="Enter city/state of your company" type="text" class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                Check if you want to hide contact info <input class="ml-3" type="checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+
+        <tab heading="Qualification" (selectTab)="changeTab(2)">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>Registration Options</h1>
+                    <small>Select attendee registration options.</small>
+                </div>
+                <div class="col-md-9 text-center">
+                    <img src="../../assets/img/upload-id.png" style="height:325px;">
+                </div>
+            </div>
+        </tab>
+
+        <tab heading="Sessions" (selectTab)="changeTab(3)">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>Select Sessions</h1>
+                    <small>Select attendee registration options.</small>
+                </div>
+                <div class="col-md-9">
+                    <ul>
+                        <li><input type="checkbox" id="cb1" />
+                            <label for="cb1"><img src="../../assets/img/session_template.png" /></label>
+                        </li>
+                        <li><input type="checkbox" id="cb2" />
+                            <label for="cb2"><img src="../../assets/img/session_template.png" /></label>
+                        </li>
+                        <li><input type="checkbox" id="cb3" />
+                            <label for="cb3"><img src="../../assets/img/session_template.png" /></label>
+                        </li>
+                        <li><input type="checkbox" id="cb4" />
+                            <label for="cb4"><img src="../../assets/img/session_template.png" /></label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </tab>
+
+        <tab heading="Packages" (selectTab)="changeTab(4)">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>Select Packages</h1>
+                    <small>Select attendee registration options.</small>
+                </div>
+                <div class="col-md-9">
+                    <ul>
+                        <li><input type="checkbox" id="cb5" />
+                            <label for="cb5"><img src="../../assets/img/package.png" /></label>
+                        </li>
+                        <li><input type="checkbox" id="cb6" />
+                            <label for="cb6"><img src="../../assets/img/package.png" /></label>
+                        </li>
+                        <li><input type="checkbox" id="cb7" />
+                            <label for="cb7"><img src="../../assets/img/package.png" /></label>
+                        </li>
+                        <li><input type="checkbox" id="cb8" />
+                            <label for="cb8"><img src="../../assets/img/package.png" /></label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Hotels" (selectTab)="changeTab(5)">
+            <div class="row">
+                <div class="col-md-4" *ngFor="let hotel of hotels">
+                    <div class="shadow-box" style="min-height: 200px;">
+                        <h4 style="margin-top: 30px;"><a href="#">{{ hotel[0] }}</a></h4>
+                        <small style="position: absolute; top: 15px; right: 15px;">{{ hotel[1] }}</small>
+                        <button class="btn btn-primary mt-4" style="position: absolute; bottom: 15px; right: 50px;">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" *ngIf="this.nextButtonVisibility" (click)="nextTab()">Next</button>
+    <button type="button" class="btn btn-primary" (click)="hideModal()">Close</button>
+</div>

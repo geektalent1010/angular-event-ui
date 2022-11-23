@@ -1,0 +1,169 @@
+.title {
+    color: var(--label-color);
+    i {
+        color: #6ebf49;
+        cursor: pointer;
+    }
+}
+.addSection {
+    h3 {
+        color: var(--label-color);
+        white-space: nowrap;
+    }
+    i {
+        color: #6ebf49;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+.noDiscounts {
+    background-color: #00bc31;
+    border: 2px solid #000000;
+    padding: 6px !important;
+    width: 300px;
+    /* Customize the label (the customCheckBox) */
+    label.customCheckBox {
+        height: 25px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 0;
+        cursor: pointer;
+        font-size: 1.143em;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: fit-content;
+        color: black;
+        // font-weight: normal;
+        /* On mouse-over, add a grey background color */
+        &:hover {
+            input ~ .checkmark {
+                background-color: #d03b4e;
+            }
+        }
+        /* Hide the browser's default checkbox */
+        input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+            /* When the checkbox is checked, add a blue background */
+            &:checked {
+                ~ .checkmark {
+                    background: #d03b4e;
+                    border: 0;
+                    /* Show the checkmark when checked */
+                    &::after {
+                        display: block;
+                    }
+                }
+            }
+        }
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #d03b4e;
+            border-radius: 6px;
+            border: 1px solid #d03b4e;
+            /* Create the checkmark/indicator (hidden when not checked) */
+            &:after {
+                content: "";
+                position: absolute;
+                display: none;
+                left: 9px;
+                top: 2px;
+                width: 9px;
+                height: 16px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
+
+.discountTable {
+    .table {
+        background-color: var(--table-bkg-color);
+        color: var(--main-color-1);
+        max-height: 800px;
+        td, th {
+            border: 0;
+            border-right: 2px solid #a6a6a6;
+            vertical-align: middle;
+            width: 10%;
+            div {
+                color: var(--main-color-1);
+            }
+            &:not(.actions) {
+                &:focus-within {
+                    border: 3px solid rgb(183 214 247) !important;
+                    background-color: var(sub-bkg-color) !important;
+                }
+            }
+            i {
+                color: var(--table-icon-color);
+                font-size: 18px;
+                &.editIcon {
+                    color: #6ebf49;
+                }
+            }
+            input {
+                width: fit-content;
+                border: 0;
+                background: transparent;
+                box-shadow: none;
+                outline: none;
+                color: var(--main-color-1);
+                margin: 0;
+                padding: 0;
+            }
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+            .pointer {
+                cursor: pointer;
+            }
+            input.dateRangePicker {
+                width: 0;
+                height: 0;
+            }
+            select {
+                width: 100%;
+                min-width: 70px;
+                background: transparent;            
+                color: var(--main-color-1);
+
+                option {
+                    color: var(--table-icon-color);
+                }
+            }
+            .promoAppliedRegtypes {
+                min-width: 200px;
+                width: 100%;
+            }
+        }
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: var(--table-bkg-stripe-color);
+    }
+}

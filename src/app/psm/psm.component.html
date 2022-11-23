@@ -1,0 +1,541 @@
+<div class="psmcontainer">
+    <!-- <p>Be clicking the Import button, you will be able to choose a standard PSM import file from your computer.</p>
+    <p>Once the PSM is loaded, the related fields in each of the tabs will become pre-populated.</p> -->
+    <button type="button" class="btn btn-primary" (click)="fetchAllAttachmentsToImport()" *ngIf="!importEnabled && !loading">Upload sample PSM files!</button>
+    <br/>
+    <span class="ml-1" *ngIf="!importEnabled && !loading">* click above button to upload all sample PSM files</span>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()" *ngIf="enableImport() && !loading">Import</button>
+    <div class="container">
+        <div id="stepper1" class="bs-stepper">
+            <div class="bs-stepper-header">
+                <!-- <div class="step" data-target="#test-l-0">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!data['psm_auto_conversion'] }" >0</span>
+                        <span class="bs-stepper-label">PSM Auto Conversion</span>
+                    </button>
+                </div> -->
+                <div class="step" data-target="#test-l-1">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!attachedFiles['event_info']?.fileName }" >1</span>
+                        <span class="bs-stepper-label">Event Info</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-2">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!attachedFiles['event_costs']?.fileName }">2</span>
+                        <span class="bs-stepper-label">Event Costs</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-3">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!attachedFiles['qualifications']?.fileName }">3</span>
+                        <span class="bs-stepper-label">Qualifications</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-4">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!attachedFiles['sessions']?.fileName }">4</span>
+                        <span class="bs-stepper-label">Sessions</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-5">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!attachedFiles['discounts']?.fileName }">5</span>
+                        <span class="bs-stepper-label">Discounts</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-6">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!attachedFiles['questions_goals']?.fileName }">6</span>
+                        <span class="bs-stepper-label">Questions</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-7">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!attachedFiles['exhibitorAllotment']?.fileName }">7</span>
+                        <span class="bs-stepper-label">Exhibitor Allotment</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-8">
+                    <button disabled class="step-trigger">
+                        <span class="bs-stepper-circle" [ngClass]="{'step-icon': !!attachedFiles['membsershipAllotment']?.fileName }">8</span>
+                        <span class="bs-stepper-label">Membership</span>
+                    </button>
+                </div>
+            </div>
+            <br>
+            <div class="bs-stepper-content">
+                <form (ngSubmit)="onSubmit()">
+                    <!-- <div id="test-l-0" class="content  text-center">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p style="font-weight: bold;">1.Upload Legacy PSM Document</p>
+                                <input type="file" #psm_auto_conversion name="psm_auto_conversion" id="psm_auto_conversion" /><button type="button"
+                                    (click)="reset(event_info, 'event_info')">Clear</button>
+                            </div>
+                            <div class="col-md-4">
+                                <p style="font-weight: bold;">2.Upload Progress</p>
+                                <div class="progress" >
+                                    <div class="progress-bar bg-success" style="width: 100%;height: 100%;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                </div>
+                                <p>Extraction Complete</p>
+                                <p><a href="" style="text-decoration: underline;">Download Failed Conversion</a></p>
+                            </div>
+                            <div class="col-md-4">
+                                <p style="font-weight: bold;">3.Download Standard PSM files</p>
+                                <p><a class="iconsBG" title="Excel" href='/assets/psm_samples/EventInfoINFOCSVDetails.csv' download="EventInfoINFOCSVDetails.csv"><i class="far fa-2x fa-file-excel"></i>Event Info</a> </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                           
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="next()" class="btn btn-sm btn-primary">Next</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div id="test-l-1" class="content  text-center">
+                        <p class="text-right"><a class="iconsBG" title="Excel" [href]='psmAttachments.event_info.path' download="{{psmAttachments.event_info.fileName}}"><i class="far fa-2x fa-file-excel"></i> Sample Template</a> </p>
+                        <div class="form-group">
+                            <input type="file" #event_info (change)="processOnFileSelect($event.target, 'event_info')"
+                                name="event_info" id="event_info" /><button type="button" *ngIf="attachedFiles['event_info']" (click)="getAttachedFiles('event_info')">Download</button><button type="button" (click)="reset(event_info, 'event_info')">Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="row m-0" style="width:max-content;">
+                                <table *ngIf="data['event_info']?.length > 0" class="table table-striped text-center"
+                                    style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let col of columns['event_info']; let i = index">
+                                                {{setHeader(col,
+                                                i)}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of data['event_info']">
+                                            <td *ngFor="let column of columns['event_info']">{{setData(item[column],
+                                                column)}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-success text-left" *ngIf="attachedFiles['event_info']"><strong>Updated on: </strong>{{ attachedFiles['event_info'].lastUpdated | date:'medium'}}</span>
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success text-right" *ngIf="data['event_info']?.length > 0">Number of records uploaded: <strong>{{data['event_info'].length}}</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" (click)="previous()"
+                                class="btn btn-sm btn-primary">Previous</button>
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="next()" class="btn btn-sm btn-primary">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="test-l-2" class="content  text-center">
+                        <p class="text-right"><a class="iconsBG" title="Excel" [href]='psmAttachments.event_costs.path' download="{{psmAttachments.event_costs.fileName}}"><i class="far fa-2x fa-file-excel"></i>Sample Template</a> </p>
+                        <div class="form-group">
+                            <input type="file" #event_costs (change)="processOnFileSelect($event.target, 'event_costs')"
+                                name="event_costs" id="event_costs" /><button type="button" *ngIf="attachedFiles['event_costs']"  (click)="getAttachedFiles('event_costs')">Download</button><button type="button" (click)="reset(event_costs, 'event_costs')">Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="row m-0" style="overflow: auto;max-height: 300px;">
+                                <table *ngIf="data['event_costs']?.length > 0" class="table table-striped text-center"
+                                    style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let col of columns['event_costs']; let i = index">
+                                                {{setHeader(col,
+                                                i)}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of data['event_costs']">
+                                            <td nowrap *ngFor="let column of columns['event_costs']">{{setData(item[column],
+                                                column)}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-success text-left" *ngIf="attachedFiles['event_costs']"><strong>Updated on: </strong>{{attachedFiles['event_costs'].lastUpdated | date:'medium'}}</span>
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success text-right" *ngIf="data['event_costs']?.length > 0">Number of records uploaded: <strong>{{data['event_costs'].length}}</strong></span>
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" (click)="previous()"
+                                    class="btn btn-sm btn-primary">Previous</button>
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="next()" class="btn btn-sm btn-primary">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="test-l-3" class="content text-center">
+                        <p class="text-right"><a class="iconsBG" title="Excel" [href]='psmAttachments.qualifications.path' download="{{psmAttachments.qualifications.fileName}}"><i class="far fa-2x fa-file-excel"></i>Sample Template</a> </p>
+                        <div class="form-group">
+                            <input type="file" #qualifications (change)="processOnFileSelect($event.target, 'qualifications')" name="qualifications"
+                                id="qualifications" /><button type="button" *ngIf="attachedFiles['qualifications']" (click)="getAttachedFiles('qualifications')">Download</button><button type="button" (click)="reset(qualifications, 'qualifications')">Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="row m-0" style="overflow: auto;max-height: 300px;">
+                                <table *ngIf="data['qualifications']?.length > 0" class="table table-striped text-center"
+                                    style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let col of columns['qualifications']; let i = index">{{setHeader(col,
+                                                i)}}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr [ngStyle]="" *ngFor="let item of data['qualifications']">
+                                            <td nowrap *ngFor="let column of columns['qualifications']">{{setData(item[column],
+                                                column)}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-success text-left" *ngIf="attachedFiles['qualifications']"><strong>Updated on: </strong>{{attachedFiles['qualifications'].lastUpdated | date:'medium'}}</span>
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success text-right" *ngIf="data['qualifications']?.length > 0">Number of records uploaded: <strong>{{data['qualifications'].length}}</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" (click)="previous()"
+                                    class="btn btn-sm btn-primary">Previous</button>
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="next()" class="btn btn-sm btn-primary">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="test-l-4" class="content text-center">
+                        <p class="text-right"><a class="iconsBG" title="Excel" [href]='psmAttachments.sessions.path' download="{{psmAttachments.sessions.fileName}}"><i class="far fa-2x fa-file-excel"></i>Sample Template</a> </p>
+                        <div class="form-group">
+                            <input type="file" #sessions (change)="processOnFileSelect($event.target, 'sessions')" name="sessions"
+                                id="sessions" /><button type="button" *ngIf="attachedFiles['sessions']" (click)="getAttachedFiles('sessions')">Download</button><button type="button" (click)="reset(sessions, 'sessions')">Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="row m-0" style="overflow: auto;max-height: 300px;">
+                                <table *ngIf="data['sessions']?.length > 0" class="table table-striped text-center"
+                                    style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let col of columns['sessions']; let i = index">{{setHeader(col,
+                                                i)}}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr [ngStyle]="" *ngFor="let item of data['sessions']">
+                                            <td nowrap *ngFor="let column of columns['sessions']">{{setData(item[column],
+                                                column)}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-success text-left" *ngIf="attachedFiles['sessions']"><strong>Updated on: </strong>{{ attachedFiles['sessions'].lastUpdated  | date:'medium'}}</span>
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success text-right" *ngIf="data['sessions']?.length > 0">Number of records uploaded: <strong>{{data['sessions'].length}}</strong></span>
+                            </div>
+                        </div>
+
+                    
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" (click)="previous()"
+                                    class="btn btn-sm btn-primary">Previous</button>
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="next()" class="btn btn-sm btn-primary">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="test-l-5" class="content  text-center">
+                        <p class="text-right"><a class="iconsBG" title="Excel" [href]='psmAttachments.discounts.path' download="{{psmAttachments.discounts.fileName}}"><i class="far fa-2x fa-file-excel"></i>Sample Template</a> </p>
+                        <div class="form-group">
+                            <input type="file" #discounts (change)="processOnFileSelect($event.target, 'discounts')"
+                                name="discounts" id="discounts" /><button type="button" *ngIf="attachedFiles['discounts']" (click)="getAttachedFiles('discounts')">Download</button><button type="button" (click)="reset(discounts, 'discounts')">Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="row" style="overflow: auto;max-height: 300px;">
+                                <table *ngIf="data['discounts']?.length > 0" class="table table-striped text-center"
+                                    style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let col of columns['discounts']; let i = index">{{setHeader(col,
+                                                i)}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of data['discounts']">
+                                            <td nowrap *ngFor="let column of columns['discounts']">{{setData(item[column],
+                                                column)}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-success text-left" *ngIf="attachedFiles['discounts']"><strong>Updated on: </strong>{{attachedFiles['discounts'].lastUpdated | date:'medium'}}</span>
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success text-right" *ngIf="data['discounts']?.length > 0">Number of records uploaded: <strong>{{data['discounts'].length}}</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" (click)="previous()" class="btn btn-sm btn-primary">Previous</button>
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="next()" class="btn btn-sm btn-primary">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="test-l-6" class="content text-center">
+                        <p class="text-right"><a class="iconsBG" title="Excel" [href]='psmAttachments.questions_goals.path' download="{{psmAttachments.questions_goals.fileName}}"><i class="far fa-2x fa-file-excel"></i>Sample Template</a> </p>
+                        <div class="form-group">
+                            <input type="file" #questions_goals (change)="processOnFileSelect($event.target, 'questions_goals')"
+                                name="questions_goals" id="questions_goals" /><button type="button" *ngIf="attachedFiles['questions_goals']" (click)="getAttachedFiles('questions_goals')">Download</button><button type="button" (click)="reset(questions_goals, 'questions_goals')">Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="row" style="overflow: auto;max-height: 300px;">
+                                <table *ngIf="data['questions_goals']?.length > 0"
+                                    class="table table-striped text-center" style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let col of columns['questions_goals']; let i = index">
+                                                {{setHeader(col, i)}}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of data['questions_goals']">
+                                            <td nowrap *ngFor="let column of columns['questions_goals']">
+                                                {{setData(item[column], column)}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-success text-left" *ngIf="attachedFiles['questions_goals']"><strong>Updated on: </strong>{{attachedFiles['questions_goals'].lastUpdated  | date:'medium'}}</span>
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success text-right" *ngIf="data['questions_goals']?.length > 0">Number of records uploaded: <strong>{{data['questions_goals'].length}}</strong></span>
+                            </div>
+                        </div>
+
+                
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" (click)="previous()" class="btn btn-sm btn-primary">Previous</button>
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="next()" class="btn btn-sm btn-primary">Next</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="test-l-7" class="content  text-center">
+                        <p class="text-right"><a class="iconsBG" title="Excel" [href]='psmAttachments.exhibitorAllotment.path' download="{{psmAttachments.exhibitorAllotment.fileName}}"><i class="far fa-2x fa-file-excel"></i>Sample Template</a> </p>
+                        <div class="form-group">
+                            <input type="file" #exhibitorAllotment (change)="processOnFileSelect($event.target, 'exhibitorAllotment')"
+                                name="exhibitorAllotment" id="exhibitorAllotment" /><button type="button" *ngIf="attachedFiles['exhibitorAllotment']" (click)="getAttachedFiles('exhibitorAllotment')">Download</button><button type="button" (click)="reset(exhibitorAllotment, 'exhibitorAllotment')">Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="row" style="overflow: auto;max-height: 300px;">
+                                <table *ngIf="data['exhibitorAllotment']?.length > 0" class="table table-striped text-center"
+                                    style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let col of columns['exhibitorAllotment']; let i = index">{{setHeader(col,
+                                                i)}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of data['exhibitorAllotment']">
+                                            <td nowrap *ngFor="let column of columns['exhibitorAllotment']">{{setData(item[column],
+                                                column)}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-success text-left" *ngIf="attachedFiles['exhibitorAllotment']"><strong>Updated on: </strong>{{attachedFiles['exhibitorAllotment'].lastUpdated | date:'medium'}}</span>
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success text-right" *ngIf="data['exhibitorAllotment']?.length > 0">Number of records uploaded: <strong>{{data['exhibitorAllotment'].length}}</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" (click)="previous()" class="btn btn-sm btn-primary">Previous</button>
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="next()" class="btn btn-sm btn-primary">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="test-l-8" class="content  text-center">
+                        <p class="text-right"><a class="iconsBG" title="Excel" [href]='psmAttachments.membsershipAllotment.path' download="{{psmAttachments.membsershipAllotment.fileName}}"><i class="far fa-2x fa-file-excel"></i>Sample Template</a> </p>
+                        <div class="form-group">
+                            <input type="file" #membsershipAllotment (change)="processOnFileSelect($event.target, 'membsershipAllotment')"
+                                name="membsershipAllotment" id="membsershipAllotment" /><button type="button" *ngIf="attachedFiles['membsershipAllotment']" (click)="getAttachedFiles('membsershipAllotment')">Download</button><button type="button" (click)="reset(membsershipAllotment, 'membsershipAllotment')">Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="row" style="overflow: auto;max-height: 300px;">
+                                <table *ngIf="data['membsershipAllotment']?.length > 0" class="table table-striped text-center"
+                                    style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let col of columns['membsershipAllotment']; let i = index">{{setHeader(col,
+                                                i)}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of data['membsershipAllotment']">
+                                            <td nowrap *ngFor="let column of columns['membsershipAllotment']">{{setData(item[column],
+                                                column)}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-success text-left" *ngIf="attachedFiles['membsershipAllotment']"><strong>Updated on: </strong>{{attachedFiles['membsershipAllotment'].lastUpdated | date:'medium'}}</span>
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success text-right" *ngIf="data['membsershipAllotment']?.length > 0">Number of records uploaded: <strong>{{data['membsershipAllotment'].length}}</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" (click)="previous()" class="btn btn-sm btn-primary">Previous</button>
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-sm btn-primary">Import</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

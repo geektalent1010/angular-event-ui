@@ -1,0 +1,33 @@
+<div class="row px-3 px-lg-5">
+  <div class="col-12 px-0 px-md-4">
+    <div class="row">
+      <div class="col-12 p-0">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <label for="loadTemplate" class="loadTemplate">Design</label>
+            <select name="loadTemplate" id="loadTemplate" class="form-control" [(ngModel)]="tempTitle"
+              (ngModelChange)="switchEmailTemp()">
+              <option *ngFor="let tempVal of tempEmailList" [value]="tempVal">{{tempVal}}</option>
+            </select>
+          </div>
+          <button class="btn saveBtn" (click)="exportHtml()" [disabled]="!updatedDesign">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 p-0">
+        <div class="container">
+          <!-- <email-editor 
+          (loaded)="editorLoaded()" 
+          (ready)="editorReady()"
+
+          #editor>
+          </email-editor> -->
+          <div id="editor-container" style="height: 70vh;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

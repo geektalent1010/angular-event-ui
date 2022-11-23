@@ -1,0 +1,438 @@
+questionid,questionvalue,responselayout,mustenterflag,regtype,pollingtypecode,adddate,demquestion,responsevalue,responsedefaultvalue
+QUES001,Communication Preferences,Checkbox,N,Attendee/Regtype,Registration,1/3/2022,USOPTOEP,"Please check here if you do not want the show organizer to provide your contact information, including email address, mailing address, and phone number to exhibitors or show partners about products that may be of interest to you.",1
+QUES001,Communication Preferences,Checkbox,N,Attendee/Regtype,Registration,1/3/2022,USOPTOEP,no response,x
+QUES002,Communication Preferences,Checkbox,N,Attendee/Regtype,Registration,1/3/2022,INTLOPTA,"Please check here if you would like to receive email regarding other events, education, and resources. You can opt out at any time by unchecking this box or sending an email to infocomm@compusystems.com.",1
+QUES002,Communication Preferences,Checkbox,N,Attendee/Regtype,Registration,1/3/2022,INTLOPTA,No Response,x
+QUES003,Stream,Checkbox,Y,Attendee/Regtype,Registration,1/3/2022,STREAM,"By checking this box, you will have automatic access to content streamed from the show",Y
+QUES003,Stream,Checkbox,Y,Attendee/Regtype,Registration,1/3/2022,STREAM,No Response,x
+QUES004,"Pursuant to the Americans with Disabilities Act, I require special accommodations at the event location and/or hotel. Please indicate type of accommodations below.",CheckboxList,N,Attendee/Regtype,Registration,1/3/2022,ADA,Auditory,1
+QUES004,"Pursuant to the Americans with Disabilities Act, I require special accommodations at the event location and/or hotel. Please indicate type of accommodations below.",CheckboxList,N,Attendee/Regtype,Registration,1/3/2022,ADA,Visual,2
+QUES004,"Pursuant to the Americans with Disabilities Act, I require special accommodations at the event location and/or hotel. Please indicate type of accommodations below.",CheckboxList,N,Attendee/Regtype,Registration,1/3/2022,ADA,Mobility,3
+QUES004,"Pursuant to the Americans with Disabilities Act, I require special accommodations at the event location and/or hotel. Please indicate type of accommodations below.",CheckboxList,N,Attendee/Regtype,Registration,1/3/2022,ADA,Event Location Accommodations,4
+QUES004,"Pursuant to the Americans with Disabilities Act, I require special accommodations at the event location and/or hotel. Please indicate type of accommodations below.",CheckboxList,N,Attendee/Regtype,Registration,1/3/2022,ADA,No Response,x
+QUES005,What is the primary business of the company/organization you work for? ,CheckboxList,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Architecture/Engineering/Planning/Design,AA. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,AV Integration/ Installation,AK. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,AV Manufacturer/Component Manufacturer,AG. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Broadcast/ Media,BH. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Business Consulting,AB. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,"Content Creation/Management (Includes artists, graphic designers, projection mapping, writers) ",AI. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Creative/Advertising/PR Agency,AE. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Digital Out-of-Home Networks,AP.
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Distributor/Reseller/Dealer,AD. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Education,BB. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Energy/Utilities,BC. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,"Entertainment (Includes theme parks, cinemas, museums)",BN. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,"Experience Design Consulting (Includes UX/CX design, acoustical design)",AC. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Finance/Legal/Real Estate,BA. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,"Government, Military/Government Contractor",BE. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Hospital/Healthcare,BF. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Hospitality/Gaming (Includes casinos and cruise ships) ,BG. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,House of Worship/Religious Organization,BI. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,ITÂ Integration/Installation,AL. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Manufacturer Rep or Independent Rep,AH. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,"Manufacturing (Consumer Goods, Non-AV)",BP.
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Rental/Staging/Live Events/Meeting Planning,AJ. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Retail/Restaurant,BK. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Software Development/Independent Programming,AN.
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Sports/Venues (includes convention centers and arenas),BM. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Transportation,BL. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Video/Film Production,AM. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,Other,C. 
+QUES005,What is the primary business of the company/organization you work for? ,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUSINESS,No Response,x
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Banking/Finance,A.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Corporate,P.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Education,B. 
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Energy/Utilities,C. 
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Factories,D. 
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Government/Military,E. 
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Healthcare,F.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,High Tech,Q.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Hospitality,G.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Religious Organization/House of Worship,I.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Media and Entertainment,H.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Residential,J.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Retail/E-commerce,K.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Transportation,L. 
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Venues/Events/Sports ,M.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,Other,N.
+QUES006,Which markets does your company serve? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,MARKETS,No Response,x
+QUES007,Which company are you representing? (Only enter if you need a second badge),Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,REPCO1,FREE KEY,A
+QUES007,Which company are you representing? (Only enter if you need a second badge),Freetext,Y,Attendee/Regtype,Registration,1/3/2022,REPCO1,No Response,X
+QUES07B,Enter the City/State of the Company you are representing here,Freetext,Y,Attendee/Regtype,Registration,1/3/2022,REPCST1,FREE KEY,A
+QUES07B,Enter the City/State of the Company you are representing here,Freetext,Y,Attendee/Regtype,Registration,1/3/2022,REPCST1,No Response,X
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Audio or Video Production Rooms for Broadcast,A.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Boardrooms/GroupÂ Collaboration Spaces,G.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Casinos/Arcades,B. 
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Classrooms orÂ CorporateÂ Training Facilities,C. 
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Control Rooms,D. 
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Cruise Ships,E. 
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Dining Facilities,F.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Full-Service Restaurants,Q.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Hotel Guest Rooms,H.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Houses of Worship,I.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Individual Homes,J.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Individual Work Spaces,K.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Large Group Presentation Venues/Auditoriums,L. 
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Multi-Household Residences,M.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Museums,N.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Patient Examination/Procedure Rooms,P.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,QSR and Fast Casual Restaurants,Z.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Retail Sales Floors,R.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Retail Kiosks ,S.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Salons/Spas/Wellness Centers,Y.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Stadiums or Sports Arenas,T.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Themed Attractions,O.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Train Stations/Airports/Other Travel Hubs,U.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,Waiting Areas/Lobbies,V.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,"Other, Please Specify",W.
+QUES008,For which of the following environments does your company/organization typically design or offer audiovisual solutions? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,DESIGN,No Response,x
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,1 to 10,A
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,11 to 100,B
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,101 to 250,C
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,251 to 500,D
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,501 to 1000,E
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,1001 to 5000,F
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,5001+,G
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,Don't know/Not sure ,H 
+QUES009,How many individuals does your company/organization employ across all locations worldwide?,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,EMPLOYES,No Response,x
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,"Less than $100,000",A
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,"$100,000 to less than $500,000",B
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,"$500,000 to less than $1M",C
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,$1M to less than $10M,D
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,$10M to less than $25M,E
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,$25M to less than $50M,F
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,$50M to less than $75M,G
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,$75 million or more,H
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,Don't know/Not sure,I
+QUES010,"On average, what does your company spend annually on audiovisual products, services, and solutions? ",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,BUDGET,No Response,x
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,AUDIO,A
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Acoustic Materials/Sound Masking & Speech Privacy Systems,AB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Assistive Listening/Language Interpretation and Soundfield Systems,AA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Audio Amplifiers,AK
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Audio Mixers,AM
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Audio Processing Systems,AN
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Headphones/Headsets/Earphones/Earsets,AD
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Loudspeakers,AJ
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Microphones,AF
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Multiroom Audio,AG
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Public Address (PA)/Paging & Background Music Systems,AH
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,CAPTURE AND PRODUCTION,B
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Camera Control Systems,BB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Camera Power Supplies/Supports/Tripods and Accessories,BA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Cameras (Video Production/Recording),BK
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Document Cameras (Visualizers),BD
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Presentation/Annotation & Training Aids,BE
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Simulation & Training Systems,BG
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Video Processing Systems ,BM
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Video Production Equipment ,BJ
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,CONFERENCING & COLLABORATION,M
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Audio Conferencing Systems Hardware/Software,GA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Cameras (Conferencing),GB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Conferencing & Collaboration Installation Services/Support,GC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Managed/Hosted/Cloud Communications Services (UCaaS),GD
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Meeting Room Booking Hardware/Software,GE
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Mobile/Wireless Applications/Middleware,GF
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Team Collaboration/Chat Apps,GG
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Telephony & VoIP Systems,GH
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Video Conferencing Systems Hardware/Software,GJ
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,CONTROL,C
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Control Systems/Panels & Interfaces ,CA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,IP-Controllable Devices,CC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Voice Control,CB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,"DIGITAL SIGNAGE, DISPLAYS & PROJECTORS",N
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Content Creation Software,MA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Digital Signage Software,MB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Direct-View LED Displays,MC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Displays/Monitors ,MD
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Media Players,ME
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Projection Screens (Installed or Portable),MF
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Projectors,MG
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Touchscreens & Interactive Displays/Whiteboards,MH
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,ENVIRONMENTAL  ,D
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Building Systems Automation and Management,DC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Energy Monitoring & Management,DD
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Environmental Control,DE
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Motorized Window Coverings/Shades,DF
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,INFRASTRUCTURE,E
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Cables/Connectors/Racks and Cable Management Accessories,EA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Consoles/Furniture and Kiosks,EB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Fiber Optic Systems,EC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Mounts/Stands & Lifts,ED
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Network Cabling/Structured Wiring,EE
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Network Infrastructure/Network Switches,EH
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Plates/Panels & Wall Boxes,EF
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Power Distribution/Supplies & Cooling Systems,EG
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Test/Measurement & Monitoring Equipment,EJ
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Wireless Signal Processing,EK
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,LIGHTING,F
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Architectural Lighting,DB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Lighting Auxiliary Equipment,DJ
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Lighting Control Systems,DG
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Lighting Fixtures (Installed & Portable),DH
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,LIVE EVENTS,G
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Event Lighting,JA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Personal Monitoring Systems,JB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Power Systems,JC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Rental and Staging Services,JD
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Rigging,JE
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Scheduling Software,JF
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Sound Reinforcement Systems,JG
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Special Effects,JH
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Staging & Drapes,JJ
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Wireless Audio Systems,JK
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,SECURITY,O
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Access Control,NB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,CCTV/IPTV Cameras & Surveillance Equipment,NC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Intercom & IFB Systems,ND
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Security/Life Safety Call & Paging,NE
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,SERVICES,H
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Experience Design/Event Design,FF
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Interior Design,FG
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Managed Services,FB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Remote Systems Management,FC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Solutions Design,FE
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,"STREAMING MEDIA, STORAGE AND DISTRIBUTION",J
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Computers/Components/Networking & Storage Solutions,HA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Content Recording & Storage Systems,HB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Digital & Streaming Media Distribution Systems,HC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Signal Routing/Switching ,HD
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,OTHER,L
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Augmented/Virtual/Mixed Reality,KC
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Cases/Bags and Storage,KA
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,Other,KB
+QUES011,In which of the following product areas are you interested or involved? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PRODUCTS,No Response,x
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,360/3D/VR Video,A
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Architecture/Building Design and Engineering,B
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Audio (Mixing/Engineering) ,C.
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Cabling/Wiring,D
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Commissioning/Testing/Calibration,E
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Construction/Fabrication/Installation,F
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,"Content Creation (Graphic Design, Interior Design, Writing)",G
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Executive/Leadership,H
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Experience Design/Event Design,I.
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Facilities Management,J
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Filming/Recording,K
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,IP/NetworkÂ Management/Data Security,L
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,LightingÂ Design,M.  
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Live Events Production,AB
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Meeting Planning,AC
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Pre/Post Production,P
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Programming/Software Development,Q.
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Project Management,R.
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Purchasing/Procurement,S
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Staging/Rigging,U.
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,System Design,V.
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Technology Management,W.   
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,UCC Integration/Support,X
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,User/Technical Support,Y
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,UX/CX Design,Z
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,"Video (Projection Mapping, Production)",AA
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,Other,BB
+QUES012,Which of the following skill or competency areas best describe the role you fill within your organiziation? Please choose all that apply.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,Jobskill,No Response,xx
+QUES013,What is your involvement in the decisions relating to the purchase of audiovisual products and services? Please choose the answer that best fits your role or your highest level of involvement.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PURCHASE,Authorize (you are responsible for making the final decision),A.
+QUES013,What is your involvement in the decisions relating to the purchase of audiovisual products and services? Please choose the answer that best fits your role or your highest level of involvement.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PURCHASE,Recommend (you recommend specific products or technologies for the solution),B.
+QUES013,What is your involvement in the decisions relating to the purchase of audiovisual products and services? Please choose the answer that best fits your role or your highest level of involvement.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PURCHASE,"Influence (you provide input into the decision, but not specific recommendations)",C.
+QUES013,What is your involvement in the decisions relating to the purchase of audiovisual products and services? Please choose the answer that best fits your role or your highest level of involvement.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PURCHASE,Not sure/Dont know,D.
+QUES013,What is your involvement in the decisions relating to the purchase of audiovisual products and services? Please choose the answer that best fits your role or your highest level of involvement.,Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,PURCHASE,No Response,x
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,AV  Management,A.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Business Development/Sales,C.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Client/Customer Service,E.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Consulting,F.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Design,G.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Engineering,H.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Facilities/Property Management,I.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Finance/Accounting,J.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Human Resources,K.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,IT,L.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Leadership/Executive Office/Owner,M.  
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Market Intelligence/Research,N.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Marketing/Communications/PR/Brand Management,O.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Product Management,Q.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Project Management,R.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Solutions Development,T.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Meeting Planning,V.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Installation,W.   
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,Other,U.
+QUES014,What is your primary job function? Please select one. ,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,JOBFUNC,No Response,x
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1919,75
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1920,76
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1921,77
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1922,78
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1923,79
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1924,80
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1925,81
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1926,82
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1927,83
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1928,84
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1929,85
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1930,1
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1931,2
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1932,3
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1933,4
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1934,5
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1935,6
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1936,7
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1937,8
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1938,9
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1939,10
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1940,11
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1941,12
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1942,13
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1943,14
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1944,15
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1945,16
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1946,17
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1947,18
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1948,19
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1949,20
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1950,21
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1951,22
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1952,23
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1953,24
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1954,25
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1955,26
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1956,27
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1957,28
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1958,29
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1959,30
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1960,31
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1961,32
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1962,33
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1963,34
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1964,35
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1965,36
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1966,37
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1967,38
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1968,39
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1969,40
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1970,41
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1971,42
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1972,43
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1973,44
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1974,45
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1975,46
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1976,47
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1977,48
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1978,49
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1979,50
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1980,51
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1981,52
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1982,53
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1983,54
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1984,55
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1985,56
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1986,57
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1987,58
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1988,59
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1989,60
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1990,61
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1991,62
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1992,63
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1993,64
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1994,65
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1995,66
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1996,67
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1997,68
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1998,69
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,1999,70
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,2000,71
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,2001,72
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,2002,73
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,2003,74
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,2004,86
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,2005,87
+QUES015,Select year of birth,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,AGE,No Response,x
+QUES016,How many times have you attended [event[ before 2022?,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,REPATT,2-4 times,A.
+QUES016,How many times have you attended [event[ before 2022?,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,REPATT,5+ times,B.
+QUES016,How many times have you attended [event[ before 2022?,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,REPATT,First time,C.
+QUES016,How many times have you attended [event[ before 2022?,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,REPATT,No Response,x
+QUES017,What gender do you identify with?,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,GENDER,Male,A.
+QUES017,What gender do you identify with?,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,GENDER,Female,B.
+QUES017,What gender do you identify with?,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,GENDER,Non-Binary,D.
+QUES017,What gender do you identify with?,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,GENDER,Prefer not to specify,C.
+QUES017,What gender do you identify with?,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,GENDER,No Response,x
+QUES018,Policy Do you accept the [event] Policy agreement?,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,SHOWPOLICY,Yes,Y
+QUES018,Policy Do you accept the [event] Policy agreement?,Checkbox,Y,Attendee/Regtype,Registration,1/3/2022,SHOWPOLICY,No Response,x
+QUES019,Would you like to add virtual content to your selected registration package? ,Checkbox,N,Attendee/Regtype,Registration,1/3/2022,VIRTUAL,Yes,Y
+QUES019,Would you like to add virtual content to your selected registration package? ,CheckboxList,N,Attendee/Regtype,Registration,1/3/2022,VIRTUAL,No,N
+QUES019,Would you like to add virtual content to your selected registration package? ,CheckboxList,N,Attendee/Regtype,Registration,1/3/2022,VIRTUAL,No Response,x
+QUES020,Would you like to add any education sessions to this Exhibitor's Registration?,CheckboxList,N,Exhibitor/Regtype,Registration,1/3/2022,EXHEDU,"Yes, I would like to add sessions.",A
+QUES020,Would you like to add any education sessions to this Exhibitor's Registration?,CheckboxList,N,Exhibitor/Regtype,Registration,1/3/2022,EXHEDU,"No, not at this time.",B
+QUES020,Would you like to add any education sessions to this Exhibitor's Registration?,CheckboxList,N,Exhibitor/Regtype,Registration,1/3/2022,EXHEDU,"Please send a confirmation email to this registrant, who will be given an opportunity to register education sessions on own.",C
+QUES020,Would you like to add any education sessions to this Exhibitor's Registration?,CheckboxList,N,Exhibitor/Regtype,Registration,1/3/2022,EXHEDU,No Response,x
+QUES021,Are you interested in joining membership at this time? ,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,MEMBER,"Yes, premium member ($99)  ",A
+QUES021,Are you interested in joining membership at this time? ,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,MEMBER,"Yes, elite member ($399)",B
+QUES021,Are you interested in joining membership at this time? ,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,MEMBER,"Yes, I am interested in upgrading my premium membership to an elite membership",C
+QUES021,Are you interested in joining membership at this time? ,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,MEMBER,"No, I am not interested in membership at this time",D
+QUES021,Are you interested in joining membership at this time? ,RadioButtonList,N,Attendee/Regtype,Registration,1/3/2022,MEMBER,No Response,X
+QUES022,I am interested in learning about:,RadioButtonList,Y,Attendee/Regtype,Interest,1/3/2022,INTLEARN,Education,A
+QUES022,I am interested in learning about:,Dropdown,Y,Attendee/Regtype,Interest,1/3/2022,INTLEARN,Special Events,B
+QUES022,I am interested in learning about:,Dropdown,Y,Attendee/Regtype,Interest,1/3/2022,INTLEARN,InfoComm shows,C
+QUES022,I am interested in learning about:,Dropdown,Y,Attendee/Regtype,Interest,1/3/2022,INTLEARN,Market research and industry surveys,D
+QUES022,I am interested in learning about:,Dropdown,Y,Attendee/Regtype,Interest,1/3/2022,INTLEARN,Standards development,E
+QUES022,I am interested in learning about:,Dropdown,Y,Attendee/Regtype,Interest,1/3/2022,INTLEARN,No Response,X
+QUES023,Media Type,Dropdown,Y,Press/Regtype,Qualification,1/3/2022,Media Type,Blog,4
+QUES023,Media Type,Dropdown,Y,Press/Regtype,Qualification,1/3/2022,Media Type,Online publication,1
+QUES023,Media Type,Dropdown,Y,Press/Regtype,Qualification,1/3/2022,Media Type,Podcast,7
+QUES023,Media Type,Dropdown,Y,Press/Regtype,Qualification,1/3/2022,Media Type,Print & online publication,3
+QUES023,Media Type,Dropdown,Y,Press/Regtype,Qualification,1/3/2022,Media Type,Print publication,2
+QUES023,Media Type,Dropdown,Y,Press/Regtype,Qualification,1/3/2022,Media Type,Radio,5
+QUES023,Media Type,Dropdown,Y,Press/Regtype,Qualification,1/3/2022,Media Type,TV,6
+QUES024,"If you are an international visitor traveling from a country requiring a visa for entry into the United States, please select one:",Dropdown,Y,Attendee/Regtype,Registration,1/3/2022,VISAREQ,"Yes, I require an invitation letter.",Y
+QUES024,"If you are an international visitor traveling from a country requiring a visa for entry into the United States, please select one:",CheckboxList,Y,Attendee/Regtype,Registration,1/3/2022,VISAREQ,"No, I do not require an invitations letter.",N
+QUES025,Please provide the Name on Passport,CheckboxList,Y,Attendee/Regtype,Registration,1/3/2022,VISANAM,Visa Free Key Field,A
+QUES026,Please provide Date of Birth (MM/DD/YYYY) for VISA letter,Freetext,Y,Attendee/Regtype,Registration,1/3/2022,VISADOB,Visa Free Key Field (mm/dd/yyyy),A
+QUES027,Please provide Gender for VISA letter,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,VISAGEN,Female,F
+QUES027,Please provide Gender for VISA letter,RadioButtonList,Y,Attendee/Regtype,Registration,1/3/2022,VISAGEN,Male,M
+QUES028,Please provide Passport number for VISA letter,CheckboxList,Y,Attendee/Regtype,Registration,1/3/2022,VISANUM,Passport Number Free Key Pad,A
+QUES029,Please provide Passport Expiration Date (MM/DD/YYYY),Freetext,Y,Attendee/Regtype,Registration,1/3/2022,VISAEXP,Free Key Field (format = MM/DD/YYYY),A
+QUES030,Please provide Passport Country that issued,Freetext,Y,Attendee/Regtype,Registration,1/3/2022,VISACOU,Country Free Key Field,A
+QUES034,Please provide name of Consular Office (your local U.S. Embassy),Freetext,Y,Attendee/Regtype,Registration,1/3/2022,VISACON,Consular Office Free Key Field,A
+QUES035,Visa Letter Mailed,Freetext,Y,Attendee/Regtype,Registration,1/3/2022,VISAMAIL,Print PDF,N
+QUES031,Please enter Press Organization affiliation,Freetext,Y,Press/Regtype,Registration,1/3/2022,NEWS,Please enter news organization,Y
+QUES032,Please provide Press organization website,Freetext,Y,Press/Regtype,Registration,1/3/2022,NEWSWEB,Please enter news organization Website,Y
+QUES033,Would you like to add any education sessions to this Exhibitor's Registration?,RadioButtonList,Y,Exhibitor/Regtype,Session,1/3/2022,EXHEDU,"Yes, I would like to add sessions.",A
+QUES033,Would you like to add any education sessions to this Exhibitor's Registration?,RadioButtonList,Y,Exhibitor/Regtype,Session,1/3/2022,EXHEDU,"No, not at this time.",B
+QUES033,Would you like to add any education sessions to this Exhibitor's Registration?,RadioButtonList,Y,Exhibitor/Regtype,Session,1/3/2022,EXHEDU,"Please send a confirmation email to this registrant, who will be given an opportunity to register education sessions on own.",C
+QUES033,Would you like to add any education sessions to this Exhibitor's Registration?,RadioButtonList,Y,Exhibitor/Regtype,Session,1/3/2022,EXHEDU,No Response,x
+QUES036,Check here if mailing address is the same as your Company Address ,CheckboxList,Y,Exhibitor/Regtype,Registration,1/3/2022,EXHADDR,Mailing address same as Company address,Y
+QUES036,Check here if mailing address is the same as your Company Address ,CheckboxList,Y,Exhibitor/Regtype,Registration,1/3/2022,EXHADDR,FREETEXT,A
+QUES037,Check here if mailing address is the same as your Company Address ,CheckboxList,Y,Exhibitor/Regtype,Registration,1/3/2022,ATTADDR,Mailing address same as Company address,Y
+QUES037,Check here if mailing address is the same as your Company Address ,CheckboxList,Y,Exhibitor/Regtype,Registration,1/3/2022,ATTADDR,FREETEXT,A
+QUES038,What is your age range?,RadioButtonList,Y,Attendee/Student Regtype,Registration,1/3/2022,AGERANGE,18 - 24,A
+QUES038,What is your age range?,RadioButtonList,Y,Attendee/Student Regtype,Registration,1/3/2022,AGERANGE,25 - 30,B
+QUES038,What is your age range?,RadioButtonList,Y,Attendee/Student Regtype,Registration,1/3/2022,AGERANGE,31 - 40,C
+QUES038,What is your age range?,RadioButtonList,Y,Attendee/Student Regtype,Registration,1/3/2022,AGERANGE,41 - 50,D
+QUES038,What is your age range?,RadioButtonList,Y,Attendee/Student Regtype,Registration,1/3/2022,AGERANGE,51 +,E 
+QUES038,What is your age range?,RadioButtonList,Y,Attendee/Student Regtype,Registration,1/3/2022,AGERANGE,I prefer not to say,F
+QUES038,What is your age range?,RadioButtonList,Y,Attendee/Student Regtype,Registration,1/3/2022,AGERANGE,Hard copy no response,X
+QUES040,Please identify what year if school you are in,RadioButtonList,Y,Student/Regtype,Qualification,1/3/2022,SCHOOLYR,Undergraduate,A
+QUES040,Please identify what year if school you are in,RadioButtonList,Y,Student/Regtype,Qualification,1/3/2022,SCHOOLYR,Graduate,B
+QUES040,Please identify what year if school you are in,RadioButtonList,Y,Student/Regtype,Qualification,1/3/2022,SCHOOLYR,Postgraduate,C
+QUES040,Please identify what year if school you are in,RadioButtonList,Y,Student/Regtype,Qualification,1/3/2022,SCHOOLYR,Other,x
+QUES041,Please enter your school name,RadioButtonList,Y,Student/Regtype,Registration,1/3/2022,SCHOOLNAM,School name,A
+QUES042,Does your company produce or manager trade shows?,Freetext,y,Exhibitor/Regtype,Marketing,1/3/2022,TRADESHOW,Yes / No,A
+QUES043,How many events do you exhibit at each year,Freetext,N,Exhibitor/Regtype,Metric,1/3/2022,TRADEEVENT,FREETEXT,A
+QUES044,Will you be registering your staff?,Freetext,Y,Exhibitor/Regtype,Registration,1/3/2022,EXHREGISTER,Yes / No,A
+QUES045,Are you looking to exhibit specific products?,Freetext,N,Exhibitor/Regtype,Marketing,1/3/2022,EXHPROD,Yes / No,A
+QUES046,Are you looking for specific products,Freetext,N,Attendee/Regtype,Interest,1/3/2022,PRODUCT,Yes / No,A
+QUES047,Are you a member,Freetext,Y,Attendee/Regtype,Qualification,1/3/2022,MEMBID,Enter Member Id,A
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Blogger/Vlogger,A
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Broadcast Crew ,B
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Editor,C
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Ad/Media Sales,E
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Industry Analyst,F
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Photographer,H
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Producer/Director,I
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Podcaster,J
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Reporter/Writer,K
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Videographer,L
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Host/Talent,M
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Production Company,N
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Camera Person,P
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Grip,Q
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Make-up Artist,R
+QUES050,Please select the option that best describes your primary function as media.,RadioButtonList,Y,Press,Registration,1/7/2022,MEDFUNC,Sound Engineer,S
+QUES051,"Is your media distribution local, national or interrnational",CheckboxList,N,Press,Registration,1/7/2022,MTYPE,Local,L
+QUES051,"Is your media distribution local, national or interrnational",CheckboxList,N,Press,Registration,1/7/2022,MTYPE,National,N
+QUES051,"Is your media distribution local, national or interrnational",CheckboxList,N,Press,Registration,1/7/2022,MTYPE,International,I

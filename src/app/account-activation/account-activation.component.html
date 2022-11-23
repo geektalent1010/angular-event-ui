@@ -1,0 +1,32 @@
+<div class='container'>
+    <div class='row'>
+        <div class='col-1'>
+        </div>
+        <div class="col-8">
+            <h2>Verification</h2>
+            <div class="loading" *ngIf="isLoading; else result;">
+                <h4>
+                    Please wait...
+                </h4>
+            </div>
+            <ng-template #result>
+                <div class="success" *ngIf="isSuccess; else failedSection;">
+                    <h4>
+                        Thank you for confirming your account {{ username }}.
+                    </h4>
+                </div>
+                <ng-template #failedSection>
+                    <h4>
+                        This verification code may have already been used.
+                    </h4>
+                    <p>
+                        If you are still having an issues, request another <a href="/forgotpassword">password</a>
+                    </p>
+                    <p>
+                        If you need further assistance, please contact the support team by emailing <a href="mailto:mnajm@a4safe.com">mnajm@a4safe.com</a>.
+                    </p>
+                </ng-template>
+            </ng-template>
+        </div>
+    </div>
+</div>

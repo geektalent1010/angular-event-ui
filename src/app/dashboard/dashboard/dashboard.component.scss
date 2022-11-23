@@ -1,0 +1,22 @@
+#registration-banner {
+  margin-top: 2em;
+  padding: 0 2em 0 2em;
+}
+td {
+  font-size: 24px;
+}
+.btn-outline-primary {
+  color: #0275d8 !important;
+  background-color: #ffffff;
+  border-color: #0275d8;
+  -webkit-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+}
+.btn-outline-primary.active,
+.btn-outline-primary:active,
+.btn-outline-primary:focus
+{
+  color: #ffffff !important;
+  background-color: #0275d8;
+}

@@ -1,0 +1,420 @@
+<div id="stepper1" class="bs-stepper">
+  <div class="bs-stepper-header">
+    <div class="step" data-target="#test-l-0">
+      <button class="step-trigger">
+        <span class="bs-stepper-circle"> 1 </span>
+        <span class="bs-stepper-label"> Workflow </span>
+      </button>
+    </div>
+    <div class="line"></div>
+    <div class="step" data-target="#test-l-1">
+      <button class="step-trigger">
+        <span class="bs-stepper-circle"> 2 </span>
+        <span class="bs-stepper-label"> Page </span>
+      </button>
+    </div>
+    <div class="line"></div>
+    <div class="step" data-target="#test-l-2">
+      <button class="step-trigger">
+        <span class="bs-stepper-circle"> 3 </span>
+        <span class="bs-stepper-label"> Section </span>
+      </button>
+    </div>
+    <div class="line"></div>
+    <div class="step" data-target="#test-l-3">
+      <button class="step-trigger">
+        <span class="bs-stepper-circle"> 4 </span>
+        <span class="bs-stepper-label"> Fields </span>
+      </button>
+    </div>
+  </div>
+  <div class="bs-stepper-content">
+    <div id="test-l-0" class="content">
+      <div class="form-group">
+        <label for="workflowSelect"> Workflow </label>
+        <select
+          class="form-control"
+          id="workflowSelect"
+          [(ngModel)]="selectedWorkflow"
+          (ngModelChange)="changeConfig('workflow')"
+        >
+          <option disabled [ngValue]="null">- Select -</option>
+          <option *ngFor="let page of pageList" [ngValue]="page">
+            {{ page.workflow }}
+          </option>
+        </select>
+        <div class="text-danger" *ngIf="touchedStep && !selectedWorkflow">
+          <span> * This field is required </span>
+        </div>
+      </div>
+      <div class="controls d-flex align-items-center justify-content-end">
+        <button (click)="next()" class="btn btn-primary">Next</button>
+      </div>
+    </div>
+    <div id="test-l-1" class="content">
+      <div class="form-group">
+        <label for="pageSelect"> Page </label>
+        <select
+          class="form-control"
+          id="pageSelect"
+          [(ngModel)]="selectedPage"
+          (ngModelChange)="changeConfig('page')"
+        >
+          <option disabled [ngValue]="null">- Select -</option>
+          <option
+            *ngFor="let page of selectedWorkflow?.pageList"
+            [ngValue]="page"
+          >
+            {{ page.label }}
+          </option>
+        </select>
+        <div class="text-danger" *ngIf="touchedStep && !selectedPage">
+          <span> * This field is required </span>
+        </div>
+      </div>
+      <div class="controls d-flex align-items-center justify-content-between">
+        <button (click)="previous()" class="btn btn-primary">Prev</button>
+        <button (click)="next()" class="btn btn-primary">Next</button>
+      </div>
+    </div>
+    <div id="test-l-2" class="content">
+      <div class="form-group">
+        <label for="sectionSelect"> Page Section </label>
+        <div
+          *ngIf="selectedPage?.name === 'personal_info'; else otherSectionBlock"
+        >
+          <div
+            *ngFor="let section of selectedPage?.sectionsList; let i = index"
+            class="page-section-item d-flex align-items-center my-2 p-2"
+            [class.active]="section?.name === selectedSection?.name"
+            [class.disable]="section?.hidden"
+          >
+            <a
+              href="#"
+              (click)="selectSection($event, section)"
+              class="page-section-item__link"
+              [class.disable]="section?.hidden"
+            >
+              {{ section.label }}
+            </a>
+            <span
+              *ngIf="
+                section.name === 'reg_dash_info' ||
+                section.name === 'other_info' ||
+                section.name === 'reg_account_info'
+              "
+              class="ml-4"
+              (click)="toggleSection(i)"
+            >
+              <i *ngIf="section?.hidden" class="far fa-eye-slash"></i>
+              <i *ngIf="!section?.hidden" class="far fa-eye"></i>
+            </span>
+          </div>
+        </div>
+        <ng-template #otherSectionBlock>
+          <select
+            class="form-control"
+            id="sectionSelect"
+            [(ngModel)]="selectedSection"
+            (ngModelChange)="changeConfig()"
+          >
+            <option disabled [ngValue]="null">- Select -</option>
+            <option
+              *ngFor="let section of selectedPage?.sectionsList"
+              [ngValue]="section"
+            >
+              {{ section.label }}
+            </option>
+          </select>
+          <div class="text-danger" *ngIf="touchedStep && !selectedSection">
+            <span> * This field is required </span>
+          </div>
+        </ng-template>
+      </div>
+      <div class="controls d-flex align-items-center justify-content-between">
+        <button (click)="previous()" class="btn btn-primary">Prev</button>
+        <button (click)="next()" class="btn btn-primary">Next</button>
+      </div>
+    </div>
+    <div id="test-l-3" class="content text-center">
+      <ng-container [ngSwitch]="true">
+        <!-- Header, Login, Register Fields -->
+        <!-- Input field -->
+        <ng-container
+          *ngSwitchCase="
+            selectedSection?.name === 'header' ||
+            selectedSection?.name === 'login_section' ||
+            selectedSection?.name === 'register_section'
+          "
+        >
+          <div class="row" *ngFor="let field of selectedSection?.fieldsList">
+            <div class="col-5">
+              <label> {{ field.label }} </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="field.value"
+                (ngModelChange)="changeHeaderField(field)"
+              />
+              <div class="text-danger text-left" *ngIf="error[field.name]">
+                <span> {{ error[field.name] }} </span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Terms and conditions -->
+        <!-- Angular Text Editor -->
+        <ng-conttainer
+          *ngSwitchCase="selectedSection?.name === 'terms_conditions'"
+        >
+          <div *ngFor="let field of selectedSection?.fieldsList">
+            <div class="text-left">
+              <label class="font-weight-bold"> {{ field.label }} </label>
+            </div>
+            <div class="mb-3">
+              <angular-editor
+                [config]="config"
+                [(ngModel)]="field.value"
+              ></angular-editor>
+            </div>
+          </div>
+        </ng-conttainer>
+
+        <!-- Payment Notice, Cancellation conditions, Login Header, Session Header, Session Footer -->
+        <!-- Textarea -->
+        <ng-container
+          *ngSwitchCase="
+            selectedSection?.name === 'payment_notice' ||
+            selectedSection?.name === 'cancellation_conditions' ||
+            selectedSection?.name === 'login_header' ||
+            selectedSection?.name === 'session_header' ||
+            selectedSection?.name === 'session_footer' ||
+            selectedSection?.name === 'terms_and_conditions'
+          "
+        >
+          <div class="row" *ngFor="let field of selectedSection?.fieldsList">
+            <div class="col-4">
+              <label> {{ field.label }} </label>
+            </div>
+            <div class="col-8">
+              <textarea
+                class="form-control"
+                rows="5"
+                [(ngModel)]="field.value"
+              ></textarea>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Review Footer -->
+        <!-- Textarea and Checkbox -->
+        <ng-container *ngSwitchCase="selectedSection?.name === 'review_footer'">
+          <div
+            class="row"
+            *ngFor="let field of selectedSection?.fieldsList; let i = index"
+          >
+            <div class="col-4">
+              <label> {{ field.label }} </label>
+            </div>
+            <div class="col-7">
+              <textarea
+                class="form-control"
+                rows="5"
+                [(ngModel)]="field.value"
+              ></textarea>
+            </div>
+            <div class="col-1">
+              <input
+                type="checkbox"
+                [checked]="field.isActive"
+                (change)="changeActiveStatus($event.target.checked, i)"
+              />
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Default -->
+        <!-- Form Fields with form-control fields -->
+        <ng-container *ngSwitchDefault>
+          <div class="row text-left">
+            <div class="col-12 p-0">
+              <button class="btn btn-primary" (click)="addNewField()">
+                Add New Field
+              </button>
+            </div>
+          </div>
+          <div class="FieldListTable row">
+            <div class="col-12 p-0">
+              <table class="table table-striped text-center">
+                <thead>
+                  <tr>
+                    <th class="no">No</th>
+                    <th class="label">Label</th>
+                    <th class="name">Name</th>
+                    <th class="type">Type</th>
+                    <th class="value">Value</th>
+                    <th class="static">Static</th>
+                    <th class="disable">Disable</th>
+                    <th class="required">Required</th>
+                    <th class="visible">Visible</th>
+                    <th
+                      *ngIf="
+                        this.selectedWorkflow?.workflow === 'show organizer'
+                      "
+                      class=""
+                    >
+                      Column
+                    </th>
+                    <th
+                      *ngIf="this.selectedSection?.name === 'badge-type'"
+                      class=""
+                    >
+                      Lookup
+                    </th>
+                    <th class="actions border-0" *ngIf="pageType !== 'view'">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody cdkDropList (cdkDropListDropped)="onDrop($event)" fxFlex>
+                  <tr
+                    *ngFor="
+                      let field of selectedSection?.fieldsList;
+                      let i = index
+                    "
+                    cdkDrag
+                    cdkDragLockAxis="y"
+                    cdkDragHandle
+                  >
+                    <td class="no">
+                      <div>
+                        {{ i + 1 }}
+                      </div>
+                    </td>
+                    <td class="label" [class.inactive]="!field.isActive">
+                      <div>&nbsp;&nbsp; {{ field.label }} &nbsp;&nbsp;</div>
+                    </td>
+                    <td class="name" [class.inactive]="!field.isActive">
+                      <div>&nbsp;&nbsp; {{ field.name }} &nbsp;&nbsp;</div>
+                    </td>
+                    <td class="type" [class.inactive]="!field.isActive">
+                      <div>&nbsp;&nbsp; {{ field.type }} &nbsp;&nbsp;</div>
+                    </td>
+                    <td class="value" [class.inactive]="!field.isActive">
+                      <div>
+                        <span *ngIf="field.value">&nbsp;&nbsp;</span>
+                        {{ field.value }}
+                        <span *ngIf="field.value">&nbsp;&nbsp;</span>
+                      </div>
+                    </td>
+                    <td class="static" [class.inactive]="!field.isActive">
+                      <div>
+                        &nbsp;&nbsp;
+                        {{ field.static ? "Static" : "Dynamic" }} &nbsp;&nbsp;
+                      </div>
+                    </td>
+                    <td class="disable" [class.inactive]="!field.isActive">
+                      <div>
+                        <span *ngIf="field.disable">&nbsp;&nbsp;</span>
+                        {{ field.disable ? "Disable" : "" }}
+                        <span *ngIf="field.disable">&nbsp;&nbsp;</span>
+                      </div>
+                    </td>
+                    <td class="required" [class.inactive]="!field.isActive">
+                      <div>
+                        &nbsp;&nbsp;
+                        {{
+                          isArray(field.required)
+                            ? field.required.join(", ")
+                            : field.required
+                            ? "Required"
+                            : "Optional"
+                        }}
+                        &nbsp;&nbsp;
+                      </div>
+                    </td>
+                    <td class="visible" [class.inactive]="!field.isActive">
+                      <div>
+                        &nbsp;&nbsp;
+                        {{ field.visible ? "Visible" : "Invisible" }}
+                        &nbsp;&nbsp;
+                      </div>
+                    </td>
+                    <td
+                      *ngIf="
+                        this.selectedWorkflow?.workflow === 'show organizer'
+                      "
+                      class=""
+                      [class.inactive]="!field.isActive"
+                    >
+                      <div>
+                        &nbsp;&nbsp;
+                        {{ field.column }}
+                        &nbsp;&nbsp;
+                      </div>
+                    </td>
+                    <td
+                      *ngIf="this.selectedSection?.name === 'badge-type'"
+                      class=""
+                      [class.inactive]="!field.isActive"
+                    >
+                      <div>
+                        &nbsp;&nbsp;
+                        {{ field.lookup ? "Show" : "" }}
+                        &nbsp;&nbsp;
+                      </div>
+                    </td>
+                    <td class="actions border-0" *ngIf="pageType !== 'view'">
+                      <div
+                        class="d-flex align-items-center justify-content-center"
+                        *ngIf="!mandatoryFields.includes(field.name)"
+                      >
+                        <a class="px-1" style="cursor: pointer">
+                          <span>
+                            <i class="far fa-edit" (click)="editField(i)"></i>
+                          </span>
+                        </a>
+                        <div
+                          (click)="removeField(i)"
+                          class="pointer ml-2"
+                          [ngStyle]="{
+                            visibility: field.isActive ? 'visible' : 'hidden'
+                          }"
+                        >
+                          <i class="far fa-trash-alt"></i>
+                        </div>
+                        <label
+                          class="m-0 ml-3"
+                          [ngStyle]="{
+                            visibility: field.isActive ? 'hidden' : 'visible'
+                          }"
+                        >
+                          <input
+                            type="checkbox"
+                            class=""
+                            [checked]="field.isActive"
+                            (change)="
+                              changeActiveStatus($event.target.checked, i)
+                            "
+                          />
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <div *cdkDragPlaceholder></div>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div class="controls d-flex align-items-center justify-content-between">
+        <button (click)="previous()" class="btn btn-primary">Prev</button>
+      </div>
+    </div>
+  </div>
+</div>

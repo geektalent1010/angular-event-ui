@@ -1,0 +1,258 @@
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="searchGroup d-flex align-items-center justify-content-between">
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control form-input" [(ngModel)]="searchData['keyword']"
+                        (keyup)="searchKeyword()" placeholder="Search by Keyword">
+                </div>
+                <div class="customSelect eventFilter">
+                    <i class="far fa-window-maximize ml-2"></i>
+                    <ng-multiselect-dropdown [placeholder]="'Filter by Event'" [settings]="dropdownSettings"
+                        [data]="searchDefaultData['event']" [(ngModel)]="searchData['event']" (onSelect)="search()"
+                        (onDeSelect)="search()" (onSelectAll)="onItemChange($event, 'event')"
+                        (onDeSelectAll)="onItemChange($event, 'event')">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="customSelect">
+                    <i class="fas fa-suitcase ml-2"></i>
+                    <ng-multiselect-dropdown [placeholder]="'Filter by Reg'" [settings]="dropdownSettings"
+                        [data]="searchDefaultData['reg']" [(ngModel)]="searchData['reg']" (onSelect)="search()"
+                        (onDeSelect)="search()" (onSelectAll)="onItemChange($event, 'reg')"
+                        (onDeSelectAll)="onItemChange($event, 'reg')">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="customSelect">
+                    <i class="far fa-address-card ml-2"></i>
+                    <ng-multiselect-dropdown [placeholder]="'Filter by Type'" [settings]="dropdownSettings"
+                        [data]="searchDefaultData['type']" [(ngModel)]="searchData['type']" (onSelect)="search()"
+                        (onDeSelect)="search()" (onSelectAll)="onItemChange($event, 'type')"
+                        (onDeSelectAll)="onItemChange($event, 'type')">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="customSelect">
+                    <i class="fas fa-clipboard-list ml-2"></i>
+                    <ng-multiselect-dropdown [placeholder]="'Filter by Status'" [settings]="dropdownSettings"
+                        [data]="searchDefaultData['status']" [(ngModel)]="searchData['status']" (onSelect)="search()"
+                        (onDeSelect)="search()" (onSelectAll)="onItemChange($event, 'status')"
+                        (onDeSelectAll)="onItemChange($event, 'status')">
+                    </ng-multiselect-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table mdbTable  #qualificationTable="mdbTable" class="qualificationTable table table-striped text-center z-depth-1">
+                <thead>
+                    <tr>
+                        <th scope="col"> Approved </th>
+                        <th scope="col"> Event name </th>
+                        <th scope="col"> Attendee Name </th>
+                        <th scope="col"> Reg Type </th>
+                        <th scope="col"> Reg ID </th>
+                        <th scope="col"> Type </th>
+                        <th scope="col"> Image </th>
+                        <th scope="col"> IDEMIA Approved </th>
+                        <th scope="col"> Approve/Deny Comments </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let qualification of filteredQualificationList; let i = index">
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            <select class="browser-default custom-select"
+                                (change)="changeApproved(addCommentModal, $event.target.value, qualification)"
+                            >
+                                <option *ngFor="let status of ApprovedOptions" [value]="status" [selected]="status === qualification.approved"> {{ status }} </option>
+                            </select>
+                            <!-- <label class="switch">
+                                <input type="checkbox" [(ngModel)]="qualification.approved"
+                                    (change)="changeApproved(addCommentModal, qualification)">
+                                <span class="slider round"></span>
+                            </label> -->
+                        </td>
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            {{qualification.eventName}}
+                        </td>
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            {{qualification.fullName}}
+                        </td>
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            {{qualification.regTypeName}}
+                        </td>
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            {{qualification.regUid}}
+                        </td>
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            {{qualification.docType}}
+                        </td>
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            <img class="qualificationImg" [src]="qualification.image" alt="">
+                        </td>
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="customToggle" [class.on]="qualification.aiApproved"
+                                    (click)="toggleAiApproved(i, false)">
+                                    <div class="toggle item"></div>
+                                    <div class="text item">
+                                        {{ qualification.aiApproved ? 'On' : 'Off' }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td *ngIf="i+1 >= qualificationTablePagination.firstItemIndex && i < qualificationTablePagination.lastItemIndex" scope="row">
+                            <a href="javascript:void(0);" (click)="showChangeHistory(changeHistoryModal, qualification)">
+                                {{qualification.lastEdits}}
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="grey lighten-5 w-100">
+                    <tr>
+                        <td colspan="12">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="paginator">
+                                    <mdb-table-pagination [tableEl]="qualificationTable" [searchDataSource]="filteredQualificationList"></mdb-table-pagination>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+
+            <!-- <table class="table table-striped text-center qualificationTable" style="border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th scope="col"> Approved </th>
+                        <th scope="col"> Event name </th>
+                        <th scope="col"> User Name </th>
+                        <th scope="col"> Reg </th>
+                        <th scope="col"> Type </th>
+                        <th scope="col"> Image </th>
+                        <th scope="col"> IDEMIA Approved </th>
+                        <th scope="col"> Approve/Deny Comments </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let qualification of filteredQualificationList; let i = index">
+                        <td>
+                            <select class="browser-default custom-select" (change)="changeApproved(addCommentModal, $event.target.value, qualification)">
+                                <option *ngFor="let status of ApprovedOptions" [value]="status" [selected]="status === qualification.approved"> {{ status }} </option>
+                            </select>
+                        </td>
+                        <td>
+                            {{qualification.eventName}}
+                        </td>
+                        <td>
+                            {{qualification.userName}}
+                        </td>
+                        <td>
+                            {{qualification.regType}}
+                        </td>
+                        <td>
+                            {{qualification.docType}}
+                        </td>
+                        <td>
+                            <img class="qualificationImg" [src]="qualification.image" alt="">
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="customToggle" [class.on]="qualification.aiApproved"
+                                    (click)="toggleAiApproved(i, false)">
+                                    <div class="toggle item"></div>
+                                    <div class="text item">
+                                        {{ qualification.aiApproved ? 'On' : 'Off' }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" (click)="showChangeHistory(changeHistoryModal, qualification)">
+                                {{qualification.lastEdits}}
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </div>
+    </div>
+</div>
+
+<!-- Add Comment Modal -->
+<ng-template #addCommentModal let-modal>
+    <div class="container p-0">
+        <div class="modal-header">
+            <h2 class="m-0">
+                Add Comment
+            </h2>
+            <button type="button" class="btn btnClose" (click)="cancelComment(modal)"><i
+                    class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" style="background:#eee">
+            <textarea rows="5" class="w-100" [(ngModel)]="comment"></textarea>
+            <div class="row my-2">
+                <div class="col-12 d-flex align-items-center justify-content-between">
+                    <h4 class="m-0">
+                        User: {{ username ? username : 'SAhmed' }}
+                    </h4>
+                    <div class="btnGroup">
+                        <button class="btn btn-primary mr-2" color="primary" (click)="addComment(modal)"> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Change History Modal -->
+<ng-template #changeHistoryModal let-modal>
+    <div class="container p-0">
+        <div class="modal-header">
+            <h2 class="m-0 text-uppercase text-primary">
+                Change History
+            </h2>
+            <button type="button" class="btn btnClose" (click)="modal.close('Save click')"><i
+                    class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" style="background:#eee">
+            <div class="row">
+                <table class="table table-striped text-left changeHistoryTable">
+                    <thead>
+                        <tr>
+                            <th> Actions </th>
+                            <th> Date Created </th>
+                            <th> User </th>
+                            <th> Description </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let history of qualificationChangeHistories; let i = index">
+                            <td>
+                                {{ history.actions }}
+                            </td>
+                            <td>
+                                {{ history.createdAt | date:'MM/dd/yyyy hh:mm a' }}
+                            </td>
+                            <td>
+                                {{ history.user }}
+                            </td>
+                            <td>
+                                {{ history.comment }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row my-2">
+                <div class="col-12 d-flex align-items-center justify-content-end">
+                    <div class="btnGroup">
+                        <button class="btn btn-secondary" (click)="modal.close('Save click')"> Close </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

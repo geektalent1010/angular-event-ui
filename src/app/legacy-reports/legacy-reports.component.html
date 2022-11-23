@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- <div class='col-2'>
+          <div class="tabs-nav-wrap">
+              <ul class="tabs-nav">
+                  <li class="tab-nav-link current">
+                      <i class="far fa-chart-bar"></i>
+                      <br />
+                      <span> Reports Explorer </span>
+                  </li>
+              </ul>
+              <div style="clear:both;"></div>
+          </div>
+      </div> -->
+
+    <div class="col">
+      <div class="tabs-main-content">
+        <div class="tab-content">
+          <div class="tab-inner">
+            <h2>Legacy CSI Reports</h2>
+
+            <div class="row">
+              <div class="col-12 p-0 py-2">
+                <table
+                  class="table legacyTable table-striped z-depth-1"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col" class="lastEditedDate">
+                        Date Last Edited
+                      </th>
+                      <th scope="col" class="lastEditedUser">
+                        User Last Edited
+                      </th>
+                      <th scope="col" class="reportName">Report Name</th>
+                      <th scope="col" class="description">Description</th>
+                      <th scope="col" class="optionsExports">
+                        Options / Exports
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let report of legacyReports; let i = index">
+                      <th scope="row">
+                        {{ report.lastEditedDate }}
+                      </th>
+                      <td>
+                        {{ report.lastEditedUser }}
+                      </td>
+                      <td>
+                        {{ report.reportName }}
+                      </td>
+                      <td>
+                        {{ report.description }}
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <button
+                            class="btn btn-icon my-1"
+                            (click)="export(report, 'XLSX')"
+                          >
+                            <img src="assets/icons/excel.png" />
+                          </button>
+                          <button
+                            class="btn btn-icon my-1"
+                            (click)="export(report, 'PDF')"
+                          >
+                            <img src="assets/icons/pdf.png" />
+                          </button>
+                          <button
+                            class="btn btn-danger my-1"
+                            (click)="live(report)"
+                          >
+                            <i class="fas fa-play"></i>
+                            Live
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

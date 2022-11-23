@@ -1,0 +1,261 @@
+.container-fluid {
+    max-width: 1520px;
+}
+.searchGroup {
+    border: 2px solid lightgray;
+
+    .search {
+        position: relative;
+        width   : 23%;
+        height  : 48px;
+
+        .fa-search {
+            position : absolute;
+            top      : 50%;
+            left     : 14px;
+            transform: translateY(-50%);
+            color    : #9ca3af;
+            width    : 14px;
+            height   : 14px;
+            font-size: 14px !important;
+        }
+
+        input {
+            padding-left: 32px;
+            height      : 48px;
+            box-shadow  : none;
+            border      : 0;
+        }
+    }
+
+    .customSelect {
+        display         : flex;
+        align-items     : center;
+        background-color: white;
+        width           : 18%;
+        border-left     : 2px solid lightgray;
+
+        i {
+            font-size: 22px !important;
+            color    : #a9b7c8;
+        }
+
+        ::ng-deep ng-multiselect-dropdown {
+            width: calc(100% - 26px);
+
+            .dropdown-btn {
+                border     : 0;
+                min-height : 48px;
+                display    : flex;
+                align-items: center;
+                padding    : 0 8px;
+
+                span {
+                    font-size: 16px;
+                    color    : #a5a5a5;
+                }
+
+                span.selected-item {
+                    span {
+                        font-size  : 12px;
+                        display    : flex;
+                        align-items: center;
+                    }
+
+                    a {
+                        padding-left: 2px;
+                        color       : #f3c3c3;
+                        height      : 16px;
+                        display     : flex;
+                        align-items : center;
+                    }
+                }
+
+                .dropdown-multiselect__caret {
+                    height: 48px;
+                }
+            }
+        }
+
+        select {
+            width       : 160px;
+            height      : 48px;
+            padding-left: 34px;
+            margin      : 0;
+            border      : 0;
+        }
+    }
+
+    .eventFilter {
+        width: 23%;
+    }
+}
+
+table.qualificationTable {
+    thead th {
+        border: 0;
+        font-weight: bold;
+    }
+
+    tr {
+        background-color: transparent;
+
+        td {
+            border        : 0;
+            vertical-align: middle;
+        }
+    }
+
+    img.qualificationImg {
+        max-width: 100px;
+        width    : 100%;
+        max-height: 60px;
+    }
+
+    .switch {
+        position: relative;
+        display : inline-block;
+        width   : 60px;
+        height  : 34px;
+        margin  : 0;
+    }
+
+    .switch input {
+        opacity: 0;
+        width  : 0;
+        height : 0;
+    }
+
+    .slider {
+        position          : absolute;
+        cursor            : pointer;
+        top               : 0;
+        left              : 0;
+        right             : 0;
+        bottom            : 0;
+        background-color  : #ccc;
+        -webkit-transition: .4s;
+        transition        : .4s;
+    }
+
+    .slider:before {
+        position          : absolute;
+        content           : "";
+        height            : 26px;
+        width             : 26px;
+        left              : 4px;
+        bottom            : 4px;
+        background-color  : white;
+        -webkit-transition: .4s;
+        transition        : .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform    : translateX(26px);
+        transform        : translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+        height       : 34px;
+        width        : 60px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .customToggle {
+        height             : 46px;
+        width              : 90px;
+        display            : flex;
+        align-items        : center;
+        justify-content    : center;
+        background         : #e2e6eb;
+        cursor             : pointer;
+        border-radius      : 6px;
+        border             : 1px solid #cbcacd;
+        -webkit-user-select: none;
+        -moz-user-select   : none;
+        -ms-user-select    : none;
+        user-select        : none;
+
+        .toggle {
+            width        : 22px;
+            height       : 100%;
+            background   : white;
+            border-radius: 5px;
+        }
+
+        .text {
+            width    : 66px;
+            font-size: 20px;
+            color    : black;
+        }
+    }
+
+    .customToggle.on {
+        background-color: #3d8bfc;
+        border          : 1px solid #6c7e82;
+
+        .item:nth-child(1) {
+            order: 2;
+        }
+
+        .item:nth-child(2) {
+            order: 1;
+        }
+
+        .text {
+            color: white;
+        }
+    }
+
+    tfoot {
+        .paginator {
+            width: 300px;
+            ::ng-deep mdb-table-pagination {
+                .page-item {
+                    cursor             : pointer;
+                    border-radius      : 50%;
+                    width              : 36px;
+                    height             : 36px;
+                    text-align         : center;
+                    font-weight        : 600;
+                    -webkit-user-select: none;
+                    -moz-user-select   : none;
+                    -ms-user-select    : none;
+                    user-select        : none;
+
+                    a {
+                        border-radius: 50%;
+                    }
+                }
+
+                .page-item.disabled {
+                    cursor: auto;
+                }
+            }
+        }
+    }
+}
+
+table.changeHistoryTable {
+    th:not(:last-child) {
+        border-right: 1px solid #dee2e6;
+    }
+
+    td {
+        text-align: left;
+    }
+}

@@ -1,0 +1,104 @@
+<div class="modal-header">
+    <h3 class="modal-title text-uppercase font-weight-bold m-0"> {{isEdit?'Edit':'Create New'}} Qualification </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <form [formGroup]="qualificationForm">
+            <div class="row mt-0">
+                <label for="qualification">
+                    <span class="text-danger font-weight-bold align-middle">*</span>
+                    Qualification Type:
+                </label>
+                <select  formControlName="qualification" class="form-control"
+                    [class.border-danger]="lf.qualification.invalid && (lf.qualification.dirty || lf.qualification.touched)"
+                    [class.border-success]="lf.qualification.valid && (lf.qualification.dirty || lf.qualification.touched)"
+                >
+                    <option value="" checked> - Select - </option>
+                    <option *ngFor="let type of typeList" [value]="type"> {{ type }} </option>
+                </select>
+                <div *ngIf="!isEdit && lf.qualification.invalid && (lf.qualification.dirty || lf.qualification.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.qualification.errors.required">
+                        * Qualification type is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-0">
+                <label for="sampleImg">
+                    Sample Image Upload:
+                </label>
+                <input #fileInputLogo type="file" id="imageUpload" class="w-100"
+                    accept=".png, .jpg, .jpeg, .svg" formControlName="sampleQualificationFileData" (change)="uploadLogo($event, 'sampleQualificationFileData')"
+                    [class.border-danger]="lf.sampleQualificationFileData.invalid && (lf.sampleQualificationFileData.dirty || lf.sampleQualificationFileData.touched)"
+                    [class.border-success]="lf.sampleQualificationFileData.valid && (lf.sampleQualificationFileData.dirty || lf.sampleQualificationFileData.touched)"/>
+                <a (click)="getImgLinkOfType('sampleQualificationFileData')">*Click here view uploaded file</a>   
+                <div *ngIf="lf.sampleQualificationFileData.invalid && (lf.sampleQualificationFileData.dirty || lf.sampleQualificationFileData.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.sampleQualificationFileData.errors.required">
+                        * Sample Image is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-0">
+                <label for="sampleImg">
+                    Form Requirement Upload:
+                </label>
+                <input #fileReqUpload type="file" id="formRequirement" class="w-100" (change)="uploadLogo($event, 'formRequirement')"/>
+                <a (click)="getImgLinkOfType('formRequirement')">*Click here view uploaded file</a>   
+            </div>
+
+            
+
+            <div class="row mt-0 mb-2">
+                <label for="name">
+                    <span class="text-danger font-weight-bold align-middle">*</span>
+                    Qualification Name:
+                </label>
+                <input name="text" class="form-control" formControlName="qualName" maxlength="30"
+                    [class.border-danger]="lf.qualName.invalid && (lf.qualName.dirty || lf.qualName.touched)"
+                    [class.border-success]="lf.qualName.valid && (lf.qualName.dirty || lf.qualName.touched)">
+                <div *ngIf="lf.qualName.invalid && (lf.qualName.dirty || lf.qualName.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.qualName.errors.required">
+                        * Qualification name is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-0">
+                <label for="regType">
+                    <span class="text-danger font-weight-bold align-middle">*</span>
+                    Qualification regType:
+                </label>
+                <select formControlName="regType" class="form-control"
+                    [class.border-danger]="lf.regType.invalid && (lf.regType.dirty || lf.regType.touched)"
+                    [class.border-success]="lf.regType.valid && (lf.regType.dirty || lf.regType.touched)"
+                >
+                    <option value="" checked> - Select - </option>
+                    <option *ngFor="let type of regTypes" [value]="type"> {{ type }} </option>
+                </select>
+                <div *ngIf="lf.regType.invalid && (lf.regType.dirty || lf.regType.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.regType.errors.required">
+                        * Qualification regType is required.
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-between">
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="save()"> Save </button>
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="closeModal()"> Cancel </button>
+            </div>
+        </div>
+    </div>
+</div>

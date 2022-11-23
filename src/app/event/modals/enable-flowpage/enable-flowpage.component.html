@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <h2 class="modal-title w-100 text-center m-0"> {{ template.templateName }} </h2>
+</div>
+<div class="modal-body">
+  <div class="p-4">
+    <ul class="nav nav-tabs">
+      <li class="nav-item" *ngFor="let tab of tabsList">
+        <a class="nav-link" [class.active]="tab === currentTab" href="javascript:void(0);" (click)="currentTab = tab"> {{ tab }} </a>
+      </li>
+    </ul>
+    <div class="tabsContent">
+      <div class="tabItem" *ngIf="currentTab === 'Page Visibility'" cdkDropList (cdkDropListDropped)="onDrop($event)">
+        <ng-container *ngFor="let page of template.pages; let i=idx;">
+          <div class="workflow-page-item m-4" *ngIf="page.displayName==='Personal Information'" [cdkDragDisabled]="true" cdkDrag>
+            <label *ngIf="page.page !== 'initial_regtype'" class="customCheckbox">
+              <input type="checkbox" [disabled]="requiredPages.includes(page.page)" [(ngModel)]="page.enable" />
+              <span> {{page.displayName}} </span>
+            </label>
+          </div>
+        </ng-container>
+        <ng-container *ngFor="let page of template.pages; let i=idx;">
+          <div class="workflow-page-item m-4" *ngIf="page.displayName!=='Personal Information'" cdkDrag>
+            <label *ngIf="page.page !== 'initial_regtype'" class="customCheckbox">
+              <input type="checkbox" [disabled]="requiredPages.includes(page.page)" [(ngModel)]="page.enable" />
+              <span> {{page.displayName}} </span>
+            </label>
+          </div>
+        </ng-container>
+      </div>
+      <div class="tabItem pt-3" *ngIf="currentTab === 'Initial Regtype'">
+        <label for="regType">RegType</label>
+        <select name="regType" id="regType" class="form-control" [(ngModel)]="initial_regtype" (ngModelChange)="onRegTypeChange($event)">
+          <option *ngFor="let regType of regList" [value]="regType">{{regType}}</option>
+        </select>
+      </div>
+      <div class="tabItem pt-3" *ngIf="currentTab === 'Registration Method'">
+        <label for="regMethod">Registration Method</label>
+        <select name="regMethod" id="regMethod" class="form-control" [(ngModel)]="reg_method" (ngModelChange)="onRegMethodChange($event)">
+          <option *ngFor="let regMethod of regMethodList" [value]="regMethod">{{regMethod}}</option>
+        </select>
+      </div>
+      <div class="tabItem pt-3" *ngIf="currentTab === 'Regtype Determination'">
+        <label for="regType">RegType Determination Method</label>
+        <select name="regtypeDeterm" id="regtypeDeterm" class="form-control" [(ngModel)]="regtypeDeterm" (ngModelChange)="onRegtypeDetermChange()">
+          <option *ngFor="let regtypeDet of regtypeDetermMethods" [value]="regtypeDet">{{regtypeDet}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer border-0">
+  <div class="container-fluid">
+      <div class="row m-0">
+          <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+            <button class="btn btn-primary px-4 py-2" (click)="save()">SAVE</button>
+          </div>
+      </div>
+  </div>
+</div>

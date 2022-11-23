@@ -1,0 +1,1452 @@
+<div class="row px-3 px-lg-5">
+  <div class="col-12 px-0 px-md-4">
+    <form [formGroup]="eventInfoForm">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="title m-0">CSI Contact Info</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-0 col-lg-1"></div>
+        <div class="col-12 col-lg-10">
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Manager </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.reqProjMgrName }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="reqProjMgrName"
+                  />
+                  <div
+                    *ngIf="
+                      lf.reqProjMgrName.invalid &&
+                      lf.reqProjMgrName.errors &&
+                      (lf.reqProjMgrName.dirty || lf.reqProjMgrName.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.reqProjMgrName.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.reqProjMgrName.hasError('maxlength')"
+                    >
+                      The maximum length for this field is
+                      {{ lf.reqProjMgrName.errors.maxlength.requiredLength }}
+                      characters. <br />
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Sales Executive </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.salesExecName }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="salesExecName"
+                  />
+                  <div
+                    *ngIf="
+                      lf.salesExecName.invalid &&
+                      lf.salesExecName.errors &&
+                      (lf.salesExecName.dirty || lf.salesExecName.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.salesExecName.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.salesExecName.hasError('maxlength')"
+                    >
+                      The maximum length for this field is
+                      {{ lf.salesExecName.errors.maxlength.requiredLength }}
+                      characters. <br />
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Preferred Method </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.preferredMethod }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <select
+                    class="form-control"
+                    formControlName="preferredMethod"
+                    name="preferredMethod"
+                  >
+                    <option value="Email">Email</option>
+                    <option value="Phone Number">Phone Number</option>
+                  </select>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label> Email </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">
+                    {{ eventInfo?.custServiceEmailAddress }}
+                  </div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="custServiceEmailAddress"
+                  />
+                  <div
+                    *ngIf="
+                      lf.custServiceEmailAddress.invalid &&
+                      lf.custServiceEmailAddress.errors &&
+                      (lf.custServiceEmailAddress.dirty ||
+                        lf.custServiceEmailAddress.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.custServiceEmailAddress.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.custServiceEmailAddress.hasError('maxlength')"
+                    >
+                      The maximum length for this field is
+                      {{
+                        lf.custServiceEmailAddress.errors.maxlength
+                          .requiredLength
+                      }}
+                      characters. <br />
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Phone </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">
+                    {{ eventInfo?.custServicePhoneNumber }}
+                  </div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    class="form-control"
+                    type="text"
+                    class="form-control"
+                    mask="(000) 000-0000"
+                    formControlName="custServicePhoneNumber"
+                    [class.border-danger]="
+                      lf.custServicePhoneNumber.invalid &&
+                      (lf.custServicePhoneNumber.dirty ||
+                        lf.custServicePhoneNumber.touched)
+                    "
+                    [class.border-success]="
+                      lf.custServicePhoneNumber.valid &&
+                      (lf.custServicePhoneNumber.dirty ||
+                        lf.custServicePhoneNumber.touched)
+                    "
+                  />
+                  <div
+                    *ngIf="
+                      lf.custServicePhoneNumber.invalid &&
+                      lf.custServicePhoneNumber.errors &&
+                      (lf.custServicePhoneNumber.dirty ||
+                        lf.custServicePhoneNumber.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.custServicePhoneNumber.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.custServicePhoneNumber.hasError('maxlength')"
+                    >
+                      The maximum length for this field is
+                      {{
+                        lf.custServicePhoneNumber.errors.maxlength
+                          .requiredLength
+                      }}
+                      characters. <br />
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+        </div>
+        <div class="col-0 col-lg-1"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h2 class="title m-0">Event Information</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-0 col-lg-1"></div>
+        <div class="col-12 col-lg-10">
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Name <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.eventName }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="eventName"
+                  />
+                  <div
+                    *ngIf="
+                      lf.eventName.invalid &&
+                      lf.eventName.errors &&
+                      (lf.eventName.dirty || lf.eventName.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.eventName.errors.required"
+                    >
+                      This field is required.
+                    </small>
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.eventName.hasError('minlength')"
+                    >
+                      The minimum length for this field is
+                      {{ lf.eventName.errors.minlength.requiredLength }}
+                      characters. <br />
+                    </small>
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.eventName.hasError('maxlength')"
+                    >
+                      The maximum length for this field is
+                      {{ lf.eventName.errors.maxlength.requiredLength }}
+                      characters. <br />
+                    </small>
+                  </div>
+                  <div *ngIf="lf.eventName.dirty || lf.eventName.touched">
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.eventName.hasError('eventNameFound')"
+                    >
+                      The Event Name is already in use
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label>
+                Event Display Name <span class="text-danger"> * </span>
+              </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.eventDisplayName }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="eventDisplayName"
+                  />
+                  <div
+                    *ngIf="
+                      lf.eventDisplayName.invalid &&
+                      lf.eventDisplayName.errors &&
+                      (lf.eventDisplayName.dirty || lf.eventDisplayName.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.eventDisplayName.errors.required"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label> Description <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.description }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <textarea
+                    rows="6"
+                    class="form-control"
+                    formControlName="description"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      lf.description.invalid &&
+                      lf.description.errors &&
+                      (lf.description.dirty || lf.description.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.description.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.description.hasError('maxlength')"
+                    >
+                      The maximum length for this field is
+                      {{ lf.description.errors.maxlength.requiredLength }}
+                      characters. <br />
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center mb-5">
+            <div class="col-6">
+              <label> Logo </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <img [src]="data?.logo" />
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="file"
+                    name="logo"
+                    accept="image/*"
+                    hidden
+                    #logoInput
+                    (change)="handleLogoUpload($event)"
+                  />
+                  <button
+                    class="uploadLogoBtn border-0"
+                    (click)="logoInput.click()"
+                  >
+                    Upload Image
+                  </button>
+                  <img width="200" [src]="lf.eventLogo.value" alt="" />
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label>
+                Security Level <span class="text-danger"> * </span>
+              </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.eventSecurityLevel }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <select
+                    class="form-control"
+                    formControlName="eventSecurityLevel"
+                    name="eventSecurityLevel"
+                    (change)="changeSecurityLevel($event.target.value)"
+                  >
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                  </select>
+                  <div
+                    *ngIf="
+                      lf.eventSecurityLevel.invalid &&
+                      lf.eventSecurityLevel.errors &&
+                      (lf.eventSecurityLevel.dirty ||
+                        lf.eventSecurityLevel.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.eventSecurityLevel.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+
+          <div
+            *ngIf="lf.eventSecurityLevel.value === 'private'"
+            class="row d-flex align-items-center"
+          >
+            <div class="col-6">
+              <label>
+                Private Access Code <span class="text-danger"> * </span></label
+              >
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.eventAccessCode }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="eventAccessCode"
+                    appNumbersOnly
+                  />
+                  <div
+                    *ngIf="
+                      lf.eventAccessCode.invalid &&
+                      lf.eventAccessCode.errors &&
+                      (lf.eventAccessCode.dirty || lf.eventAccessCode.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.eventAccessCode.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        lf.eventAccessCode.hasError('minlength') ||
+                        lf.eventAccessCode.hasError('maxlength')
+                      "
+                    >
+                      Private access code should 6 integer digits.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Format <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.eventFormat }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <select
+                    class="form-control"
+                    formControlName="eventFormat"
+                    name="eventFormat"
+                  >
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="Virtual">Virtual</option>
+                    <option value="Onsite">Onsite</option>
+                  </select>
+                  <div
+                    *ngIf="
+                      lf.eventFormat.invalid &&
+                      lf.eventFormat.errors &&
+                      (lf.eventFormat.dirty || lf.eventFormat.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.eventFormat.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label>
+                Category Selection <span class="text-danger"> * </span>
+              </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.categories }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <select
+                    class="form-control"
+                    formControlName="categories"
+                    name="categories"
+                  >
+                    <option
+                      *ngFor="let sessionTopicsOption of sessionTopicsOptions"
+                      [value]="sessionTopicsOption"
+                    >
+                      {{ sessionTopicsOption }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="
+                      lf.categories.invalid &&
+                      lf.categories.errors &&
+                      (lf.categories.dirty || lf.categories.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.categories.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Show Code <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.showCode }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="showCode"
+                  />
+                  <div
+                    *ngIf="
+                      lf.showCode.invalid &&
+                      lf.showCode.errors &&
+                      (lf.showCode.dirty || lf.showCode.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.showCode.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label>
+                Trade Show Name <span class="text-danger"> * </span>
+              </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.tradeShowName }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="tradeShowName"
+                  />
+                  <div
+                    *ngIf="
+                      lf.tradeShowName.invalid &&
+                      lf.tradeShowName.errors &&
+                      (lf.tradeShowName.dirty || lf.tradeShowName.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.tradeShowName.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-12">
+              <label class="font-weight-bold">
+                Type- choose one <span class="text-danger"> * </span></label
+              >
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-6 pl-0 pr-4">
+                  <label class="customCheckbox">
+                    <input type="checkbox" class="" formControlName="Seminar" />
+                    <span> Seminar </span>
+                  </label>
+                  <div class="checkboxDescription mt-2">
+                    Corporate Event with Target Audience in Mind
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label class="customCheckbox">
+                    <input type="checkbox" class="" formControlName="Social" />
+                    <span> Social </span>
+                  </label>
+                  <div class="checkboxDescription mt-2">
+                    Interest-based, Reunions, Parties, Galas Centered Around
+                    Entertainment
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 pl-0 pr-4">
+                  <label class="customCheckbox">
+                    <input
+                      type="checkbox"
+                      class=""
+                      formControlName="Workshop"
+                    />
+                    <span> Workshop </span>
+                  </label>
+                  <div class="checkboxDescription mt-2">
+                    Brainstorming, Training Sessions, Classes to Connect with
+                    Staff or Public
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label class="customCheckbox">
+                    <input type="checkbox" class="" formControlName="Trade" />
+                    <span> Tradeshow </span>
+                  </label>
+                  <div class="checkboxDescription mt-2">
+                    Corporate Eent Showcasing Latest Products to
+                    Business/General Public
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="
+                !lf.Seminar.value &&
+                !lf.Social.value &&
+                !lf.Workshop.value &&
+                !lf.Trade.value &&
+                (lf.Seminar.dirty ||
+                  lf.Seminar.touched ||
+                  lf.Social.dirty ||
+                  lf.Social.touched ||
+                  lf.Workshop.dirty ||
+                  lf.Workshop.touched ||
+                  lf.Trade.dirty ||
+                  lf.Trade.touched)
+              "
+            >
+              <small class="text-danger"> This field is required. </small>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Year </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.eventYear }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="eventYear"
+                  />
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Start Date <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.startDate }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="date"
+                    class="form-control"
+                    formControlName="startDate"
+                  />
+                  <div
+                    *ngIf="
+                      lf.startDate.invalid &&
+                      lf.startDate.errors &&
+                      (lf.startDate.dirty || lf.startDate.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.startDate.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Start Time <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.startTime }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="time"
+                    class="form-control"
+                    formControlName="startTime"
+                  />
+                  <div
+                    *ngIf="
+                      lf.startTime.invalid &&
+                      lf.startTime.errors &&
+                      (lf.startTime.dirty || lf.startTime.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.startTime.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> End Date <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.endDate }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="date"
+                    class="form-control"
+                    formControlName="endDate"
+                  />
+                  <div
+                    *ngIf="
+                      lf.endDate.invalid &&
+                      lf.endDate.errors &&
+                      (lf.endDate.dirty || lf.endDate.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.endDate.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> End Time <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.endTime }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="time"
+                    class="form-control"
+                    formControlName="endTime"
+                  />
+                  <div
+                    *ngIf="
+                      lf.endTime.invalid &&
+                      lf.endTime.errors &&
+                      (lf.endTime.dirty || lf.endTime.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.endTime.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label> Address <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.address1 }}</div>
+                  <div class="value">{{ eventInfo?.address2 }}</div>
+                  <div class="value">{{ eventInfo?.address3 }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    ngx-google-places-autocomplete
+                    class="form-control my-1"
+                    formControlName="address1"
+                    (onAddressChange)="handleAddressChange($event)"
+                  />
+                  <input
+                    type="text"
+                    class="form-control my-1"
+                    formControlName="address2"
+                  />
+                  <input
+                    type="text"
+                    class="form-control my-1"
+                    formControlName="address3"
+                  />
+                  <div
+                    *ngIf="
+                      lf.address1.invalid &&
+                      lf.address1.errors &&
+                      (lf.address1.dirty || lf.address1.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.address1.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> City </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.city }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="city"
+                  />
+                  <div
+                    *ngIf="
+                      lf.city.invalid &&
+                      lf.city.errors &&
+                      (lf.city.dirty || lf.city.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.city.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> County </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.county }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="county"
+                  />
+                  <div
+                    *ngIf="
+                      lf.county.invalid &&
+                      lf.county.errors &&
+                      (lf.county.dirty || lf.county.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.county.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Zip Code <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.zip }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="zip"
+                  />
+                  <div
+                    *ngIf="
+                      lf.zip.invalid &&
+                      lf.zip.errors &&
+                      (lf.zip.dirty || lf.zip.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.zip.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Country <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.country }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <select
+                    class="form-control"
+                    formControlName="country"
+                    name="country"
+                  >
+                    <option
+                      *ngFor="let option of listOfCountries; let i = index"
+                      [value]="option.name"
+                      placeholder="Country"
+                    >
+                      {{ option.name }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="
+                      lf.country.invalid &&
+                      lf.country.errors &&
+                      (lf.country.dirty || lf.country.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.country.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Country Code </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.countryCode }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="countryCode"
+                  />
+                  <div
+                    *ngIf="
+                      lf.countryCode.invalid &&
+                      lf.countryCode.errors &&
+                      (lf.countryCode.dirty || lf.countryCode.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.countryCode.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label>
+                Contact Phone <span class="text-danger"> * </span>
+              </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.phone }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="phone"
+                  />
+                  <div
+                    *ngIf="
+                      lf.phone.invalid &&
+                      lf.phone.errors &&
+                      (lf.phone.dirty || lf.phone.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.phone.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <hr />
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Payment Way <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.paymentWay }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <select
+                    class="form-control"
+                    formControlName="paymentWay"
+                    name="paymentWay"
+                  >
+                    <option
+                      *ngFor="let option of paymentWayList; let i = index"
+                      [value]="option.value"
+                    >
+                      {{ option.label }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="
+                      lf.paymentWay.invalid &&
+                      lf.paymentWay.errors &&
+                      (lf.paymentWay.dirty || lf.paymentWay.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.paymentWay.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+
+          <!-- Braintree optional parameters -->
+          <div class="row align-items-center" *ngIf="lf.merchantId">
+            <div class="col-6">
+              <label> Merchant Id <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.merchantId }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="merchantId"
+                  />
+                  <div
+                    *ngIf="
+                      lf.merchantId.invalid &&
+                      lf.merchantId.errors &&
+                      (lf.merchantId.dirty || lf.merchantId.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.merchantId.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row align-items-center" *ngIf="lf.publicKey">
+            <div class="col-6">
+              <label> Public Key <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.publicKey }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="publicKey"
+                  />
+                  <div
+                    *ngIf="
+                      lf.publicKey.invalid &&
+                      lf.publicKey.errors &&
+                      (lf.publicKey.dirty || lf.publicKey.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.publicKey.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row align-items-center" *ngIf="lf.privateKey">
+            <div class="col-6">
+              <label> Private Key <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.privateKey }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="privateKey"
+                  />
+                  <div
+                    *ngIf="
+                      lf.privateKey.invalid &&
+                      lf.privateKey.errors &&
+                      (lf.privateKey.dirty || lf.privateKey.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.privateKey.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <!-- // End // Braintree optional parameters -->
+
+          <!-- authorize.net optional parameters -->
+          <div class="row align-items-center" *ngIf="lf.apiLoginId">
+            <div class="col-6">
+              <label> API Login Id <span class="text-danger"> * </span> </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.apiLoginId }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="apiLoginId"
+                  />
+                  <div
+                    *ngIf="
+                      lf.apiLoginId.invalid &&
+                      lf.apiLoginId.errors &&
+                      (lf.apiLoginId.dirty || lf.apiLoginId.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.apiLoginId.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="row align-items-center" *ngIf="lf.transactionKey">
+            <div class="col-6">
+              <label>
+                Transaction Key <span class="text-danger"> * </span>
+              </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.transactionKey }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="transactionKey"
+                  />
+                  <div
+                    *ngIf="
+                      lf.transactionKey.invalid &&
+                      lf.transactionKey.errors &&
+                      (lf.transactionKey.dirty || lf.transactionKey.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.transactionKey.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <!-- // End // authorize.net optional parameters -->
+
+          <hr />
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label>
+                Show Home Page <span class="text-danger"> * </span></label
+              >
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.homePageOnShowInfo }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="homePageOnShowInfo"
+                  />
+                  <div
+                    *ngIf="
+                      lf.homePageOnShowInfo.invalid &&
+                      lf.homePageOnShowInfo.errors &&
+                      (lf.homePageOnShowInfo.dirty ||
+                        lf.homePageOnShowInfo.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.homePageOnShowInfo.hasError('required')"
+                    >
+                      This field is required.
+                    </small>
+                    <small
+                      class="text-danger"
+                      *ngIf="lf.homePageOnShowInfo.hasError('pattern')"
+                    >
+                      Invalid URL.
+                    </small>
+                  </div>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <hr />
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Blocked Registration Countries </label>
+            </div>
+            <div class="col-6">
+              <container-element [ngSwitch]="pageType">
+                <some-element *ngSwitchCase="'view'">
+                  <div class="value">{{ eventInfo?.blockedCountries }}</div>
+                </some-element>
+                <some-element *ngSwitchDefault>
+                  <ng-multiselect-dropdown
+                    [ngModelOptions]="{ standalone: true }"
+                    [placeholder]="'- Select -'"
+                    [settings]="dropdownSettings"
+                    [data]="listOfCountries"
+                    [(ngModel)]="blockedCountries"
+                  >
+                  </ng-multiselect-dropdown>
+                </some-element>
+              </container-element>
+            </div>
+          </div>
+          <hr />
+          <div class="row d-flex align-items-center">
+            <div class="col-6">
+              <label> Control Show Info Widget Hide </label>
+            </div>
+            <div class="col-6">
+              <div class="row d-flex">
+                <label class="customCheckbox">
+                  <input
+                    type="checkbox"
+                    class=""
+                    formControlName="hideShowInfo"
+                  />
+                  <span> Hide Whole Show Info Widget </span>
+                </label>
+              </div>
+              <div class="row d-flex">
+                <label class="customCheckbox">
+                  <input
+                    type="checkbox"
+                    class=""
+                    formControlName="hideShowInfoTitle"
+                  />
+                  <span> Hide Show Info Title </span>
+                </label>
+              </div>
+              <div class="row d-flex">
+                <label class="customCheckbox">
+                  <input
+                    type="checkbox"
+                    class=""
+                    formControlName="hideShowInfoButton"
+                  />
+                  <span> Hide Show Info Social Follow US Section </span>
+                </label>
+              </div>
+              <div class="row d-flex">
+                <label class="customCheckbox">
+                  <input
+                    type="checkbox"
+                    class=""
+                    formControlName="hideShowInfoFollowUs"
+                  />
+                  <span> Hide Show Info Button </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </div>
+        <div class="col-0 col-lg-1"></div>
+      </div>
+    </form>
+  </div>
+</div>

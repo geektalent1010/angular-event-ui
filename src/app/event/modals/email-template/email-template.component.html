@@ -1,0 +1,95 @@
+<div class="modal-header">
+  <h2 class="modal-title w-100 text-center m-0">New Email Template</h2>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <form [formGroup]="templateForm">
+      <div class="row mt-0 mb-2">
+        <label for="label">
+          <span class="text-danger font-weight-bold align-middle">*</span>
+          Template Name:
+        </label>
+        <input
+          name="text"
+          class="form-control"
+          formControlName="label"
+          maxlength="30"
+          [class.border-danger]="
+            lf.label.invalid && (lf.label.dirty || lf.label.touched)
+          "
+          [class.border-success]="
+            lf.label.valid && (lf.label.dirty || lf.label.touched)
+          "
+        />
+        <div
+          *ngIf="lf.label.invalid && (lf.label.dirty || lf.label.touched)"
+          class="help-block mt-1 text-danger"
+        >
+          <small *ngIf="lf.label.errors.required">
+            * Template Name is required.
+          </small>
+        </div>
+      </div>
+      <div class="row mt-0 mb-2">
+        <label for="name">
+          <span class="text-danger font-weight-bold align-middle">*</span>
+          Template Category:
+        </label>
+        <!-- <input
+          name="text"
+          class="form-control"
+          formControlName="name"
+          maxlength="30"
+          (keydown.space)="$event.preventDefault()"
+          [class.border-danger]="
+            lf.name.invalid && (lf.name.dirty || lf.name.touched)
+          "
+          [class.border-success]="
+            lf.name.valid && (lf.name.dirty || lf.name.touched)
+          "
+        /> -->
+        <select
+            name="loadTemplateType"
+            id="loadTemplateType"
+            class="form-control"
+            formControlName="name"
+          >
+            <option
+              *ngFor="let tempVal of tempEmailList"
+              [value]="tempVal.name"
+            >
+              {{ tempVal.label }}
+            </option>
+          </select>
+        <div
+          *ngIf="lf.name.invalid && (lf.name.dirty || lf.name.touched)"
+          class="help-block mt-1 text-danger"
+        >
+          <small *ngIf="lf.name.errors.required">
+            * Template Category is required.
+          </small>
+        </div>
+        <!-- <div *ngIf="lf.name.dirty || lf.name.touched">
+          <small class="text-danger" *ngIf="lf.name.hasError('fieldNameFound')">
+            * Template Category is already in use.
+          </small>
+        </div> -->
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer border-0">
+  <div class="container-fluid">
+    <div class="row m-0">
+      <div class="col-12 p-0 d-flex align-items-center justify-content-end">
+        <button
+          class="btn btn-primary btn-sm text-uppercase mr-3"
+          color="primary"
+          (click)="save()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

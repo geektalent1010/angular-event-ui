@@ -1,0 +1,80 @@
+<div class="row m-auto" *ngIf="eventInfo">
+  <div class="col-6 d-flex align-items-center">
+    <div style="width: 140px;">Registrant's name:</div><span> {{personalInfo?.firstName}}
+      {{personalInfo?.lastName}}</span>
+  </div>
+  <div class="col-6 d-flex align-items-center">
+    <div style="width: 140px;">Attendee uid:</div><span>{{attendeeUid}} </span>
+  </div>
+  <div class="col-6 d-flex align-items-center">
+    <div style="width: 140px;">Event name:</div><span> {{eventInfo?.Event?.evtName}} </span>
+  </div>
+  <div class="col-6 d-flex align-items-center">
+    <div style="width: 140px;">Show dates:</div><span>{{eventInfo?.Event?.startDate | date : 'shortDate'}} -
+      {{eventInfo?.Event?.endDate | date : 'shortDate'}}</span>
+  </div>
+</div>
+<div *ngIf="!eventInfo && !paymentInfo">
+  <div class="d-flex justify-content-center">
+    Creating your invoice...this may take some time.
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only" id="loading"></span>
+    </div>
+  </div>
+</div>
+<div class="table-responsive" style="overflow-x: unset;" *ngIf="paymentInfo">
+  <table class="table table-striped table-hover table-sm table-borderless" id="paymentTable"
+    style="font-size: smaller;">
+
+    <thead class="table-     bg-light">
+      <tr>
+        <th style="width: 150px;">Date</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th style="width: 8%;">Quantity</th>
+        <th style="width: 20%;">Rate</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of paymentInfo?.packageItems">
+        <td scope="row">{{item.date | date :'shortDate'}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.rate | number : '1.2-2'}}</td>
+      </tr>
+      <tr *ngFor="let item of paymentInfo?.sessionItems">
+        <td scope="row">{{item.date | date :'shortDate'}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.rate | number : '1.2-2'}}</td>
+      </tr>
+      <tr *ngFor="let item of paymentInfo?.discounts">
+        <td scope="row"></td>
+        <td>{{item.discountName}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.quantity}}</td>
+        <td>- {{item.amount| number : '1.2-2'}}</td>
+      </tr>
+      <tr>
+        <td scope="row"></td>
+        <td></td>
+        <td></td>
+        <td><strong>Total Fees</strong></td>
+        <td><strong>$ {{paymentInfo?.total| number : '1.2-2'}}</strong></td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+<div *ngIf="showGooglePay">
+  <google-pay-button environment="{{googleEnvironnement}}" buttonType="buy" buttonColor="black"
+    [paymentRequest]="paymentRequest" (loadpaymentdata)="onLoadPaymentData($event)" (error)="onError($event)"
+    [paymentAuthorizedCallback]="onPaymentDataAuthorized"> </google-pay-button>
+</div>

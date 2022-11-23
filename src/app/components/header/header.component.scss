@@ -1,0 +1,94 @@
+/*------------------------------------
+	Fonts
+------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700");
+
+body {
+  color: #647b9c;
+  font-size: 15px;
+  font-family: "Muli", sans-serif;
+  margin: 0;
+  overflow-x: hidden !important;
+  font-weight: 400;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  background: var(--bkg-color);
+}
+
+.mainHeader {
+  background: var(--bkg-color);;
+  box-shadow: 0px 0px 15px 3px #00000042;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  a {
+    color: #4a5682;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+  
+  .header {
+    background: var(--bkg-color);;
+    z-index: 4;
+    max-width: 100%;
+    height: 70px;
+    .logoSection {
+      img {
+        height: 30pt;
+      }
+      .compuSystem {
+        font-size: 30pt;
+        color: var(--main-color-1);
+        font-family: HKGrotesk;
+        font-weight: lighter;
+      }
+    }
+    .rightSection {
+      i {
+        font-size: 24px;
+        color: var(--main-color-1);
+      }
+      .welcome {
+        color: #007497;
+        font-weight: 500;
+        cursor: pointer;
+        #firstName{
+          text-transform: capitalize;
+        }
+      }
+      .userDropdown {
+        height: 32px;
+        button.dropdown-toggle {
+          background-color: var(--bkg-color);
+          color: var(--main-color-1) !important;
+          width: 32px;
+          border: none !important;
+          box-shadow: none;
+          height: 36px;
+          &:focus {
+            box-shadow: none;
+          }
+          &:after {
+            display:none;
+          }
+        }
+        .dropdownItem {
+          color: var(--label-color);
+          &.border-bottom {
+            border-bottom: 2px solid #7bb3c6 !important;
+          }
+          &:focus {
+            background-color: var(--bkg-color);
+          }
+        }
+      }
+    }
+  }
+}

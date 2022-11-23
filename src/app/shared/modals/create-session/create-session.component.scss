@@ -1,0 +1,12 @@
+.modal-body {
+    max-height: 70vh;
+    select.form-control, input.form-control {
+        height: 38px;
+    }
+}
+.modal-footer {
+    padding: 0 16px 24px;
+    button {
+        padding: 12px 32px;
+    }
+}

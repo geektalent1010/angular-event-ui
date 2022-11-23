@@ -1,0 +1,200 @@
+  <div class="modal-header">
+    <h2 class="modal-title pull-left">Create New Event</h2>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <tabset #createEventTabs>
+      <tab heading="Event Type" (selectTab)="changeTab(0)">
+        <br>
+          Select Event Type
+          <div style="width:500px;">
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+              <div ngxSlickItem class="slide" (click)="slideEvent3D($event)"><img src="../../assets/img/eventType_3d.png" style="height:190px;"></div>
+              <div ngxSlickItem class="slide" (click)="slideEventOnsite($event)"><img src="../../assets/img/eventType_onsite.PNG" style="height:190px;"></div>
+              <div ngxSlickItem class="slide" (click)="slideEventOnsiteVirtual($event)"><img src="../../assets/img/eventType_onsitevirt.PNG" style="height:190px;"></div>
+              <div ngxSlickItem class="slide" (click)="slideEventVirtual($event)"><img src="../../assets/img/eventType_virt.PNG" style="height:190px;"></div>
+            </ngx-slick-carousel>
+          </div>
+      </tab>
+      <tab heading="Event Details" (selectTab)="changeTab(1)">
+        <br>
+                <input id="eventNameTxt" type="text" class="form-control" placeholder="Event Name"/>
+                <br>
+                    <input type="text"
+                           placeholder="Select Start & End Date"
+                           class="form-control"
+                           bsDaterangepicker>
+                <br>
+                <input id="locationTxt" type="text" class="form-control" placeholder="Location"/> 
+                <br>
+                <!--<ngx-tags [options]="statesTags" [maxTags]="10" [(ngModel)]="defaultTags" [removeLastOnBackspace]="true" [canDeleteTags]="false" [canAddTags]="true" [allowDupes]="true" [onlyFromDropdown]="false"></ngx-tags>-->
+                <br>
+                Select Event Category
+                <div class="row pb-4">
+                  <div class="col-md-3" *ngFor="let eventType of eventTypes; let i = index;">
+                      <div class="shadow-box" (click)="setRow(i)" [ngClass]="{'highlight': selectedIndex === i}">
+                          <h2>{{ eventType.typeName }}</h2>
+                          <p>{{ eventType.typeDescription }}</p>
+                      </div>
+                  </div>
+              </div>
+      </tab>
+      <tab heading="Sessions" (selectTab)="changeTab(2)">
+        <br>
+        Select Sessions
+        <ul>
+          <li><input type="checkbox" id="cb1" />
+            <label for="cb1"><img src="../../assets/img/session_template.png" /></label>
+          </li>
+          <li><input type="checkbox" id="cb2" />
+            <label for="cb2"><img src="../../assets/img/session_template.png" /></label>
+          </li>
+          <li><input type="checkbox" id="cb3" />
+            <label for="cb3"><img src="../../assets/img/session_template.png" /></label>
+          </li>
+          <li><input type="checkbox" id="cb4" />
+            <label for="cb4"><img src="../../assets/img/session_template.png" /></label>
+          </li>
+        </ul>
+
+      </tab>
+      
+      <tab heading="Packages" (selectTab)="changeTab(3)">
+        <br>
+        Select Packages
+        <ul>
+          <li><input type="checkbox" id="cb5" />
+            <label for="cb5"><img src="../../assets/img/package.png" /></label>
+          </li>
+          <li><input type="checkbox" id="cb6" />
+            <label for="cb6"><img src="../../assets/img/package.png" /></label>
+          </li>
+          <li><input type="checkbox" id="cb7" />
+            <label for="cb7"><img src="../../assets/img/package.png" /></label>
+          </li>
+          <li><input type="checkbox" id="cb8" />
+            <label for="cb8"><img src="../../assets/img/package.png" /></label>
+          </li>
+        </ul>
+      </tab>
+      
+      <tab heading="Event Options" (selectTab)="changeTab(4)">
+        <accordion>
+          <accordion-group heading="Event Features">
+            <table>
+              <tr>
+                <td>Enable RFID On Badge</td>
+                <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
+              </tr>
+              <tr>
+                <td>Enable Attendee Upsell Packages</td>
+                <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
+              </tr>
+              <tr>
+                <td>Enable Attendee Upsell Sessions</td>
+                <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
+              </tr>
+              <tr>
+                <td>Enable Attendee Upsell Notifications</td>
+                <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
+              </tr>
+              <tr>
+                <td>Enable Attendee Heatmap</td>
+                <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
+              </tr>
+              <tr>
+                <td>Enable Attendee Lead Tracking</td>
+                <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
+              </tr>
+            </table>
+          </accordion-group>
+          <accordion-group heading="Rule Engine">
+
+            <div class="container" style="margin-top: 5%">    
+              <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Rule</th>
+                        <th>Conditional</th>
+                        <th>Option</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let field of fieldArray; let i = index">
+                        <td>
+                          <select>
+                            <option *ngFor="let rule of ruleCodes" value={{rule}}>
+                                {{rule}}
+                            </option>
+                           </select>
+                        </td>
+                        <td>
+                          <select>
+                            <option *ngFor="let condition of conditionCodes" value={{condition}}>
+                                {{condition}}
+                            </option>
+                           </select>
+                        </td>
+                        <td>
+                          <select>
+                            <option *ngFor="let option of optionCodes" value={{option}}>
+                                {{option}}
+                            </option>
+                           </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                          <select>
+                            <option *ngFor="let rule of ruleCodes" value={{rule}}>
+                                {{rule}}
+                            </option>
+                           </select>
+                        </td>
+                        <td>
+                          <select>
+                            <option *ngFor="let condition of conditionCodes" value={{condition}}>
+                                {{condition}}
+                            </option>
+                           </select>
+                        </td>
+                        <td>
+                          <select>
+                            <option *ngFor="let option of optionCodes" value={{option}}>
+                                {{option}}
+                            </option>
+                           </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+            </div>  
+
+          </accordion-group>
+          <accordion-group heading="Allowed Registration Types">
+
+          </accordion-group>
+          <accordion-group heading="Camera Streams">
+
+          </accordion-group>
+          <accordion-group heading="Badge Designer">
+
+          </accordion-group>
+        </accordion>
+      </tab>
+    </tabset>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-success" *ngIf="this.addButtonVisibility" (click)="addEvent()">Add Event</button>
+    <button type="button" class="btn btn-primary" *ngIf="this.nextButtonVisibility" (click)="nextTab()">Next</button>
+    <button type="button" class="btn btn-primary" (click)="hideModal()">Close</button>
+  </div>

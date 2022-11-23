@@ -1,0 +1,126 @@
+<div class="container-fluid">
+  <!-- <div class="row">
+      <div class="col-12">
+
+      </div>
+  </div> -->
+
+
+      <div class='row'>
+        <div class='col'>
+          <!-- <div class="tabs-main-content">
+            <div id="tab-one" [hidden]="currentTab != 1" class="tab-content">
+              // Begins tab-one -->
+              <!-- <div class="tab-inner"> -->
+                 
+                <div>
+                  <div *ngIf="isFilterViewGrid">
+                    <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-outline text-right" (click)="toggleShowAllColumns()"
+                    style="
+                        position: relative;
+                        top: 38px;
+                        left: -180px;
+                    "
+                    >
+                    <i class="fas fa-eye"></i> {{!showAllColumns ? 'All' : 'Selected'}} Columns
+                    </button>
+                    </div>
+                    <query-builder [(ngModel)]='query' [allowRuleset]='true' [config]='config' [classNames]='classNames' [parentChangeCallback]="updateDragger()" ></query-builder>
+                  </div>
+
+                  <div class="d-flex justify-content-end pt-3 pb-3">
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="tooltip" placement="top" ngbTooltip="Toggle View" (click)="toggleView()">
+                      Toggle View
+                    </button> -->
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="tooltip" placement="top" ngbTooltip="Toggle Filter View" (click)="toggleFilterView()">
+                      Toggle Filter View
+                    </button> -->
+
+                    <button type="button" class="btn btn-primary" data-toggle="tooltip" placement="top" ngbTooltip="Tooltip on top" (click)="toggleDiagnostic()">
+                      Toggle Show BE
+                    </button>
+
+
+
+                      <button type="button" 
+                      [ngClass]=" this.query.rules.length < 1 ? 'btn' : 'btn btn-primary'"
+                      class="btn btn-primary"  (click)="filterData()" [disabled]="this.query.rules.length < 1">
+                        <i class="fas fa-search"></i>
+                        Search
+                      </button>
+
+                  </div>
+                  <div class="text-center" *ngIf="validation?.length < 1">
+                    There are no results
+                  </div>
+                  <table [ngStyle]="{'opacity': validation?.length < 1 ? '0' : '1'  }"  #table id="table" class="table table-striped text-center table-md table-hover" style="border-collapse:collapse;">
+                    <thead>
+                      <tr>
+                        <ng-container *ngFor="let column of columns">
+                          <th *ngIf="showColumn(column.value)" 
+                          scope="col" 
+                          class="sortColumn handle cursor-pointer" sortable="column.name" 
+                          (click)="sortColumn($event, column.value)" 
+                           @fadeAnimation><span
+                           [ngClass]="sortDownTracker.includes(column.value)? 'sort-up' : sortUpTracker.includes(column.value)? 'sort-down' : 'sort-by'"
+                           >
+                            {{column.name}}
+                          </span></th>
+                        </ng-container>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="isViewGrid">
+                      <tr *ngFor="let valid of validation; let i = index" (click)="openCard(valid, i)">
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('recordType')">{{valid.recordType}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('regUId')">{{valid.regUId}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('attendeeUId')">{{valid.attendeeUId}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('memberUId')">{{valid.memberUId}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('firstName')">{{valid.firstName}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('lastName')">{{valid.lastName}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('regType')">{{valid.regType}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('company')">{{valid.company}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('email')">{{valid.email}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('badgeId')">{{valid.badgeId}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('orgId')">{{valid.orgId}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('regCode')">{{valid.regCode}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('addUserId')">{{valid.addUserId}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('statusCode')">{{valid.statusCode}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('event')">{{valid.event}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('eventId')">{{valid.eventId}}</td>
+                        <td class="align-middle text-nowrap cursor-pointer" scope="col" @fadeAnimation *ngIf="showColumn('eventYear')">{{valid.eventYear}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <diV *ngIf="!isViewGrid" class="row row-cols-1 row-cols-lg-2 no-gutters">
+                    <div *ngFor="let item of validation; let i = index" class="col">
+                      <app-event-data-manager-card *ngIf="i < page*pageSize && i > (page-1)*pageSize" (saveEntry)="save($event)" (resetEntry)="reset($event)" (updateEntry)="changedValue($event)" [valid]="item" [position]="i"></app-event-data-manager-card>
+                    </div>
+                    <br>
+                  </diV>
+
+                  <div class="row" *ngIf="showDiagnostic">
+                    <div class="col-4 text-center">
+                      <h2>
+                        Query Sent to BE
+                      </h2>
+                      <textarea class="output w-100">{{query | json}}</textarea>
+                    </div>
+                    <div class="col-8 text-center">
+                      <h2>
+                        Original data
+                      </h2>
+                      <textarea class="output w-100">{{original_validation | json}}</textarea>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+             </div>
+          <!-- </div>
+        </div>
+      </div> -->
+
+</div>

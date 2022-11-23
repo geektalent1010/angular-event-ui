@@ -1,0 +1,25 @@
+<!-- <h1>Event Metrics</h1> -->
+<!-- <iframe src='http://www.csi-event.com:9088/superset/dashboard/CES21/' height='500' width='95%'></iframe> -->
+<!-- <iframe src=''> -->
+
+<!-- <h1>Attendee Metrics</h1> -->
+<!-- <iframe src='http://www.csi-event.com:9088/superset/dashboard/CES21_1100381/' height='500' width="95%"></iframe> -->
+
+<!-- <h1>Attendee Session Metrics</h1> -->
+<!-- <iframe src='http://www.csi-event.com:9088/superset/dashboard/CES21_1100381_CON06/' height='500' width='95%'></iframe> -->
+
+<!-- <h1>Exhibitor Metrics</h1> -->
+<!-- <iframe src='http://www.csi-event.com:9088/superset/dashboard/Google/' height='500' width="95%"></iframe> -->
+
+<!-- <h1>Heatmap</h1> -->
+<!-- <iframe src='http://www.csi-event.com:9088/superset/dashboard/PGA_Heatmaps/' height='500' width="95%"></iframe> -->
+
+<!-- <h1>Attendee Targeting </h1> -->
+<!-- <iframe src='http://www.csi-event.com:9088/superset/dashboard/Targeting/' height='500' width='95%'></iframe> -->
+
+
+<div class="spinner-border" role="status" *ngIf="!htmlString">
+  <span class="sr-only">Loading...</span>
+</div>
+
+<div *ngIf="htmlString" [innerHtml]="htmlString | byPassSecurity" runScripts></div>

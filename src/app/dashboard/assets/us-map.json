@@ -1,0 +1,17 @@
+     [
+       {
+         "type": "map",
+         "name": "Registrants",
+         "states": {
+           "hover": {
+             "color": "#BADA55"
+           }
+         },
+         "dataLabels": {
+           "enabled": true,
+           "format": "{point.name}"
+         },
+         "allAreas": false,
+         "data": []
+       }
+     ]

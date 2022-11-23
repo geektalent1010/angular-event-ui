@@ -1,0 +1,219 @@
+
+.container-fluid {
+  max-width: 1520px;
+  .tabs-nav-wrap {padding:10px 0; text-align: center;}
+  .tabs-nav-wrap ul {display: inline-block; list-style: none;}
+  
+  
+  .tabs-main-content {
+      margin-left:50px;
+  }
+  .tabs-nav-wrap ul li {
+    list-style: none;
+    display: inline-block;
+      width: 100%;
+      text-align: center;
+    margin:0 3px;
+  }
+  .tabs-nav li {
+    list-style: none;
+    display: block;
+    padding:10px 20px;
+    background: #736565;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    border:1px solid #615656;
+  }
+  
+  .tabs-nav .tab-nav-link.current,
+  .tabs-nav .tab-nav-link:hover {
+    border:1px solid #5eaace;
+    background: #74c1e4;
+  }
+  
+  .tabs-nav-wrap {
+    .tabs-nav {
+      i {
+        width: 48px;
+        height: 48px;
+        font-size: 48px;
+      }
+      img {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  }
+  
+  .tabs-main-content {
+    #tab-one {
+      .toolbars {
+        button {
+          height: 42px;
+          border: 1px solid black;
+          border-radius: 0;
+          padding: 0 36px;
+          font-size: 14px;
+        }
+        select {
+          height: 42px;
+          border: 1px solid #ced4da;
+          border-radius: 0.25rem;
+          color: #6c757d;
+          &:focus-visible {
+            outline: none;
+          }
+        }
+        .customSelect {
+          position: relative;
+          pointer-events: none;
+          &::before {
+            position: absolute;
+            top: 52%;
+            left: 8px;
+            transform: translateY(-50%);
+            content: "PERIOD";
+            color: #6c757da1;
+          }
+          select {
+            pointer-events: auto;
+            width: 168px;
+            padding-left: 54px;
+          }
+        }
+        .period {
+          &::before {
+            content: "PERIOD";
+          }
+        }
+        .status {
+          position: relative;
+          &::before {
+            content: "STATUS";
+          }
+          select {
+            width: 164px;
+            padding-left: 60px;
+          }
+        }
+  
+        .form {
+          position: relative;
+          width: 260px;
+          height: 42px;
+          .fa-search {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            color: #9ca3af
+          }
+        }
+  
+        .left-pan {
+          padding-left: 7px
+        }
+  
+        .left-pan i {
+          padding-left: 10px
+        }
+  
+        .form-input {
+          height: 42px;
+          text-indent: 33px;
+          box-shadow: none;
+        }
+  
+        .form-input:focus {
+          border-color: transparent;
+        }
+      }
+      table.reportTable {
+        background-color: var(--table-bkg-color);
+        color: var(--text-color);
+
+        tbody tr:nth-of-type(odd) {
+          background-color: var(--table-bkg-stripe-color);
+        }
+
+        tr.highlight {
+          background: #cbefc2;
+          border: 3px solid #b2eda3;
+          border-width: 3px 0;
+        }
+        th, td {
+          vertical-align: middle;
+        }
+        th.lastEditedDate {
+          width: 15%;
+        }
+        th.lastEditedUser {
+          width: 12%;
+        }
+        th.reportName {
+          width: 17%;
+        }
+        th.description {
+          width: 34%;
+        }
+        th.optionsExports {
+          width: 22%;
+        }
+        button {
+          height: 32px;
+          padding: 0 8px;
+        }
+        button.btn-icon {
+          padding: 0 6px;
+          &:focus {
+            box-shadow: none;
+          }
+          img {
+            width: 32px;
+            height: 32px;
+          }
+        }
+    
+        button i {
+          font-size: 12px;
+          width: 12px;
+          height: 12px;
+          color: white;
+        }
+
+        button.hidden {
+          visibility: hidden;
+        }
+
+        tfoot {
+          .paginator {
+            width: 300px;
+            ::ng-deep mdb-table-pagination {
+              .page-item {
+                cursor: pointer;
+                border-radius: 50%;
+                width: 36px;
+                height: 36px;
+                text-align: center;
+                font-weight: 600;
+                -webkit-user-select: none;
+                -moz-user-select   : none;
+                -ms-user-select    : none;
+                user-select        : none;
+                a {
+                  border-radius: 50%;
+                }
+              }
+              .page-item.disabled {
+                cursor: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

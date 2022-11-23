@@ -1,0 +1,638 @@
+<div *ngIf="isVisible">
+  <div class="modal-header">
+    <h2 class="modal-title w-100 text-center m-0">New Session Editor</h2>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="sessionForm">
+      <div class="form-row">
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Name </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="sesName"
+                name="sesName"
+                [class.border-danger]="
+                  lf.sesName.invalid && (lf.sesName.dirty || lf.sesName.touched)
+                "
+                [class.border-success]="
+                  lf.sesName.valid && (lf.sesName.dirty || lf.sesName.touched)
+                "
+              />
+              <div
+                *ngIf="
+                  lf.sesName.invalid && (lf.sesName.dirty || lf.sesName.touched)
+                "
+                class="help-block text-danger"
+              >
+                <small *ngIf="lf.sesName.errors.required">
+                  * This field is required.
+                </small>
+                <small
+                  class="text-danger"
+                  *ngIf="lf.sesName.hasError('maxlength')"
+                >
+                  The maximum length for this field is
+                  {{ lf.sesName.errors.maxlength.requiredLength }} characters.
+                  <br />
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> GL Code </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="sesGLCode"
+                name="sesGLCode"
+                [class.border-danger]="
+                  lf.sesGLCode.invalid &&
+                  (lf.sesGLCode.dirty || lf.sesGLCode.touched)
+                "
+                [class.border-success]="
+                  lf.sesGLCode.valid &&
+                  (lf.sesGLCode.dirty || lf.sesGLCode.touched)
+                "
+              />
+              <div
+                *ngIf="
+                  lf.sesGLCode.invalid &&
+                  (lf.sesGLCode.dirty || lf.sesGLCode.touched)
+                "
+                class="help-block text-danger"
+              >
+                <small *ngIf="lf.sesGLCode.errors.required">
+                  * This field is required.
+                </small>
+                <small
+                  class="text-danger"
+                  *ngIf="lf.sesGLCode.hasError('pattern')"
+                >
+                  The pattern for this field is xxxxx-xxxxx-xxxxx (x is digital
+                  number). <br />
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> RegTypes </label>
+            </div>
+            <div class="col-7">
+              <ng-multiselect-dropdown
+                [placeholder]="'- Select -'"
+                [settings]="dropdownSettings"
+                [data]="regtypesList"
+                formControlName="sesRegtypes"
+              >
+              </ng-multiselect-dropdown>
+              <div
+                *ngIf="
+                  lf.sesRegtypes.invalid &&
+                  (lf.sesRegtypes.dirty || lf.sesRegtypes.touched)
+                "
+                class="help-block text-danger"
+              >
+                <small *ngIf="lf.sesRegtypes.errors.required">
+                  * This field is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Option Type </label>
+            </div>
+            <div class="col-7">
+              <select
+                name="optionType"
+                formControlName="sesOptType"
+                class="form-control"
+                [class.border-danger]="
+                  lf.sesOptType.invalid &&
+                  (lf.sesOptType.dirty || lf.sesOptType.touched)
+                "
+                [class.border-success]="
+                  lf.sesOptType.valid &&
+                  (lf.sesOptType.dirty || lf.sesOptType.touched)
+                "
+              >
+                <option
+                  *ngFor="let option of optiontypesList; let i = index"
+                  [value]="option"
+                >
+                  {{ option }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  lf.sesOptType.invalid &&
+                  (lf.sesOptType.dirty || lf.sesOptType.touched)
+                "
+                class="help-block text-danger"
+              >
+                <small *ngIf="lf.sesOptType.errors.required">
+                  * This field is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Sessident </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="sesSessident"
+                name="sesSessident"
+                [class.border-danger]="
+                  lf.sesSessident.invalid &&
+                  (lf.sesSessident.dirty || lf.sesSessident.touched)
+                "
+                [class.border-success]="
+                  lf.sesSessident.valid &&
+                  (lf.sesSessident.dirty || lf.sesSessident.touched)
+                "
+              />
+              <div
+                *ngIf="
+                  lf.sesSessident.invalid &&
+                  (lf.sesSessident.dirty || lf.sesSessident.touched)
+                "
+                class="help-block text-danger"
+              >
+                <small *ngIf="lf.sesSessident.errors.required">
+                  * This field is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Type </label>
+            </div>
+            <div class="col-7">
+              <select
+                name="sessionType"
+                formControlName="sesType"
+                class="form-control"
+                [class.border-danger]="
+                  lf.sesType.invalid && (lf.sesType.dirty || lf.sesType.touched)
+                "
+                [class.border-success]="
+                  lf.sesType.valid && (lf.sesType.dirty || lf.sesType.touched)
+                "
+              >
+                <option
+                  *ngFor="let option of sessionTypesOptions; let i = index"
+                  [value]="option"
+                >
+                  {{ option }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  lf.sesType.invalid && (lf.sesType.dirty || lf.sesType.touched)
+                "
+                class="help-block text-danger"
+              >
+                <small *ngIf="lf.sesType.errors.required">
+                  * This field is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Open to </label>
+            </div>
+            <div class="col-7">
+              <select
+                name="sesPrivateSession"
+                formControlName="sesPrivateSession"
+                class="form-control"
+                [class.border-danger]="
+                  lf.sesPrivateSession.invalid &&
+                  (lf.sesPrivateSession.dirty || lf.sesPrivateSession.touched)
+                "
+                [class.border-success]="
+                  lf.sesPrivateSession.valid &&
+                  (lf.sesPrivateSession.dirty || lf.sesPrivateSession.touched)
+                "
+              >
+                <option value="N">Public</option>
+                <option value="Y">Private</option>
+              </select>
+              <div
+                *ngIf="
+                  lf.sesPrivateSession.invalid &&
+                  (lf.sesPrivateSession.dirty || lf.sesPrivateSession.touched)
+                "
+                class="help-block text-danger"
+              >
+                <small *ngIf="lf.sesPrivateSession.errors.required">
+                  * This field is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Number of Attendees </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="sesCapacity"
+                maxlength="4"
+                name="sesCapacity"
+                [class.border-danger]="
+                  lf.sesCapacity.invalid &&
+                  (lf.sesCapacity.dirty || lf.sesCapacity.touched)
+                "
+                [class.border-success]="
+                  lf.sesCapacity.valid &&
+                  (lf.sesCapacity.dirty || lf.sesCapacity.touched)
+                "
+              />
+              <div
+                *ngIf="
+                  lf.sesCapacity.invalid &&
+                  (lf.sesCapacity.dirty || lf.sesCapacity.touched)
+                "
+                class="help-block text-danger"
+              >
+                <small *ngIf="lf.sesCapacity.errors.required">
+                  * This field is required.
+                </small>
+                <small *ngIf="lf.sesCapacity.hasError('max')">
+                  The maximum value for this field is 9999
+                  <br />
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Session Topics </label>
+            </div>
+            <div class="col-7">
+              <input
+                list="sesTopics"
+                id="sesTopic"
+                class="form-control"
+                name="sesTopics"
+                autocomplete="off"
+                formControlName="sesTopics"
+              />
+              <datalist id="sesTopics">
+                <option
+                  *ngFor="
+                    let option of sessionTopicsOptions.sort();
+                    let i = index
+                  "
+                  [value]="option"
+                >
+                  {{ option }}
+                </option>
+              </datalist>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Speaker </label>
+            </div>
+            <div class="col-7">
+              <select
+                class="form-control"
+                formControlName="sesSpeaker"
+                name="sesSpeaker"
+              >
+                <option
+                  *ngFor="let option of dataService.speakerList; let i = index"
+                  [value]="option.speakerName"
+                >
+                  {{ option.speakerName }}
+                </option>
+              </select>
+              <div
+                class="createSpeakerBtn text-danger"
+                (click)="createSpeaker()"
+              >
+                Create New Speaker
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Synopsis </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="sesSynopsis"
+                name="sesSynopsis"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Discount </label>
+            </div>
+            <div class="col-7">
+              <select
+                name="sesDiscount"
+                formControlName="sesDiscount"
+                class="form-control"
+              >
+                <option
+                  *ngFor="let discount of discountList; let i = index"
+                  [value]="discount.discountName"
+                >
+                  {{ discount.discountName }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Hall </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="hall"
+                name="hall"
+                [class.border-danger]="
+                  lf.hall.invalid && (lf.hall.dirty || lf.hall.touched)
+                "
+                [class.border-success]="
+                  lf.hall.valid && (lf.hall.dirty || lf.hall.touched)
+                "
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Room </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="room"
+                name="room"
+                [class.border-danger]="
+                  lf.room.invalid && (lf.room.dirty || lf.room.touched)
+                "
+                [class.border-success]="
+                  lf.room.valid && (lf.room.dirty || lf.room.touched)
+                "
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Seats </label>
+            </div>
+            <div class="col-7">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="seats"
+                name="seats"
+                [class.border-danger]="
+                  lf.seats.invalid && (lf.seats.dirty || lf.seats.touched)
+                "
+                [class.border-success]="
+                  lf.seats.valid && (lf.seats.dirty || lf.seats.touched)
+                "
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 px-2 my-2">
+          <div class="form-row">
+            <div class="col-5">
+              <label> Show Quantity </label>
+            </div>
+            <div class="col-7 px-4">
+              <label class="customCheckbox ml-2">
+                <input
+                  type="checkbox"
+                  class=""
+                  formControlName="showQuantity"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 px-2 my-2">
+          <div
+            class="form-row d-flex align-items-center my-2"
+            *ngIf="formArr?.length"
+          >
+            <div class="col-12">
+              <table class="style">
+                <thead>
+                  <th>Index</th>
+                  <th>Start Date</th>
+                  <th>Start Time</th>
+                  <th>End Date</th>
+                  <th>End Time</th>
+                  <th class="cost">Cost</th>
+                </thead>
+                <tbody formArrayName="rateList">
+                  <tr
+                    *ngFor="
+                      let itemrow of formArr.controls;
+                      let i = index;
+                      let l = last
+                    "
+                    [formGroupName]="i"
+                  >
+                    <td>{{ itemrow.get("category")?.value }}</td>
+                    <td>
+                      <input
+                        formControlName="startDate"
+                        type="date"
+                        class="form-control custom-form-input"
+                      />
+                      <div
+                        *ngIf="
+                          itemrow.get('startDate').invalid &&
+                          itemrow.get('startDate').errors &&
+                          (itemrow.get('startDate').dirty ||
+                            itemrow.get('startDate').touched)
+                        "
+                      >
+                        <small
+                          class="text-danger"
+                          *ngIf="itemrow.get('startDate').hasError('required')"
+                        >
+                          This field is required.
+                        </small>
+                      </div>
+                    </td>
+                    <td>
+                      <input
+                        formControlName="startTime"
+                        type="time"
+                        class="form-control custom-form-input"
+                      />
+                      <div
+                        *ngIf="
+                          itemrow.get('startTime').invalid &&
+                          itemrow.get('startTime').errors &&
+                          (itemrow.get('startTime').dirty ||
+                            itemrow.get('startTime').touched)
+                        "
+                      >
+                        <small
+                          class="text-danger"
+                          *ngIf="itemrow.get('startTime').hasError('required')"
+                        >
+                          This field is required.
+                        </small>
+                      </div>
+                    </td>
+                    <td>
+                      <input
+                        formControlName="endDate"
+                        type="date"
+                        class="form-control custom-form-input"
+                      />
+                      <div
+                        *ngIf="
+                          itemrow.get('endDate').invalid &&
+                          itemrow.get('endDate').errors &&
+                          (itemrow.get('endDate').dirty ||
+                            itemrow.get('endDate').touched)
+                        "
+                      >
+                        <small
+                          class="text-danger"
+                          *ngIf="itemrow.get('endDate').hasError('required')"
+                        >
+                          This field is required.
+                        </small>
+                      </div>
+                    </td>
+                    <td>
+                      <input
+                        formControlName="endTime"
+                        type="time"
+                        class="form-control custom-form-input"
+                      />
+                      <div
+                        *ngIf="
+                          itemrow.get('endTime').invalid &&
+                          itemrow.get('endTime').errors &&
+                          (itemrow.get('endTime').dirty ||
+                            itemrow.get('endTime').touched)
+                        "
+                      >
+                        <small
+                          class="text-danger"
+                          *ngIf="itemrow.get('endTime').hasError('required')"
+                        >
+                          This field is required.
+                        </small>
+                      </div>
+                    </td>
+                    <td class="cost">
+                      <input
+                        formControlName="cost"
+                        type="number"
+                        class="form-control custom-form-input"
+                      />
+                      <div
+                        *ngIf="
+                          itemrow.get('cost').invalid &&
+                          itemrow.get('cost').errors &&
+                          (itemrow.get('cost').dirty ||
+                            itemrow.get('cost').touched)
+                        "
+                        class="text-danger"
+                      >
+                        <small *ngIf="itemrow.get('cost').hasError('required')">
+                          This field is required.
+                        </small>
+                        <small *ngIf="itemrow.get('cost').hasError('max')">
+                          The maximum value for this field is 9999
+                          <br />
+                        </small>
+                        <small *ngIf="itemrow.get('cost').hasError('min')">
+                          The minimum value for this field is 0
+                          <br />
+                        </small>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer border-0">
+    <div class="container-fluid">
+      <div class="row m-0">
+        <div
+          class="col-12 p-0 d-flex align-items-center justify-content-center"
+        >
+          <a href="javascript:void(0);" (click)="add()" class="addBtn">
+            <i class="fas fa-save" *ngIf="!!session; else plusIconBtn"></i>
+            <ng-template #plusIconBtn>
+              <i class="fas fa-plus"></i>
+            </ng-template>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.modal-header {
+  border: 0;
+  background-color: #007497;
+  padding: 8px;
+  .modal-title {
+    color: white;
+  }
+}
+.modal-body {
+  max-height: 70vh;
+  select.form-control,
+  input.form-control {
+    height: 38px;
+  }
+}
+.modal-footer {
+  padding: 0 16px 24px;
+  button {
+    padding: 6px;
+    width: 94px;
+  }
+}

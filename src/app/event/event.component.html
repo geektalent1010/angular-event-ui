@@ -1,0 +1,606 @@
+<div class="container">
+  <div class="row mt-5 mb-0" *ngIf="pageType !== 'create'"></div>
+  <div class="row mt-0 eventHeader">
+    <div
+      class="col-12 d-flex align-items-center justify-content-center"
+      *ngIf="pageType !== 'create'"
+    >
+      <img [src]="thumbnailImg" class="thumbnail mr-3" />
+      <div>
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <h2 class="evtName my-0">{{ event?.EventInfo?.eventName }}</h2>
+          <div class="links">
+            <div
+              ngbDropdown
+              class="siteDropdown d-flex align-items-center justify-content-center mx-2"
+              placement="right-top"
+              (mouseover)="
+                $event.stopPropagation(); toggleDropdown(eventActionDropDown)
+              "
+              (mouseleave)="
+                $event.stopPropagation();
+                toggleDropdown(eventActionDropDown, false)
+              "
+              #eventActionDropDown="ngbDropdown"
+            >
+              <button
+                class="btn btn-outline-primary p-0 border-0 d-flex align-items-center justify-content-center"
+                id="eventActionDropDownButton"
+                ngbDropdownToggle
+              >
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="eventActionDropDownButton">
+                <label
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center m-0"
+                  [ngClass]="{
+                    disabled: !uploadAvailable.includes(selectedTabIndex)
+                  }"
+                >
+                  <input
+                    type="file"
+                    style="display: none"
+                    onclick="this.value = null"
+                    (change)="uploadPSM($event)"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, .csv"
+                    multiple
+                  />
+                  Upload PSM
+                </label>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="export()"
+                >
+                  PSM Export
+                </button>
+                <div class="label px-0">
+                  <button
+                    ngbDropdownItem
+                    class="dropdownItem w-100 d-flex align-items-center"
+                  >
+                    Designer Export
+                  </button>
+                </div>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="deleteEvent()"
+                >
+                  Delete Event
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="links d-flex align-items-center">
+          <div
+            ngbDropdown
+            class="siteDropdown d-flex align-items-center justify-content-center mx-2"
+            placement="bottom-right"
+            (mouseover)="
+              $event.stopPropagation(); toggleDropdown(attendeeDropdown)
+            "
+            (mouseleave)="
+              $event.stopPropagation(); toggleDropdown(attendeeDropdown, false)
+            "
+            #attendeeDropdown="ngbDropdown"
+          >
+            <button
+              class="btn btn-outline-primary p-0 border-0 d-flex align-items-center justify-content-center"
+              id="attendeeDropdownButton"
+              ngbDropdownToggle
+            >
+              <i class="fas fa-person-booth"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="attendeeDropdownButton">
+              <div class="label">Show Attendee</div>
+              <div class="px-1">
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="openSite('attendee')"
+                >
+                  <i class="far fa-credit-card mr-2"></i> View Site
+                </button>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  [cdkCopyToClipboard]="openSite('attendee', false)"
+                >
+                  <i class="fas fa-image mr-2"></i> Copy Link
+                </button>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="sendInvite('attendee')"
+                >
+                  <i class="far fa-arrow-alt-circle-right mr-2"></i> Send Invite
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            ngbDropdown
+            class="siteDropdown d-flex align-items-center justify-content-center mx-2"
+            placement="bottom-right"
+            (mouseover)="
+              $event.stopPropagation(); toggleDropdown(exhibitorDropdown)
+            "
+            (mouseleave)="
+              $event.stopPropagation(); toggleDropdown(exhibitorDropdown, false)
+            "
+            #exhibitorDropdown="ngbDropdown"
+          >
+            <button
+              class="btn btn-outline-primary p-0 border-0 d-flex align-items-center justify-content-center"
+              id="exhibitorDropdownButton"
+              ngbDropdownToggle
+            >
+              <i class="fas fa-id-badge"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="exhibitorDropdownButton">
+              <div class="label">Show Exhibitor</div>
+              <div class="px-1">
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="openSite('exhibitor')"
+                >
+                  <i class="far fa-credit-card mr-2"></i> View Site
+                </button>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  [cdkCopyToClipboard]="openSite('exhibitor', false)"
+                >
+                  <i class="fas fa-image mr-2"></i> Copy Link
+                </button>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="sendInvite('exhibitor')"
+                >
+                  <i class="far fa-arrow-alt-circle-right mr-2"></i> Send Invite
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            ngbDropdown
+            class="siteDropdown d-flex align-items-center justify-content-center mx-2"
+            placement="bottom-right"
+            (mouseover)="
+              $event.stopPropagation(); toggleDropdown(organizerDropdown)
+            "
+            (mouseleave)="
+              $event.stopPropagation(); toggleDropdown(organizerDropdown, false)
+            "
+            #organizerDropdown="ngbDropdown"
+          >
+            <button
+              class="btn btn-outline-primary p-0 border-0 d-flex align-items-center justify-content-center"
+              id="organizerDropdownButton"
+              ngbDropdownToggle
+            >
+              <i class="fas fa-user-edit"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="organizerDropdownButton">
+              <div class="label">Show Organizer</div>
+              <div class="px-1">
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="openSite('organizer')"
+                >
+                  <i class="far fa-credit-card mr-2"></i> View Site
+                </button>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  [cdkCopyToClipboard]="openSite('organizer', false)"
+                >
+                  <i class="fas fa-image mr-2"></i> Copy Link
+                </button>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="sendInvite('organizer')"
+                >
+                  <i class="far fa-arrow-alt-circle-right mr-2"></i> Send Invite
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            ngbDropdown
+            class="siteDropdown d-flex align-items-center justify-content-center mx-2"
+            placement="bottom-right"
+            (mouseover)="
+              $event.stopPropagation(); toggleDropdown(commanderDropdown)
+            "
+            (mouseleave)="
+              $event.stopPropagation(); toggleDropdown(commanderDropdown, false)
+            "
+            #commanderDropdown="ngbDropdown"
+          >
+            <button
+              class="btn p-0 border-0 d-flex align-items-center justify-content-center"
+              id="commanderDropdownButton"
+              ngbDropdownToggle
+            >
+              <i class="fas fa-tasks"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="commanderDropdownButton">
+              <div class="label">Commander</div>
+              <div class="px-1">
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="openSite('commander')"
+                >
+                  <i class="far fa-credit-card mr-2"></i> View Site
+                </button>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  [cdkCopyToClipboard]="openSite('commander', false)"
+                >
+                  <i class="fas fa-image mr-2"></i> Copy Link
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            ngbDropdown
+            class="siteDropdown d-flex align-items-center justify-content-center mx-2"
+            placement="bottom-right"
+            (mouseover)="
+              $event.stopPropagation(); toggleDropdown(eventPortalDropdown)
+            "
+            (mouseleave)="
+              $event.stopPropagation();
+              toggleDropdown(eventPortalDropdown, false)
+            "
+            #eventPortalDropdown="ngbDropdown"
+          >
+            <button
+              class="btn btn-outline-primary p-0 border-0 d-flex align-items-center justify-content-center"
+              id="eventPortalDropdownButton"
+              ngbDropdownToggle
+            >
+              <i class="fas fa-calendar"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="eventPortalDropdownButton">
+              <div class="label">Event Portal</div>
+              <div class="px-1">
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  (click)="openSite('event-portal')"
+                >
+                  <i class="far fa-credit-card mr-2"></i> View Site
+                </button>
+                <button
+                  ngbDropdownItem
+                  class="dropdownItem w-100 d-flex align-items-center"
+                  [cdkCopyToClipboard]="openSite('event-portal', false)"
+                >
+                  <i class="fas fa-image mr-2"></i> Copy Link
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-12 d-flex align-items-center justify-content-between mt-4"
+      *ngIf="pageType === 'create'"
+    >
+      <span></span>
+      <div>
+        <label
+          class="btn btn-primary uploadPSM my-2"
+          [ngClass]="{ disabled: !uploadAvailable.includes(selectedTabIndex) }"
+        >
+          <input
+            type="file"
+            style="display: none"
+            onclick="this.value = null"
+            (change)="uploadPSM($event)"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, .csv"
+            multiple
+          />
+          Upload PSM
+        </label>
+      </div>
+      <span></span>
+
+      <!-- <span class="deleteEvent mr-5">
+        <i
+          class="far fa-trash-alt"
+          *ngIf="addUserid === loggedUser && pageType === 'edit'"
+          (click)="deleteEvent()"
+        ></i>
+      </span> -->
+    </div>
+    <div class="col-12">
+      <div
+        class="tabBar row d-flex align-items-center justify-content-between p-3"
+      >
+        <div
+          class="tabCol d-block d-xl-none col-4 col-sm-3 col-md-2"
+          *ngFor="let tab of tabList"
+        >
+          <a
+            href="javascript:void(0);"
+            class="tabLink"
+            (click)="selectTab(tab)"
+            [class.active]="tab === selectedTab"
+            style="text-align: center"
+          >
+            <span *ngFor="let word of tab.split(' ')">
+              {{ word }}
+              <br />
+            </span>
+          </a>
+        </div>
+        <a
+          href="javascript:void(0);"
+          class="tabLink d-none d-xl-block"
+          *ngFor="let tab of tabList"
+          (click)="selectTab(tab)"
+          [class.active]="tab === selectedTab"
+          style="text-align: center"
+        >
+          <span *ngFor="let word of tab.split(' ')">
+            {{ word }}
+            <br />
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="col-12 px-3 px-lg-5">
+      <div
+        class="subBar d-flex align-items-center justify-content-between px-0 px-md-4"
+      >
+        <span></span>
+        <span
+          class="d-flex align-items-center"
+          *ngIf="sampleDownloadAvailable.includes(selectedTabIndex)"
+        >
+          <span
+            class="XLSfile d-flex align-items-center justify-content-center"
+          >
+            {{ samplePSMFiles[selectedTab] }}
+          </span>
+          <span class="downloadXLS px-2">
+            <a
+              title="Excel"
+              [href]="'/assets/psm_samples/' + samplePSMFiles[selectedTab]"
+              download="{{ samplePSMFiles[selectedTab] }}"
+            >
+              <i class="fas fa-download"></i>
+            </a>
+          </span>
+          <span class="removeFile px-2">
+            <i class="far fa-trash-alt"></i>
+          </span>
+        </span>
+        <span class="control">
+          <span>
+            <!-- <i class="fas fa-download mr-3" (click)="exportPage()"></i> -->
+            <i
+              class="fas fa-backward mr-3"
+              [class.d-none]="selectedTab === 'Event Info'"
+              (click)="prevPage()"
+            ></i>
+            <i
+              class="fas fa-forward"
+              [class.d-none]="selectedTab === 'Save'"
+              (click)="nextPage()"
+            ></i>
+          </span>
+        </span>
+      </div>
+      <div
+        class="d-flex align-items-center justify-content-center"
+        *ngIf="selectedTab === 'Save'"
+      >
+        <span class="d-flex flex-column">
+          <button
+            class="btn btn-primary completeEventBtn my-2"
+            [ngClass]="{
+              disabled: addUserid !== loggedUser && pageType === 'edit'
+            }"
+            [disabled]="addUserid !== loggedUser && pageType === 'edit'"
+            (click)="completeEvent()"
+          >
+            Save Event
+          </button>
+          <button
+            class="btn btn-primary duplicateEventBtn my-2"
+            *ngIf="pageType === 'edit'"
+            [ngClass]="{ disabled: addUserid !== loggedUser }"
+            [disabled]="addUserid !== loggedUser"
+            (click)="duplicateEvent()"
+          >
+            Duplicate Event
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <container-element [ngSwitch]="selectedTab">
+        <some-element *ngSwitchCase="'Event Info'">
+          <app-event-info
+            [eventForm]="eventInfoForm"
+            [eventInfo]="event.EventInfo"
+            [evtUid]="evtUid"
+            [pageType]="pageType"
+            (onHandlePaymentWayChange)="handlePaymentWayChange($event)"
+            #eventInfo
+          ></app-event-info>
+        </some-element>
+        <some-element *ngSwitchCase="'Reg Types'">
+          <app-reg-types
+            [data]="event.regtypesList"
+            (deleteRegType)="deleteRegType($event)"
+            [pageType]="pageType"
+            #regTypes
+          ></app-reg-types>
+        </some-element>
+        <some-element *ngSwitchCase="'Packages'">
+          <app-packages
+            [data]="event.eventCosts"
+            [regtypesList]="event.regtypesList"
+            [pageType]="pageType"
+            #packages
+          ></app-packages>
+        </some-element>
+        <some-element *ngSwitchCase="'Discounts'">
+          <app-discounts
+            [data]="event.discountList"
+            [regtypesList]="event.regtypesList"
+            [pageType]="pageType"
+            [noDiscounts]="event.noDiscounts"
+            (onNoDiscountsChange)="noDiscountsChange($event)"
+            #discounts
+          ></app-discounts>
+        </some-element>
+        <some-element *ngSwitchCase="'Qualifications'">
+          <app-qualifications
+            [data]="event.addedQualifications"
+            [regtypesList]="event.regtypesList"
+            [pageType]="pageType"
+            [noQualifications]="event.noQualifications"
+            (onNoQualificationsChange)="noQualificationsChange($event)"
+            #qualifications
+          ></app-qualifications>
+        </some-element>
+        <some-element *ngSwitchCase="'Sessions'">
+          <app-sessions
+            [data]="event.sessionList"
+            [discountList]="event.discountList"
+            [regtypesList]="event.regtypesList"
+            [pageType]="pageType"
+            [noSessions]="event.noSessions"
+            (onNoSessionChange)="noSessionChange($event)"
+            #sessions
+          ></app-sessions>
+        </some-element>
+        <some-element
+          *ngSwitchCase="'Floorplan'"
+          [data]="floorPlanImageUrl"
+          [pageType]="pageType"
+        >
+          <app-floorplan></app-floorplan>
+        </some-element>
+        <some-element *ngSwitchCase="'Demographic Questions'">
+          <app-demo-questions
+            [(data)]="event.questionsList"
+            [regtypesList]="event.regtypesList"
+            [pageType]="pageType"
+          ></app-demo-questions>
+        </some-element>
+        <some-element *ngSwitchCase="'Page Customizations'">
+          <app-page-customizations
+            [eventInfo]="event.EventInfo"
+            [pageType]="pageType"
+            [pageList]="event.pageList"
+            [builderSelection]="builderSelection"
+            [selectedWorkflow]="pageCustomizationConfig.selectedWorkflow"
+            [selectedPage]="pageCustomizationConfig.selectedPage"
+            [selectedSection]="pageCustomizationConfig.selectedSection"
+            [stepIndex]="pageCustomizationConfig.stepIndex"
+            [businessRulesInp]="event.businessRules"
+            [regtypesList]="event.regtypesList"
+            (onBackPageCustomizationConfig)="
+              backPageCustomizationConfig($event)
+            "
+            #pageCustomizations
+          ></app-page-customizations>
+        </some-element>
+        <some-element *ngSwitchCase="'Page Builder'">
+          <app-page-builder
+            [addUserid]="addUserid"
+            [savedTemplateList]="builderTemplate"
+            [builderUrl]="builderUrl"
+            [builderSelection]="builderSelection"
+            [builderIOID]="builderIOID"
+            [exhibitorSelection]="exhibitorSelection"
+            [exhibitorIOID]="exhibitorIOID"
+            [organizerSelection]="organizerSelection"
+            [organizerIOID]="organizerIOID"
+            [commanderSelection]="commanderSelection"
+            [commanderIOID]="commanderIOID"
+            [eventPortalSelection]="eventPortalSelection"
+            [eventPortalIOID]="eventPortalIOID"
+            [pageType]="pageType"
+            [pageBuilderLaunched]="event.pageBuilderLaunched"
+            [regtypesList]="event.regtypesList"
+            #pageBuilder
+          >
+          </app-page-builder>
+        </some-element>
+        <some-element *ngSwitchCase="'Business Rules'">
+          <app-business-rules-qb
+            *ngIf="pageType != 'edit' || isLoaded"
+            [eventCostsInp]="event.eventCosts"
+            [sessionsInp]="event.sessionList"
+            [questionsInp]="event.questionsList"
+            [discountsInp]="event.discountList"
+            [speakersInp]="dataService.getSpeakerList()"
+            [regTypeInp]="event.regtypesList"
+            [businessRulesInp]="event.businessRules"
+            (updateBussinessRules)="updateBussinessRuleToEvent($event)"
+          >
+          </app-business-rules-qb>
+        </some-element>
+        <some-element *ngSwitchCase="'Exhibitor Allotment'">
+          <app-exhibitor-allotement
+            [data]="event.exhibitorAllotmentList"
+            [pageType]="pageType"
+          ></app-exhibitor-allotement>
+        </some-element>
+        <some-element *ngSwitchCase="'Membership'">
+          <app-membership
+            [data]="event.membershipInfoList"
+            [pageType]="pageType"
+          ></app-membership>
+        </some-element>
+        <some-element *ngSwitchCase="'Email Builder'">
+          <app-email-builder
+            [pageType]="pageType"
+            [emailBuilder]="event.emailBuilder"
+            #emailBuilder
+          ></app-email-builder>
+        </some-element>
+        <some-element *ngSwitchCase="'Badge Designer'">
+          <app-badge-designer
+            [pageType]="pageType"
+            [badgeDesigner]="event.badgeDesigner"
+            #badgeDesigner
+          ></app-badge-designer>
+        </some-element>
+        <some-element *ngSwitchCase="'Save'">
+          <app-complete></app-complete>
+        </some-element>
+        <some-element *ngSwitchDefault></some-element>
+      </container-element>
+    </div>
+  </div>
+</div>
+
+<div class="spinner transparent" *ngIf="loading">
+  <div class="smt-spinner-circle">
+    <div class="smt-spinner"></div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div *ngIf="!loading">
+  <div class="modal-header">
+    <h2 class="modal-title w-100 text-center m-0">Invite Customer</h2>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="inviteForm">
+      <div class="form-row d-flex align-items-center my-2">
+        <div class="col-6">
+            <label class="m-0">Customer Email</label>
+        </div>
+        <div class="col-6">
+            <!-- <input formControlName="customerEmail" class="form-control" /> -->
+            <p-chips formControlName="customerEmail" (onAdd)="onAddEmail($event)" [allowDuplicate]="false" addOnBlur="true"></p-chips>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-6">
+          <div *ngIf="form.customerEmail.invalid && (form.customerEmail.dirty || form.customerEmail.touched)"  class="help-block mt-1 text-danger">
+            <small *ngIf="form.customerEmail.errors.required">
+                * This field is required.
+            </small>
+            <small *ngIf="!form.customerEmail.errors.required">
+              {{ errorCustomerEmail }}
+            </small>
+          </div>
+        </div>
+      </div>
+    
+      <!-- <div class="form-row d-flex align-items-center my-2">
+        <div class="col-6">
+          <label class="m-0">Customer Name</label>
+        </div>
+        <div class="col-6">
+          <input formControlName="customerName" class="form-control" />
+        </div>
+        <div class="col-6"></div>
+        <div class="col-6">
+          <div *ngIf="form.customerName.invalid && (form.customerName.dirty || form.customerName.touched)"  class="help-block mt-1 text-danger">
+            <small *ngIf="form.customerName.errors.required">
+                * This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+    
+      <div class="form-row d-flex align-items-center my-2">
+        <div class="col-6">
+          <label class="m-0">Name</label>
+        </div>
+        <div class="col-6">
+          <input formControlName="name" class="form-control" />
+        </div>
+        <div class="col-6"></div>
+        <div class="col-6">
+          <div *ngIf="form.name.invalid && (form.name.dirty || form.name.touched)"  class="help-block mt-1 text-danger">
+            <small *ngIf="form.name.errors.required">
+                * This field is required.
+            </small>
+          </div>
+        </div>
+      </div>     -->
+      
+      <div class="form-row d-flex align-items-center my-2">
+        <div class="col-6">
+          <label class="m-0">Subject</label>
+        </div>
+        <div class="col-6">
+          <input formControlName="subject" class="form-control" />
+        </div>
+        <div class="col-6"></div>
+        <div class="col-6">
+          <div *ngIf="form.subject.invalid && (form.subject.dirty || form.subject.touched)"  class="help-block mt-1 text-danger">
+            <small *ngIf="form.subject.errors.required">
+                * This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <angular-editor [config]="config" formControlName="body"></angular-editor>
+    </form>
+    
+  </div>
+  <div class="modal-footer border-0">
+    <div class="container-fluid">
+      <div class="row float-right">
+        <button type="button" class="btn btn-primary mr-1" (click)="sendEmail()">
+          Send
+        </button>
+        <button type="button" class="btn btn-outline-primary" (click)="closeModal()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

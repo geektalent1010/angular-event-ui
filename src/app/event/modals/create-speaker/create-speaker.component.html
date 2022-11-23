@@ -1,0 +1,172 @@
+<div class="modal-header">
+    <h2 class="modal-title w-100 text-center m-0"> Add new Speaker Profile </h2>
+</div>
+<div class="modal-body">
+    <div class="container p-0">
+        <form [formGroup]="createNewSpeakerForm">
+            <div class="row mt-0">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                  <label class="btn  uploadPSM my-2" >
+                      <input type="file" style="display: none;" onclick="this.value = null" (change)="uploadFile($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, .csv">
+                      Upload Speaker
+                  </label>
+                </div>
+                  <div class="col-12 d-flex align-items-center justify-content-center">
+                    <span   class="Demosession" >DEMO_Speaker.csv</span>
+                      <span class="downloadXLS px-2 ml-2">
+                          <a title="Excel" [href]="'/assets/speaker_sample/DEMO_Speaker.csv'">
+                              <i class="fas fa-download"></i>
+                          </a>
+                      </span>
+      
+                </div>
+              </div>
+            <ul ngbNav #nav="ngbNav" [(activeId)]="activeSpeakerTab" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                    <a ngbNavLink>Bio</a>
+                    <ng-template ngbNavContent>
+                        <div class="row mt-0">
+                            <label for="name"> Name <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" formControlName="speakerName"
+                                [class.border-danger]="lf.speakerName.invalid && (lf.speakerName.dirty || lf.speakerName.touched)"
+                                [class.border-success]="lf.speakerName.valid && (lf.speakerName.dirty || lf.speakerName.touched)">
+                            <div *ngIf="lf.speakerName.invalid && (lf.speakerName.dirty || lf.speakerName.touched)"
+                                class="help-block mt-1 text-danger">
+                                <div *ngIf="lf.speakerName.errors.required">
+                                    * Bio name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-0">
+                            <label for="description"> Description </label>
+                            <textarea rows='3' cols='40' class="form-control" formControlName="description"></textarea>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <a ngbNavLink>Contact Info</a>
+                    <ng-template ngbNavContent>
+                        <div class="row mt-0">
+                            <label for="company"> Company<span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" formControlName="company"
+                                [class.border-danger]="lf.company.invalid && (lf.company.dirty || lf.company.touched)"
+                                [class.border-success]="lf.company.valid && (lf.company.dirty || lf.company.touched)" />
+                            <div *ngIf="lf.company.invalid && (lf.company.dirty || lf.company.touched)"
+                                class="help-block mt-1 text-danger">
+                                <div *ngIf="lf.company.errors.required">
+                                    * Company is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-0">
+                            <label for="address"> Address <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" formControlName="address"
+                                [class.border-danger]="lf.address.invalid && (lf.address.dirty || lf.address.touched)"
+                                [class.border-success]="lf.address.valid && (lf.address.dirty || lf.address.touched)" />
+                            <div *ngIf="lf.address.invalid && (lf.address.dirty || lf.address.touched)"
+                                class="help-block mt-1 text-danger">
+                                <div *ngIf="lf.address.errors.required">
+                                    * Address is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-0">
+                            <label for="phone"> Phone <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="ex: (123) 456-7890"
+                                formControlName="phone" mask="(000) 000-0000"
+                                [class.border-danger]="lf.phone.invalid && (lf.phone.dirty || lf.phone.touched)"
+                                [class.border-success]="lf.phone.valid && (lf.phone.dirty || lf.phone.touched)" />
+                            <div *ngIf="lf.phone.invalid && (lf.phone.dirty || lf.phone.touched)"
+                                class="help-block mt-1 text-danger">
+                                <div *ngIf="lf.phone.errors.required">
+                                    * Phone number is required.
+                                </div>
+                                <div *ngIf="lf.phone.errors.mask">
+                                    * Phone Number should be the format: {{ lf.phone.errors.mask?.requiredMask }}.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-0">
+                            <label for="email"> Email<span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" formControlName="email"
+                                placeholder="ex: test@gmail.com"
+                                [class.border-danger]="lf.email.invalid && (lf.email.dirty || lf.email.touched)"
+                                [class.border-success]="lf.email.valid && (lf.email.dirty || lf.email.touched)" />
+                            <div *ngIf="lf.email.invalid && (lf.email.dirty || lf.email.touched)"
+                                class="help-block mt-1 text-danger">
+                                <div *ngIf="lf.email.errors.required">
+                                    * Email is required.
+                                </div>
+                                <div *ngIf="lf.email.errors.email">
+                                    * Email is not valid.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-0">
+                            <label for="email"> Website <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" formControlName="website"
+                                placeholder="ex: https://test.com or test.com"
+                                [class.border-danger]="lf.website.invalid && (lf.website.dirty || lf.website.touched)"
+                                [class.border-success]="lf.website.valid && (lf.website.dirty || lf.website.touched)" />
+                            <div *ngIf="lf.website.invalid && (lf.website.dirty || lf.website.touched)"
+                                class="help-block mt-1 text-danger">
+                                <div *ngIf="lf.website.errors.required">
+                                    * Website is required.
+                                </div>
+                                <div *ngIf="lf.website.errors.link">
+                                    * Website is not valid.
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="3">
+                    <a ngbNavLink>Photo Upload</a>
+                    <ng-template ngbNavContent>
+                        <div class="row mt-0">
+                            <label for="upload"> Photo Upload </label>
+                            <input type="file" class="form-control" accept=".png, .jpg, .jpeg, .svg"
+                                (change)="uploadPhoto($event)" />
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="4">
+                    <a ngbNavLink>Trade</a>
+                    <ng-template ngbNavContent>
+                        <div class="row mt-0">
+                            <label for="email"> Category High-Level </label>
+                            <select name='highLevelCat' formControlName="highLevelCat" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let category of sessionService.getDiscountCategories()"
+                                    [value]="category">{{category}}</option>
+                            </select>
+                        </div>
+
+                        <div class="row mt-0">
+                            <label for="email"> SubCategory </label>
+                            <select name='subcategory' formControlName="subcategory" style="height: 100px !important;"
+                                class="form-control" multiple>
+                                <option
+                                    *ngFor="let subcat of sessionService.getDiscountSubcategories(lf.highLevelCat.value)"
+                                    [value]="subcat">{{subcat}}</option>
+                            </select>
+                        </div>
+                    </ng-template>
+                </li> 
+            </ul>
+        </form>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-end">
+                <button class="btn btn-primary" color="primary"
+                    (click)="saveNewSpeaker()"> Save </button>
+                <span class="p-1"></span>
+                <button class="btn btn-secondary" (click)="closeModal()"> Cancel </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,222 @@
+.title {
+    color: var(--label-color);
+    i {
+        color: #6ebf49;
+        cursor: pointer;
+    }
+}
+.layout-view {
+    width: 150px;
+    label {
+      color: var(--label-color);
+    }
+    label.switch {
+      margin: 0px 6px;
+      .slider {
+        border-radius: 30px;
+        height: 28px;
+        background-color: #d9d9d9 !important;
+        &::before {
+          border-radius: 50%;
+          background: #007497;
+          height: 22px;
+          width: 22px;
+          bottom: 3px;
+          top: 3px;
+          left: 3px;
+        }
+      }
+      input:checked + .slider {
+        &::before {
+          left: 8px;
+        }
+      }
+    }
+  }
+.noSessions {
+    background-color: #00bc31;
+    border: 2px solid #000000;
+    padding: 6px !important;
+    width: 300px;
+    /* Customize the label (the customCheckBox) */
+    label.customCheckBox {
+        height: 25px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 0;
+        cursor: pointer;
+        font-size: 1.143em;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: fit-content;
+        color: black;
+        // font-weight: normal;
+        /* On mouse-over, add a grey background color */
+        &:hover {
+            input ~ .checkmark {
+                background-color: #d03b4e;
+            }
+        }
+        /* Hide the browser's default checkbox */
+        input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+            /* When the checkbox is checked, add a blue background */
+            &:checked {
+                ~ .checkmark {
+                    background: #d03b4e;
+                    border: 0;
+                    /* Show the checkmark when checked */
+                    &::after {
+                        display: block;
+                    }
+                }
+            }
+        }
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #d03b4e;
+            border-radius: 6px;
+            border: 1px solid #d03b4e;
+            /* Create the checkmark/indicator (hidden when not checked) */
+            &:after {
+                content: "";
+                position: absolute;
+                display: none;
+                left: 9px;
+                top: 2px;
+                width: 9px;
+                height: 16px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+    }
+}  
+.regtypeSection {
+    label {
+        margin: 0;
+        color: var(--label-color);
+    }
+    select {
+        border-radius: 20px;
+        width: 360px;
+        background-color: #f4f4f4;
+        border: 0;
+        color: #007497;
+    }
+}
+.sessionsTable {
+    .table {
+        background-color: var(--table-bkg-color);
+        color: var(--main-color-1);
+        overflow: auto;
+        max-height: 700px;
+        td, th {
+            border: 0;
+            border-right: 2px solid white;
+            vertical-align: middle;
+            div {
+                color: var(--main-color-1);
+            }
+            &.code {
+                width: 12%;
+            }
+            &.description {
+                width: 38%;
+            }
+            i {
+                color: var(--table-icon-color);
+                font-size: 18px;
+                &.editIcon {
+                    color: #6ebf49;
+                }
+            }
+            input {
+                border: 0;
+                background: transparent;
+                box-shadow: none;
+                outline: none;
+                color: var(--main-color-1);
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+            input.dateRangePicker {
+                width: 0;
+                height: 0;
+            }
+            select {
+                width: fit-content;
+                max-width: 220px;
+            }
+            .pointer {
+                cursor: pointer;
+            }
+        }
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: var(--table-bkg-stripe-color);
+    }
+    
+    /* Sortable table demo */
+    th[sortable] {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    th[sortable].desc:before,
+    th[sortable].asc:before {
+        content: '';
+        display: block;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAmxJREFUeAHtmksrRVEUx72fH8CIGQNJkpGUUmakDEiZSJRIZsRQmCkTJRmZmJgQE0kpX0D5DJKJgff7v+ru2u3O3vvc67TOvsdatdrnnP1Y///v7HvvubdbUiIhBISAEBACQkAICAEhIAQ4CXSh2DnyDfmCPEG2Iv9F9MPlM/LHyAecdyMzHYNwR3fdNK/OH9HXl1UCozD24TCvILxizEDWIEzA0FcM8woCgRrJCoS5PIwrANQSMAJX1LEI9bqpQo4JYNFFKRSvIgsxHDVnqZgIkPnNBM0rIGtYk9YOOsqgbgepRCfdbmFtqhFkVEDVPjJp0+Z6e6hRHhqBKgg6ZDCvYBygVmUoEGoh5JTRvIJwhJo1aUOoh4CLPMyvxxi7EWOMgnCGsXXI1GIXlZUYX7ucU+kbR8NW8lh3O7cue0Pk32MKndfUxQFAwxdirk3fHappAnc0oqDPzDfGTBrCfHP04dM4oTV8cxr0SVzH9FF07xD3ib6xCDE+M+aUcVygtWzzbtGX2rPBrEUYfecfQkaFzYi6HjVnGBdtL7epqAlc1+jRdAap74RrnPc4BCijttY2tRcdN0g17w7HqZrXhdJTYAuS3hd8z+vKgK3V1zWPae0mZDMykadBn1hTQBLnZNwVrJpSe/NwEeDsEwCctEOsJTsgxLvCqUl2ACftEGvJDgjxrnBqkh3ASTvEWrIDQrwrnJpkB3DSDrGW7IAQ7wqnJtkBnLRztejXXVu4+mxz/nQ9jR1w5VB86ejLTFcnnDwhzV+F6T+CHZlx6THSjn76eyyBIOPHyDakhBAQAkJACAgBISAEhIAQYCLwC8JxpAmsEGt6AAAAAElFTkSuQmCC') no-repeat;
+        background-size: 16px;
+        width: 16px;
+        height: 16px;
+        float: left;
+        margin-left: -8px;
+    }
+
+    th[sortable].desc:before {
+        transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+    }
+
+    /* Filtering table demo */
+    ngbd-table-filtering span.ngb-highlight {
+        background-color: yellow;
+    }
+
+    /* Complete table demo */
+    ngbd-table-complete span.ngb-highlight {
+        background-color: yellow;
+    }
+}
+.gridView {
+    .viewDate {
+        color: #007497;
+        font-size: 24px;
+    }
+}
+
+// ::ng-deep ng-multiselect-dropdown {
+//     .dropdown-list{
+//         position: absolute !important;
+//     }
+// }

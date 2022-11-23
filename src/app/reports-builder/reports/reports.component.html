@@ -1,0 +1,327 @@
+<div class="row mb-0">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark col-2" style="width: 280px;">
+    <ul class="nav nav-pills flex-column mb-auto" id="ul-nav">
+      <a class="nav-link" [ngClass]="{ active: activeReport == 1 }" (click)="setActiveReport(1)">Standard Reports</a>
+      <a class="nav-link active" [ngClass]="{ active: activeReport == 2 }" (click)="setActiveReport(2)">
+        Report Builder</a>
+      <a class="nav-link" [ngClass]="{ active: activeReport == 3 }" (click)="setActiveReport(3)">
+        Saved Reports
+      </a>
+    </ul>
+  </div>
+
+  <div class="container col-10" *ngIf="activeReport == 1">
+    <h2>Standard Reports</h2>
+    <h3>Financial Reports</h3>
+    <h3>Statistical Reports</h3>
+  </div>
+
+  <div class="container col-10" *ngIf="activeReport == 2">
+    <nav class="nav nav-tabs" id="myTab">
+      <a class="btn nav-link" [ngClass]="{ active: activeTab == 1 }" (click)="setActiveTab(1)">Fields</a>
+      <a class="btn nav-link" [ngClass]="{ active: activeTab == 2 }" (click)="setActiveTab(2)">Filters</a>
+      <a class="btn nav-link" [ngClass]="{ active: activeTab == 3 }" (click)="setActiveTab(3)">Group by</a>
+      <a class="btn nav-link" [ngClass]="{ active: activeTab == 4 }" (click)="setActiveTab(4)">Date Range</a>
+      <a class="btn nav-link" [ngClass]="{ active: activeTab == 5 }" (click)="setActiveTab(5)">Review</a>
+    </nav>
+    <div id="tab-container" class="row g-0 justify-content-between">
+      <div class="col-8 p-0 tab-content">
+        <div class="card" *ngIf="activeTab == 1">
+          <h2 class="card-header">Fields Content</h2>
+          <app-filters [options]="fieldDropdownData" [removeButton]="false" [showFilterValues]="false"
+            [selectedGroupsFunction]="setSelectedFields" [latestSelectionFunction]="setLastSelectedField"
+            [parent]="this"></app-filters>
+        </div>
+        <div *ngIf="activeTab == 2">
+          <h2 class="card-header mb-0">Filters</h2>
+          <div class="card filtercards mb-3" *ngFor="let filterSection of filterSections ; let last = last" [ngClass]="{'last-child': last}">
+            <app-filters [id]="filterSection.id" [options]="filterSection.data"
+              [selectedGroupsFunction]="setSelectedGroups" [latestSelectionFunction]="setLastSelectedGroup"
+              [secondColumnFunction]="getSecondColumnContent" [removeButton]="true" [showFilterValues]="true"
+              (removeSectionId)="removeBlock($event)" (newBlock)="addBlockForReview($event)"
+              (removeAndCond)="removeFromSaveData($event)" (hoveredCol1)="setSecondColData($event)"></app-filters>
+
+            <!-- <hr *ngIf="filterSection.id != lastFilterSectionId" /> -->
+          </div>
+
+          <div class="card-footer">
+          <button class="btn btn-success w100" (click)="addOrBlock()">
+            <span class="btn-label"><i class="fa fa-plus"></i></span>
+            Add OR Condition
+          </button>
+          </div>
+        </div>
+        <!-- </div> -->
+
+        <div class="card" *ngIf="activeTab == 3">
+          <h2 class="card-header">Group by</h2>
+          <app-filters [options]="groupbyDropdownData" [removeButton]="false" [showFilterValues]="false"
+            [selectedGroupsFunction]="setSelectedGroupby" [latestSelectionFunction]="setLastSelectedField"
+            [parent]="this"></app-filters>
+        </div>
+        <div class="card" *ngIf="activeTab == 4">
+          <h2 class="card-header">Date Range</h2>
+          <div class="row m-0">
+            <div class="col">
+              <h3>FROM</h3>
+              <app-datepicker [dateTime]="reportsSettings.selectedFromToDateTime.from"></app-datepicker>
+            </div>
+            <div class="col">
+              <h3>TO</h3>
+              <app-datepicker [dateTime]="reportsSettings.selectedFromToDateTime.to"></app-datepicker>
+            </div>
+          </div>
+          <div class="card-footer">
+          <button class="btn btn-primary w100" (click)="getDateTime()">
+            Set report range
+          </button>
+        </div>
+        </div>
+      </div>
+
+      <div *ngIf="activeTab != 5" class="col-4">
+        
+        <h2 class="card-header mb-0">Review</h2>
+        <div class="card card-body">
+        <h4>FIELDS</h4>
+        <div *ngFor="let field of reportsSettings.fields">
+          <p *ngIf="field.checked">
+            {{ field.label }}
+          </p>
+        </div>
+        <hr />
+        <h4>FILTERS</h4>
+        <div *ngFor="
+          let sectionId of createArray(lastFilterSectionId, 'yanda');
+          let i = index
+        ">
+          <li *ngFor="let entry of reviewData[i]" class="filter-li">
+            <ul>
+              <li *ngFor="let dataPoint of entry" class="filter-li">
+                {{ dataPoint.text }}
+              </li>
+            </ul>
+            <h3 *ngIf="i < lastFilterSectionId">OR</h3>
+          </li>
+        </div>
+        <hr />
+        <h4>GROUP BY</h4>
+        <div *ngFor="let field of reportsSettings.groupby">
+          <p *ngIf="field.checked">
+            {{ field.label }}
+          </p>
+        </div>
+        <div>
+          <hr />
+          <h4>REPORT INTERVAL:</h4>
+          {{ reportsSettings.selectedFromToDateTime.from.date.month }}/{{
+          reportsSettings.selectedFromToDateTime.from.date.day
+          }}/{{ reportsSettings.selectedFromToDateTime.from.date.year }}
+          {{ reportsSettings.selectedFromToDateTime.from.time.hour }}:
+          {{ reportsSettings.selectedFromToDateTime.from.time.minute }}
+          -
+
+          {{ reportsSettings.selectedFromToDateTime.to.date.month }}/{{
+          reportsSettings.selectedFromToDateTime.to.date.day
+          }}/{{ reportsSettings.selectedFromToDateTime.to.date.year }}
+
+          {{ reportsSettings.selectedFromToDateTime.to.time.hour }}:
+          {{ reportsSettings.selectedFromToDateTime.to.time.minute }}
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div *ngIf="activeTab == 5">
+      <div class="row card mt-0">
+        <h2 class="card-header">Review</h2>
+        <div class="card-body">
+          <h4>FIELDS</h4>
+          <div *ngFor="let field of reportsSettings.fields">
+            <p *ngIf="field.checked">
+              {{ field.label }}
+            </p>
+          </div>
+          <hr />
+          <h4>FILTERS</h4>
+          <div *ngFor="
+            let sectionId of createArray(lastFilterSectionId);
+            let i = index
+          ">
+            <ul>
+              <li *ngFor="let entry of reviewData[i]" class="filter-li">
+                <ul *ngIf="entry.length > 0">
+                  <li *ngFor="let dataPoint of entry" class="filter-li">
+                    {{ dataPoint.text }}
+                  </li>
+                </ul>
+                <h3>OR</h3>
+              </li>
+            </ul>
+          </div>
+          <hr />
+          <h4>GROUP BY</h4>
+          <div *ngFor="let field of reportsSettings.groupby">
+            <p *ngIf="field.checked">
+              {{ field.label }}
+            </p>
+          </div>
+          <div>
+            <hr />
+            <h4>REPORT INTERVAL:</h4>
+            {{ reportsSettings.selectedFromToDateTime.from.date.month }}/{{
+            reportsSettings.selectedFromToDateTime.from.date.day
+            }}/{{ reportsSettings.selectedFromToDateTime.from.date.year }}
+            {{ reportsSettings.selectedFromToDateTime.from.time.hour }}:
+            {{ reportsSettings.selectedFromToDateTime.from.time.minute }}
+            -
+
+            {{ reportsSettings.selectedFromToDateTime.to.date.month }}/{{
+            reportsSettings.selectedFromToDateTime.to.date.day
+            }}/{{ reportsSettings.selectedFromToDateTime.to.date.year }}
+
+            {{ reportsSettings.selectedFromToDateTime.to.time.hour }}:
+            {{ reportsSettings.selectedFromToDateTime.to.time.minute }}
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+            <label class="form-check-label" for="defaultCheck1">
+              HTML
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+            <label class="form-check-label" for="defaultCheck2">
+              PDF
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3" />
+            <label class="form-check-label" for="defaultCheck3">
+              EXCEL
+            </label>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="card-body">
+
+
+                <!-- <form class="mb-3" [formGroup]="saveReportForm" (ngSubmit)="saveReportSetting()">
+                  <input formControlName="reportSettingName" placeholder="Report name" />
+                  <button class="btn btn-primary" type="submit">Submit</button>
+                </form> -->
+
+                <form class="row savedReportForm g-3 mb-3" [formGroup]="saveReportForm" (ngSubmit)="saveReportSetting()">
+
+                  <div class="col-9">
+                    <input (keydown)="resetErrors($event)" class="form-control" formControlName="reportSettingName" placeholder="Report name">
+                  </div>
+
+                  <div class="col-3">
+                    <button 
+                    [disabled]="saveReportForm.get('reportSettingName').value === ''"
+                    type="submit" 
+                    class="btn btn-primary mb-3">Save Report</button>
+                  </div>
+
+                </form>
+
+
+                <div class="savedReports" *ngFor="let savedReport of savedReports; let i=index"
+                [type]="success">Report saved as
+                <div class="fw-bold">
+                  {{savedReport.reportName}}
+                </div>
+                  <button class="btn" (click)="remove(i)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+
+
+                <div *ngIf="reportNameNonUnique" class="text-danger">Report name already used
+                  {{ saveReportForm.get("reportSettingName").value }}</div>
+                <div *ngIf="reportNameBlank" class="text-danger">Report name is blank
+                  {{ saveReportForm.get("reportSettingName").value }}</div>
+                <!-- <form>
+     <div class="form-group">
+     <label for="reportSettingName"
+     >Enter a name for your settings</label
+     >
+     <input
+     type="text"
+     class="form-control"
+     id="reportSettingName"
+     placeholder="Report name"
+     />
+     </div>
+     </form>
+     </div>
+     </div>
+     <button
+     type="button"
+     class="btn btn-primary"
+     (click)="saveReportSetting()"
+     >
+     Save
+     </button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary w100" (click)="saveReportSetting()" [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample">
+            Save Report Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container col-10" *ngIf="activeReport == 3">
+    <h2>
+      Saved Reports
+    </h2>
+    <!-- <ul *ngFor="let report of savedReports">
+           <li>{{ report.reportName }}</li>
+           </ul> -->
+
+    <div *ngFor="let report of savedReports">
+      <p>
+        <br />
+        <button type="button" class="btn btn-success" (click)="collapse.toggle()"
+          [attr.aria-expanded]="!report.collapsed" aria-controls="collapseExample">
+          {{ report.reportName }}
+        </button>
+      </p>
+
+      <div #collapse="ngbCollapse" [(ngbCollapse)]="report.collapsed">
+        <div class="card">
+          <div class="card-body">
+            FIELDS
+            <ul *ngFor="let field of getCheckedList(report.reportsSettings.fields)">
+              <li>{{ field.label }}</li>
+            </ul>
+            FILTERS
+            <ul *ngFor="let orGroup of report.saveData.filters">
+              <ul *ngFor="let filterNameValue of getFiltersWithText(orGroup.data)">
+                <li>{{ filterNameValue.text }}</li>
+              </ul>
+              OR
+            </ul>
+            GROUP BY
+            <ul *ngFor="
+              let groupby of getCheckedList(report.reportsSettings.groupby)
+            ">
+              <li>{{ groupby.label }}</li>
+            </ul>
+          </div>
+          <button class="btn btn-primary">Modify</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

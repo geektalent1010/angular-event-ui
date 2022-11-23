@@ -1,0 +1,55 @@
+.container-fluid {
+  max-width: 1520px;
+  table.legacyTable {
+    background-color: var(--table-bkg-color);
+    color: var(--text-color);
+    tr.highlight {
+      background: #cbefc2;
+      border: 3px solid #b2eda3;
+      border-width: 3px 0;
+    }
+    th, td {
+      vertical-align: middle;
+    }
+    th.lastEditedDate {
+      width: 15%;
+    }
+    th.lastEditedUser {
+      width: 12%;
+    }
+    th.reportName {
+      width: 17%;
+    }
+    th.description {
+      width: 34%;
+    }
+    th.optionsExports {
+      width: 22%;
+    }
+    button {
+      height: 32px;
+      padding: 0 8px;
+    }
+    button.btn-icon {
+      padding: 0 6px;
+      &:focus {
+        box-shadow: none;
+      }
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    button i {
+      font-size: 12px;
+      width: 12px;
+      height: 12px;
+      color: white;
+    }
+
+    tbody tr:nth-of-type(odd) {
+      background-color: var(--table-bkg-stripe-color);
+    }
+  }
+}

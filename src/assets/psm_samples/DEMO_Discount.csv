@@ -1,0 +1,5 @@
+ChangeControl,EventName,DiscountCode,Description,Discount,GLCode,Start Date and Time,End Date and Time,DiscountGroupNbr,Priority,Allotment,Reg Type,Option / Session ID,Financial Acct Trans ID,,Field,discode,discountname,,,,,,
+New,SDC,10,Promo Code Amount,100,21020,1/1/2022,3/1/2023,1,1,99,"MEM, NON",,,,,11111,$100 off same company,,,,,, 
+New,SDC,11,Promo Code Percentage,10,21020,1/1/2022,3/1/2023,2,1,99,MEM,,,,,11112,10% off,,,,,, 
+New,SDC,11,Promo Code Percentage,50,21020,1/1/2022,3/1/2023,2,2,99,"MEM, NON",,,,,11115,50% off,,,,,, 
+New,SDC,11,Promo Code Percentage,100,21020,1/1/2022,3/1/2023,2,3,99,MEM,EACLEAD,,,,11116,100%,,,,,, 

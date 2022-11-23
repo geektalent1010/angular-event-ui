@@ -1,0 +1,31 @@
+.TitleSection {
+    position: relative;
+    .title {
+        color: var(--label-color);
+        i {
+            color: #6ebf49;
+            cursor: pointer;
+        }
+    }
+    .description {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #6ebf49;
+    }
+}
+
+.floorplanContainer {
+    height: 100vh;
+}
+
+.floorplanUploadBtn {
+    background: #e91e63;
+    color     : white;
+    width     : 335px;
+}
+
+.pointer {
+    cursor: pointer;
+}

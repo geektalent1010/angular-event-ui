@@ -1,0 +1,176 @@
+<div class="modal-header">
+    <h3 class="modal-title m-0"> {{ isEdit ? "Edit" : "Add New" }} Discount </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <form [formGroup]="newDiscountForm">
+            <div class="row mt-0">
+                <label for="discountType"> Discount Type </label>
+                <select formControlName="discountType" class="form-control" (change)="changeDiscountType($event)"
+                    [class.border-danger]="lf.discountType.invalid && (lf.discountType.dirty || lf.discountType.touched)"
+                    [class.border-success]="lf.discountType.valid && (lf.discountType.dirty || lf.discountType.touched)"
+                    
+                >
+                    <option *ngFor="let option of discountCodes; let i = index"
+                        [value]="option.discountType">
+                        {{option.discountDescription}}
+                    </option>
+                </select>
+            </div>
+            <div class="row mt-0">
+                <label for="discountName"> Discount Name </label>
+                <input type="text" class="form-control" formControlName="discountName"
+                    [class.border-danger]="lf.discountName.invalid && (lf.discountName.dirty || lf.discountName.touched)"
+                    [class.border-success]="lf.discountName.valid && (lf.discountName.dirty || lf.discountName.touched)">
+                <div *ngIf="lf.discountName.invalid && (lf.discountName.dirty || lf.discountName.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.discountName.errors.required">
+                        * Discount name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0">
+                <label for="amount"> Discount Value </label>
+                <div class="input-group" *ngIf="isPercent; else amountValue"
+                    [class.border-danger]="lf.amount.invalid && (lf.amount.dirty || lf.amount.touched)"
+                    [class.border-success]="lf.amount.valid && (lf.amount.dirty || lf.amount.touched)">
+                    <input type="number" formControlName="amount" class="form-control"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2" min="0" max="100">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">%</span>
+                    </div>
+                </div>
+                <ng-template #amountValue>
+                    <input type="number" class="form-control" formControlName="amount"
+                        [class.border-danger]="lf.amount.invalid && (lf.amount.dirty || lf.amount.touched)"
+                        [class.border-success]="lf.amount.valid && (lf.amount.dirty || lf.amount.touched)">
+                </ng-template>
+                <div *ngIf="lf.amount.invalid && (lf.amount.dirty || lf.amount.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.amount.errors.required">
+                        * Discount value is required.
+                    </div>
+                    <div *ngIf="lf.amount.errors.min || lf.amount.errors.max">
+                        * It should be 1 ~ {{ lf.amount.errors.max?.max }}.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0">
+                <label for="priority"> Priority </label>
+                <div class="input-group"
+                    [class.border-danger]="lf.priority.invalid && (lf.priority.dirty || lf.priority.touched)"
+                    [class.border-success]="lf.priority.valid && (lf.priority.dirty || lf.priority.touched)">
+                    <input type="number" formControlName="priority" class="form-control" min="0" max="100">
+                </div>
+                <div *ngIf="lf.priority.invalid && (lf.priority.dirty || lf.priority.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.priority.errors.required">
+                        * Priority is required.
+                    </div>
+                    <div
+                        *ngIf="lf.priority.errors.min || lf.priority.errors.max">
+                        * It should be 1 ~ 100.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0">
+                <label for="discountGroup"> Discount Group </label>
+                <select formControlName="discountGroup" class="form-control"
+                    [class.border-danger]="lf.discountGroup.invalid && (lf.discountGroup.dirty || lf.discountGroup.touched)"
+                    [class.border-success]="lf.discountGroup.valid && (lf.discountGroup.dirty || lf.discountGroup.touched)">
+                    <option value="" checked> - Select - </option>
+                    <option *ngFor="let option of discountGroupList; let i = index" [value]="option.value">
+                        {{option.label}}
+                    </option>
+                </select>
+                <div *ngIf="lf.discountGroup.invalid && (lf.discountGroup.dirty || lf.discountGroup.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.discountGroup.errors.required">
+                        * Discount group is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0">
+                <label for="discountDescription"> Discount Description </label>
+                <textarea class="form-control" formControlName="discountDescription" rows="3"
+                    [class.border-danger]="lf.discountDescription.invalid && (lf.discountDescription.dirty || lf.discountDescription.touched)"
+                    [class.border-success]="lf.discountDescription.valid && (lf.discountDescription.dirty || lf.discountDescription.touched)">
+                </textarea>
+                <div *ngIf="lf.discountDescription.invalid && (lf.discountDescription.dirty || lf.discountDescription.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.discountDescription.errors.required">
+                        * Discount description is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-0">
+                <label for="appliedRegtypes"> Applies To Registration Type </label>
+                <div class="w-100">
+                    <ng-multiselect-dropdown *ngIf="discountType === '10' || discountType === '11';else NotPromoSection"
+                        [placeholder]="'- Select -'" [settings]="dropdownSettings"
+                        [data]="regtypeList" formControlName="appliedRegtypes"
+                    >
+                    </ng-multiselect-dropdown>
+                    <ng-template #NotPromoSection>
+                        <select formControlName="appliedRegtypes" class="form-control"
+                            [class.border-danger]="lf.appliedRegtypes.invalid && (lf.appliedRegtypes.dirty || lf.appliedRegtypes.touched)"
+                            [class.border-success]="lf.appliedRegtypes.valid && (lf.appliedRegtypes.dirty || lf.appliedRegtypes.touched)"
+                        >
+                            <option value=""> - Select - </option>
+                            <option *ngFor="let regType of regtypeList" [value]="regType"> {{regType}} </option>
+                        </select>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="row mt-0">
+                <label for="discountStatus"> Discount Status </label>
+                <select formControlName="discountStatus" class="form-control"
+                    [class.border-danger]="lf.discountStatus.invalid && (lf.discountStatus.dirty || lf.discountStatus.touched)"
+                    [class.border-success]="lf.discountStatus.valid && (lf.discountStatus.dirty || lf.discountStatus.touched)"
+                >
+                    <option value="" checked> - Select - </option>
+                    <option value="active"> Active </option>
+                    <option value="inactive"> Inactive </option>
+                </select>
+                <div *ngIf="lf.discountStatus.invalid && (lf.discountStatus.dirty || lf.discountStatus.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.discountStatus.errors.required">
+                        * Discount status is required.
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-0" *ngIf="lf.discountauthcode">
+                <label for="discountauthcode"> Discount Code </label>
+                <input maxlength="5" type="text" class="form-control" formControlName="discountauthcode"
+                    [class.border-danger]="lf.discountauthcode.invalid && (lf.discountauthcode.dirty || lf.discountauthcode.touched)"
+                    [class.border-success]="lf.discountauthcode.valid && (lf.discountauthcode.dirty || lf.discountauthcode.touched)"
+                >
+                <div *ngIf="lf.discountauthcode.invalid && (lf.discountauthcode.dirty || lf.discountauthcode.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.discountauthcode.errors?.pattern">
+                        * Discount Code should be 5 characters number.
+                    </div>
+                    <div *ngIf="lf.discountauthcode.errors?.required">
+                        * Discount Code is required.
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-end">
+                <button class="btn btn-primary" color="primary" (click)="save()"> Save </button>
+                <span class="p-1"></span>
+                <button class="btn btn-secondary" (click)="closeModal()"> Cancel </button>
+            </div>
+        </div>
+    </div>
+</div>

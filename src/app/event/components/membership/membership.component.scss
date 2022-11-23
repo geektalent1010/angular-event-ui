@@ -1,0 +1,81 @@
+.TitleSection {
+    position: relative;
+    .title {
+        color: var(--label-color);
+        i {
+            color: #6ebf49;
+            cursor: pointer;
+        }
+    }
+    .description {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #6ebf49;
+    }
+}
+.membershipInfoTable {
+    .table {
+        background-color: var(--table-bkg-color);
+        color: var(--main-color-1);
+        max-height: 600px;
+        overflow: auto;
+        td, th {
+            border: 0;
+            border-right: 2px solid #a6a6a6;
+            vertical-align: middle;
+            width: 10%;
+            div {
+                color: var(--main-color-1);
+            }
+            &.phone {
+                min-width: 122px;
+            }
+            &.email {
+                max-width: 230px;
+            }
+            &.image {
+                img {
+                    max-width: 120px;
+                    min-width: 60px;
+                    width: 100%;
+                }
+            }
+            &:not(.actions) {
+                &:focus-within {
+                    border: 3px solid rgb(183 214 247) !important;
+                    background-color: var(--sub-bkg-color) !important;
+                }
+            }
+            i {
+                color: var(--table-icon-color);
+                font-size: 18px;
+                &.editIcon {
+                    color: #6ebf49;
+                }
+            }
+            input {
+                width: fit-content;
+                border: 0;
+                background: transparent;
+                box-shadow: none;
+                outline: none;
+                color: var(--main-color-1);
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+            .pointer {
+                cursor: pointer;
+            }
+        }
+        
+        .invalid-input {
+            border: solid 1px #dc3545 !important;
+        }
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: var(--table-bkg-stripe-color);
+    }
+}

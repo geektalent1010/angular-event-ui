@@ -1,0 +1,60 @@
+.modal-header {
+    border: 0;
+    padding: 8px;
+    background-color: #007497;
+    .modal-title {
+        color: white;
+    }
+}
+
+.modal-body {
+    padding: 24px 32px 4px;
+    form {
+        label {
+            color: #007497;
+            font-weight: 500;
+            margin: 0;
+            height: 38px;
+            display: flex;
+            align-items: center;
+        }
+        input {
+            box-shadow: none !important;
+            color: #007497;
+        }
+        select {
+            color: #007497;
+        }
+        .createSpeakerBtn {
+            font-size: 14px;
+            padding: 2px 0;
+            cursor: pointer;
+        }
+    }
+    .uploadPSM {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        padding: 0 18px;
+        background-color: var(--btn-bg-color) !important;
+        color: var(--main-color-1);
+        border: 0;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .Demosession {
+        height: 32px;
+        border-radius: 16px;
+        padding: 0 18px;
+        background-color: var(--btn-bg-color) !important;
+        color: #6ebf49;
+        font-size: 16px;
+        margin-left: 42px;
+        min-width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  }
+}

@@ -1,0 +1,162 @@
+<div class="row px-3 px-lg-5">
+  <div class="col-12 px-0 px-md-4">
+    <div class="TitleSection">
+      <h1 class="title font-weight-bold mb-0">
+        Selected Qualifications
+        <i
+          class="fas fa-plus ml-2"
+          *ngIf="pageType !== 'view'"
+          (click)="createNewQualification()"
+        ></i>
+      </h1>
+      <div class="d-flex align-items-center justify-content-between pl-0 my-3">
+        <div class="noQualifications">
+          <label class="customCheckBox">
+            <input
+              type="checkbox"
+              [(ngModel)]="noQualifications"
+              (change)="checkNoQualifications()"
+            />
+            <span class="checkmark"></span>
+            No Qualifications Required
+          </label>
+        </div>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-primary mr-2" (click)="selectAllItems()">
+            Select/Deselect All
+          </button>
+          <button
+            class="btn btn-primary"
+            [disabled]="disableDeleteBtn()"
+            (click)="deleteSelectedItems()"
+          >
+            Delete Items
+          </button>
+        </div>
+      </div>
+    </div>
+    <span class="qualification-desc" *ngIf="pageType !== 'view'">
+      Please note: Qualifications reply on Reg Types. Click on the Reg Type tab
+      above then come back to add new Qualification if Reg Type is not in the
+      list.
+    </span>
+    <div class="qualificationsTable row">
+      <div class="col-12 p-0">
+        <table class="table table-striped text-center">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="name">Name</th>
+              <th class="type">Type</th>
+              <th class="regtype">Reg Type</th>
+              <th class="image">Image</th>
+              <th class="actions border-0" *ngIf="pageType !== 'view'">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let qualification of qualificationList; let i = index">
+              <td>
+                <label>
+                  <input
+                    type="checkbox"
+                    class=""
+                    [checked]="selectedItems[i]"
+                    (change)="checkedItem($event.target.checked, i)"
+                  />
+                </label>
+              </td>
+              <td class="name">
+                <div *ngIf="i === editIndex">
+                  <input type="text" [(ngModel)]="qualification.qualName" />
+                </div>
+                <div *ngIf="i !== editIndex">
+                  {{ qualification.qualName }}
+                </div>
+              </td>
+              <td class="type">
+                <div *ngIf="i === editIndex">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="qualification.qualification"
+                  >
+                    <option value="" checked>- Select -</option>
+                    <option *ngFor="let type of typeList" [value]="type">
+                      {{ type }}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="i !== editIndex">
+                  {{ qualification.qualification }}
+                </div>
+              </td>
+              <td class="regtype">
+                <div *ngIf="i === editIndex">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="qualification.regType"
+                  >
+                    <option value="" checked>- Select -</option>
+                    <option
+                      *ngFor="let type of regtypesList"
+                      [value]="type.description"
+                    >
+                      {{ type.description }}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="i !== editIndex">
+                  {{ qualification.regType }}
+                </div>
+              </td>
+              <td class="image">
+                <div *ngIf="i === editIndex">
+                  <input
+                    type="file"
+                    accept=".png, .jpg, .jpeg, .svg"
+                    (change)="uploadLogo($event, i)"
+                  />
+                </div>
+                <div *ngIf="i !== editIndex">
+                  <img
+                    [src]="qualification.sampleQualificationFileData"
+                    alt=""
+                  />
+                </div>
+              </td>
+              <td class="actions border-0" *ngIf="pageType !== 'view'">
+                <div class="d-flex align-items-center justify-content-center">
+                  <a
+                    class="px-1"
+                    style="cursor: pointer"
+                    *ngIf="i != editIndex"
+                  >
+                    <span>
+                      <i class="far fa-edit" (click)="editQualification(i)"></i>
+                    </span>
+                  </a>
+                  <a
+                    class="px-2"
+                    style="cursor: pointer"
+                    *ngIf="i == editIndex"
+                  >
+                    <span>
+                      <i
+                        class="fas fa-plus editIcon"
+                        (click)="editIndex = null"
+                      ></i>
+                    </span>
+                  </a>
+                  <div (click)="removeQualification(i)" class="pointer ml-2">
+                    <i class="far fa-trash-alt"></i>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

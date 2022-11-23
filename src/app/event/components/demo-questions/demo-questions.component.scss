@@ -1,0 +1,65 @@
+.title {
+    color: var(--label-color);
+    i {
+        color: #6ebf49;
+        cursor: pointer;
+    }
+}
+.importBtn {
+    color: var(--label-color);
+}
+.regtypeSection {
+    label {
+        margin: 0;
+        color: var(--label-color);
+    }
+    select {
+        border-radius: 20px;
+        width: 360px;
+        background-color: #f4f4f4;
+        border: 0;
+        color: #007497;
+    }
+}
+.questionsTable {
+    max-height: 800px;
+    .table {
+        background-color: var(--table-bkg-color);
+        color: var(--main-color-1);
+        td, th {
+            border: 0;
+            border-right: 2px solid #a6a6a6;
+            vertical-align: middle;
+            i {
+                color: var(--table-icon-color);
+                font-size: 18px;
+                &.editIcon {
+                    color: #6ebf49;
+                }
+            }
+            a, div {
+                color: var(--main-color-1);
+            }
+            input {
+                width: 100%;
+                border: 0;
+                background: transparent;
+                box-shadow: none;
+                outline: none;
+                color: var(--main-color-1);
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+            select {
+                width: fit-content;
+            }
+            .pointer {
+                cursor: pointer;
+            }
+        }
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: var(--table-bkg-stripe-color);
+    }
+}

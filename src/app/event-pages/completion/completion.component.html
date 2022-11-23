@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-around align-items-center">
+    <div id="badge" #screen>
+        <div class="background">
+            <div class="UfUNsf" style="color: rgba(255,255,255,1);">{{eventName}}</div>
+            <div class="GFov0d" style="color: rgba(255,255,255,1);">{{eventDescription}}</div>
+            <div style="height:16px;"></div>
+            <div class="DuHak ">
+                <div class="lFjSy" style="flex: auto; align-items:flex-start;">
+                    <div class="jFIJWc" style="text-align: left;color: rgba(255,255,255,1);">Start Date</div>
+                    <div class="xwB6Vc" style="text-align: left;color: rgba(255,255,255,1);">{{startDate}}</div>
+
+                    <div class="jFIJWc" style="text-align: left;color: rgba(255,255,255,1);">End Date</div>
+                    <div class="xwB6Vc" style="text-align: left;color: rgba(255,255,255,1);">{{endDate}}</div>
+                </div>
+                <div class="lFjSy" style="flex: auto; align-items:flex-end;">
+                    <div class="jFIJWc" style="text-align: right;color: rgba(255,255,255,1);">Registration</div>
+                    <div class="xwB6Vc" style="text-align: right;color: rgba(255,255,255,1);">{{category}}</div>
+                    <div class="xwB6Vc" style="text-align: right;color: rgba(255,255,255,1);">{{subcategory}}</div>
+                </div>
+            </div>
+            <img src="{{logo}}" />
+            <div class="DuHak ">
+                <div class="lFjSy" style="flex: auto; align-items:flex-start;">
+                    <div class="jFIJWc" style="text-align: left;color: rgba(255,255,255,1);">Name</div>
+                    <div class="xwB6Vc" style="text-align: left;color: rgba(255,255,255,1);">{{firstName}} {{lastName}}</div>
+                </div>
+                <div class="lFjSy" style="flex: auto; align-items:flex-end;">
+                    <div class="jFIJWc" style="text-align: right;color: rgba(255,255,255,1);">Event Code</div>
+                    <div class="xwB6Vc" style="text-align: right;color: rgba(255,255,255,1);">{{tradeShowEvent}}</div>
+                </div>
+            </div>
+            
+            <ngx-qrcode style="margin-bottom: 25px;" [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value"
+                alt="Demo QR Code" cssClass="bshadow"></ngx-qrcode>
+
+        </div>
+    </div>
+    <div>
+        <div>
+            <i 
+                class="fas fa-check-circle text-success" 
+                style="font-size: xx-large;"
+            ></i>
+        </div>
+        <diV class="p-3">
+            <label>Registration Complete</label>
+        </diV>
+        <div class="btn btn-primary" (click)="downloadImage()">
+            <i class="fas fa-download"></i> Download Badge
+        </div>
+
+    </div>
+</div>
+
+<div id="download">
+    <img #canvas>
+    <a #downloadLink></a>
+</div>

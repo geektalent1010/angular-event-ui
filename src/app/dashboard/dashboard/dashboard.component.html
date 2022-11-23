@@ -1,0 +1,47 @@
+<div
+  class="container d-flex justify-content-between align-items-start"
+  id="registration-banner"
+  style="height:3em"
+>
+  <h1>Registration</h1>
+  <div class="form-group">
+    <app-dashboard-dropdown
+      (notifyParent)="getSelectedTimeRange($event)"
+    ></app-dashboard-dropdown>
+  </div>
+</div>
+<div *ngIf="evt_uids && show_ids">
+  <app-carousel [cardDecks]="cardDecks" [waiting]="waiting"></app-carousel>
+  <app-carousel
+    [snapshotDecks]="snapshotDecks"
+    [waiting]="waiting"
+    [timeRange]="selectedTimeRange"
+  ></app-carousel>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <app-registration-sales-chart
+          [evt_uids]="evt_uids"
+          [show_ids]="show_ids"
+        ></app-registration-sales-chart>
+      </div>
+      <div class="col-lg-6">
+        <app-complimentary-paid-chart
+          [evt_uids]="evt_uids"
+          [show_ids]="show_ids"
+        ></app-complimentary-paid-chart>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-weeks-out-chart
+          [evt_uids]="evt_uids"
+          [show_ids]="show_ids"
+        ></app-weeks-out-chart>
+      </div>
+    </div>
+  </div>
+  <app-carousel [top10Decks]="top10Decks" [waiting]="waiting"></app-carousel>
+  <app-carousel [mapDataDecks]="mapDataDecks" [waiting]="waiting">
+  </app-carousel>
+</div>

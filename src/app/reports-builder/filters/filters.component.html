@@ -1,0 +1,78 @@
+<div class="row justify-content-between">
+  <div class="col-3">
+    <app-dropdown-basic
+      [options]="options"
+      (change)="selectedGroupsFunction(this, parent,$event)"
+      (latestSelection)="latestSelectionFunction(this, $event)"
+      [isFirstColumn]="true"
+      (hoverFirstColumn)="hoverFirstColumnUpdate($event)"
+      (removeAndCond)="updateParentToRemove($event)"
+    ></app-dropdown-basic>
+  </div>
+  <div class="col-3">
+    <div *ngIf="lastSelectedGroup && showFilterValues">
+      <app-dropdown-basic  (change)="updateCondtion()" [options]="secondColValues"> </app-dropdown-basic>
+    </div>
+  </div>
+  <div class="col-6">
+    <div *ngIf="showAddCondition">
+      <button class="btn btn-success float-right addConditionBtn" (click)="updateThirdCol()">
+        <span class="btn-label">
+          <i class="far fa-plus-square"></i>
+        </span>
+        Add Condition
+      </button>
+    </div>
+  </div>
+  <!-- <div class="col-4">
+       <h3>Selections:</h3>
+       <ul *ngFor="let thirdColVal of thirdColValues">
+       <li [ngClass]="{ red: col1Selection == thirdColVal.firstColId }">
+       {{ thirdColVal.text }}
+       </li>
+       </ul>
+       </div> -->
+</div>
+<div class="">
+  <button
+    *ngIf="removeButton"
+    class="btn btn-danger removeBlockBtn"
+    (click)="removeOrBlock()"
+  >
+  <span class="btn-label"><i class="far fa-minus-square"></i></span>
+    Remove Block
+  </button>
+</div>
+<!-- <div class="custom-flex-container">
+     <button class="btn btn-primary" (click)="removeOrBlock()">
+     REMOVE BLOCK
+     </button>
+     </div>
+     <div class="row">
+     <div class="col-4">
+     <app-multi-select-dropdown
+     (selectedGroups)="selectedGroupsFunction(this, $event)"
+     (latestSelection)="latestSelectionFunction(this, $event)"
+     [options]="options"
+     placeholder="Select Registration Category"
+     >
+     </app-multi-select-dropdown>
+     </div>
+     <div class="col-4">
+     <div *ngIf="lastSelectedGroup">
+     <app-multi-select-dropdown
+     #secondDropdown
+     [options]="secondColValues"
+     ></app-multi-select-dropdown>
+     <button class="btn btn-primary" (click)="updateThirdCol()">
+     Add Condition
+     </button>
+     </div>
+     </div>
+     <div class="col-4">
+     <h3>Selections:</h3>
+     <ul *ngFor="let thirdColVal of thirdColValues">
+     <li>{{ thirdColVal }}</li>
+     </ul>
+     </div>
+     </div> -->

@@ -1,0 +1,520 @@
+
+<builder-component options='{"cacheSeconds": 10}' name="page" entry="a3f06390cbb646668429314ad4133624"></builder-component>
+
+<div class='row' (click)="open(polling)">
+    <div class='col-9'>
+
+    </div>
+    <div class='col-2' style='height:75px;'>
+        <ul _ngcontent-yfs-c105="" class="nav-menu nav-menu-social align-to-right">
+           <!-- <li _ngcontent-yfs-c105="" class="login_click light" style='width:250px; background-color:#fff;border:1px solid rgba(100, 123, 156, 0.3) !important;'><a style='padding:5px !important;font-size:20px !important;color: #da0b4e !important;' href='/eventmetrics/2940AS9' target="__new"  id='eventMetrics'>Event Management</a></li>-->
+        </ul>
+    </div>
+</div>
+<!--<a class='modalPopup' id='modalPopup' (click)="open(polling)"><span>&nbsp; &nbsp; &nbsp;</span></a>-->
+<a #modalPopupTrigger id='modalPopupTrigger' data-toggle="modal" (click)="open(polling)" ></a>
+<div class='row'>
+    <div class='col-1'>
+
+    </div>
+    <div class='col-6'>
+        <h5>{{eventName}}</h5>
+        <div class='synopsis'>
+            <p>{{eventInfoText}}</p>
+        </div>
+        <table border='0'>   
+            <div class='synopsis'>
+                <h3><b>List of Exhibitors {{eventID}}</b></h3>     
+                
+              
+                <tr *ngIf="eventID=='2299188'"> 
+                    <td>
+                        <p>
+                            <b>
+                                <a href='#'>Aarcomm Systems, Inc</a><br/>
+                                <a href='#'>Abbott Rubber Company, Inc</a><br/>
+                                <a href='#'>About Time Technology, LLC</a><br/>
+                                <a href='#'>Accukorea, CO, LTD</a><br/>
+                                <a href='#'>ACO, Inc</a><br/>
+                                <a href='#'>Acumatic, Inc</a><br/>
+                                <a href='#'>ADA Solutions, Inc</a><br/>
+                                <a href='#'>Advanced Concrete Technologies, Inc</a><br/>
+                                <a href='#'>Advanced Equipment, Inc</a><br/>
+                                <a href='#'>Air Comm Radio</a><br/>
+                                <a href='#'>Airo Industries, Inc</a><br/>
+                                <a href='#'>Albion Engineering, Co</a><br/>
+                                <a href='#'>Alchemco</a><br/>
+                                <a href='#'>Advanced Equipment, Inc</a><br/>
+                                <a href='#'>Allen Engineering Corp</a><br/>
+                                <a href='#'>Alliance Concrete Pumps</a><br/>
+                                <a href='#'>ALLPLAN, Inc</a><br/>
+                                <a href='#'>American Concrete Institute</a><br/>
+                                <a href='#'>American Concrete and Pavement Association</a><br/>
+                                <a href='#'>American Concrete Pumping Association (ACPUMA)</a><br/>
+                                <a href='#'>American Geothermal, Inc</a><br/>
+                                <a href='#'>American Honda Motor Company</a><br/>
+                            </b>
+                        </p>
+                    </td>
+
+                </tr>
+                    <tr *ngFor="let exhibitors of exhibitorsList"  class='exhibitorsListing'>
+                        <td>
+                                
+                                <p><b><a href='#'>{{exhibitors[0].addUserid}}</a></b></p>
+                                
+                        </td>
+                    </tr>
+                
+            </div>
+        </table>
+    </div>
+    <div class='col-5'>
+        <table border='0'>   
+            <div class='synopsis'>
+                <h3><b>All Sessions</b></h3>     
+                <div *ngIf="allSessions">
+                    <tr *ngFor="let sessions of allSessions"  id='sessionsListing'>
+                        <td>
+                                <p><b><a href='http://3.19.40.177:5000/chat/9268319-6da94f24-c372-42ee-a0de-2fc35e584729'>{{sessions.sessionName}}</a></b></p>
+                                <p>{{sessions.addDate}} </p>
+                        </td>
+                    </tr>
+                </div> 
+            </div>
+           <!-- <div *ngIf="recommendedSessions; else noUsers">
+                <tr *ngFor="let rSession of recommendedSessions; let i = index" [ngClass]="[i % 2 === 0 ? 'greyRow' : 'whiteRow']">
+                    <td >
+                        <a href='https://www.csi-event.com:3000/embedded-app'>{{rSession}}</a><br/>
+                        <p>Because of your interest in: <a href='#'>Technology</a>, <a href='#'>Mobile</a>, <a href='#'>Smart</a></p>
+                    </td>
+                </tr>
+            </div>-->
+        </table>
+    </div>
+</div>
+<!--<div><p>Builder ID: {{builderIOID}}</p></div>-->
+
+<!--<builder-component name="page"entry="{{builderIOID}}"></builder-component>-->
+
+<div class='row'>
+    <div class='col-1'>
+
+    </div>
+    <div class='col-5'>
+        <h3><b>Attendees You May Know</b></h3>
+        <div class='tableContainer' style='overflow:scroll;height:150px;'>
+            <table border='0' width="100%">
+
+                <div *ngIf="recommendedUsers; else noUsers">
+                    <tr *ngFor="let rUsers of recommendedUsers; let z = index" [ngClass]="[z % 2 === 0 ? 'greyRow' : 'whiteRow']" [attr.data-index]="z">
+                        <td >
+                            <a class="cursor-pointer" target="_new" id="send_{{rUsers.regUid}}" (click)="openPassed($event, sendMessage)">{{rUsers.Name}}</a><br/>
+                            <p>Because of your interest in: {{rUsers.Topics}}</p>
+                        </td>
+                    </tr>
+                </div>
+                
+              
+                
+                <ng-template #noUsers>
+                   <tr>
+                       <td><b>No Users Returned</b></td>
+                   </tr>
+                </ng-template>
+           
+                
+                
+            </table>
+        </div>
+    </div>
+    <div class='col-5'>
+        
+    </div>
+</div>
+
+<div id="clockdiv" class='col-12'>
+    <div class='row'>
+        <div class='col-4'  style='float:left;'>
+            Days:
+            <br/><span  style='margin-top:15px;' class="days">22</span>
+        </div>
+        <div class='col-4' style='float:left;'>
+            Hours:<br/>
+            <span  style='margin-top:15px;' class="hours">10</span>
+        </div>
+        <div class='col-4'  style='float:left;'>
+            Minutes: 
+            <br/><span  style='margin-top:15px;' class="minutes">11</span>
+        </div>
+    </div>
+</div>
+
+<div class='row'>
+    <div class='2'>
+
+    </div>
+    <div class='col-8'>
+      <mwl-demo-component [eventID]="eventID"></mwl-demo-component>
+    </div>
+    <div class='col-2'>
+        <button class="btn btn-primary float-right" (click)="open(addSession)">
+            Add New Session
+        </button>
+    </div>
+</div>
+
+<ng-template #pollingTest let-modal>
+    <div class="modal-header" style='width:450px'>
+        <h4 class="modal-title" id="modal-basic-title">Register for Event</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    
+      </div>
+</ng-template>
+
+<ng-template #sendMessage let-modal>
+    <div class="modal-header" style='width:450px'>
+        <h4 class="modal-title" id="modal-basic-title">Contact User</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>Enter Message to Send</b></p>
+           
+        <textarea class='form-control'  [(ngModel)]="messageSending"  name='sendMessageTxt' rows='3' cols='20'></textarea>
+   
+        <input type='button' (click)='setMessagesToAttendee()' value='Send Message'>
+      </div>
+</ng-template>
+
+<style>
+.whiteRow {
+    background-color:#fff;
+}
+
+.tabs-nav-wrap {padding:10px 0; text-align: center;}
+  .tabs-nav-wrap ul {display: inline-block; list-style: none;}
+  
+  .tabs-nav-wrap ul li {
+    list-style: none;
+    display: inline-block;
+      width: 110px !important;
+      height: 65px;
+      text-align: center;
+    margin:0px;
+  }
+  .tabs-nav-polling li {
+    list-style: none;
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    float:left;
+    width:110px !important;
+  }
+  
+  .tabs-nav-polling .tab-nav-link.current,
+  .tabs-nav-polling .tab-nav-link:hover {
+    border:1px solid #5eaace;
+    background: #74c1e4;
+  }
+
+</style>
+<ng-template #polling let-modal data-target="polling">
+    <div class="modal-header" style='width:650px'>
+      <h4 class="modal-title" id="modal-basic-title">Register for Event</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class='row'>
+            <div class='col-12'>
+                    <div class="tabs-nav-wrap">
+                        <ul class="tabs-nav-polling">
+                            <li class="tab-nav-link" (click)='showTab("questionsTab")' data-target="#questionsTab"><br/><span>Questions</span></li>
+                            <li class="tab-nav-link" (click)='showTab("goalsTab")'><span><br/>Goals</span></li>
+                            <li class="tab-nav-link" (click)='showTab("paymentTab")'><span><br/>Payment</span></li> 
+                            <li class="tab-nav-link" (click)='showTab("topicsTab")'><span><br/>Topics</span></li>  
+                         </ul>
+                    <div style="clear:both;"></div>
+                 </div><!-- ends tabs-nav-wrap -->	  
+            </div>
+        </div>
+        <div class='active-tab my-tabs questionsTab'>
+        <label>Which category describes your occupation?</label>
+		
+		<select name='occupation' id='occupation'>
+          <option value='Legal Professional'>Legal Professional</option>
+          <option value='Medical Practitioner'>Medical Practitioner</option>
+          <option value='Trainer/Educator'>Trainer/Educator</option>
+          <option value='Landscape/Gardening/Turf'>Landscape/Gardening/Turf</option>
+          <option value='Farming/Agriculture'>Farming/Agriculture</option>
+          <option value='Analyst/Associate/Consultant'>Analyst/Associate/Consultant</option>
+          <option value='EMT/Emergency Preparedness'>EMT/Emergency Preparedness</option>
+          <option value='Researcher'>Researcher</option>
+          <option value='Recruiter'>Recruiter</option>
+          <option value='Press / Media'>Press / Media</option>
+          <option value='Owner/Founder/CEO/President/Executive'>Owner/Founder/CEO/President/Executive</option>
+          <option value='Professor / Academic'>Professor / Academic</option>
+          <option value='Human Resources'>Human Resources</option>
+          <option value='Sales/Marketing & Office Personnel'>Sales/Marketing & Office Personnel</option>
+          <option value='Production/Manufacturing'>Production/Manufacturing</option>
+          <option value='Architect/Designer'>Architect/Designer</option>
+          <option value='Actor/Entertainer'>Actor/Entertainer</option>
+          <option value='Blogger/Editor/Author'>Blogger/Editor/Author</option>
+          <option value='Pastor'>Pastor</option>
+          <option value='Student'>Student</option>
+          <option value='Scientist/Engineer/Programmer'>Scientist/Engineer/Programmer</option>
+          <option value='Government'>Government</option>
+          <option value='Buyer/Distributor'>Buyer/Distributor</option>
+		</select>
+		<br/><br/>
+		<label>Please enter your exact job title:</label><br/>
+		<input type='text' name='jobTitle' value=''>
+		<br/><br/>
+		
+        <label>Is your company/organization exhibiting at this event?</label><br/>
+		<select name='exhibiting'>
+			<option value='yes'>Yes</option>
+			<option value='no'>No</option>
+		</select>
+           <br/><br/>
+           <input type='button' value='Save Information'  (click)="modal.dismiss('Cross click')" />
+        <hr/>
+    </div>
+
+    <div class='my-tabs hide-tab goalsTab'>
+        <label>What are your Goals for this event?</label>
+        <div class='row client-goals'>
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Create new opportunities by meeting as many new people as possible</b><br/>
+                  Interact with <select style='width:50px;'><option value='1'>1</option><option value='5'>5</option><option value='10'>10</option><option value='25'>25</option><option value='50'>50</option></select> number of attendees.
+            </p>
+            </div>
+            <div class='col-1'>
+             
+            </div>
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Learn about my profession and industry trends through education sessions</b><br/>
+                 Attend <select style='width:50px;'><option value='1'>1</option><option value='5'>5</option><option value='10'>10</option><option value='25'>25</option><option value='50'>50</option></select> number of sessions.
+             </p>
+            </div>
+            <div class='col-1'>
+             
+            </div>
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Learn about the state of the industry through product demonstrations</b><br/>
+                 View <select style='width:50px;'><option value='1'>1</option><option value='5'>5</option><option value='10'>10</option><option value='25'>25</option><option value='50'>50</option></select> number of product shows.
+              
+            </p>
+            </div>
+            <div class='col-1'>
+             
+            </div>
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Target exhibitors through scheduled meetings</b><br/>
+                 <Textarea rows='3' cols='40'>List Targetted Exhibitors</textarea>.
+               
+            </p>
+            </div>
+            <div class='col-1'>
+             
+            </div>
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Gather information for a purchasing decision</b><br/>
+                 Attend session / product shows in a particular category <select style='width:50px;'><option value='1'>1</option><option value='5'>5</option><option value='10'>10</option><option value='25'>25</option><option value='50'>50</option></select>.
+
+            </p>
+            </div>
+            <div class='col-1'>
+             
+            </div>
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Have fun!</b><br/>
+                 Achieve an overall satisfaction score higher than <select style='width:50px;'><option value='1'>1</option><option value='5'>5</option><option value='10'>10</option><option value='25'>25</option><option value='50'>50</option></select>.
+                
+            </p>
+            </div>
+            <div class='col-1'>
+             
+            </div>
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Ideas & Inspiration</b><br/>
+                 Achieve an overall interest score higher than <select style='width:50px;'><option value='1'>1</option><option value='5'>5</option><option value='10'>10</option><option value='25'>25</option><option value='50'>50</option></select>.
+                
+            </p>
+            </div>
+            <div class='col-1'>
+             
+            </div>
+
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Explore the event, look for new and interesting trends/ideas (i.e. walk every aisle)</b>  
+            </p>
+            </div>
+            <div class='col-1'>
+             
+            </div> 
+            <div class='col-11 '>
+                <p><input type='checkbox' /> &nbsp; <b>Employment Opportunities</b>    
+            </p>
+            </div>
+            <div class='col-1'>
+             
+            </div>
+
+        </div>
+        <hr/>
+    </div>
+    <div class='my-tabs hide-tab paymentTab'>
+       <label>Please authorize Payment from your Digital Wallet</label>
+     
+       <google-pay-button environment="TEST" buttonType="buy" buttonColor="black" [paymentRequest]="paymentRequest" (loadpaymentdata)="onLoadPaymentData($event)" (error)="onError($event)" [paymentAuthorizedCallback]="onPaymentDataAuthorized" > </google-pay-button>	
+
+
+    </div>
+    <div class='my-tabs hide-tab topicsTab'>
+        <label>Select Topics You're Interested In</label>
+        <select class='form-control' id='interestTopics' multiple='multiple' name='eventType'>
+            <option>AGRICULTURE & FARMING</option>
+            <option>AMUSEMENT, ENTERTAINMENT & GAMING</option>
+            <option>SPORTING GOODS & RECREATION</option>
+            <option>CONSUMER GOODS & RETAIL TRADE</option>
+            <option>TOYS, HOBBIES & GIFTS</option>
+            <option>EDUCATION, TRAINING, SCIENCE & RESEARCH</option>
+            <option>ELECTRICAL & ELECTRONICS</option>
+            <option>AUTOMOTIVE, TRUCKING & TRANSPORTATION</option>
+            <option>TRAVEL, HOTELS & RESTAURANTS</option>
+            <option>INDUSTRIAL</option>
+            <option>MEDICAL & HEALTHCARE PRODUCTS</option>
+            <option>BUILDING & CONSTRUCTION</option>
+            <option>EXHIBITION & MEETING INDUSTRY</option>
+            <option>FOOD & BEVERAGE</option>
+            <option>MANUFACTURING & PACKAGING</option>
+            <option>APPAREL, BEAUTY, SHOES & TEXTILES</option>
+            <option>COMMUNICATIONS & BROADCASTING</option>
+            <option>COMPUTERS & SOFTWARE APPLICATIONS</option>
+            <option>AEROSPACE & AVIATION</option>
+            <option>WASTE MANAGEMENT</option>
+            <option>WATER, ENERGY & POWER</option>
+            <option>POLICE, FIRE, SECURITY & EMERGENCY SERVICES</option>
+            <option>MANAGEMENT, HUMAN RESOURCES & NETWORKING</option>
+            <option>BUSINESS</option>
+            <option>GOVERNMENT & MILITARY</option>
+            <option>PRINTING, GRAPHICS, PHOTOGRAPHY & PUBLISHING</option>
+            <option>MINING</option>
+            <option>DENT</option>
+           </select><br/><br/>
+        <input type='button' (click)="processRegistration()" value='Submit Enrollment' />    
+    </div>
+
+
+    </div>
+  </ng-template>
+
+  <ng-template #addSession let-modal>
+    <div class="modal-header" style='width:450px'>
+      <h4 class="modal-title" id="modal-basic-title">Add New Session</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+        <label>Session Type:</label>
+
+		<select id="#fieldSessionType" name='sessionType' [(ngModel)]="sessionType" class="form-control" multiple="multiple">
+            <option value="X">Lightning Talk </option>
+            <option value="X">Show and Tell</option>
+            <option value="X">Product Demo </option>
+            <option value="X">Expert Clinic</option>
+
+            <option value="X">Solution Room </option>
+            <option value="X">Think & Feedback</option>
+            <option value="X">Scenario Solving Exercise </option>
+            <option value="X">Roleplay</option>
+
+            <option value="X">Campfire Stories</option>
+            <option value="X">Founder Stories</option>
+            <option value="X">Interactive Quiz </option>
+            <option value="X">Business Pitch</option>
+
+            <option value="X">Hackathon</option>
+            <option value="X">Debate</option>
+            <option value="X">Brainstorm</option>
+            <option value="X">Network Roundtable</option>
+
+            <option value="X">Meetup </option>
+            <option value="X">Streaming</option>
+        
+		</select>
+		<br/><br/>
+		<label>Session Name:</label><br/>
+		<input type='text' [(ngModel)]="sessionName" class='form-control' value=''>
+		<br/><br/>
+		
+        <label>Public or Private:</label><br/>
+		<select name='exhibiting' [(ngModel)]="sessionPrivateSession" class='form-control'>
+			<option value='yes'>Public</option>
+			<option value='no'>Private</option>
+		</select>
+           <br/><br/>
+           <label>Number of Attendees:</label><br/>
+           <select class='form-control' [(ngModel)]="sessionAttendeeCapacity" name='numAttendees'>
+               <option value='5'>5</option>
+               <option value='5'>10</option>
+               <option value='5'>25</option>
+               <option value='5'>50</option>
+               <option value='5'>100</option>
+               <option value='5'>200</option>
+           </select>
+       <br/><br/>
+        <label>Speaker:</label><br/>
+		<input type='text' [(ngModel)]="sessionSpeaker" class='form-control' value=''>
+        <br/><br/>
+        <label>Synopsis:</label><br/>
+		<input type='text' [(ngModel)]="sessionSynopsis" class='form-control' value=''>
+        <br/><br/>
+        <label>Cost:</label><br/>
+		<input type='text' class='form-control' [(ngModel)]="sessionCost" value='$100.00'>
+        <br/><br/>
+        <label>Discount:</label><br/>
+		<input type='text' class='form-control' [(ngModel)]="sessionDiscount" value='$10.00'>
+        <br/><br/>
+        <label>Date:</label><br/>
+		<input type='date' class='form-control' [(ngModel)]="sessionStartDate" value=''>
+        <br/><br/>
+
+           <input type='button' value='Save Information'  (click)="createNewSession();modal.dismiss('Cross click')" />
+    </div>
+  </ng-template>
+
+
+<style>
+.modal-body {
+    min-height:400px;
+    overflow:auto;
+            
+}
+.my-tabs {
+    
+}
+.hide-tab {
+    display:none;
+}
+.active-tab {
+    display:block !important;
+}
+builder-component {
+    height:1750px !important;
+}
+</style>

@@ -1,0 +1,26 @@
+<table  #table id="table" class="table table-striped text-center table-md" style="border-collapse:collapse;font-size: .7rem;">
+    <thead>
+        <tr>
+        
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'firstName')" >First Name</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'lastName')" >Last Name</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'keyContact')" >Key Contact</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'regType')" >RegType</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'rdm')" >RDM</th>
+          <th class="sortColumn" scope="col" (click)="sortColumn($event, 'due')" >Due</th>
+          <!-- <th class="sortColumn" scope="col" (click)="sortColumn($event, 'status')" >Status</th> -->
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let linkedRecord of valid.linkedRecords; let i = index">
+        <td class="align-middle text-nowrap" scope="col">{{linkedRecord.firstName}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{linkedRecord.lastName}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{linkedRecord.keyContact}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{linkedRecord.regType}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{linkedRecord.rdm}}</td>
+        <td class="align-middle text-nowrap" scope="col">{{linkedRecord.due}}</td>
+        <!-- <td class="align-middle text-nowrap" scope="col">{{linkedRecord.status}}</td> -->
+      </tr>
+    </tbody>
+  </table>

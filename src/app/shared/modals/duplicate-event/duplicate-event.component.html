@@ -1,0 +1,108 @@
+<div class="modal-header">
+    <h3 class="modal-title text-uppercase font-weight-bold m-0"> Create Duplicate Event </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="spinnerSection">
+        <ngx-spinner name="registrationLoading" [fullScreen]="false" type="timer" size="medium"></ngx-spinner>
+        <div class="thumbnail d-flex align-items-center justify-content-center" id="thumbnail"></div>
+    </div>
+    <div class="container">
+        <form [formGroup]="duplicateEventForm">
+            <div>
+                <p>
+                    By proceeding with duplicating this event, you will be generating a new event with the same setup as
+                    this event. Please select the configurations you want to copy-over to the new event.
+                </p>
+            </div>
+            <div class="form-row mt-0 mb-3">
+                <div class="col-12">
+                    <input name="text" class="form-control" formControlName="evtName" maxlength="250" placeholder="New Event Name"
+                        [class.border-danger]="lf.evtName.invalid && (lf.evtName.dirty || lf.evtName.touched)"
+                        [class.border-success]="lf.evtName.valid && (lf.evtName.dirty || lf.evtName.touched)">
+                    <div *ngIf="lf.evtName.invalid && (lf.evtName.dirty || lf.evtName.touched)"
+                        class="help-block mt-1 text-danger">
+                        <div *ngIf="lf.evtName.errors.required">
+                            * New event name is required.
+                        </div>
+                        <div *ngIf="lf.evtName.errors.duplicateName">
+                            * Duplicated event name is not allowed.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row px-4 py-2">
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="regTypes" color="primary" disabled>
+                        Reg Types
+                    </mat-checkbox>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="floorplan" color="primary">
+                        Floorplan
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="form-row px-4 py-2">
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="costsAndPackages" color="primary">
+                        Costs / Packages
+                    </mat-checkbox>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="questions" color="primary">
+                        Demographic Questions
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="form-row px-4 py-2">
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="discounts" color="primary">
+                        Discounts
+                    </mat-checkbox>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="pageBuilder" color="primary" disabled>
+                        Page Builder
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="form-row px-4 py-2">
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="qualifications" color="primary">
+                        Qualifications
+                    </mat-checkbox>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="pageBuilder" color="primary">
+                        Exhibitor Allotments
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="form-row px-4 py-2">
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="sessions" color="primary">
+                        Sessions
+                    </mat-checkbox>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <mat-checkbox formControlName="memberships" color="primary">
+                        Memberships
+                    </mat-checkbox>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-between">
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="save()"> Save </button>
+                <button class="btn btn-primary text-uppercase" color="primary" (click)="closeModal()"> Cancel </button>
+            </div>
+        </div>
+    </div>
+</div>

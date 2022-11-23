@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h2 class="modal-title w-100 text-center m-0"> Import Questions </h2>
+</div>
+<div class="modal-body">
+    <form [formGroup]="questionsForm">
+        <div class="form-row text-center">
+            <div class="col-12">
+                <input type="file" name="csv" accept=".csv" (change)="uploadSampleFile($event.target)" hidden #sampleInput>
+                <button class="uploadBtn border-0" [class.active]="lf.sampleQuestionsFileDataB64.value" (click)="sampleInput.click()"> Upload CSV </button>
+            </div>
+        </div>
+        <div class="form-row mt-4">
+            <div class="col-12">
+                <label> Reg type mapping </label>
+                <select formControlName="regType" class="form-control">
+                    <option value="" checked> - Select - </option>
+                    <option *ngFor="let regtype of regtypesList" [value]="regtype.description"> {{ regtype.description }} </option>
+                </select>
+                <div *ngIf="lf.regType.invalid && (lf.regType.dirty || lf.regType.touched)"
+                    class="help-block mt-1 text-danger">
+                    <div *ngIf="lf.regType.errors.required">
+                        * RegType is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer border-0">
+    <div class="container-fluid">
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+                <a href="javascript:void(0);" (click)="save()" class="addBtn">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

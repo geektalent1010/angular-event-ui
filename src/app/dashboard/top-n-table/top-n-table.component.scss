@@ -1,0 +1,58 @@
+.header-bar {
+  height: 0.5em;
+  width: 100%;
+  background-color: yellow;
+}
+
+.card-title {
+  line-height: 1.5em;
+  height: 3em;
+}
+.card-subtitle {
+  line-height: 1.5em;
+  height: 3.5em;
+  font-weight: "bold" !important;
+  margin-bottom: 1em;
+  vertical-align: middle;
+}
+table {
+  width: 100%;
+  line-height: 1.2em;
+}
+.card-body {
+  height: 54em;
+}
+.card-subtitle {
+  background-color: rgba(0, 128, 0, 0.1);
+}
+
+.w-35 {
+  width: 35% !important;
+}
+.w-21 {
+  width: 21% !important;
+}
+ngb-pagination ::ng-deep a {
+  color: black !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border-color: black;
+  background-color: #f1f1f1;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem #f1f1f1;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem #f1f1f1;
+}
+ngb-pagination ::ng-deep li:first-child a {
+  background-color: #f1f1f1;
+  border-color: black;
+}
+ngb-pagination ::ng-deep li:last-child a {
+  background-color: #f1f1f1;
+  border-color: black;
+}

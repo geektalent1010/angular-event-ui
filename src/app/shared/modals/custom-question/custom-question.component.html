@@ -1,0 +1,336 @@
+<div class="modal-header">
+  <h3 *ngIf = "AddNewQuestion" class="modal-title m-0">Add Demographic Question</h3>
+  <h3 *ngIf = "!AddNewQuestion" class="modal-title m-0">Chain Demographic Questions</h3>
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container" style="height: 500px;" *ngIf="AddNewQuestion">
+    <form [formGroup]="customQuestionsForm">
+      <div class="row">
+        <div class="col">
+          <span>
+            Unique Id:
+            <input formControlName="demQuestion" class="form-control" readonly />
+          </span>
+          <div *ngIf="
+                    customQuestionsForm.get('demQuestion').invalid &&
+                    customQuestionsForm.get('demQuestion').errors &&
+                    (customQuestionsForm.get('demQuestion').dirty ||
+                      customQuestionsForm.get('demQuestion').touched)
+                  ">
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('demQuestion')
+                        .hasError('required')
+                    ">
+              This field is required.
+            </small>
+
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('demQuestion')
+                        .hasError('maxlength')
+                    ">
+              The maximum length for this field is
+              {{
+              customQuestionsForm.get("demQuestion").errors
+              .maxlength.requiredLength
+              }}
+              characters. <br />
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Description:
+          <input formControlName="description" class="form-control" />
+          <div *ngIf="
+                    customQuestionsForm.get('description').invalid &&
+                    customQuestionsForm.get('description').errors &&
+                    (customQuestionsForm.get('description').dirty ||
+                      customQuestionsForm.get('description').touched)
+                  ">
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('description')
+                        .hasError('required')
+                    ">
+              This field is required.
+            </small>
+
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('description')
+                        .hasError('maxlength')
+                    ">
+              The maximum length for this field is
+              {{
+              customQuestionsForm.get("description").errors
+              .maxlength.requiredLength
+              }}
+              characters. <br />
+            </small>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col">
+          Addıtıonal Info Name:
+          <input formControlName="additionalInfoName" class="form-control" />
+          <div *ngIf="
+                    customQuestionsForm.get('additionalInfoName').invalid &&
+                    customQuestionsForm.get('additionalInfoName').errors &&
+                    (customQuestionsForm.get('additionalInfoName').dirty ||
+                      customQuestionsForm.get('additionalInfoName').touched)
+                  ">
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('additionalInfoName')
+                        .hasError('required')
+                    ">
+              This field is required.
+            </small>
+
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('additionalInfoName')
+                        .hasError('maxlength')
+                    ">
+              The maximum length for this field is
+              {{
+              customQuestionsForm.get("additionalInfoName").errors
+              .maxlength.requiredLength
+              }}
+              characters. <br />
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Addıtıonal Info Value:
+          <input formControlName="additionalInfoValue" class="form-control" />
+          <div *ngIf="
+                    customQuestionsForm.get('additionalInfoValue').invalid &&
+                    customQuestionsForm.get('additionalInfoValue').errors &&
+                    (customQuestionsForm.get('additionalInfoValue').dirty ||
+                      customQuestionsForm.get('additionalInfoValue').touched)
+                  ">
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('additionalInfoValue')
+                        .hasError('required')
+                    ">
+              This field is required.
+            </small>
+
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('additionalInfoValue')
+                        .hasError('maxlength')
+                    ">
+              The maximum length for this field is
+              {{
+              customQuestionsForm.get("additionalInfoValue").errors
+              .maxlength.requiredLength
+              }}
+              characters. <br />
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          Polling Type:
+          <select class="form-control" formControlName="pollingTypeCode">
+            <option *ngFor="let code of pollingTypeCodes" [value]="code">{{ code }}</option>
+          </select>
+          <div *ngIf="
+                    customQuestionsForm.get('pollingTypeCode').invalid &&
+                    customQuestionsForm.get('pollingTypeCode').errors &&
+                    (customQuestionsForm.get('pollingTypeCode').dirty ||
+                      customQuestionsForm.get('pollingTypeCode').touched)
+                  ">
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('pollingTypeCode')
+                        .hasError('required')
+                    ">
+              This field is required.
+            </small>
+
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('pollingTypeCode')
+                        .hasError('maxlength')
+                    ">
+              The maximum length for this field is
+              {{
+              customQuestionsForm.get("pollingTypeCode").errors
+              .maxlength.requiredLength
+              }}
+              characters. <br />
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          Response Type:
+          <select class="form-control" formControlName="responseLayout" (change)="responseChange($event.target.value)">
+            <option value="Freetext">Free Text</option>
+            <option value="Dropdown">Dropdown</option>
+            <option value="Checkbox">Checkbox</option>
+            <option value="CheckboxList">Checkbox List</option>
+            <option value="RadioButtonList">Radio Button List</option>
+          </select>
+          <div *ngIf="
+                    customQuestionsForm.get('responseLayout').invalid &&
+                    customQuestionsForm.get('responseLayout').errors &&
+                    (customQuestionsForm.get('responseLayout').dirty ||
+                      customQuestionsForm.get('responseLayout').touched)
+                  ">
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('responseLayout')
+                        .hasError('required')
+                    ">
+              This field is required.
+            </small>
+
+            <small class="text-danger" *ngIf="
+                      customQuestionsForm
+                        .get('responseLayout')
+                        .hasError('maxlength')
+                    ">
+              The maximum length for this field is
+              {{
+              customQuestionsForm.get("responseLayout").errors
+              .maxlength.requiredLength
+              }}
+              characters. <br />
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="formArr.length">
+        <div class="col-md-12">
+          <table class="style">
+            <thead>
+              <th>Response Value</th>
+              <th>Response Name</th>
+              <th>Action</th>
+            </thead>
+            <tbody formArrayName="demDetails">
+              <tr *ngFor="
+                        let itemrow of customQuestionsForm.controls
+                          .demDetails.controls;
+                        let i = index;
+                        let l = last
+                      " [formGroupName]="i">
+                <td>
+                  <input maxlength="50" formControlName="dedValue" type="text" class="form-control custom-form-input" />
+                  <div *ngIf="
+                            itemrow.get('dedValue').invalid &&
+                            itemrow.get('dedValue').errors &&
+                            (itemrow.get('dedValue').dirty ||
+                              itemrow.get('dedValue').touched)
+                          ">
+                    <small class="text-danger" *ngIf="
+                              itemrow.get('dedValue').hasError('required')
+                            ">
+                      This field is required.
+                    </small>
+
+                    <small class="text-danger" *ngIf="
+                            itemrow.get('dedValue')
+                                .hasError('maxlength')
+                            ">
+                      The maximum length for this field is
+                      {{
+                      itemrow.get("dedValue").errors.maxlength
+                      .requiredLength
+                      }}
+                      characters. <br />
+                    </small>
+                  </div>
+                </td>
+                <td>
+                  <input formControlName="dedDescription" class="form-control custom-form-input" />
+
+                  <div *ngIf="
+                            itemrow.get('dedDescription').invalid &&
+                            itemrow.get('dedDescription').errors &&
+                            (itemrow.get('dedDescription').dirty ||
+                              itemrow.get('dedDescription').touched)
+                          ">
+                    <small class="text-danger" *ngIf="
+                              itemrow
+                                .get('dedDescription')
+                                .hasError('required')
+                            ">
+                      This field is required.
+                    </small>
+
+                    <span *ngFor="let dem of customQuestionsForm.value.demDetails">
+                      <small class="text-danger" *ngIf="dem.dedDescription.length > dedDescriptionMaxLength">
+                        The maximum length for this field is {{dedDescriptionMaxLength}} characters. <br />
+                      </small>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <button [disabled]="isReadMode" (click)="deleteRow(i)" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row"></div>
+    </form>
+
+  </div>
+  <div class="container" style="height: 500px;width: 700px;" *ngIf="!AddNewQuestion">
+    <form [formGroup]="selectQuestionForm">
+      <div style="display: flex;">
+        <label style="width:200px" for="question"> Select Questions: </label>
+        <span style="width:300px">
+          <ng-multiselect-dropdown [placeholder]="'- Select -'"
+            [settings]="dropdownSettings" [data]="_questionList" formControlName="question">
+          </ng-multiselect-dropdown>
+        </span>
+      </div>
+      <div class="ml-3" style="color: green;" (click)="addQuestion()">
+        <b>Add New </b>
+      </div>
+    </form>
+
+  </div>
+</div>
+<div class="modal-footer border-0">
+  <div class="container-fluid">
+    <div class="row" *ngIf="AddNewQuestion">
+      <button type="button" *ngIf="addNewRowResp" class="btn btn-primary" (click)="addNewRow()">
+        Add New Row
+      </button>
+    </div>
+    <div class="row m-0" *ngIf="AddNewQuestion">
+      <div class="col-12 p-0 d-flex align-items-center justify-content-between">
+        <button class="btn btn-primary text-uppercase" color="primary" (click)="save()"> Save </button>
+        <button class="btn btn-primary text-uppercase" color="primary" (click)="AddNewQuestion = !AddNewQuestion"> Cancel </button>
+      </div>
+    </div>
+    <div class="row m-0" *ngIf="!AddNewQuestion">
+      <div class="col-12 p-0 d-flex align-items-center justify-content-between">
+        <button class="btn btn-primary text-uppercase" color="primary" (click)="submit()"> Submit </button>
+      </div>
+    </div>
+  </div>
+</div>

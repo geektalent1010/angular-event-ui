@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h2 class="modal-title w-100 text-center m-0">
+    Enter Private Event Access Code
+  </h2>
+</div>
+<div class="modal-body">
+  <form [formGroup]="codeForm">
+    <div class="form-row d-flex align-items-center my-2">
+      <div class="col-12">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="code"
+          [class.border-danger]="
+            lf.code.invalid && (lf.code.dirty || lf.code.touched)
+          "
+          [class.border-success]="
+            lf.code.valid && (lf.code.dirty || lf.code.touched)
+          "
+          appNumbersOnly
+        />
+        <div
+          *ngIf="lf.code.invalid && (lf.code.dirty || lf.code.touched)"
+          class="help-block mt-1 text-danger"
+        >
+          <div *ngIf="lf.code.errors.required">* Required.</div>
+          <div *ngIf="lf.code.errors.minlength || lf.code.errors.maxlength">
+            * Should be 6 digits
+          </div>
+        </div>
+      </div>
+      <a *ngIf="codeInvalid" class="text-danger mt-3 pl-1" href="javascript:void(0);" (click)="remindCode()">Invalid Access Code Entered. Need a Reminder?</a>
+    </div>
+  </form>
+</div>
+<div class="modal-footer border-0">
+  <div class="container-fluid">
+    <div class="row float-right">
+      <button type="button" class="btn btn-primary mr-3" [disabled]="loading" (click)="onSubmit()">
+          Submit
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          Cancel
+      </button>
+    </div>
+  </div>
+</div>

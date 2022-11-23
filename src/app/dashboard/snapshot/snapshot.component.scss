@@ -1,0 +1,43 @@
+.header-bar {
+  height: 0.5em;
+  width: 100%;
+  background-color: green;
+}
+
+.card-title {
+  line-height: 1.5em;
+  height: 3em;
+}
+.card-subtitle {
+  line-height: 1.5em;
+  height: 3.5em;
+  font-weight: "bold" !important;
+  margin-bottom: 1em;
+  vertical-align: middle;
+  background-color: rgba(0, 128, 0, 0.1);
+}
+table {
+  width: 100%;
+  line-height: 1.5em;
+  height: 25em;
+  color: black;
+}
+.td-label {
+  align: left;
+  color: black;
+}
+.amount {
+  align: right;
+  text-align: right;
+}
+.single-row {
+  margin-top: 1em;
+  line-height: 2em;
+}
+table tr:last-child {
+  height: 100%;
+  vertical-align: bottom;
+}
+table tr:last-child div {
+  background-color: purple;
+}

@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h3 class="modal-title text-uppercase font-weight-bold m-0"> Publish Report </h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row mt-0 mb-2">
+            <div class="col-12 p-0">
+                <h2 class="text-center"> {{ report?.reportName }} </h2>
+            </div>
+            <div class="col-12 p-0">
+                <label for="comment"> Comment for revision </label>
+                <textarea rows="4" class="w-100" name="comment" [(ngModel)]="comment"></textarea>
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-12 p-0 d-flex align-items-center justify-content-end">
+                <button class="btn btn-primary text-uppercase mr-2" color="primary" (click)="publish()"> Publish </button>
+                <button class="btn btn-secondary text-uppercase" color="primary" (click)="closeModal()"> Cancel </button>
+            </div>
+        </div>
+    </div>
+</div>

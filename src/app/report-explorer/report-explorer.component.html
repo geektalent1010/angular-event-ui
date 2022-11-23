@@ -1,0 +1,101 @@
+<div class="container-fluid">
+    <div class='row'>
+        <div class='col-2'>
+            <div class="tabs-nav-wrap">
+                <ul class="tabs-nav">
+                    <li (click)="setTab(1)" [ngClass]="{'tab-nav-link': true, 'current': currentTab == 1}">
+                        <i class="far fa-chart-bar"></i>
+                        <!-- <img src="assets/icons/statistics.png"> -->
+                        <br />
+                        <span> Reports Explorer </span>
+                    </li>
+                </ul>
+                <div style="clear:both;"></div>
+            </div><!-- ends tabs-nav-wrap -->
+        </div>
+
+        <div class='col'>
+            <div class="tabs-main-content">
+                <div id="tab-one" [hidden]="currentTab != 1" class="tab-content">
+                    <!-- Begins tab-one -->
+                    <div class="tab-inner">
+                        <h2> Event Reports Explorer </h2>
+                        <form [formGroup]="searchForm">
+                            <div class="row toolbars d-flex align-items-center">
+                                <button color="primary" class="btn btn-primary text-uppercase mr-3" (click)="createReport()"> Create Report </button>
+                                <div class="customSelect period mr-3">
+                                    <select formControlName="period">
+                                        <option *ngFor="let period of periodOptions" [value]="period.value"> {{ period.label }} </option>
+                                    </select>
+                                </div>
+                                <div class="form">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" class="form-control form-input" formControlName="search" placeholder="Report Name">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-12 p-0 py-2">
+                                <table mdbTable  #reportTable="mdbTable" class="reportTable table table-striped z-depth-1">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="lastEditedDate"> Date Last Edited </th>
+                                            <th scope="col" class="lastEditedUser"> User Last Edited </th>
+                                            <th scope="col" class="reportName"> Report Name </th>
+                                            <th scope="col" class="description"> Description </th>
+                                            <th scope="col" class="optionsExports"> Options / Exports </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let report of filteredReportList; let i = index" [class.highlight]="report.highlight">
+                                            <th *ngIf="i+1 >= reportTablePagination.firstItemIndex && i < reportTablePagination.lastItemIndex" scope="row">
+                                                {{report.lastEditedDate | date:'MM/dd/yyyy hh:mm a'}}
+                                            </th>
+                                            <td *ngIf="i+1 >= reportTablePagination.firstItemIndex && i < reportTablePagination.lastItemIndex">
+                                                {{report.lastEditedUser}}
+                                            </td>
+                                            <td *ngIf="i+1 >= reportTablePagination.firstItemIndex && i < reportTablePagination.lastItemIndex">
+                                                <a href="javascript:void(0);" (click)="editReport(report)">
+                                                    {{report.reportName}}
+                                                </a>
+                                            </td>
+                                            <td *ngIf="i+1 >= reportTablePagination.firstItemIndex && i < reportTablePagination.lastItemIndex">
+                                                {{report.description}}
+                                            </td>
+                                            <td *ngIf="i+1 >= reportTablePagination.firstItemIndex && i < reportTablePagination.lastItemIndex">
+                                                <div class="actions">
+                                                    <button class="btn btn-success mr-2 my-1" (click)="edit(report)" [class.hidden]="!report.editable"> Edit </button>
+                                                    <button class="btn btn-icon my-1" (click)="export(report, 'XLSX')">
+                                                        <img src="assets/icons/excel.png">
+                                                    </button>
+                                                    <button class="btn btn-icon my-1" (click)="export(report, 'PDF')">
+                                                        <img src="assets/icons/pdf.png">
+                                                    </button>
+                                                    <button class="btn btn-danger my-1" (click)="live(report)">
+                                                        <i class="fas fa-play"></i>
+                                                        Live
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="grey lighten-5 w-100">
+                                        <tr>
+                                            <td colspan="12">
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <div class="paginator">
+                                                        <mdb-table-pagination [tableEl]="reportTable" [searchDataSource]="filteredReportList"></mdb-table-pagination>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
